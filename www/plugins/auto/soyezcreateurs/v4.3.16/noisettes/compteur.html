@@ -1,0 +1,23 @@
+[(#REM)
+ Compteur universel XITI pour SPIP
+ instructions et forum d'aide de ce script :
+ https://contrib.spip.net/Mesurez-l-audience-de-votre-site
+]
+<div class="centrer_div">
+<script type="text/javascript"><!--
+hsh = new Date();
+hsd = document;
+hsr = hsd.referrer.replace(/[<>]/g, '');
+hsi = '<a href="http://www.xiti.com/xiti.asp?s=#CONFIG{soyezcreateurs_google/xiti_id}"';
+hsi += ' target="_top"><img width="39" height="25" border="0" ';
+hsi += 'src="#CONFIG{soyezcreateurs_google/xiti_url}?s=#CONFIG{soyezcreateurs_google/xiti_id}';
+hsi += '&amp;p=[(#ENV{title}|htmlentities|trim|replace{" ","_"})]';
+hsi += '&amp;hl=' + hsh.getHours() + 'x' + hsh.getMinutes() + 'x' + hsh.getSeconds();
+if(parseFloat(navigator.appVersion)>=4)
+{Xiti_s=screen;hsi += '&amp;r=' + Xiti_s.width + 'x' + Xiti_s.height + 'x' + Xiti_s.pixelDepth + 'x' + Xiti_s.colorDepth;}
+hsd.writeln(hsi + '&amp;ref=' + hsr.replace(/&/g, '$') + '" title="Mesurez votre audience" alt="Mesurez votre audience" /><\/a>');
+//--></script>
+<noscript>
+<div><a href="http://www.xiti.com/xiti.asp?s=#CONFIG{soyezcreateurs_google/xiti_id}"><img width="39" height="25" src="#CONFIG{soyezcreateurs_google/xiti_url}?s=#CONFIG{soyezcreateurs_google/xiti_id}&amp;p=[(#ENV{title}|htmlentities|trim|replace{" ","_"})]&amp;" title="Mesurez votre audience" alt="Mesurez votre audience" /></a></div>
+</noscript>
+</div>#FILTRE{mini_html}

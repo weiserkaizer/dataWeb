@@ -1,0 +1,42 @@
+a:2:{s:9:"nom_cache";s:38:"0b8afa2cc82c0ba655e22b01c24c80e7.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_ac57c649cbd0c426c2cf294ae97a8463";s:6:"source";s:45:"plugins/auto/saisies/v2.26.5/saisies.css.html";s:11:"process_ins";s:4:"html";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"0b8afa2cc82c0ba655e22b01c24c80e7.cache";}s:7:"entetes";a:5:{s:12:"X-Spip-Cache";s:6:"360000";s:13:"Cache-Control";s:14:"max-age=360000";s:15:"X-Spip-Statique";s:3:"oui";s:12:"Content-Type";s:29:"text/css; charset=iso-8859-15";s:4:"Vary";s:15:"Accept-Encoding";}s:5:"duree";i:360000;s:5:"texte";s:1072:"
+/* Dans l'espace privé, afficher les labels des vues de Saisies */
+#wysiwyg .afficher .label{ display:block; }
+
+.fieldset.pliable > fieldset > .legend{
+	cursor:pointer;
+}
+
+.fieldset.pliable > fieldset > .legend span{
+	padding-left:15px;
+	background:transparent url(prive/images/deplierbas.gif) left center no-repeat;
+}
+
+.fieldset.plie > fieldset > .legend span{
+	background-image:url(prive/images/deplierhaut.gif);
+}
+/**/
+.editer.saisie_date_jour_mois_annee .choix {
+	background-color:transparent;
+	float:left;
+	padding:0;
+	border:0;
+}
+.saisie_date_jour_mois_annee .choix+.choix {margin-left:1em;}
+.saisie_date_jour_mois_annee .choix label{display:block; width:auto;}
+.saisie_date_jour_mois_annee .choix .text{width:auto;}
+
+/**/
+
+
+/**/
+.formulaire_spip li.selecteur_item > label {
+	float:none;
+}
+
+.formulaire_spip li.selecteur_item div.choix label {
+	float:none;
+	display:inline;
+}
+
+/* avec crayons + formulaire de saisies, éviter un padding à gauche du label */
+.formulaire_crayon .editer-groupe .editer { padding-left:10px; }";s:5:"notes";s:0:"";s:8:"contexte";a:5:{s:4:"page";s:11:"saisies.css";s:4:"date";s:19:"2019-01-07 01:03:28";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-07 01:03:28";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1546823007;s:2:"gz";b:0;s:3:"sig";i:108835617;}}

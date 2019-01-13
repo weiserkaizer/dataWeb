@@ -1,0 +1,8 @@
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<li><<:soyezcreateurs:agenda_proposer_evenement:></li>
+		</ul>
+	</nav>
+#FILTRE{mini_html}

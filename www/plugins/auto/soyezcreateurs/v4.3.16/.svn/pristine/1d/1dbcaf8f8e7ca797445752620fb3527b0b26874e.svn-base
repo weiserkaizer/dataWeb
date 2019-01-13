@@ -1,0 +1,29 @@
+[(#PLUGIN{propevent}|oui)
+
+[(#SET{titretop,<:soyezcreateurs:agenda_proposer_evenement|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{template=ProposerEvenement}
+	{title=<:soyezcreateurs:agenda_proposer_evenement:>}
+	{titretop=#GET{titretop}}
+	{type=proposer_evenement}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:agenda_proposer_evenement:></h1></div>
+</div>
+]
+<p class="proposer_evenement_explication"><:soyezcreateurs:agenda_proposer_evenement_explication:></p>
+
+#FORMULAIRE_PROPOSER_EVENEMENT
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{template=ProposerEvenement}
+	{titretop=#GET{titretop}}
+>]
+#FILTRE{mini_html}

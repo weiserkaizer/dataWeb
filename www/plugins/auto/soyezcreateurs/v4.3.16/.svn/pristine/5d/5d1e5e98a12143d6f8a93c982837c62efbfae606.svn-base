@@ -1,0 +1,217 @@
+#CACHE{24*3600,cache-client}
+#HTTP_HEADER{Content-Type: text/css; charset=iso-8859-15}
+#HTTP_HEADER{Vary: Accept-Encoding}
+
+#SET{c_vignettes_bk,(#CONFIG{soyezcreateurs_couleurs/vignettes_bk,#ffffff})}
+#SET{c_navigation,(#CONFIG{soyezcreateurs_couleurs/navigation,#017ca5})}
+	#SET{c_navigation_bk,(#CONFIG{soyezcreateurs_couleurs/navigation_bk,#ffffff})}
+#SET{c_menuhaut,(#CONFIG{soyezcreateurs_couleurs/menuhaut,#017ca5})}
+	#SET{c_menuhaut_bk,(#CONFIG{soyezcreateurs_couleurs/menuhaut_bk,#ffffff})}
+#SET{c_extra,(#CONFIG{soyezcreateurs_couleurs/extra,#017ca5})}
+	#SET{c_extra_bk,(#CONFIG{soyezcreateurs_couleurs/extra_bk,#ffffff})}
+
+#SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
+#SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,180})}
+#SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,180})}
+#SET{Largeurcontent_central,(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|moins{#GET{LargeurMenuDroit}})}
+#SET{Largeurcontent_extra,(#GET{LargeurContaineur}|moins{#GET{Largeurcontent_central}})}
+
+div#content { width:#GET{LargeurContaineur}px; margin-left: 0; margin-right:0; }
+#communiquant_content { clear: both; padding-bottom: 10px; }
+#communiquant_content_central {
+	width:#GET{Largeurcontent_central}px;
+	float:left;
+}
+#miettesdepain, .boutonstexte {display: none; }
+
+
+#header #citations {
+	clear:right;
+	float:right;
+	margin: 8px 0;
+}
+
+#letexte { padding: 0 }
+
+#homeSecondblock, #homecadre_outils, .forum_sommaire, #communiquant_actus, #communiquant_content_extra { font-size: #CONFIG{soyezcreateurs_couleurs/fontsizecontenu,1.3}em; }
+#communiquant_actus, .forum_sommaire { padding: 0 8px; }
+#homeSecondblock ul, #communiquant_actus ul, .forum_sommaire ul, .syndic ul {
+  margin-top: 6px;
+  padding-left: 20px;
+}
+#homeagenda ul { padding-left: 0; }
+#homeSecondblock li, .forum_sommaire li, .syndic li { list-style-type: disc; }
+
+#communiquant_content_extra {
+	float:left;
+	width:#GET{Largeurcontent_extra}px;
+	padding: 0 8px;
+}
+#communiquant_content_extra img { padding: 0; }
+
+#homeDessousBreves {
+	clear: left;
+	float:left;
+	width:[(#GET{Largeurcontent_central}|mult{4}|div{6})]px;
+}
+
+#homeDessousBreves ul.block { margin: 0; padding: 0; }
+.dessousbreves_ligne { margin-left: 136px; padding-bottom: .5em; }
+#content .dessousbreves_ligne img.logo { float: left; margin-left: -136px; padding: 4px 8px 4px 0; }
+#homeSecondblock .block li { list-style-type: none; }
+
+.listeafficherimages { overflow: hidden; }
+
+#homequoideneuf, #homeagenda {
+	clear: right;
+	float:right;
+	width:[(#GET{Largeurcontent_central}|mult{2}|div{6})]px;
+	padding: 0 8px;
+}
+#communiquant_content_central .VideoALaUne, #communiquant_content_central .goodies, #communiquant_content_central .syndic {
+	clear: both;
+	padding: 0 8px;
+}
+/*************** VIDEO A LA UNE */
+.video-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+}
+.video-container iframe, .video-container object, .video-container embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#communiquant_content_extra .goodies, #communiquant_content_extra #homequoideneuf {
+	clear: left;
+	float: none;
+	width: 100%;
+	padding: 0;
+}
+
+#communiquant_content div.goodies.underedito { font-size: 1.3em; padding: 0 8px; }
+
+[(#CONFIG{soyezcreateurs/largeur_slideshow_communiquant,etroite}|=={etroite}|oui)
+[(#CONFIG{soyezcreateurs/positiongoodies,extra}|=={extra}|oui)
+#communiquant_content_extra .goodies h2:first-child { margin-top: 0; }
+]
+]
+
+.cadreinfo { margin: 0; width: 100%; clear: both; padding: 0;}
+/*.formulaire_spip { margin-bottom: 0; }*/
+
+.dessousbreves { float:left; width:[(#GET{Largeurcontent_central}|mult{2}|div{6})]px;padding: 0 8px;}
+.dessousbreves.oddbreves {clear:left;}
+
+#homecadre_outils { clear:both; }
+#homecadre_outils ul { padding:0; }
+[(#REM) Pour justifier les pictos des outils horizontalement : cf http://stackoverflow.com/questions/10020046/full-justify-for-li-elements
+Voir aussi : http://portfolio.planetjon.ca/2014/04/19/css-recipes-justified-horizontal-menus/ ]
+#communiquant_content_central #homecadre_outils ul, .goodies.underedito ul { text-align: justify; }
+#communiquant_content_central #homecadre_outils ul::after, .goodies.underedito ul::after {width: 100%; display: inline-block; content: "."; visibility: hidden}
+#homecadre_outils li, .goodies.underedito li { display: inline-block; text-align:center; vertical-align: top; }
+#homecadre_outils img, .goodies.underedito img { padding: 0 10px; }
+
+.goody { clear: left; margin-bottom: 8px; min-height: 48px; }
+.goody_ligne { margin-left: #CONFIG{soyezcreateurs_layout/largeurlogogoody,48}px; }
+.goodytitre, .goodiedate { padding-left: 8px; }
+#content img.logo_goody { float: left; margin-left: -#CONFIG{soyezcreateurs_layout/largeurlogogoody,48}px; padding: 0; }
+#content img.spip_logos { padding: 0; }
+
+.ZoomSur { clear: left; padding: 0 8px; margin-bottom: 8px; min-height: [(#GET{Largeurcontent_central}|div{6}|plus{8})]px; }
+.ZoomSur_ligne { margin-left: [(#GET{Largeurcontent_central}|div{6}|plus{8})]px; padding-bottom: .5em; }
+#content img.logo_zoomsur { float: left; margin-left: -[(#GET{Largeurcontent_central}|div{6}|plus{8})]px; padding: 4px 8px 4px 0; }
+
+/*************** HOME SPECIAL FEATURE */
+[(#CONFIG{soyezcreateurs/largeur_slideshow_communiquant,etroite}|=={large}|oui)
+#SET{ModeSlideShow,large}
+#SET{LargeurSlideShow,#GET{LargeurContaineur}
+]
+[(#CONFIG{soyezcreateurs/largeur_slideshow_communiquant,etroite}|=={etroite}|oui)
+#SET{ModeSlideShow,''}
+#SET{LargeurSlideShow,#GET{Largeurcontent_central}
+]
+#homeSpecialFeature img { padding:0; background-color: transparent; }
+#homeSpecialFeature {[ background: url('(#CHEMIN{images/hsf_over.png}|image_reduire{[(#GET{LargeurSlideShow})],0}|extraire_attribut{src})') top left no-repeat; ]position: relative; margin: 0 0 10px 0; width: #GET{LargeurSlideShow}px; padding-top: 10px; [min-height: (#CHEMIN{images/hsf#GET{ModeSlideShow}.png}|image_reduire{[(#GET{LargeurSlideShow})],0}|hauteur)px;] height: auto; }
+#homeSpecialFeature h2 { margin: 0; }
+.hasJS #homeSpecialFeature .hSFItem { margin: 0 0 10px 10px; width: 209px; }
+#homeSpecialFeature .hSFItem .hSFDecoImg { display: block; }
+.hasJS #homeSpecialFeature .hSFItem .hSFDecoImg { position: absolute; top: 0; left: 0; z-index: 0; }
+#homeSpecialFeature .postListItem { padding: 10px 0 0 32px; }
+.hasJS #homeSpecialFeature .postListItem { padding: 7px; margin: 0; min-height: 36px; height: auto; position: relative; z-index: 1; }
+#homeSpecialFeature .postListItem .postListItemDate { position: relative; padding-bottom: 5px; z-index: 1; font-size: 1em; font-weight: bold; color: #CCCCCC; }
+#homeSpecialFeature .activehSFItem .postListItem .postListItemDate { color: #FFFFFF; }
+#homeSpecialFeature .postListItem .postListItemDate span { color: #999999; }
+#homeSpecialFeature .activehSFItem .postListItem .postListItemDate span { color: #999999; }
+#homeSpecialFeature .postListItem .postListItemTitle { position: relative; z-index: 1; font-size: 1.45em; font-weight: normal; border: none; }
+#homeSpecialFeature .postListItem .postListItemTitle a { color: #999999; }
+#homeSpecialFeature .activehSFItem .postListItem .postListItemTitle a, #homeSpecialFeature .postListItem .postListItemTitle a:hover { color: #fff; }
+#homeSpecialFeature .hSFItem .hSFDecoSpan { display: block; background: #000000; position: absolute; top: 0; left: 0; z-index: 0; }
+#homeSpecialFeature ul { list-style-type: none; list-style-image: none; }
+
+/*#content .formulaire_spip label { color: inherit; float: inherit; margin: inherit; text-align: inherit; width: inherit; }
+#content h2, .h2 { margin-top: 0; }
+#content .formulaire_spip input.text, #content .formulaire_spip textarea, #content .formulaire_spip select, #content .formulaire_spip div.choix, #content .formulaire_spip p.explication, #content .formulaire_spip em.attention, #content .formulaire_spip li p { display: inherit; margin-left: inherit; width: 97%; }
+*/
+
+#content .formulaire_spip { border: none; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; }
+.formulaire_newsletter_subscribe input.submit { width: auto; }
+
+.loginlogout ul { padding-left: 0; }
+.loginlogout li { list-style-type: none; }
+
+.Edito { font-size: 160%; padding: 0 8px; margin-bottom: 2em; }
+.Edito.ZoomSur { font-size: inherit; }
+.Edito .suite { text-align: right; }
+#content .VideoALaUne img { padding: 0; max-width: 100%; }
+
+@media (max-width: [(#GET{LargeurContaineur})]px) {
+ #communiquant_content_central {
+	float: none;
+	width: 100%;
+ }
+ #homeSpecialFeature {
+	width: 100%;
+ }
+ .Edito { width: 100%; }
+ #homeDessousBreves {
+	width: 66%;
+ }
+ .dessousbreves {
+	padding:0 1%;
+	width:48%;
+ }
+ #homequoideneuf, #homeagenda {
+	padding:0;
+	width:34%;
+ }
+ .goodies {
+	float: left;
+	clear: left;
+	width: auto;	
+}
+ #communiquant_content_extra {
+	float: none;
+	width: inherit;
+ }
+}
+
+@media (max-width: 640px) {
+ #homeDessousBreves, .dessousbreves, #homequoideneuf, #homeagenda {
+	width: inherit;
+	float: none;
+ }
+ #homeSpecialFeature {
+	min-height: initial;
+ }
+}
+
+[(#CHEMIN{images/stylescommuniquant_perso.css}|?{'/* Surcharge eventuelle */'})
+[(#INCLURE{#CHEMIN{images/stylescommuniquant_perso.css}|url_absolue_css}|compacte{css})]
+]

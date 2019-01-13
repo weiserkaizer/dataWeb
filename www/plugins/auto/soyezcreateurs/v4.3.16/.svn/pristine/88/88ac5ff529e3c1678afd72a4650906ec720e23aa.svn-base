@@ -1,0 +1,8 @@
+<BOUCLE_Auteur(AUTEURS){id_auteur=#ENV{id}}{tout}>
+<div class="auteurdetail">
+	<h2 class="#EDIT{nom}">#NOM[ <i>((#ENV{complement}))</i>]</h2>[(#ENV{affcoordonnees}|oui)
+	<div class="#EDIT{bio}">[<img src="(#LOGO_AUTEUR|image_reduire{80,0}|extraire_attribut{src})" height="[(#LOGO_AUTEUR|image_reduire{80,0}|hauteur)]" width="[(#LOGO_AUTEUR|image_reduire{80,0}|largeur)]" alt="" class="logo_auteur" />]#BIO</div>][(#ENV{affpgp}|oui)[<div class="#EDIT{pgp}">
+	(#PGP|propre)</div>]][(#ENV{affemail}|oui)[
+	<p class="#EDIT{email}">⇒ <a hef="mailto:#EMAIL">(#EMAIL)</a></p>]]
+</div>
+</BOUCLE_Auteur>

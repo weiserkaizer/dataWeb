@@ -1,0 +1,26 @@
+			<B_articles_recentsAlaUne><div id="une" class="outerbox <BOUCLE_AgendaEvenementsFuturs(EVENEMENTS)
+			{branche}
+			{par date_debut}
+			{0,1}
+			{date_fin>=(#ENV{date}|affdate{'Y-m-d'})}
+			{statut=publie}
+		>[(#CONFIG{soyezcreateurs/homeagenda,on}|=={on}|oui)hauteur1]</BOUCLE_AgendaEvenementsFuturs><BOUCLE_ZoomSur2(ARTICLES){titre_mot==^ZoomSur2}{!archive}{age<20}{0,1}>hauteur1</BOUCLE_ZoomSur2>#ENV{HauteurALaUne}<//B_ZoomSur2><//B_AgendaEvenementsFuturs>">
+				<div class="box simple">
+					<b class="top">
+						<b class="tl"></b>
+						<b class="tr"></b>
+					</b>
+					<div class="inner">
+					<div class="hd bam h1"><:soyezcreateurs:alaune:></div>
+					<div class="bd"><dl><BOUCLE_articles_recentsAlaUne(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{titre_mot=AlaUne}{doublons}{lang}{!archive}>
+	<dt[(#COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[(#TITRE)]</a></dt>[<dd>(#INTRODUCTION|couper{50}|lignes_longues{15})</dd>]
+</BOUCLE_articles_recentsAlaUne></dl></div>
+					<div class="hd bam archives"><a href="[(#SELF|parametre_url{alaune,archives})]"><:soyezcreateurs:archives:></a></div>
+				</div>
+				<b class="bottom">
+					<b class="bl"></b>
+					<b class="br"></b>
+				</b>
+				</div>
+			</div></B_articles_recentsAlaUne>
+#FILTRE{mini_html}

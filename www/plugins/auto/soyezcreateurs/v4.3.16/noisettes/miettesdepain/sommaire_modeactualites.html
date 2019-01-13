@@ -1,0 +1,16 @@
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="./"><:soyezcreateurs:accueil:></a></li>
+			<li><BOUCLE_ZoomSur(ARTICLES) {titre_mot=ZoomSur}{0,1}{lang}{!par date}>
+[(#TITRE|replace{<br />,''})]
+</BOUCLE_ZoomSur>
+<BOUCLE_ZoomSurEDITO(ARTICLES) {titre_mot=EDITO}{0,1}{lang}{!par date}>
+[(#TITRE|replace{<br />,''})]
+</BOUCLE_ZoomSurEDITO>
+[(#NOM_SITE_SPIP)]
+<//B_ZoomSurEDITO>
+<//B_ZoomSur></li>
+		</ul>
+	</nav>
+#FILTRE{mini_html}

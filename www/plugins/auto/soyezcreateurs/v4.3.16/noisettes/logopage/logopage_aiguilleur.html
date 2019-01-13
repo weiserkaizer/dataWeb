@@ -1,0 +1,16 @@
+#SET{inclure,''}[(#ENV{template}|=={'Sommaire'}|oui)
+	[(#CHEMIN{noisettes/logopage/logopage_mode#CONFIG{soyezcreateurs/mode_affichage,communiquant}.html}|oui)
+		<INCLURE{fond=noisettes/logopage/logopage_mode#CONFIG{soyezcreateurs/mode_affichage,communiquant},env,lang}>
+		#SET{inclure,1}
+	]
+][(#GET{inclure}|non)
+	[(#ENV{template}|=={'Sommaire'}|non)
+		[(#CHEMIN{noisettes/logopage/#ENV{type}.html}|oui)
+			[(#ENV{type}|oui)<INCLURE{fond=noisettes/logopage/#ENV{type},env,lang}>]
+			#SET{inclure,1}
+		]
+	]
+][(#GET{inclure}|non)
+	<INCLURE{fond=noisettes/logopage/default,env,lang}>
+]
+#FILTRE{mini_html}

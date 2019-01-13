@@ -1,0 +1,28 @@
+#SET{tri,#CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}#SET{senstri,-1}
+<BOUCLE_ClassementAlpha(RUBRIQUES){id_rubrique}{titre_mot=ClassementAlpha}>#SET{tri,titre}#SET{senstri,1}</BOUCLE_ClassementAlpha>
+<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+[.)]}{0,1}>#SET{tri,num titre}#SET{senstri,1}</BOUCLE_test_numero>
+<//B_ClassementAlpha>
+<B_articles_recents>
+#ANCRE_PAGINATION
+<dl id="listearticlerubrique">
+<BOUCLE_articles_recents(ARTICLES){id_rubrique}{lang}{tri #GET{tri},#GET{senstri}}{archive}{pagination}>[(#CONFIG{soyezcreateurs_layout/cadragelogoarticlerubrique,#CONFIG{soyezcreateurs_layout/cadragelogocontenuautomatique,entier}}|=={recadre}|oui)[(#SET{lelogo,[(#LOGO_ARTICLE_NORMAL|image_focus{#CONFIG{soyezcreateurs_layout/largeurlogoarticlerubrique,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogoarticlerubrique,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})]][(#CONFIG{soyezcreateurs_layout/cadragelogoarticlerubrique,#CONFIG{soyezcreateurs_layout/cadragelogocontenuautomatique,entier}}|=={entier}|oui)[(#SET{lelogo,[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogoarticlerubrique,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogoarticlerubrique,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})]]
+	[(#CONFIG{soyezcreateurs_layout/logoarticlerubrique,[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content})]}|=={contenthauttitre}|oui)[<dt class="haslogo nogap[(#COMPTEUR_BOUCLE|alterner{'',' odd'})]"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]"><img class="logo contenthauttitre" src="(#GET{lelogo}|extraire_attribut{src}|embarque_fichier)" width="[(#GET{lelogo}|largeur)]" height="[(#GET{lelogo}|hauteur)]" alt="" /></a></dt>]]
+	<dt class="#EDIT{titre} h2[(#CONFIG{soyezcreateurs_layout/logoarticlerubrique,[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content})]}|=={content}|oui)haslogo][(#CONFIG{soyezcreateurs_layout/logoarticlerubrique,[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content})]}|=={contentbastitre}|oui)nogap][(#COMPTEUR_BOUCLE|alterner{'',' odd'})]">[(#INCLURE{fond=noisettes/aff_datepublication,id_article})]<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[(#CONFIG{soyezcreateurs_layout/logoarticlerubrique,[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content})]}|=={content}|oui)[<img class="logo logo_modenews" src="(#GET{lelogo}|extraire_attribut{src}|embarque_fichier)" width="[(#GET{lelogo}|largeur)]" height="[(#GET{lelogo}|hauteur)]" alt="" />]][(#TITRE)]</a>[(#INCLURE{fond=noisettes/liste_auteurs,id_article,lang,nolink=1})]</dt>
+	[(#CONFIG{soyezcreateurs_layout/logoarticlerubrique,[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content})]}|=={contentbastitre}|oui)[<dt class="haslogo [(#COMPTEUR_BOUCLE|alterner{'',' odd'})]"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]"><img class="logo contentbastitre" src="(#GET{lelogo}|extraire_attribut{src}|embarque_fichier)" width="[(#GET{lelogo}|largeur)]" height="[(#GET{lelogo}|hauteur)]" alt="" /></a></dt>]]
+	[<dd class="cursor-pointer[(#COMPTEUR_BOUCLE|alterner{'',' odd'})]" onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:>[ (#TITRE|attribut_html)]">(#CHAPO|sinon{#DESCRIPTIF}|sinon{[<p>(#TEXTE|couper{300})</p>]}|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720}|mult{2}|div{3},0})</dd>]
+	[<dd>(#INCLURE{fond=noisettes/inc_liste_document_article,id_article})</dd>]
+</BOUCLE_articles_recents>
+</dl>
+[<p class="pagination">(#PAGINATION{prive})</p>]
+</B_articles_recents>
+[(#REM) V�rifier qu'il y a des articles dans la branche :
+- si oui, afficher le plan local
+- si non, afficher les sites de la branche
+]
+<BOUCLE_ArticlesDansBranche(ARTICLES){branche}{0,1} {lang}>
+[(#INCLURE{fond=noisettes/plan/plan_branche_archives,id_rubrique=#ENV{id_rubrique},env})]
+</BOUCLE_ArticlesDansBranche>
+[(#INCLURE{fond=noisettes/sites_branche,id_rubrique=#ENV{id_rubrique},env})]
+<//B_ArticlesDansBranche>
+<//B_articles_recents>
+#FILTRE{mini_html}

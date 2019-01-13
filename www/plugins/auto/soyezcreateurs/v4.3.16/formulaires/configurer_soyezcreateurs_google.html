@@ -1,0 +1,93 @@
+<div class="formulaire_spip formulaire_configurer_sc">
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	<form method="post" action="#ENV{action}">
+		<div>
+			#ACTION_FORMULAIRE{#ENV{action}}
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_indexation:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{radio,indexation,
+						label=<:soyezcreateursprive:cfg_indexation_info:>,
+						datas=#ARRAY{
+							oui,<:soyezcreateursprive:cfg_indexation_oui:>,
+							non,<:soyezcreateursprive:cfg_indexation_non:>,
+						},
+						defaut=oui,
+						explication=<:soyezcreateursprive:cfg_sponsor{id=pub-8531732540995542}:>}
+					)]	
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_parametres_addthis:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,addthis,
+						label=<:soyezcreateursprive:cfg_identifiant_addthis:>}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_notfoundorg:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,notfoundorg,
+						label=<:soyezcreateursprive:cfg_notfoundorg_key:>,
+						explication=<:soyezcreateursprive:cfg_notfoundorg_explication:>}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_parametres_google:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,google_pub,
+						label=<:soyezcreateursprive:cfg_code_pub_google:>}
+					)]
+					[(#SAISIE{input,google_search,
+						label=<:soyezcreateursprive:cfg_code_recherche_google:>}
+					)]
+					[(#SAISIE{input,google_analytics,
+						label=<:soyezcreateursprive:cfg_code_stats_google:>}
+					)]
+					[(#SAISIE{radio,googleplusun,
+						label=<:soyezcreateursprive:cfg_googleplusun_info:>,
+						datas=#ARRAY{
+							oui,<:soyezcreateursprive:cfg_googleplusun_oui:>,
+							non,<:soyezcreateursprive:cfg_googleplusun_non:>,
+						},
+						defaut=non,
+						explication=<:soyezcreateursprive:cfg_googleplusun_explication:>}
+					)]	
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_parametres_xiti:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,xiti_id,
+						label=<:soyezcreateursprive:cfg_numero_xiti:>}
+					)]
+					[(#SAISIE{input,xiti_url,
+						label=<:soyezcreateursprive:cfg_url_xiti:>}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_redirection_ancien_site:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,redirection_ancien_site,
+						label=<:soyezcreateursprive:cfg_url_redirection:>}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_feedflare:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,feedflare,
+						label=<:soyezcreateursprive:cfg_url_feedflare:>}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,26 @@
+<paquet
+	prefix="sc_mamaskitchen"
+	categorie="squelette"
+	version="1.0.0"
+	etat="dev"
+	compatibilite="[3.2.1;3.2.*]"
+	logo=""
+	documentation=""
+	schema="1.0.0" 
+>
+	<!--
+		Paquet généré le 2018-07-12 14:13:18
+	-->
+
+	<nom>SoyezCréateurs OnePage Mammas Kitchen</nom>
+	<!-- Un modèle de one page pour SoyezCréateurs -->
+
+	<auteur>andreas</auteur>
+
+	<licence>GNU/GPL</licence>
+	<necessite nom="soyezcreateurs" compatibilite="[4.3.16;[" />
+	<necessite nom="noizetier" compatibilite="[3.0.12;[" />
+	<necessite nom="gisgeom" compatibilite="[1.11.5;[" />
+
+
+</paquet>

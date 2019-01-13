@@ -1,0 +1,23 @@
+
+				<B_articles_rubrique>
+				<ul class="spip">
+				<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {!titre_mot=PasDansPlan} {par num titre}{!par date} {lang}>
+					<li class="#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+				</BOUCLE_articles_rubrique>
+				[(#SET{FermerUl,</ul>})]
+				</B_articles_rubrique>
+				<B_sites>
+				[(#GET{FermerUl}|non)<ul>]
+				<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+					<li class="#EDIT{titre}"[ style="list-style-image: url((#CHEMIN{images/sites_default.png}|image_reduire{16,16}|extraire_attribut{src}));"]><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]"[ title="(#DESCRIPTIF|attribut_html)"]>[(#NOM_SITE)]</a> <small><i>(site)</i></small></li>
+				</BOUCLE_sites>
+				[(#SET{FermerUl,</ul>})]
+				</B_sites>
+				<B_breves>
+				[(#GET{FermerUl}|non)<ul>]
+				<BOUCLE_breves(BREVES) {id_rubrique} {!par date} {0,15}>
+					<li class="#EDIT{titre}"[ style="list-style-image: url((#CHEMIN{images/actualites.png}|image_reduire{16,16}|extraire_attribut{src}));"]><a href="#URL_BREVE"[ title="(#DATE|affdate|attribut_html)"]>[(#TITRE)]</a> <small><i>(brève)</i></small></li>
+				</BOUCLE_breves>
+				[(#SET{FermerUl,</ul>})]
+				</B_breves>
+				[(#GET{FermerUl})]

@@ -1,0 +1,51 @@
+<BOUCLE_ArticleMultimedia(ARTICLES){id_document}>
+<BOUCLE_FichierMultimedia(DOCUMENTS){id_document}>
+[(#SET{id_article,#ID_ARTICLE})]
+[(#SET{id_rubrique,#ID_RUBRIQUE})]
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+<INCLURE{fond=noisettes/header/header}
+	{title=(#TITRE|attribut_html|texte_script)}
+	{titretop=#GET{titretop}}
+	{id_article}
+	{id_rubrique}
+	{id_document}
+	{type=multimedia}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><div><h1 class="titre-texte">[(#TITRE)]</h1></div></div>
+</div>
+]
+	<div id="letexte">
+[<div class="chapo">(#DESCRIPTIF)</div>]
+<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" 
+  codebase="http://www.apple.com/qtactivex/qtplugin.cab" 
+  width="[(#LARGEUR|=={0}?{200,#LARGEUR})]" height="[(#HAUTEUR|=={0}?{50,#LARGEUR})]">
+  <param name="src" value="#URL_DOCUMENT" />
+  <param name="controller" value="true" />
+  <param name="autoplay" value="false" />
+  <!--[if !IE]>-->
+  <object type="video/quicktime" 
+    data="#URL_DOCUMENT" 
+    width="[(#LARGEUR|=={0}?{200,#LARGEUR})]" height="[(#HAUTEUR|=={0}?{50,#LARGEUR})]">
+    <param name="autoplay" value="false" />
+    <param name="controller" value="true" />
+  </object>
+  <!--<![endif]-->
+</object>
+
+	</div><!-- Fin de #LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+</BOUCLE_FichierMultimedia>
+</BOUCLE_ArticleMultimedia>
+<INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titretop}}
+	{id_article=#GET{id_article}}
+	{id_rubrique=#GET{id_rubrique}}
+>
+</B_ArticleMultimedia>
+<//B_ArticleMultimedia>
+#FILTRE{mini_html}

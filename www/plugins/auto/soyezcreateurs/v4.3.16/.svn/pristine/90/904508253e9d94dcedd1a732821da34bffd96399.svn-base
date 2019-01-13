@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" prefix="og: http://ogp.me/ns#">
+<head><meta charset="#CHARSET" />
+<title>[(#ENV{title}) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[(#REM) FaceBook Open Graph : https://developers.facebook.com/docs/opengraphprotocol/ & https://developers.facebook.com/tools/lint pour v�rifier ]
+<meta property="og:title" content="[(#ENV{title}|sinon{[(#NOM_SITE_SPIP|textebrut|attribut_html)]})]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="[(#SELF|url_absolue)]" />
+<BOUCLE_LogoArticle(ARTICLES){id_article}{logo}>[<meta property="og:image" content="(#LOGO_ARTICLE_NORMAL|image_focus{200,200}|extraire_attribut{src}|url_absolue)" />]</BOUCLE_LogoArticle><BOUCLE_LogoSite(SITES){id_syndic}{logo}>[<meta property="og:image" content="(#LOGO_SITE_NORMAL|image_focus{200,200}|extraire_attribut{src}|url_absolue)" />]</BOUCLE_LogoSite><BOUCLE_LogoRubrique(RUBRIQUES){id_rubrique}{logo}>[<meta property="og:image" content="(#LOGO_RUBRIQUE_NORMAL|image_focus{200,200}|extraire_attribut{src}|url_absolue)" />]</BOUCLE_LogoRubrique>[<meta property="og:image" content="(#LOGO_SITE_SPIP_NORMAL|image_focus{200,200}|extraire_attribut{src}|url_absolue)" />]<//B_LogoRubrique><//B_LogoSite><//B_LogoArticle>
+<meta property="og:site_name" content="[(#NOM_SITE_SPIP|textebrut)]" />
+[<meta property="og:description" content="(#ENV{metadescription,[(#DESCRIPTIF_SITE_SPIP|supprimer_tags|attribut_html)]})" />]
+<meta property="og:locale" content="[(#LANG|strtolower)]_[(#LANG|strtoupper)]" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<BOUCLE_http-equiv(MOTS){type=_HTTP-EQUIV}{par titre}>[<meta[ http-equiv="(#TITRE|attribut_html)"] content="(#TEXTE|attribut_html)" />]</BOUCLE_http-equiv>
+<BOUCLE_meta_tags(MOTS){type=_META}{par titre}>[<meta[ name="(#TITRE|attribut_html)"] content="(#TEXTE|attribut_html)" />]</BOUCLE_meta_tags>
+[<meta name="description" content="(#ENV{metadescription,[(#DESCRIPTIF_SITE_SPIP|supprimer_tags|attribut_html)]})" />]
+<meta name="generator" content="SPIP [(#SPIP_VERSION|attribut_html)]" />
+[(#ENV{noindex}|?{'<meta name="robots" content="noindex" />',
+[(#CONFIG{soyezcreateurs_google/indexation,oui}|=={oui}|?{'<meta name="robots" content="index,follow" />','<meta name="robots" content="noindex, nofollow" />'})]
+})]
+[<link rel="canonical" href="(#ENV{canonical})" />]
+[<meta name="author" content="(#LESAUTEURS|attribut_html)" />]
+<meta name="DC.title" content="[(#NOM_SITE_SPIP|attribut_html)]" />
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:> [(#NOM_SITE_SPIP|attribut_html)]" href="[(#URL_PAGE{backend}|url_absolue)]" />
+<BOUCLE_SyndicationRubrique(RUBRIQUES){id_rubrique}>
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:> : [(#TITRE|attribut_html)]" href="[(#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}|url_absolue)]" />
+</BOUCLE_SyndicationRubrique>
+[(#CONFIG{activer_breves}|=={oui}|oui)<link rel="alternate" type="application/rss+xml" title="<:dernieres_breves:> [(#NOM_SITE_SPIP|attribut_html)]" href="[(#URL_PAGE{backend-breves}|url_absolue)]" />]
+[(#PLUGIN{AGENDA}|oui)<link rel="alternate" type="application/rss+xml" title="<:soyezcreateurs:syndiquer_agenda:> [(#NOM_SITE_SPIP|attribut_html)]" href="[(#URL_PAGE{backendagenda}|url_absolue)]" />]
+<BOUCLE_SyndicationRubriqueAgenda(RUBRIQUES){id_rubrique}><BOUCLE_EstAgenda(HIERARCHIE){titre_mot=Agenda}{inverse}{0,1}>
+[(#PLUGIN{AGENDA}|oui)<link rel="alternate" type="application/rss+xml" title="<:soyezcreateurs:syndiquer_agenda:> : [(#_SyndicationRubriqueAgenda:TITRE|attribut_html)]" href="[(#URL_PAGE{backendagenda,id_rubrique=#_SyndicationRubriqueAgenda:ID_RUBRIQUE}|url_absolue)]" />]
+</BOUCLE_EstAgenda></BOUCLE_SyndicationRubriqueAgenda>
+[(#REM) 
+      On appelle les feuilles de style 
+      dans l'ordre de la methode daisy http://daisy.tetue.net/img/daisy-nomenclature.png   
+
+      1. Base CSS http://tinytypo.tetue.net/ ]   
+[<link rel="stylesheet" href="(#CHEMIN{css/reset.css}|direction_css|timestamp)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/clear.css}|direction_css|timestamp)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/font.css}|direction_css|timestamp)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/links.css}|direction_css|timestamp)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/typo.css}|direction_css|timestamp)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/media.css}|direction_css|timestamp)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/form.css}|direction_css|timestamp)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/grid.css}|direction_css|timestamp)" type="text/css" />]
+[(#REM)[<link rel="stylesheet" href="(#CHEMIN{css/layout.css}|direction_css|timestamp)" type="text/css" />]]
+
+[(#REM) 2. Style SPIP et ses plugins ]
+[<link rel="stylesheet" href="(#CHEMIN{css/spip.css}|direction_css|timestamp)" type="text/css" />]
+#INSERT_HEAD_CSS
+
+[(#PLUGIN{agenda}|oui)[<link rel="stylesheet" type="text/css" href="(#PRODUIRE{fond=style_public_plugin_agenda,couleur_claire=[(#CONFIG{soyezcreateurs_couleurs/link,#017ca5}|replace{#,''})],format=css}|direction_css)" media="all" />]]
+[(#REM) Attention : ne pas enlever les REMarques : elles servent aerer le source sans que celui ne renvois d'espaces identifie comme une reussite du test ]
+	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
+		]<BOUCLE_ArtLayout(MOTS){id_article}{type=_LayoutGala}>[(#REM) Est-ce qu'il a un Layout applique?
+			][<link rel="stylesheet" type="text/css" href="(#PRODUIRE{fond=layout.css,layoutgala=[(#TITRE*|textebrut|substr{0,2})]}|direction_css)" media="all" />][(#REM) Appel du layout de l'article si oui
+		]</BOUCLE_ArtLayout>[(#REM) Sinon, dans le cas de la rubrique de l'article
+		]<BOUCLE_RubartLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Est-ce que sa rubrique a un layout ?
+			][<link rel="stylesheet" type="text/css" href="(#PRODUIRE{fond=layout.css,layoutgala=[(#TITRE*|textebrut|substr{0,2})]}|direction_css)" media="all" />][(#REM) Appel du layout de la rubrique si oui
+		]</BOUCLE_RubartLayout>[(#REM) Fin de la recherche concernant un article
+		]<//B_ArtLayout>[(#REM) Si ce n'est pas un article...
+	]</BOUCLE_ArtRubLayout>[(#REM) ... Est-ce une rubrique ?
+		]<BOUCLE_RubLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Dans le cas d'une rubrique
+			][<link rel="stylesheet" type="text/css" href="(#PRODUIRE{fond=layout.css,layoutgala=[(#TITRE*|textebrut|substr{0,2})]}|direction_css)" media="all" />][(#REM) Appel du layout de la rubrique si oui
+		]</BOUCLE_RubLayout>[(#REM) Sinon
+		][(#ENV{template}|=={'Sommaire'}|oui)<link rel="stylesheet" type="text/css" href="[(#PRODUIRE{fond=layout.css,layoutgala=[(#CONFIG{soyezcreateurs_layout/sommaire_layout,33})]}|direction_css|compacte)" media="all" />]][(#ENV{template}|=={'Sommaire'}|non)[<link rel="stylesheet" type="text/css" href="(#PRODUIRE{fond=layout.css,layoutgala=[(#CONFIG{soyezcreateurs_layout/default_layout,33})]}|direction_css)" media="all" />]]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
+	]<//B_ArtRubLayout>
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/box.css}|direction_css|timestamp)]" media="all" />
+[<link rel="stylesheet" type="text/css" href="(#PRODUIRE{fond=stylessoyezcreateurs.css}|direction_css)" media="all" />]
+[(#ENV{template}|=={'Sommaire'}|oui)[(#CONFIG{soyezcreateurs/mode_affichage,communiquant}|match{^portail.*}|oui)<link rel="stylesheet" type="text/css" href="[(#PRODUIRE{fond=styles#CONFIG{soyezcreateurs/mode_affichage,communiquant}.css}|direction_css)]" media="all" />]]
+[(#ENV{template}|=={'Sommaire'}|oui)[(#CONFIG{soyezcreateurs/mode_affichage,communiquant}|match{^communiquant.*}|oui)<link rel="stylesheet" type="text/css" href="[(#PRODUIRE{fond=stylescommuniquant.css}|direction_css)]" media="all" />]]
+<INCLURE{fond=noisettes/presentation/couleurrubrique,id_article,id_rubrique}>
+[(#INCLURE{fond=noisettes/header/logoextra,id_rubrique})]
+<INCLURE{fond=noisettes/header/headerbanner,id_rubrique,template}>
+<INCLURE{fond=noisettes/header/footerbanner,id_rubrique,template}>
+<INCLURE{fond=noisettes/header/fondpage,id_rubrique,template}>
+<!--[if IE 6]>[
+	<link rel="stylesheet" href="(#CHEMIN{css/ie6.css}|direction_css|timestamp)" type="text/css" />
+]<![endif]-->
+<!--[if IE 7]>[
+	<link rel="stylesheet" href="(#CHEMIN{css/ie7.css}|direction_css|timestamp)" type="text/css" />
+]<![endif]-->
+<!--[if IE]>[
+	<link rel="stylesheet" href="(#PRODUIRE{fond=css/ie.css}|direction_css|timestamp)" type="text/css" /> 
+]<![endif]-->
+[<link rel="stylesheet" href="(#CHEMIN{images/printer.css}|direction_css|timestamp)" type="text/css" media="print" />]
+[(#ENV{wdcalendar}|=={oui}|oui)
+[<link rel='stylesheet' href='(#CHEMIN{css/calendar/dailog.css}|direction_css|timestamp)' type='text/css' />]
+[<link rel='stylesheet' href='(#CHEMIN{css/calendar/calendar.css}|direction_css|timestamp)' type='text/css' />]
+[<link rel='stylesheet' href='(#CHEMIN{css/calendar/dp.css}|direction_css|timestamp)' type='text/css' />]
+[<link rel='stylesheet' href='(#CHEMIN{css/calendar/alert.css}|direction_css|timestamp)' type='text/css' />]
+[<link rel='stylesheet' href='(#CHEMIN{css/calendar/main.css}|direction_css|timestamp)' type='text/css' />]
+]
+[(#REM) Code inspir� de http://oncemade.com/adding-hasjs-class-when-javascript-is-availab
+ Permet de masquer du contenu si javascript est activ�.
+ Typiquement, un menu d�roulant qui ne doit pas appara�tre d�roul� au chargement de la page si javascript est actif
+]
+<script type="text/javascript">
+  document.documentElement.className += ' hasJS';
+</script>
+#INSERT_HEAD
+[(#ENV{wdcalendar}|=={oui}|oui)
+[<script src="(#CHEMIN{javascript/calendar/Common.js}|timestamp)" type="text/javascript"></script>]
+[<script src="(#PRODUIRE{fond=datepicker_lang.js})" type="text/javascript"></script>]
+[<script src="(#CHEMIN{javascript/calendar/jquery.datepicker.js}|timestamp)" type="text/javascript"></script>]
+[<script src="(#CHEMIN{javascript/calendar/jquery.alert.js}|timestamp)" type="text/javascript"></script>]
+[<script src="(#CHEMIN{javascript/calendar/jquery.ifrmdailog.js}|timestamp)" defer="defer" type="text/javascript"></script>]
+
+[<script src="(#PRODUIRE{fond=wdCalendar_lang.js})" type="text/javascript"></script>]
+[<script src="(#CHEMIN{javascript/calendar/jquery.calendar.js}|timestamp)" type="text/javascript"></script>]
+]
+[<script src="(#CHEMIN{javascript/jquery.em.js}|timestamp)" type="text/javascript"></script>]
+[<script src="(#CHEMIN{javascript/jquery-accessible-modal-window-aria/jquery-accessible-modal-window-aria.js}|timestamp)" type="text/javascript"></script>]
+[(#ENV{idbody}|=={sommaire_mode_international}|oui)[<script src="(#CHEMIN{javascript/jquery.cycle.all.js}|timestamp)" type="text/javascript"></script>]]
+<script type="text/javascript">
+CanceladjustLayout = false;
+CancelMonitorTextSize = false;
+</script>
+
+[(#CHEMIN{noisettes/header/header_perso.html}|oui)
+<INCLURE{fond=noisettes/header/header_perso}>
+]
+
+<link rel="shortcut icon" type="image/x-icon" href="#URL_SITE_SPIP/spip.php?page=favicon.ico" />
+#INCLURE{fond=noisettes/googleanalytics}
+</head>
+<body[ id="(#ENV{idbody})"] class="[(#CONFIG{soyezcreateurs/mode_affichage,communiquant})] [bodysecteur(#ENV{id_secteur}) [(#ENV{id_secteur}|=={#ENV{rubriqueencours}}|?{bodysecteur}) ]][bodyrubrique(#ENV{rubriqueencours}) bodyrubrique ][bodyarticle(#ENV{id_article}) bodyarticle]">
+<div id="container">
+  <div id="shadow">
+[(#PLUGIN{campagnes}|oui)
+  <div id="banheader" class="encart vertical">
+	  <INCLURE{fond=inclure/encart, identifiant=banheader}>  
+  </div>
+]
+#SET{noisetteheader,header_modeedito}
+[(#ENV{template}|=={'Sommaire'}|oui)
+	[(#CHEMIN{noisettes/header/header_mode#CONFIG{soyezcreateurs/mode_affichage,communiquant}.html}|oui)
+			#SET{noisetteheader,header_mode#CONFIG{soyezcreateurs/mode_affichage,communiquant}}
+	]
+]
+<header>
+	<INCLURE{fond=noisettes/header/#GET{noisetteheader},secteurencours,env}>
+<INCLURE{fond=noisettes/logopage/logopage_aiguilleur,env,lang}>
+
+</header>
+<div id="contenu">
+<INCLURE{fond=noisettes/miettesdepain/#ENV{type,_default},env,lang}>
+[(#ENV{type}|et{#CONFIG{soyezcreateurs/mode_affichage,communiquant}|!={portail}}|oui)[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={haut}|oui)<INCLURE{fond=noisettes/cartouchetitre/#ENV{type,_default},env,lang}>]
+]
+	<div id="wrapper">
+
+
+<div id="content" class="equilibre notstackable">
+[(#CONFIG{soyezcreateurs/menuhautheader,header}|=={content}|oui)<INCLURE{fond=noisettes/menus/menuhaut#CONFIG{soyezcreateurs/typemenuhaut,''},secteurencours,rubriqueencours,id_article,id_groupe,id_mot,mots}>]
+#FILTRE{mini_html}

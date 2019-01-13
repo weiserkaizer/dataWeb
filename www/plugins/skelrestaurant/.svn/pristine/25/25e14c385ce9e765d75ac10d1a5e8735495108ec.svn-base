@@ -1,0 +1,5 @@
+<div class="container-fluid">
+	<div class="row">
+		[(#INCLURE{fond=modeles/carte_gis,scale=oui,zoom_wheel=non,fullscreen=oui})]
+	</div>
+</div>

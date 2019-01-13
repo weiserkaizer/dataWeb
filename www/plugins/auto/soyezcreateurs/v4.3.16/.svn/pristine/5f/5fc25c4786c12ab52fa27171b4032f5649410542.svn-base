@@ -1,0 +1,44 @@
+<BOUCLE_Article_VideoALaUne(ARTICLES) 
+	{titre_mot=VideoALaUne}
+	{!par date}
+	{0,1}
+>
+<B_VideoALaUne>
+<div class="VideoALaUne">
+<BOUCLE_VideoALaUne(DOCUMENTS) 
+	{id_article}
+	{media=video}
+	{!par date}
+	{0,1}
+>
+[(#CONFIG{soyezcreateurs_layout/largeurvideoaccueil,0}|=={0}|?{#SET{largeurmax,#ENV{largeurmax,#CONFIG{soyezcreateurs_layout/maxlargeurimage,720}}},#SET{largeurmax,#CONFIG{soyezcreateurs_layout/largeurvideoaccueil,-1}}})]
+#SET{facteurreduction,(#LARGEUR|div{#GET{largeurmax}})}
+#SET{largeur,(#LARGEUR|div{#GET{facteurreduction}}|floor)}
+#SET{hauteur,(#HAUTEUR|div{#GET{facteurreduction}}|floor)}
+<h2 class="#EDIT{titre}"><a href="#URL_ARTICLE"[ title="(#_Article_VideoALaUne:DESCRIPTIF|attribut_html)"]>#_Article_VideoALaUne:TITRE</a></h2>
+[(#MODELE{emb,largeur=#GET{largeur},hauteur=#GET{hauteur},allowFullScreen=true,wmode=transparent,allowscriptaccess=always})]
+</BOUCLE_VideoALaUne>
+</div><!-- /VideoALaUne -->
+</B_VideoALaUne>
+<B_ImageLien>
+<div class="VideoALaUne">
+<BOUCLE_ImageLien(DOCUMENTS) 
+	{id_article}
+	{media=image}
+	{!par date}
+	{0,1}
+>
+[(#CONFIG{soyezcreateurs_layout/largeurvideoaccueil,0}|=={0}|?{#SET{largeurmax,#ENV{largeurmax,#CONFIG{soyezcreateurs_layout/maxlargeurimage,720}}},#SET{largeurmax,#CONFIG{soyezcreateurs_layout/largeurvideoaccueil,-1}}})]
+#SET{facteurreduction,(#LARGEUR|div{#GET{largeurmax}})}
+#SET{largeur,(#LARGEUR|div{#GET{facteurreduction}}|floor)}
+#SET{hauteur,(#HAUTEUR|div{#GET{facteurreduction}}|floor)}
+<h2 class="#EDIT{titre}"><a href="#URL_ARTICLE"[ title="(#_Article_VideoALaUne:DESCRIPTIF|attribut_html)"]>#_Article_VideoALaUne:TITRE</a></h2>
+<a href="#URL_ARTICLE"[ title="(#_Article_VideoALaUne:DESCRIPTIF|attribut_html)"]>[(#SET{limage,[(#FICHIER|copie_locale|image_passe_partout{#GET{largeur},#GET{hauteur}}|image_format{png}|image_recadre{#GET{largeur},#GET{hauteur},center,transparent})]})]<img src="[(#GET{limage}|extraire_attribut{src})]" width='[(#GET{limage}|largeur)]' height='[(#GET{limage}|hauteur)]' alt="[(#_Article_VideoALaUne:TITRE|attribut_html)]" /></a>
+</BOUCLE_ImageLien>
+</div><!-- /VideoALaUne -->
+</B_ImageLien>
+[<div class="VideoALaUne"><h2 class="#EDIT{titre}"><a href="#URL_ARTICLE"[ title="(#_Article_VideoALaUne:DESCRIPTIF|attribut_html)"]>#_Article_VideoALaUne:TITRE</a></h2><div class="video-container"><div class="#EDIT{chapo}">(#CHAPO)</div><!--video-container--></div></div><!-- /VideoALaUne -->]
+<//B_ImageLien>
+<//B_VideoALaUne>
+</BOUCLE_Article_VideoALaUne>
+#FILTRE{mini_html}

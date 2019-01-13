@@ -1,0 +1,12 @@
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="./"><:soyezcreateurs:accueil:></a></li>
+			<li><BOUCLE_articles_recentsAlaUne(ARTICLES){lang}{0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{doublons}{titre_mot=AlaUne}> </BOUCLE_articles_recentsAlaUne>
+<:soyezcreateurs:alaune:>
+</B_articles_recentsAlaUne>
+<:soyezcreateurs:quoideneuf:>
+<//B_articles_recentsAlaUne></li>
+		</ul>
+	</nav>
+#FILTRE{mini_html}

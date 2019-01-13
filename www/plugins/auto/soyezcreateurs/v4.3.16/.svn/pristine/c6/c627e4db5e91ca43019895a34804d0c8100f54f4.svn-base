@@ -1,0 +1,22 @@
+[<div id="bandeau_annonce" class="#EDIT{meta-soyezcreateurs/bandeau_annonce}">(#CONFIG{soyezcreateurs/bandeau_annonce}|sinoncrayon{Vous pouvez mettre une annonce vue sur toutes les pages}|propre|ptobr)</div>]
+	<div id="header">
+	<div id="headerbackground"></div>
+	<div id="header_inner">
+<div id="escapelinks" class="escapelinks"><ul><li><a href="#main"><:soyezcreateurs:accessibilite_texte:></a></li><BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{par num titre}{!lang_select}{0,1}><li><a href="#menuhaut"><:soyezcreateurs:accessibilite_onglets:></a></li></BOUCLE_MenuHaut><li><a href="#menusite"><:soyezcreateurs:accessibilite_menu:></a></li><li><a href="#formulaire_recherche"><:soyezcreateurs:accessibilite_recherche:></a></li><BOUCLE_AccesibiliteLien(ARTICLES){titre_mot=AccesibiliteLien}{0,1}{!par date}><li><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li></BOUCLE_AccesibiliteLien></ul></div>
+<INCLURE{fond=noisettes/menus/menu_navhaute,env}>
+[(#CONFIG{soyezcreateurs/positiondatemajsite,bottom}|=={header}|oui)<INCLURE{fond=noisettes/datemajsite}>]
+[(#CONFIG{soyezcreateurs/logoheader,header}|=={header}|oui)#INCLURE{fond=noisettes/logosite}]
+[(#PLUGIN{MLL}|oui)[<div id="cadre_lang">(#INCLURE{fond=formulaires/menu_lang,env})</div>]]
+<a id="[(#ENV{titretop}|sinon{<:soyezcreateurs:sommaire|sc_nettoyer_marqueur:>})]"></a>
+<h1 class="#EDIT{meta-nom_site}"><a href="#URL_SITE_SPIP" title="<:accueil_site|attribut_html:>">[(#NOM_SITE_SPIP)][ <sub>(#SLOGAN_SITE_SPIP|ptobr)</sub>]</a></h1>
+[(#INCLURE{fond=noisettes/header/cadre_outils,env})]
+[(#CONFIG{soyezcreateurs/positionrecherche,header}|=={header}|oui)[(#INCLURE{fond=noisettes/header/cadre_recherche,env,id_recherche=cadre_recherche})]]
+[(#CONFIG{soyezcreateurs/citationsheader}|=={header}|oui)[(#INCLURE{fond=noisettes/extra/citations})]]
+	<div class="clearing">&nbsp;</div>
+	[<div id="bloc_header" class="#EDIT{meta-soyezcreateurs/bloc_header}">(#CONFIG{soyezcreateurs/bloc_header}|propre|ptobr)</div>
+	<div class="clearing">&nbsp;</div>]
+	</div><!-- id="header_inner" -->
+	</div><!-- id="header" -->
+[<div id="cita_bandeau">(#CONFIG{soyezcreateurs/citationsheader}|=={citations_bandeau}|oui)[(#INCLURE{fond=noisettes/extra/citations})]</div>]
+[(#CONFIG{soyezcreateurs/menuhautheader,header}|=={header}|oui)<INCLURE{fond=noisettes/menus/menuhaut#CONFIG{soyezcreateurs/typemenuhaut,''},secteurencours,rubriqueencours,id_article,id_groupe,id_mot,mots}>]
+#FILTRE{mini_html}

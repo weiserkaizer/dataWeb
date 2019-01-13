@@ -1,0 +1,3 @@
+<BOUCLE_(ARTICLES){id_article}>
+[(#VIRTUEL|?{[(#VIRTUEL|sc_texte2urlspip|extraire_attribut{href}|entites_html)],#URL_ARTICLE})]
+</BOUCLE_>

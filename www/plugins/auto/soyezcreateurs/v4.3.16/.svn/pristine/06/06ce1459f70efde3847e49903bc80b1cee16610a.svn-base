@@ -1,0 +1,28 @@
+#SET{vu,''}
+<B_Outils>
+<div id="cadre_outils">
+	<ul>
+<BOUCLE_Outils(ARTICLES){titre_mot=Outils}{par num titre} {lang}>
+	<li id="cadre_outil_#ID_ARTICLE"[ class="(#COMPTEUR_BOUCLE|=={1}|?{first})"][ class="(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|?{last})"]><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[<img src="(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogooutils,16},#CONFIG{soyezcreateurs_layout/hauteurlogooutils,16}}|extraire_attribut{src}|embarque_fichier)" class="logo_outil" alt="" width="[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogooutils,16},#CONFIG{soyezcreateurs_layout/hauteurlogooutils,16}}|largeur)]" height="[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogooutils,16},#CONFIG{soyezcreateurs_layout/hauteurlogooutils,16}}|hauteur)]" />]#TITRE</a></li>
+	#SET{vu,1}
+</BOUCLE_Outils>
+</B_Outils>
+[(#CONFIG{soyezcreateurs/mode_affichage,communiquant}|=={portailcognac}|ou{#CONFIG{soyezcreateurs_layout/pictogrammesoutils,non}|=={avecoutils}})
+[(#GET{vu}|non)<div id="cadre_outils">
+	<ul>]
+#SET{vu,1}
+[(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/miniagenda,on}|!={non}|oui)<INCLURE{fond=noisettes/header/cadre_outils_agenda} />]]
+[(#PLUGIN{CLEVERMAIL}|oui|ou{[(#PLUGIN{MAILSUBSCRIBERS}|oui)]})	<li id="cadre_outil_newsletter" class="call-js-modal"><a href="#newsletterinscription" title="<:soyezcreateurs:newsletter_recevoir:>" class="js-modal" data-modal-prefix-class="sombre" data-modal-focus-id="js-modal-content .socialtags a:first" data-modal-content-id="newsletterinscription" data-modal-close-text="<:ecrire:bouton_fermer:>"
+ data-modal-close-title="<:ecrire:bouton_fermer:>"><span class="icon icon-paperplane icon-lg texte-blanc"></span><span class="hide"><:socialtags:noisette_action_recommand:></span></a></li>]
+[(#PLUGIN{SOCIALTAGS}|oui)	<li id="cadre_outil_socialtags" class="call-js-modal"><a href="#socialtags" title="<:socialtags:noisette_action_recommand:>" class="js-modal" data-modal-prefix-class="sombre" data-modal-focus-id="js-modal-content .socialtags a:first" data-modal-content-id="socialtags" data-modal-close-text="<:ecrire:bouton_fermer:>"
+ data-modal-close-title="<:ecrire:bouton_fermer:>"><span class="icon icon-share2 icon-lg texte-blanc"></span><span class="hide"><:socialtags:noisette_action_recommand:></span></a></li>]
+[(#PLUGIN{MLL}|oui)	<li id="cadre_outil_language"><a href="#menu_lang" title="Choisir la langue d'affichage du site" class="js-modal" data-modal-prefix-class="sombre" data-modal-focus-id="menu_lang > a:first" data-modal-content-id="cadre_lang" data-modal-close-text="<:ecrire:bouton_fermer:>"
+ data-modal-close-title="<:ecrire:bouton_fermer:>"><span class="icon icon-language icon-lg texte-blanc"></span><span class="hide">Langues</span></a></li>]
+[(#CONFIG{soyezcreateurs/bandeau_contact}|oui)[(#CONFIG{soyezcreateurs/bandeau_contact}|oui)	<li id="cadre_outil_envelope"><a href="#bandeaucontact" title="<:contact:>"><span class="icon icon-envelope  icon-lg texte-blanc"></span><span class="hide"><:contact:></span></a></li>]
+]
+	<li id="cadre_outil_search"><a href="#formulaire_recherche" title="<:soyezcreateurs:accessibilite_recherche:>" class="js-modal" data-modal-prefix-class="sombre" data-modal-focus-id="formulaire_recherche" data-modal-content-id="cadre_recherche" data-modal-close-text="<:ecrire:bouton_fermer:>"
+ data-modal-close-title="<:ecrire:bouton_fermer:>"><span class="icon icon-search icon-lg texte-blanc"></span><span class="hide"><:soyezcreateurs:accessibilite_recherche:></span></a></li>
+]
+[(#GET{vu}|oui)	</ul>
+</div>]
+#FILTRE{mini_html}

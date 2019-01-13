@@ -1,0 +1,3 @@
+[(#SET{url,#URL_SITE_SPIP})]
+[(#ENV{id_rubrique}|oui)[(#SET{url,#URL_RUBRIQUE{#ENV{id_rubrique}}})]]
+[(#ENV{id_article}|sinon{#GET{url}}|url_absolue|qrcode{4,H,lien})]

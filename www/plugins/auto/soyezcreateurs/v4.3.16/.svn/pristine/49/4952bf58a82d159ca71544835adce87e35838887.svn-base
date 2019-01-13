@@ -1,0 +1,19 @@
+<BOUCLE_RubriqueAvecLogo(HIERARCHIE){id_rubrique}{tout}{type_mot=_LogosExtra}{inverse} {0,1}>
+<BOUCLE_LogoExtra(MOTS){id_rubrique}{type=_LogosExtra}{par hasard}{0,1}>
+<style type="text/css">
+/*<![CDATA[*/
+#extra {
+	background-image: url([/(#LOGO_MOT_NORMAL|extraire_attribut{src})]);
+	background-repeat: no-repeat;
+	background-position: bottom right !important;
+}[
+#content {
+	background-image: url(/(#LOGO_MOT_SURVOL|extraire_attribut{src}));
+	background-repeat: no-repeat;
+	background-position: [(#TEXTE|sinon{top right})];
+}]
+/*]]>*/
+</style>
+</BOUCLE_LogoExtra>
+</BOUCLE_RubriqueAvecLogo>
+#FILTRE{mini_html}

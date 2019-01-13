@@ -1,0 +1,20 @@
+[(#REM)
+ On recherche si dans la hiérarchie de la rubrique courante, il y a un mot clef de type _CouleurRubrique
+ Si oui, on inclus une CSS spécifique qui tient compte de cette couleur
+ Remarque : c'est une inclusion pour en permettre la _surcharge_
+ ToDo : Intégrer le plugin pb_couleur_rubrique ? (qui lui ne gère pas la hiérarchie...
+]
+<BOUCLE_ArticleEnCours(ARTICLES){id_article}>
+<BOUCLE_RubriqueColoreeArticle(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}>
+<BOUCLE_CouleurRubriqueArticle(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}>
+<INCLURE{fond=noisettes/presentation/appliquercouleurrubrique,couleur=(#TEXTE|textebrut)}>
+</BOUCLE_CouleurRubriqueArticle>
+</BOUCLE_RubriqueColoreeArticle>
+</BOUCLE_ArticleEnCours>
+<BOUCLE_RubriqueColoree(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}>
+<BOUCLE_CouleurRubrique(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}>
+<INCLURE{fond=noisettes/presentation/appliquercouleurrubrique,couleur=(#TEXTE|textebrut)}>
+</BOUCLE_CouleurRubrique>
+</BOUCLE_RubriqueColoree>
+<//B_ArticleEnCours>
+#FILTRE{mini_html}

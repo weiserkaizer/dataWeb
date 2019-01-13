@@ -1,0 +1,7 @@
+[(#VAL{listeravecarticles}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
+[(#VAL{redirectsiunique}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|?{
+[(#INCLURE{fond=noisettes/unseuldocumentsjoints,id_article,notitle=oui})],
+[(#INCLURE{fond=modeles/documentsjoints,id_article,notitle=oui})]
+})]
+]
+#FILTRE{mini_html}

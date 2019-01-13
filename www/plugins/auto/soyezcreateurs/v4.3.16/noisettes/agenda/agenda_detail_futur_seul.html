@@ -1,0 +1,8 @@
+<B_DetailAgendaFuturSeul>
+<ul id="ArticleAgendaDetail">
+<BOUCLE_DetailAgendaFuturSeul(EVENEMENTS){id_article}{par date_debut}{date_fin>=(#ENV{date}|affdate{'Y-m-d'})}>
+[(#INCLURE{fond=noisettes/agenda/agendaliste_evenement,id_evenement,lang})]
+</BOUCLE_DetailAgendaFuturSeul>
+</ul>
+</B_DetailAgendaFuturSeul>
+#FILTRE{mini_html}

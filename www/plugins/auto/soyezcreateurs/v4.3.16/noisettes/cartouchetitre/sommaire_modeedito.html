@@ -1,0 +1,9 @@
+<BOUCLE_article_principal(ARTICLES){lang}{titre_mot=EDITO#ENV{typeedito}}{!par date}{0,1}>
+<div class="cartouche surlignable">
+[<div class="#EDIT{surtitre} surtitre"><span>(#SURTITRE)</span></div>]
+[(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})]
+<div class="titrepage"><h1 class="#EDIT{titre} entry-title">[<img src="(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|extraire_attribut{src}|embarque_fichier)" class="logo_article" alt="" width="[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|largeur)]" height="[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|hauteur)]" />][(#TITRE)]</h1></div>
+[<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>][(#INCLURE{fond=noisettes/liste_auteurs,id_article,lang})]
+</div>
+</BOUCLE_article_principal>
+#FILTRE{mini_html}

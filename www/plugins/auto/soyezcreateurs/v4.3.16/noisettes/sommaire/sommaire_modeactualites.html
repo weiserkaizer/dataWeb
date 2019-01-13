@@ -1,0 +1,122 @@
+<div class="texte">
+<main id="main" role="main">
+	<div id="letexte" class="modeactualites">
+
+		[(#REM) 
+				Afficher au dessus des 2 colonnes sur une seule colonne :
+				- Le dernier article ayant le mot clef ZoomSur (comme le mode portail)
+				- À défaut, Le dernier article ayant le mot clef EDITO
+		]
+		<BOUCLE_ZoomSur(ARTICLES) {titre_mot=ZoomSur}{!par date}{0,(#CONFIG{soyezcreateurs/nombres_zoomsur,1})}{lang}{doublons}>
+		[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+		<h1 class="#EDIT{titre} zoomsur">[(#TITRE)]</h1>
+		]
+		<div class="zoomsur">
+		<div class="infos">[(#INCLURE{fond=noisettes/liste_auteurs,id_article,virgule=1,nodiv=1})][(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})]</div>
+		<div>[<img class="logo_modenews" src="(#LOGO_ARTICLE|image_reduire{48,48}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{48,48}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{48,48}|hauteur)]" alt="" />]
+		[<div class="[(#CHAPO*|?{#EDIT{chapo},#EDIT{descriptif}}) ]chapo">(#CHAPO|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0}|sinon{#DESCRIPTIF})</div>]
+		[<div class="#EDIT{texte} entry-content">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
+		[<div class="#EDIT{ps} ps">(#PS|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
+		[<div class="notes">(#NOTES)</div>]
+		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		[(#INCLURE{fond=noisettes/galerie,ajax,id_article,env})]
+		</div>
+		</div>
+		</BOUCLE_ZoomSur>
+		<BOUCLE_ZoomSurEDITO(ARTICLES) {titre_mot=EDITO}{!par date}{0,1}{lang}{doublons}>
+		[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+		<h1 class="#EDIT{titre} zoomsur">[(#TITRE)]</h1>
+		]
+		<div class="zoomsur">
+		<div class="infos">[(#INCLURE{fond=noisettes/liste_auteurs,id_article,virgule=1,nodiv=1})][(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})]</div>
+		<div>[<img class="logo_modenews" src="(#LOGO_ARTICLE|image_reduire{48,48}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{48,48}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{48,48}|hauteur)]" alt="" />]
+		[<div class="[(#CHAPO*|?{#EDIT{chapo},#EDIT{descriptif}}) ]chapo">(#CHAPO|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0}|sinon{#DESCRIPTIF})</div>]
+		[<div class="#EDIT{texte} entry-content">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
+		[<div class="#EDIT{ps} ps">(#PS|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
+		[<div class="notes">(#NOTES)</div>]
+		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		[(#INCLURE{fond=noisettes/galerie,ajax,id_article,env})]
+		</div>
+		</div>
+		</BOUCLE_ZoomSurEDITO>
+		<//B_ZoomSur>
+	
+		[(#REM) Les dernières brèves ]
+		<B_Actualites>
+		<div class="fond actualites">
+		<h2><:soyezcreateurs:derniereactualites:></h2>
+		<ul>
+		<BOUCLE_Actualites(BREVES){!par date}{0,10}{lang}>
+		<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]">[(#DATE|affdate_court) – ]<a href="#URL_BREVE">[(#TITRE)]</a></li>
+		</BOUCLE_Actualites>
+		</ul>
+		</div>
+		</B_Actualites>
+	
+		<div id="col1">
+			<B_articles_recentsAlaUne>
+			<div class="alaune">
+			<h2><:soyezcreateurs:alaune:></h2>
+			<BOUCLE_articles_recentsAlaUne(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{titre_mot=AlaUne}{doublons} {lang}>
+				<dl[(#COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><dt>[(#INCLURE{fond=noisettes/aff_datepublication,id_article})]<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[(#TITRE)]</a></dt>
+				[<dd onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:>[ (#TITRE|attribut_html)]" class="cursor-pointer">[<img class="logo_modenews" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|hauteur)]" alt="" />](#CHAPO|sinon{#DESCRIPTIF}|sinon{[<p>(#TEXTE|couper{300})</p>]}|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720}|div{3},0})</dd>]
+				<dd class="savoirplus"><a href="#ARTICLE_URL" title="[(#TITRE|attribut_html)]"><:soyezcreateurs:savoirplus:></a></dd></dl>
+			</BOUCLE_articles_recentsAlaUne>
+			</div>
+			</B_articles_recentsAlaUne>
+			
+#SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
+#SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,180})}
+#SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,180})}
+#SET{LargeurMilieu,(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|moins{#GET{LargeurMenuDroit}}|moins{30}|div{2}|moins{20})}
+[(#INCLURE{fond=noisettes/sommaire/video_alaune,largeurmax=#GET{LargeurMilieu}})]
+
+			<BOUCLE_PortailActualites(SITES){titre_mot=PortailActualites}{par num nom_site}>
+			<B_ArticlesActualites>
+			<div class="rss">
+			<h2>#NOM_SITE</h2>
+			<ul>
+				<BOUCLE_ArticlesActualites(SYNDIC_ARTICLES) {id_syndic} {age<2} {!par date} {0,(#CONFIG{soyezcreateurs/nombres_rssaccueil,6})}>
+				<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]"><a href="#URL_ARTICLE" class="spip_out">#TITRE</a>[ ((#DATE|affdate_jourcourt))]</li>
+				</BOUCLE_ArticlesActualites>
+			</ul>
+			</div>
+			</B_ArticlesActualites>
+			</BOUCLE_PortailActualites>
+
+		</div><!-- /col1 -->
+		<div id="col2">
+			[(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/homeagenda,on}|=={on}|oui)#INCLURE{fond=noisettes/agenda/agenda_sommaire_modeactualites}]]
+			
+			<BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons} /></BOUCLE_Secteurs_Exclus>
+			<BOUCLE_Rubriques_Exclues(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}><BOUCLE_Articles_Exclus(ARTICLES){id_rubrique}{doublons}{lang} /></BOUCLE_Rubriques_Exclues>
+			<BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons} />
+			<B_articles_QuoideNeuf>
+			<h2><:soyezcreateurs:quoideneuf:></h2>
+			<div class="fond">
+			<ul>
+			<BOUCLE_articles_QuoideNeuf(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})}{doublons} {lang}>
+				<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+			</BOUCLE_articles_QuoideNeuf>
+			</ul>
+			[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)<p><a href="#URL_PAGE{antichrono}"><:soyezcreateurs:tousarticlesantichrono:></a></p>]
+			</div>
+			</B_articles_QuoideNeuf>
+		</div><!-- /col2 -->
+		
+		[(#REM) Liens des forums ]
+		<B_forums_liens>
+		<div class="fond">
+			<h2><:derniers_commentaires:></h2>
+			<ul>
+				<BOUCLE_forums_liens(FORUMS) {plat} {par date}{inverse} {0,8}>
+				<li>[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_FORUM"[ title="(#TEXTE|couper{80}|attribut_html)"]>[(#TITRE|couper{100})]</a></li>
+				</BOUCLE_forums_liens>
+			</ul>
+		</div>
+		</B_forums_liens>
+
+	</div><!-- Fin de LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+#FILTRE{mini_html}

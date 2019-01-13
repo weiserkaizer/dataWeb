@@ -1,0 +1,4 @@
+# toutes les options possible dans le XML actuel sauf les blocs qui sont vus autrement
+nom: 'QuoideNeuf mode cognac'
+description: 'La noizettes du QuoideNeuf pour le mode cognac'
+ajax: 'non'

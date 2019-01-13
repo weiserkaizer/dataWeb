@@ -1,0 +1,16 @@
+<BOUCLE_mot_principal(MOTS){id_mot}>
+<div class="cartouche">
+<div class="titrepage"><h1 class="#EDIT{titre} titre-texte">[<img src="(#LOGO_MOT_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|extraire_attribut{src})" class="logo_article" alt="" width="[(#LOGO_MOT_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|largeur)]" height="[(#LOGO_MOT_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|hauteur)]" />][(#TITRE)]</h1></div>
+</div>
+</BOUCLE_mot_principal>
+<BOUCLE_Groupe_principal(GROUPES_MOTS){id_groupe}>
+<div class="cartouche">
+<div class="titrepage"><h1 class="#EDIT{titre} titre-texte">[(#TITRE)]</h1></div>
+</div>
+</BOUCLE_Groupe_principal>
+<div class="cartouche">
+<div class="titrepage"><h1 class="titre-texte"><:soyezcreateurs:mots_title:></h1></div>
+</div>
+<//B_Groupe_principal>
+<//B_mot_principal>
+#FILTRE{mini_html}

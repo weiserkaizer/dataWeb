@@ -1,0 +1,17 @@
+a:2:{s:9:"nom_cache";s:38:"0e7042a61919768947c48384ea28fa44.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_ff2511e2fe934ed179c035bb2d9296f2";s:6:"source";s:49:"plugins/auto/soyezcreateurs/v4.3.16/sommaire.html";s:11:"process_ins";s:3:"php";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"0e7042a61919768947c48384ea28fa44.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:1039:"
+<?php echo recuperer_fond( 'noisettes/header/header', array('template' => 'Sommaire',
+	'idbody' => 'sommaire_mode_portailcognac',
+	'type' => 'sommaire',
+	'lang' => 'fr'), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/sommaire.html','html_ff2511e2fe934ed179c035bb2d9296f2','',2,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+<?php echo recuperer_fond( 'noisettes/sommaire/sommaire_modeportailcognac', array_merge(array (
+  'date' => '2019-01-06 19:37:38',
+  'date_default' => true,
+  'date_redac' => '2019-01-06 19:37:39',
+  'date_redac_default' => true,
+),array('lang' => 'fr')), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/sommaire.html','html_ff2511e2fe934ed179c035bb2d9296f2','',3,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+<?php echo recuperer_fond( 'noisettes/footer/footer', array('template' => 'Sommaire',
+	'lang' => 'fr'), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/sommaire.html','html_ff2511e2fe934ed179c035bb2d9296f2','',4,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+";s:5:"notes";s:0:"";s:8:"contexte";a:4:{s:4:"date";s:19:"2019-01-06 19:37:38";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 19:37:39";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1546803370;s:2:"gz";b:0;s:3:"sig";i:2733890747;}}

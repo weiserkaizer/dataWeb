@@ -1,0 +1,26 @@
+<h1><:soyezcreateurs:aidesc:></h1>
+<ul class="spip">
+<li><a href="https://contrib.spip.net/Premiers-pas-dans-le-squelette" title="Mode d'emploi"><:soyezcreateurs:commencer:></a></li>
+<li><a href="#URL_ECRIRE{sc_bannieres}">Gérer les bannières (en-tête des pages) et le logo</a></li>[
+(#AUTORISER{webmestre}|oui)<li><a href="#URL_ECRIRE{sc_vide}">Supprimer les articles de démonstration inutiles</a><br />Cette opération est potentiellement <strong>dangereuse</strong> et n'est à faire qu'en comprenant bien ce que vous faites !</li>
+[(#PLUGIN{campagnes}|oui)<li><a href="[(#URL_ECRIRE{sc_aide}|parametre_url{doit,1})]">Créer les emplacements de bannières publicitaires par défaut</a><br />Action <strong>immédiate</strong> !</li>]
+]</ul>
+<?php
+if (autoriser('webmestre') AND _request('doit')==1) {
+?>
+<h2>Actions</h2>
+<?php
+	include_spip('base/soyezcreateurs');
+	$id_encart = create_encart("Bannière haute", "banheader", "900", "150");
+	echo "<p><a href=\"".generer_url_entite($id_encart, encart)."\">Bannière haute</a>, ";
+	$id_encart = create_encart("Avant Goodies", "bangoodiesavant", "304", "165");
+	echo "<a href=\"".generer_url_entite($id_encart, encart)."\">Avant Goodies</a>, ";
+	$id_encart = create_encart("Avant localisation", "banlocalisationavant", "304", "165");
+	echo "<a href=\"".generer_url_entite($id_encart, encart)."\">Avant localisation</a>, ";
+	$id_encart = create_encart("Bannière de pied de page", "banfooter", "900", "150");
+	echo "<a href=\"".generer_url_entite($id_encart, encart)."\">Bannière de pied de page</a>.</p>";
+?>
+<p>Les <a href="./?exec=encarts">encarts publicitaires</a> ont été créés.</p>
+<?php
+}
+?>

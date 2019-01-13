@@ -1,0 +1,64 @@
+[ (#REM) Feuille de style de la version texte
+	Nous utilisons un squelette afin de traiter l'orientation du texte
+]
+#CACHE{3600*100,cache-client}
+#HTTP_HEADER{Content-Type: text/css; charset=iso-8859-15}
+#HTTP_HEADER{Vary: Accept-Encoding}
+
+/* boutonstexte.css */
+.boutonstexte {
+	display:block;
+	text-align:right;
+	padding:0 8px 0 0;
+	margin:0;
+}
+.boutonstexte button {
+	padding: 0 4px;
+	border: none;
+	background-color: transparent;
+	margin: 0 2px;
+}
+.textsizeup, .textsizedown, .textonly {
+	cursor: pointer;
+}
+
+.boutonstexte button.textonly {
+	background: url(#CHEMIN{images/textonly.png}) no-repeat center;
+	height: 17px;
+	width: 25px;
+}
+.boutonstexte button.textsizedown {
+	background: url(#CHEMIN{images/fontsizedown.png}) no-repeat center;
+	height: 17px;
+	width: 25px;
+}
+.boutonstexte button.textsizeup {
+	background: url(#CHEMIN{images/fontsizeup.png}) no-repeat center;
+	height: 17px;
+	width: 25px;
+}
+
+.boutonstexte button:hover {
+	background-color: #ff7;
+}
+
+div.onlytext {
+	text-align: [(#LANG_DIR|choixsiegal{ltr,left,right})];
+	margin:0 auto!important;
+	border:0 !important;
+	padding:0 !important;
+	float: none !important;
+	color: black;
+	width:19cm!important;
+	font-size: 1em;
+}
+
+div.onlytext p {
+	padding-bottom:0.5em!important;
+}
+
+.onlytext_wrapper {
+	text-align:center !important;
+	font-size: 76%;
+	background-color:white;
+}

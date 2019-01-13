@@ -1,0 +1,27 @@
+<BOUCLE_test(CONDITION){si #ENV{menu}|=={oui}}>
+		<BOUCLE_navInfo(RUBRIQUES){titre_mot=ZoomSur2}{0,1}>
+			<li class="#EDIT{titre}" data-toggle="collapse" data-target=".in"><a href="[(#TITRE|sc_nettoyer_marqueur)]">#TITRE</a></li>
+		</BOUCLE_navInfo>
+</BOUCLE_test>
+	
+<BOUCLE_info(RUBRIQUES){titre_mot=ZoomSur2}{0,1}>
+	<section id="[(#TITRE|sc_nettoyer_marqueur)]" class="contact">
+		<div class="container-fluid color-bg">
+			<BOUCLE_infos(ARTICLES){id_rubrique=#ID_RUBRIQUE}>
+				<div class="row dis-table">
+					<div class="hidden-xs col-sm-6 dis-table-cell">
+						<h2 class="section-title #EDIT{surtitre}">[(#SURTITRE | ptobr)]</h2>
+					</div>
+					<div class="col-xs-6 col-sm-6 dis-table-cell">
+						<div id="section-contact" class="section-content">
+							[<p class="#EDIT{soustitre}">(#SOUSTITRE | ptobr)</p>]
+							<p class="#EDIT{descriptif}">[(#DESCRIPTIF)]</p>
+						</div>
+					</div>
+				</div>
+
+			</BOUCLE_infos>
+		</div>
+	</section>
+</BOUCLE_info>
+<//B_test>

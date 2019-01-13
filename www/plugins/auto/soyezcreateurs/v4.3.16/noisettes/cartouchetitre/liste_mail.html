@@ -1,0 +1,16 @@
+<B_messages>
+		<BOUCLE_messages(CM_POSTS){pst_id}{pst_date_sent!=0}{!par pst_date_sent}>
+		</BOUCLE_messages>
+</B_messages>
+<BOUCLE_list(CM_LISTS){lst_id}>
+<div class="cartouche">
+<div class="titrepage"><h1 class="titre">#LST_NAME</h1></div>
+<div class="datepublication"><span><:soyezcreateurs:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
+</div>
+</BOUCLE_list>
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:newsletter:></h1></div>
+</div>
+<//B_list>
+<//B_messages>
+#FILTRE{mini_html}

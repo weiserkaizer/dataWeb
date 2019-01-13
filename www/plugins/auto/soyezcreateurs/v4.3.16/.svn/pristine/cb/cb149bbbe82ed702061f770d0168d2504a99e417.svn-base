@@ -1,0 +1,58 @@
+<div class="texte">
+<main id="main" role="main">
+	<div id="letexte" class="modenews">
+#SET{AlaUne,''}
+<B_articles_recentsAlaUne>#SET{AlaUne,Vu}
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:alaune:></h1></div>
+</div>
+]
+[(#INCLURE{fond=noisettes/cartouches/sommaire_modenews_cartouche})]
+<div class="alaune">
+<BOUCLE_articles_recentsAlaUne(ARTICLES){lang}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{doublons}{titre_mot=AlaUne}>
+	<dl[(#COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><dt>[(#INCLURE{fond=noisettes/aff_datepublication,id_article})]<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></dt>
+	[<dd onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:>[ (#TITRE|attribut_html)]" class="cursor-pointer">[<img class="logo_modenews" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|hauteur)]" alt="" />](#CHAPO|sinon{#DESCRIPTIF}|sinon{[<p>(#TEXTE|couper{300})</p>]}|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720}|div{2},0})</dd>]
+	<dd class="clearing"></dd>
+	</dl>
+</BOUCLE_articles_recentsAlaUne>
+
+</div>
+<BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons} /></BOUCLE_Secteurs_Exclus>
+<BOUCLE_Rubriques_Exclues(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}><BOUCLE_Articles_Exclus(ARTICLES){id_rubrique}{doublons}{lang} /></BOUCLE_Rubriques_Exclues>
+<BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons} />
+<B_articles_recents_si_Une>
+<div class="titrepage"><h1><:soyezcreateurs:quoideneuf:></h1></div>
+
+<BOUCLE_articles_recents_si_Une(ARTICLES){lang}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})}{doublons}>
+	<dl[(#COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><dt>[(#INCLURE{fond=noisettes/aff_datepublication,id_article})]<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></dt>
+	[<dd onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:>[ (#TITRE|attribut_html)]" class="cursor-pointer">[<img class="logo_modenews" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|hauteur)]" alt="" />](#CHAPO|sinon{#DESCRIPTIF}|sinon{[<p>(#TEXTE|couper{300})</p>]}|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720}|div{2},0})</dd>]
+	<dd class="clearing"></dd>
+	</dl>
+</BOUCLE_articles_recents_si_Une>
+</B_articles_recentsAlaUne>
+<BOUCLE_Secteurs_Exclus2(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus2(ARTICLES){id_secteur}{doublons} /></BOUCLE_Secteurs_Exclus2>
+<BOUCLE_Rubriques_Exclues2(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}><BOUCLE_Articles_Exclus2(ARTICLES){id_rubrique}{doublons}{lang} /></BOUCLE_Rubriques_Exclues2>
+<BOUCLE_exclus2(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons} />
+<B_articles_recents>
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|ou{#GET{AlaUne}}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:quoideneuf:></h1></div>
+</div>
+]
+[(#INCLURE{fond=noisettes/cartouches/sommaire_modenews_cartouche})]
+
+<BOUCLE_articles_recents(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})}{doublons} {lang}>
+	<dl[(#COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><dt>[(#INCLURE{fond=noisettes/aff_datepublication,id_article})]<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></dt>
+	[<dd onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:>[ (#TITRE|attribut_html)]" class="cursor-pointer">[<img class="logo_modenews" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|hauteur)]" alt="" />](#CHAPO|sinon{#DESCRIPTIF}|sinon{[<p>(#TEXTE|couper{300})</p>]}|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720}|div{2},0})</dd>]
+	<dd class="clearing"></dd>
+	</dl>
+</BOUCLE_articles_recents>
+<//B_articles_recentsAlaUne>
+
+[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)<p><a href="#URL_PAGE{antichrono}"><:soyezcreateurs:tousarticlesantichrono:></a></p>]
+
+	</div><!-- Fin de LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+#FILTRE{mini_html}

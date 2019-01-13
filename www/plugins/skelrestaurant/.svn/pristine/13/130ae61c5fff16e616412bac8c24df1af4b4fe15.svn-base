@@ -1,0 +1,11 @@
+[<!--Maps <pre>(#ENV**|unserialize|print_r{1})</pre>-->]
+
+<BOUCLE_SiMenu(CONDITION){si #ENV{menu}|=={oui}}>
+</BOUCLE_SiMenu>
+</B_SiMenu>
+	[<div class="container-fluid">
+		<div class="row">
+			(#INCLURE{fond=modeles/carte_gis,scale=oui,zoom_wheel=non,fullscreen=oui})
+		</div>
+	</div>]
+<//B_SiMenu>

@@ -1,0 +1,17 @@
+<BOUCLE_articles_recentsAlaUne_Exclus(ARTICLES) {0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{titre_mot=AlaUne}{doublons}{lang} />
+<BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons}{lang} /></BOUCLE_Secteurs_Exclus>
+<BOUCLE_Rubriques_Exclues(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}><BOUCLE_Articles_Exclus(ARTICLES){id_rubrique}{doublons}{lang} /></BOUCLE_Rubriques_Exclues>
+<BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons}{lang} />
+<B_articles_QuoideNeuf>
+<div id="homequoideneuf">
+<h2>[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)<a href="#URL_PAGE{antichrono}" title="<:soyezcreateurs:tousarticlesantichrono|attribut_html:>">]<:soyezcreateurs:quoideneuf:>[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)</a>]</h2>
+<div class="fond">
+<ul>
+<BOUCLE_articles_QuoideNeuf(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})}{doublons}{lang}>
+	<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+</BOUCLE_articles_QuoideNeuf>
+</ul>
+</div><!-- fond -->
+</div><!-- homequoideneuf -->
+</B_articles_QuoideNeuf>
+#FILTRE{mini_html}

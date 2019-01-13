@@ -1,0 +1,60 @@
+nom: soyezcreateurs_couleurs_cfg_rouge_bordeaux
+soyezcreateurs:
+  soyezcreateurs_couleurs:
+    -
+      nom: soyezcreateurs_couleurs
+      valeur:
+        body_bk: '#872D3F'
+        header: '#F8F2EC'
+        header_bk: '#872D3F'
+        datemajsite: '#872D3F'
+        datemajsite_bk: '#F8F2EC'
+        footer: '#F8F2EC'
+        footer_bk: '#872D3F'
+        navigation: '#F8F2EC'
+        navigation_bk: '#872D3F'
+        menuhaut: '#F8F2EC'
+        menuhaut_bk: transparent
+        logo_bk: '#872D3F'
+        extra: '#F8F2EC'
+        extra_bk: '#872D3F'
+        menu_a: '#F8F2EC'
+        menu_a_bk: '#872D3F'
+        menu_a_hover: '#8edbf6'
+        menu_a_hover_bk: '#872D3F'
+        menu_a_active: '#F8F2EC'
+        menu_a_active_bk: '#872D3F'
+        menu_a_strong: '#8edbf6'
+        menu_a_strong_bk: '#872D3F'
+        vignettes_bk: '#872D3F'
+        container: '#872D3F'
+        container_bk: '#F8F2EC'
+        titraille: '#6c3742'
+        titraille_bk: '#F8F2EC'
+        link: '#872D3F'
+        visited: '#6c3742'
+        hover: '#6c3742'
+        active: '#6c3742'
+        fontsnavigation: 'Verdana, Arial, Geneva, sans-serif'
+        fontscontent: 'Verdana, Arial, Geneva, sans-serif'
+        fontsizeheader: '1.0'
+        fontsizefooter: '1.2'
+        fontsizenavigation: '1.2'
+        fontsizecontenu: '1.2'
+        fontsizeartrecents: '1.2'
+        autovignettes: auto
+        fontsizevignettes: '16'
+        body_degrade: null
+        footer_degrade: null
+        menuhaut_degrade: null
+        cadreinfo_degrade: null
+        citations_degrade: null
+        cartouche_degrade: null
+        titraille_degrade: null
+        titraille_ssniveaux: '#6c3742'
+        titraille_ssniveaux_bk: '#872D3F'
+        cadrestexte: '#872D3F'
+        cadrestexte_bk: '#F8F2EC'
+        header_lettre: '#F8F2EC'
+        header_lettre_bk: '#872D3F'
+        titraille_lettre: '#6c3742'

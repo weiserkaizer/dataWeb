@@ -1,0 +1,13 @@
+[(#REM) On peut arriver avec id_article ou id_rubrique. On les réaffecte sur objet, id_objet. ]
+[(#ENV{id_article}|oui)[(#VAL{article}|setenv{objet})][(#ENV{id_article}|setenv{id_objet})]]
+[(#ENV{id_rubrique}|oui)[(#VAL{rubrique}|setenv{objet})][(#ENV{id_rubrique}|setenv{id_objet})]]
+<B_documents_joints>
+<div class="docjoints#ENV{cartouche}">
+	[(#ENV{notitle}|?{'',<h2><:soyezcreateurs:docatelecharger:></h2>})]
+	<ul>
+	<BOUCLE_documents_joints(DOCUMENTS)  {objet?} {id_objet?} {mode=document}{extension !IN png,jpg,gif}{par rang_lien, num titre, date} {vu ?}>
+		<li[ (#VAL{noicon}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|non)style='list-style-image: url("[/(#LOGO_DOCUMENT|image_reduire{16,16}|extraire_attribut{src})]");'] class="#EDIT{titre}"><a href="#URL_DOCUMENT" title="<:ecrire:ical_methode_http:>[: (#TITRE|textebrut|attribut_html|sinon{<:info_document:>})][ ((#TYPE_DOCUMENT)][, (#TAILLE|taille_en_octets))]">[(#TITRE|sinon{#FICHIER|basename{.#EXTENSION}|replace{_," "}}|ucfirst)]</a>[(#PLUGIN{PLAYER}|non)[(#TYPE_DOCUMENT|match{'(QuickTime|MP3)'}|oui) &mdash; <a href="[(#URL_PAGE{multimedia}|parametre_url{id_document,#ID_DOCUMENT})]" target="_blank" title="<:soyezcreateurs:multimedia_title:>"><:soyezcreateurs:multimedia:></a>]] <i><small>([(#TYPE_DOCUMENT)][, (#TAILLE|taille_en_octets)])</small></i>[<div class="#EDIT{descriptif}">(#DESCRIPTIF|ptobr)</div>]</li>
+	</BOUCLE_documents_joints>
+	</ul>
+</div>
+</B_documents_joints>

@@ -1,0 +1,7 @@
+<BOUCLE_(ARTICLES){id_article}>
+					<div class="bd variante1">
+					[<span class="variante1_droite"><h3><a href="#ARTICLE_URL">#TITRE</a></h3><a href="#ARTICLE_URL" title="[(#TITRE|supprimer_tags|attribut_html)]"><img class="logo_modenews" src="(#LOGO_ARTICLE_NORMAL|image_passe_partout{150,80}|image_recadre{150,80}|image_aplatir{jpg,ffffff}|extraire_attribut{src})" alt="[(#TITRE|supprimer_tags|attribut_html)]" /></a></span>]<BOUCLE_DocumentJoint(DOCUMENTS){id_article}{media=file}>[<h3><a href="#URL_DOCUMENT">#TITRE</a></h3><a href="#URL_DOCUMENT" title="[(#TITRE|supprimer_tags|attribut_html)]"><img class="logo_doc" src="(#LOGO_DOCUMENT|image_reduire{0,80}|extraire_attribut{src})" alt="[(#TITRE|supprimer_tags|attribut_html)]" /></a>]</BOUCLE_DocumentJoint>
+					[(#CHAPO|sinon{#DESCRIPTIF})]
+					</div>
+</BOUCLE_>
+#FILTRE{mini_html}

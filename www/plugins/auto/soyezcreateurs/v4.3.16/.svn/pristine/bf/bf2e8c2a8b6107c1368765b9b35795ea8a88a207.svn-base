@@ -1,0 +1,2 @@
+<p><:mailsubscriber:subscribe_titre_email:>&nbsp;: #ENV{liste,newsletter}</p>
+#FORMULAIRE_NEWSLETTER_SUBSCRIBE{#ENV{liste,newsletter}}

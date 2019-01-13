@@ -1,0 +1,50 @@
+[(#SET{titretop,<:resultats_recherche|sc_nettoyer_marqueur|texte_script:>})]
+<BOUCLE_Tags(MOTS){id_mot IN #ENV{mots}}{par titre}>[(#SET{tags,[(#GET{tags}|concat{[[(#COMPTEUR_BOUCLE|>{1}|?{+})](#TITRE|ucfirst)]})]})]</BOUCLE_Tags>
+[(#SET{title,<:resultats_recherche|texte_script:>[ : (#GET{tags}|attribut_html|texte_script)]})]
+<INCLURE{fond=noisettes/header/header,
+	template=mots_filtres,
+	title=#GET{title},
+	titretop=#GET{titretop},
+	env,
+	type=mots_filtres_agenda
+	}
+>
+<div class="texte">
+<main id="main" role="main">
+	<INCLURE{fond=noisettes/navigation/frmrechercheparmots,env,type=evenements}>	
+	<div class="clearing">&nbsp;</div>
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:resultats_recherche:></h1></div>
+</div>
+]
+	<div id="letexte">
+	[(#SET{nbelementstrouves,0})]
+<B_recherche_par>
+		#ANCRE_PAGINATION
+	<ul class="spip">
+		<BOUCLE_recherche_par(EVENEMENTS){mots_selon_id}{!par date}{pagination 25}{!lang_select}>
+			<li><a href="#URL_ARTICLE#evenement#ID_EVENEMENT" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE)]</a><B_MotsArticle><br /><BOUCLE_MotsArticle(MOTS){id_evenement}{type==^[^_]}{id_mot !IN #ENV{mots}}{par titre}{" "}>[(#SET{ajoutermot,[(#ENV{mots}|push{#ID_MOT})]})]<a href="[(#URL_PAGE{mots_filtres_agenda}|parametre_url{mots,#GET{ajoutermot}})]" class="tags ajouter">#TITRE</a></BOUCLE_MotsArticle></li>
+	</BOUCLE_recherche_par>
+	</ul>
+		[<p class="pagination">(#PAGINATION)</p>]
+		[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
+		</B_recherche_par>
+
+	<p>
+	[(#GET{nbelementstrouves}|=={0}|?{<:soyezcreateurs:recherche_infructueuse:>})]
+	[(#GET{nbelementstrouves}|>{0}|?{<:soyezcreateurs:recherche_total:>&nbsp;: [<strong>(#GET{nbelementstrouves})</strong>]})]
+	</p>
+	</div>
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer,
+	template=mots_filtres,
+	titretop=#GET{titretop},
+	env
+	}
+>
+#FILTRE{mini_html}

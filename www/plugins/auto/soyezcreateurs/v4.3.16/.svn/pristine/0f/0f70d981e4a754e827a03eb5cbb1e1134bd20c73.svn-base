@@ -1,0 +1,21 @@
+<BOUCLE_Pictos(MOTS){type=_ModePortail}{titre==#ENV{pictoscherches}}{par num titre}>
+#SET{logo,(#LOGO_MOT_NORMAL|extraire_attribut{src}|sinon{#CHEMIN{images/vignette_portail_default.png}})}
+#SET{largeur,#GET{logo}|largeur}
+#SET{hauteur,#GET{logo}|hauteur}
+#SET{logo,#GET{logo}|image_reduire{#GET{largeur},#GET{hauteur}}|extraire_attribut{src}}
+<BOUCLE_ArticlePicto(ARTICLES){id_mot}{par hasard}{0,1} {lang}>
+<a href="#ARTICLE_URL" class="vignette" title="[(#_Pictos:DESCRIPTIF|attribut_html)][ - (#_Pictos:TEXTE|attribut_html)]">
+<img src="[(#GET{logo})]" alt="[(#_Pictos:TITRE|attribut_html)]" width="#GET{largeur}" height="#GET{hauteur}" />
+</a>
+</BOUCLE_ArticlePicto>
+<BOUCLE_RubriquePicto(RUBRIQUES){id_mot}{par hasard}{0,1}>
+<a href="#URL_RUBRIQUE" class="vignette" title="[(#_Pictos:DESCRIPTIF|attribut_html)][ - (#_Pictos:TEXTE|attribut_html)]">
+<img src="[(#GET{logo})]" alt="[(#_Pictos:TITRE|attribut_html)]" width="#GET{largeur}" height="#GET{hauteur}" />
+</a>
+</BOUCLE_RubriquePicto>
+<a href="#URL_MOT" class="vignette" title="[(#_Pictos:DESCRIPTIF|attribut_html)][ - (#_Pictos:TEXTE|attribut_html)]">
+<img src="[(#GET{logo})]" alt="[(#_Pictos:TITRE|attribut_html)]" width="#GET{largeur}" height="#GET{hauteur}" /></a>
+<//B_RubriquePicto>
+<//B_ArticlePicto>
+</BOUCLE_Pictos>
+#FILTRE{mini_html}

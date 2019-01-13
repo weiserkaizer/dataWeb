@@ -1,0 +1,6 @@
+<BOUCLE_DevoilerIdentite(ARTICLES){id_article}{titre_mot=DevoilerIdentite}>
+	[(#INCLURE{fond=noisettes/aff_liste_auteurs,nodiv,nolink,id_article,virgule})]
+</BOUCLE_DevoilerIdentite>
+[(#CONFIG{soyezcreateurs/anonymatglobal,on}|!={on}|oui)[(#INCLURE{fond=noisettes/aff_liste_auteurs,nodiv,nolink,id_article,virgule})]]
+<//B_DevoilerIdentite>
+#FILTRE{mini_html}

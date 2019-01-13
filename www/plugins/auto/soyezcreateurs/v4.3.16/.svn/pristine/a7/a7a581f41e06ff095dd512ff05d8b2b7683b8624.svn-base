@@ -1,0 +1,4 @@
+[(#AUTORISER{webmestre}|sinon_interdire_acces)]
+<div>
+[(#INCLURE{fond=prive/squelettes/inclure/configurer_[(#ENV{cfg,soyezcreateurs})],env})]
+</div>

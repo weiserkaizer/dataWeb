@@ -1,0 +1,24 @@
+<h1><:soyezcreateursprive:ieconfig_import_spe:></h1>
+<div id="couleurs" class="ajax">
+#FORMULAIRE_IECONFIG_IMPORT_SPECIFIQUE_COULEURS{"couleurs"}
+</div>
+<div id="police" class="ajax">
+#FORMULAIRE_IECONFIG_IMPORT_SPECIFIQUE_COULEURS{"police"}
+</div>
+<div id="layout" class="ajax">
+#FORMULAIRE_IECONFIG_IMPORT_SPECIFIQUE_COULEURS{"layout"}
+</div>
+<script type='text/javascript' src='jwplayer.js'></script>
+<script type='text/javascript'>
+	function idRandom() {
+		var length = 9;
+		var prefix = 'id-formulaire-import-'; // To be 100% sure id starts with letter
+		// Convert it to base 36 (numbers + letters), and grab the first 9 characters
+		// after the decimal.
+		var id = prefix + Math.random().toString(36).substr(2, length);
+		return id;
+	}
+	document.getElementById('couleurs').id = idRandom();
+	document.getElementById('police').id = idRandom();
+	document.getElementById('layout').id = idRandom();
+</script>

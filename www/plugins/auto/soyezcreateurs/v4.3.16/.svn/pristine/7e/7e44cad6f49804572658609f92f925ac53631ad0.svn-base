@@ -1,0 +1,2 @@
+[<div class="menu_lien_participer">(#CONFIG{accepter_inscriptions}|=={oui}|?{<a href="[(#EVAL{_DIR_RESTREINT_ABS})]"><:soyezcreateurs:participez:></a>})</div>]
+#FILTRE{mini_html}

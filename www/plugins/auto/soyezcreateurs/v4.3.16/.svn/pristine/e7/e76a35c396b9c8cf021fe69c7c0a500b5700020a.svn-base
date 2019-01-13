@@ -1,0 +1,60 @@
+
+<BOUCLE_ZoomSur(ARTICLES) {titre_mot=ZoomSur}{!par date}{0,1}{lang}>
+#SET{article_url,#ARTICLE_URL}
+<!-- SLIDER -->
+<div id="diaporama" class="zone-slider">
+	<header>
+		<h1 class="hide">#TITRE</h1>
+	</header>
+	<div class="slider-slick">
+		<BOUCLE_Slider(DOCUMENTS){id_article}{mode=document}{par rang_lien, num titre, titre}{!par date}{media IN image,video}{vu=non}>
+		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
+			<div class="slider-diapo-imgfull">
+				[(#MEDIA|=={image}|oui)
+				<a href="#GET{article_url}"[ title="(#_ZoomSur:DESCRIPTIF|attribut_html)"]>
+					<img src="[(#FICHIER|copie_locale|image_focus{1920,#CONFIG{soyezcreateurs/hauteur_slider,580}}|extraire_attribut{src})]" alt="" />
+				</a>]
+				[(#MEDIA|=={video}|oui)
+				<a href="#GET{article_url}"[ title="(#_ZoomSur:DESCRIPTIF|attribut_html)"]>
+					[(#MIME_TYPE|=={text/oembed}|non)
+					<div style="width: 1920px; height: #CONFIG{soyezcreateurs/hauteur_slider,580}px;">
+						<video autoplay loop muted preload="true" class="autoplay" style="min-width: 100%; height: auto; top: -50%; position: absolute;">
+							<source src="#FICHIER" type="[(#EXTENSION|in_array{#LISTE{mp4,webm,ogv}}|?{[(#MIME_TYPE|replace{application/,video/})],#MIME_TYPE})]"/>
+						</video>
+					</div>]
+					[(#MIME_TYPE|=={text/oembed}|oui)
+					<div style="position: relative; padding-bottom: [(#CONFIG{soyezcreateurs/hauteur_slider,580}|div{1920}|mult{100})%]">
+						<div class="mbYTP_wrapper" id="wrapper_mbYTP_bgndVideo" style="position: absolute; z-index: -1; min-width: 100%; min-height: 100%; left: 0; top: 0; overflow: hidden; opacity: 1; -webkit-backface-visibility: hidden;">
+							<iframe id="mbYTP_bgndVideo#ID_DOCUMENT" class="playerBox" style="position: absolute; z-index: -1; width: 2380.8px; height: 1080px; top: 0px; left: 0px; overflow: hidden; opacity: 1; margin-top: -199.5px; margin-left: -230.4px;" frameborder="0" allowfullscreen="1" width="[(#INCLURE{#FICHIER}|extraire_attribut{width})]" height="[(#INCLURE{#FICHIER}|extraire_attribut{height})]" src="[(#INCLURE{#FICHIER}|extraire_attribut{src})]&amp;autoplay=1&amp;loop=1&amp;modestbranding=1&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1&amp;version=3&amp;playerapiid=mbYTP_bgndVideo&amp;allowfullscreen=true&amp;wmode=transparent&amp;iv_load_policy=3&amp;html5=1&amp;mute=1[&amp;playlist=(#INCLURE{#FICHIER}|extraire_attribut{src}|replace{'https:\/\/www\.youtube\.com\/embed\/\(\[^\?]*\).*','$1'}|replace{'\?feature=oembed',''})]"></iframe>
+						</div>
+					</div>]
+				</a>]
+			</div>
+		</div>
+		</BOUCLE_Slider>
+		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
+			<div class="slider-diapo-imgfull">
+				<a href="#GET{article_url}"[ title="(#_ZoomSur:DESCRIPTIF|attribut_html)"]>
+					<img src="[(#CHEMIN{images/placeholder.jpg}|image_focus{1920,#CONFIG{soyezcreateurs/hauteur_slider,580}}|extraire_attribut{src})]" alt="" />
+				</a>
+			</div>
+		</div>
+		<//B_Slider>
+	</div>
+	<div id="liens-diaporama">
+		<ul>
+			<li class="#EDIT{titre}">
+				<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>
+					<span>#TITRE</span>
+					<span class="icon icon-arrow-right2 icon-2x">&#10140;</span>
+				</a>
+			</li>
+			[<li class="hide-for-small-only">(#INCLURE{fond=noisettes/liste_auteurs,id_article,nolink=1})</li>]
+			[<li class="hide-for-small-only">(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})</li>]
+		</ul>
+	</div>
+</div>
+<!-- fin SLIDER -->
+</BOUCLE_ZoomSur>
+
+#FILTRE{mini_html}

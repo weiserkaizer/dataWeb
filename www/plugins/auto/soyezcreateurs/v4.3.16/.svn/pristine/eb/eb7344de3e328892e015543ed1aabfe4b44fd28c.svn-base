@@ -1,0 +1,7 @@
+#CACHE{900}
+<BOUCLE_agenda(RUBRIQUES){titre_mot=Agenda}{racine}{0,1}>
+<INCLURE{fond=noisettes/agenda/miniagenda_local,env,ajax}>
+</BOUCLE_agenda>
+<INCLURE{fond=noisettes/agenda/miniagenda_global,env,ajax}>
+<//B_agenda>
+#FILTRE{mini_html}

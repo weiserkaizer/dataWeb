@@ -1,0 +1,17 @@
+<BOUCLE_ContenuArticle(ARTICLES){id_article}>
+<dl>
+	<dt class="#EDIT{titre} h4">[<img src="(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|extraire_attribut{src})" class="logo_article" alt="" width="[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|largeur)]" height="[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|hauteur)]" />][(#TITRE)]</dt>
+	<dd>
+		<div class="contenu_chapitres">
+			[<div class="#EDIT{chapo} chapo">(#CHAPO|sinon{#DESCRIPTIF})</div>]
+			[<div class="#EDIT{texte}">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
+			[<div class="#EDIT{ps} ps">(#PS)</div>]
+			[<div class="notes">(#NOTES)</div>]
+			[<div id="carto">(#PLUGIN{GIS}|oui)[(#INCLURE{fond=json/gis,id_article,limit=1}|oui)[(#INCLURE{fond=modeles/carte_gis,id_article,autocenterandzoom=oui,hauteur=#CONFIG{soyezcreateurs_layout/hauteurgisarticles,400px},cluster=[(#PLUGIN{GISGEOM}|?{'non','oui'})],maxClusterRadius=40,clusterShowCoverageOnHover=oui,clusterSpiderfyOnMaxZoom=oui,fullscreen=oui,zoom_wheel=non})]]</div>]
+			[(#INCLURE{fond=noisettes/galerie,ajax,id_article,env})]
+			[(#INCLURE{fond=modeles/documentsjoints,id_article})]
+		</div>
+	</dd>
+</dl>
+</BOUCLE_ContenuArticle>
+#FILTRE{mini_html}

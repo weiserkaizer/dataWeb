@@ -1,0 +1,15 @@
+a:2:{s:9:"nom_cache";s:38:"68dd9dd395f67acb38ae92ae9de956a2.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_9389245d0dcde4f9124308eba86124ff";s:6:"source";s:68:"plugins/auto/soyezcreateurs/v4.3.16/noisettes/agenda/miniagenda.html";s:11:"process_ins";s:3:"php";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"68dd9dd395f67acb38ae92ae9de956a2.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";s:3:"900";}s:5:"duree";i:900;s:5:"texte";s:607:"
+<?php echo recuperer_fond( 'noisettes/agenda/miniagenda_global', array_merge(array (
+  'template' => 'Sommaire',
+  'lang' => 'fr',
+  'date' => '2018-08-11 14:49:12',
+  'date_default' => true,
+  'date_redac' => '2018-08-11 14:49:12',
+  'date_redac_default' => true,
+  'id_rubrique' => '',
+  'id_article' => '',
+  'rubriqueencours' => '',
+  'secteurencours' => '',
+),array('lang' => 'fr')), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/agenda/miniagenda.html','html_9389245d0dcde4f9124308eba86124ff','',5,$GLOBALS['spip_lang']),'ajax' => ($v=( ''))?$v:true), _request("connect"));
+?>
+";s:5:"notes";s:0:"";s:8:"contexte";a:10:{s:8:"template";s:8:"Sommaire";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2018-08-11 14:49:12";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2018-08-11 14:49:12";s:18:"date_redac_default";b:1;s:11:"id_rubrique";s:0:"";s:10:"id_article";s:0:"";s:15:"rubriqueencours";s:0:"";s:14:"secteurencours";s:0:"";}s:12:"lastmodified";i:1533998917;s:2:"gz";b:0;s:3:"sig";i:639174657;}}

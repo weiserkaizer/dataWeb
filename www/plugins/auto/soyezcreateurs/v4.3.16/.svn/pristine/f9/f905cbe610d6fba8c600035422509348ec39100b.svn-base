@@ -1,0 +1,10 @@
+<B_NavHaute>
+<div id="navHaute">
+	<ul>
+		<BOUCLE_NavHaute(ARTICLES){titre_mot=NavHaute}{par num titre}{lang}>
+		<li class="navHaute#ID_ARTICLE"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">#TITRE</a></li>
+		</BOUCLE_NavHaute>
+	</ul>
+</div>
+</B_NavHaute>
+#FILTRE{mini_html}

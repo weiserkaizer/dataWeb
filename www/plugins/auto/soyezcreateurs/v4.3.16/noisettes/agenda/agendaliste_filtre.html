@@ -1,0 +1,40 @@
+#CACHE{3600}
+<BOUCLE_rubrique_principal(RUBRIQUES)
+	{id_rubrique}
+>
+<BOUCLE_article(EVENEMENTS)
+	{id_mot ?}
+	{mots_selon_id ?}
+	{branche}
+	{date_debut==^(#ENV{date_ev,(#ENV{date})}|annee)}
+	{date_fin>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}
+	{par date_debut}
+>
+<BOUCLE_premierdumois(EVENEMENTS)
+	{id_evenement}
+	{doublons}
+>
+<h2[ id="m(#DATE_DEBUT|affdate{'Ym'})"]>[(#DATE_DEBUT|nom_mois|ucfirst)] [(#DATE_DEBUT|annee)]</h2>
+<ul class="spip">
+ [(#INCLURE{fond=noisettes/agenda/agendaliste_evenement_court,id_evenement,mots})]
+</BOUCLE_premierdumois>
+<BOUCLE_rappel_rubrique_principal(RUBRIQUES)
+	{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}
+>
+<BOUCLE_MOIS(EVENEMENTS)
+	{branche}
+	{id_mot ?}
+	{mots_selon_id ?}
+	{date_debut==^(#_article:DATE_DEBUT|affdate{'Y-m'})}
+	{date_fin>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}
+	{doublons}
+	{par date_debut}
+>
+ [(#INCLURE{fond=noisettes/agenda/agendaliste_evenement_court,id_evenement,mots})]
+</BOUCLE_MOIS>
+</BOUCLE_rappel_rubrique_principal>
+</ul>
+</B_premierdumois>
+</BOUCLE_article>
+</BOUCLE_rubrique_principal>
+#FILTRE{mini_html}

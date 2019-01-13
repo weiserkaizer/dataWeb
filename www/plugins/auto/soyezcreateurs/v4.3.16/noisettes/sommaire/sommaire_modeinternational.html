@@ -1,0 +1,201 @@
+#CACHE{900}
+#SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
+#SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,180})}
+#SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,180})}
+
+[(#CONFIG{soyezcreateurs_layout/largeurcolonnes,0}|=={0}|?
+	{
+	[(#SET{Largeurcontent_central,[(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|div{3}|floor|moins{24})]})]
+	,
+	[(#SET{Largeurcontent_central,[(#CONFIG{soyezcreateurs_layout/largeurcolonnes})]})]
+	}
+)]
+[(#CONFIG{soyezcreateurs_layout/largeurvideoaccueil,0}|=={0}|?
+	{
+	[(#SET{LargeurArretSurImg,[(#GET{Largeurcontent_central}|moins{2})]})]
+	,
+	[(#SET{LargeurArretSurImg,[(#CONFIG{soyezcreateurs_layout/largeurvideoaccueil})]})]
+	}
+)]
+[(#CONFIG{soyezcreateurs_layout/hauteurvideoaccueil,0}|=={0}|?
+	{
+	[(#SET{HauteurArretSurImg,[(#GET{LargeurArretSurImg}|div{1.245}|floor)]})]
+	,
+	[(#SET{HauteurArretSurImg,[(#CONFIG{soyezcreateurs_layout/hauteurvideoaccueil})]})]
+	}
+)]
+
+<script type="text/javascript">
+	CancelMonitorTextSize = true;
+</script>
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_newsticker}
+<div class="outerinternational">
+		<div id="block1" class="troistiers">
+[(#SET{CartoucheGoodies2,[(#ENV{Goodies2}|=={archives}|?{
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_goodies_archives,Goodies2,mc=Goodies2,env,ajax},
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_goodies,mc=Goodies2,env}
+})]})]
+[(#SET{HauteurALaUne,[(#GET{CartoucheGoodies2}|?{hauteur1,hauteur5})]})]
+[(#ENV{alaune}|=={archives}|?{
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_alaune_archives,HauteurALaUne=#GET{HauteurALaUne},env,ajax},
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_alaune,HauteurALaUne=#GET{HauteurALaUne},env}
+})]
+			<BOUCLE_AgendaEvenementsFuturs(EVENEMENTS)
+			{branche}
+			{par date_debut}
+			{0,1}
+			{date_fin>=(#ENV{date}|affdate{'Y-m-d'})}
+			{statut=publie}
+		>[(#CONFIG{soyezcreateurs/homeagenda,on}|=={on}|oui)<div id="agenda" class="outerbox hauteur2">
+				<div class="box simple">
+					<b class="top">
+						<b class="tl"></b>
+						<b class="tr"></b>
+					</b>
+					<div class="inner">
+						<div class="hd bam h1">Agenda</div>
+						<div class="bd">#INCLURE{fond=noisettes/agenda/miniagenda,env,ajax}</div>
+					</div>
+					<b class="bottom">
+						<b class="bl"></b>
+						<b class="br"></b>
+					</b>
+				</div>
+			</div>]</BOUCLE_AgendaEvenementsFuturs>
+
+			<B_ZoomSur2>
+			<div id="hommefemme" class="outerbox hauteur2">
+				<div class="box simple">
+				<b class="top">
+					<b class="tl"></b>
+					<b class="tr"></b>
+				</b>
+				<div class="inner">
+					<BOUCLE_ZoomSur2(ARTICLES){titre_mot==^ZoomSur2}{!archive}{!par date}{age<20}{0,1}>
+					<BOUCLE_TitreMot(MOTS){id_article}{titre==^ZoomSur2}>#SET{TypeZoom,#TITRE}</BOUCLE_TitreMot>
+					<div class="hd bam h1">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</div>
+					#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_#GET{TypeZoom},id_article}
+					<div class="hd bam archives"><a href="#URL_RUBRIQUE"><:soyezcreateurs:archives:></a></div>
+					</BOUCLE_ZoomSur2>
+				</div>
+				<b class="bottom">
+					<b class="bl"></b>
+					<b class="br"></b>
+				</b>
+				</div>
+			</div>
+			</B_ZoomSur2>
+
+			#GET{CartoucheGoodies2}
+
+
+		</div>
+		<div id="block2" class="troistiers">
+			<B_ZoomSur>
+[(#ENV{endirect}|=={archives}|?{
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_endirect_archives,hauteur=hauteur1,env,ajax},
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_endirect,hauteur=hauteur1,env}
+})]
+			<div id="hommefemme" class="outerbox hauteur2">
+				<div class="box simple">
+				<b class="top">
+					<b class="tl"></b>
+					<b class="tr"></b>
+				</b>
+				<div class="inner">
+					<BOUCLE_ZoomSur(ARTICLES){titre_mot=ZoomSur}{!archive}{!par date}{0,1}>
+					<div class="hd bam h1">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</div>
+					<div class="bd">
+					[<a href="#URL_ARTICLE"><img class="logo_modenews" src="(#LOGO_ARTICLE_NORMAL|image_reduire{0,120}|extraire_attribut{src})" alt="" /></a>]<h3><a href="#ARTICLE_URL">#TITRE</a></h3>
+					[(#DESCRIPTIF|sinon{#CHAPO}|ptobr)]
+					</div>
+					<div class="hd bam archives"><a href="#URL_RUBRIQUE"><:soyezcreateurs:archives:></a></div>
+					</BOUCLE_ZoomSur>
+				</div>
+				<b class="bottom">
+					<b class="bl"></b>
+					<b class="br"></b>
+				</b>
+				</div>
+			</div>
+			</B_ZoomSur>
+[(#ENV{endirect}|=={archives}|?{
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_endirect_archives,hauteur=hauteur5,env,ajax},
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_endirect,hauteur=hauteur5,env}
+})]
+			<//B_ZoomSur>
+		</div>
+		<div id="block3" class="troistiers">
+			<BOUCLE_CycloShow(RUBRIQUES){titre_mot=CycloShow}{0,1}>
+			<div id="image" class="outerbox hauteur3">
+				<div class="box simple">
+				<b class="top">
+					<b class="tl"></b>
+					<b class="tr"></b>
+				</b>
+					<div class="inner">
+						<div class="hd bam h1">#TITRE</div>
+						<div class="bd">
+							<div id="arretSurImg">
+								<ul class="mainCarousels">
+									<BOUCLE_Numeros(ARTICLES){id_rubrique}{!par date}{age>=0}{0,5}>
+									<BOUCLE_AvecImage(DOCUMENTS){id_article}{mode=document}{extension IN gif,jpg,png}{0,1}>
+									<li class="mainCarousel" id="mc[(#_Numeros:COMPTEUR_BOUCLE)]">
+										<h2><a id="sc[(#_Numeros:COMPTEUR_BOUCLE)]" href="#_Numeros:URL_ARTICLE" title="[(#_Numeros:TITRE|attribut_html)]">[(#_Numeros:COMPTEUR_BOUCLE)]</a></h2>
+									</li>
+									</BOUCLE_AvecImage>
+									</BOUCLE_Numeros>
+								</ul>
+
+								<B_Caroussels>
+								<ul class="smallCarousels">
+									<BOUCLE_Caroussels(ARTICLES){!archive}{id_rubrique}{!par date}{age>=0}{0,5}>
+									<B_Images>
+									<li class="smallCarousel" id="sc[(#_Caroussels:COMPTEUR_BOUCLE)]b">
+										<ul>
+										<BOUCLE_Images(DOCUMENTS){id_article}{mode=document}{extension IN gif,jpg,png}{par rang_lien, num titre, titre}>
+										<li><a href="#_Caroussels:URL_ARTICLE" title="[(#TITRE|attribut_html)]">[<img src="(#FICHIER|image_passe_partout{#GET{LargeurArretSurImg},#GET{HauteurArretSurImg}}|image_recadre{#GET{LargeurArretSurImg},#GET{HauteurArretSurImg}}|image_aplatir{jpg,ffffff}|extraire_attribut{src})" alt="[(#TITRE|attribut_html)]"/>]</a></li>
+										</BOUCLE_Images>
+										<li>[<a href="#_Caroussels:URL_ARTICLE"><span>(#_Caroussels:TITRE)</span></a>]</li>
+										</ul>
+									</li>
+									</B_Images>
+									</BOUCLE_Caroussels>
+								</ul>
+								</B_Caroussels>
+								<div class="hd bam archives"><a href="#URL_RUBRIQUE"><:soyezcreateurs:archives:></a></div>
+							</div><!-- #arretSurImg -->
+						</div>
+					</div>
+					<b class="bottom">
+						<b class="bl"></b>
+						<b class="br"></b>
+					</b>
+				</div>
+			</div>
+			</BOUCLE_CycloShow>
+			<div id="time" class="outerbox hauteur4">
+				<div class="box simple">
+					<b class="top">
+						<b class="tl"></b>
+						<b class="tr"></b>
+					</b>
+					<div class="inner">
+
+						<div class="bd">
+<INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_horloges}>
+						</div>
+					</div>
+					<b class="bottom">
+						<b class="bl"></b>
+						<b class="br"></b>
+					</b>
+				</div>
+			</div>
+[(#ENV{Goodies}|=={archives}|?{
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_goodies_archives,Goodies,env,ajax},
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_goodies,env}
+})]
+		</div>
+</div><!-- Fin de .outerinternational -->
+#FILTRE{mini_html}

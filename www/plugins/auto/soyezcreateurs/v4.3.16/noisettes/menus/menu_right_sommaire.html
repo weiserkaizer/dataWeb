@@ -1,0 +1,8 @@
+	<B_Breves_Sommaire>
+	<h2><:breves:breves:></h2>
+	<ul>
+	  <BOUCLE_Breves_Sommaire(BREVES){!par date}{age<120}{lang}><li>[(#ENV{id_breve}|=={#ID_BREVE}|?{<strong>})]<a href="[(#URL_BREVE)]" title="[(#DATE|nom_jour)] [(#DATE|affdate)]">[<img class="menu_right_logo" src="(#LOGO_BREVE_NORMAL|image_reduire{120,50}|extraire_attribut{src}|embarque_fichier)"[ width="(#LOGO_BREVE_NORMAL|image_reduire{120,50}|largeur)"][ height="(#LOGO_BREVE_NORMAL|image_reduire{120,50}|hauteur)"] alt="" /><br />][(#TITRE)]</a>[(#ENV{id_breve}|=={#ID_BREVE}|?{</strong>})]</li></BOUCLE_Breves_Sommaire>
+	</ul>
+	</B_Breves_Sommaire>
+[(#INCLURE{fond=noisettes/menus/menu_right_dessousbreves,env})]
+#FILTRE{mini_html}

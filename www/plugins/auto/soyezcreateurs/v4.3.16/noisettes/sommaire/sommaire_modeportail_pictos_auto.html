@@ -1,0 +1,25 @@
+#SET{fontsizevignettes,(#CONFIG{soyezcreateurs_couleurs/fontsizevignettes,16}|mult{2})}
+#SET{masque,#CHEMIN{images/masque_vignette_portail.png}}
+#SET{largeur,#GET{masque}|largeur}
+#SET{hauteur,#GET{masque}|hauteur}
+#SET{masquetaille,#GET{masque}|appliquer_filtre{image_smush_debrayer,force=true}|image_alpha{127}|image_aplatir{png,7f7f7f}|extraire_attribut{src}}
+<BOUCLE_Pictos(MOTS){type=_ModePortail}{titre==#ENV{pictoscherches}}{par num titre}>
+#SET{texteombre,(#_Pictos:TITRE|utf_8_to_unicode|image_typo{police=police_vignettes_portail.ttf,taille=#GET{fontsizevignettes,16},couleur=000000,align=center,largeur=#GET{largeur}|mult{2},padding=8}|image_reduire_par{2}|image_recadre{#GET{largeur},#GET{hauteur},center bottom,7f7f7f}|image_aplatir{png,7f7f7f}|image_masque{#GET{masquetaille}}|extraire_attribut{src})}
+#SET{texteclair,(#_Pictos:TITRE|utf_8_to_unicode|image_typo{police=police_vignettes_portail.ttf,taille=#GET{fontsizevignettes,16},couleur=ffffff,align=center,largeur=#GET{largeur}|mult{2},padding=10}|image_reduire_par{2}|image_recadre{#GET{largeur},#GET{hauteur},center bottom,7f7f7f}|image_aplatir{png,7f7f7f}|image_masque{#GET{masquetaille}}|appliquer_filtre{image_smush_embrayer,force=true}|extraire_attribut{src})}
+#SET{logo,(#LOGO_MOT_NORMAL|extraire_attribut{src}|sinon{#CHEMIN{images/vignette_portail_default.png}})}
+<BOUCLE_ArticlePicto(ARTICLES){id_mot}{par hasard}{0,1} {lang}>
+<a href="#ARTICLE_URL" class="vignette" title="[(#_Pictos:DESCRIPTIF|attribut_html)][ - (#_Pictos:TEXTE|attribut_html)]>
+<img src="[(#GET{logo}|image_masque{#GET{masque}}|image_masque{#GET{texteombre}}|image_masque{#GET{texteclair}}|image_masque{#GET{texteclair}}|extraire_attribut{src})]" alt="[(#_Pictos:TITRE|attribut_html)]"" width="#GET{largeur}" height="#GET{hauteur}" />
+</a>
+</BOUCLE_ArticlePicto>
+<BOUCLE_RubriquePicto(RUBRIQUES){id_mot}{par hasard}{0,1}>
+<a href="#URL_RUBRIQUE" class="vignette" title="[(#_Pictos:DESCRIPTIF|attribut_html)][ - (#_Pictos:TEXTE|attribut_html)]">
+<img src="[(#GET{logo}|appliquer_filtre{image_smush_debrayer,force=true}|image_masque{#GET{masque}}|image_masque{#GET{texteombre}}|image_masque{#GET{texteclair}}|image_masque{#GET{texteclair}}|appliquer_filtre{image_smush_debrayer,force=true}|extraire_attribut{src})]" alt="[(#_Pictos:TITRE|attribut_html)]" width="#GET{largeur}" height="#GET{hauteur}" />
+</a>
+</BOUCLE_RubriquePicto>
+<a href="#URL_MOT" class="vignette" title="[(#_Pictos:DESCRIPTIF|attribut_html)][ - (#_Pictos:TEXTE|attribut_html)]">
+<img src="[(#GET{logo}|appliquer_filtre{image_smush_debrayer,force=true}|image_masque{#GET{masque}}|image_masque{#GET{texteombre}}|image_masque{#GET{texteclair}}|image_masque{#GET{texteclair}}|appliquer_filtre{image_smush_debrayer,force=true}|extraire_attribut{src})]" alt="[(#_Pictos:TITRE|attribut_html)]" width="#GET{largeur}" height="#GET{hauteur}" /></a>
+<//B_RubriquePicto>
+<//B_ArticlePicto>
+</BOUCLE_Pictos>
+#FILTRE{mini_html}

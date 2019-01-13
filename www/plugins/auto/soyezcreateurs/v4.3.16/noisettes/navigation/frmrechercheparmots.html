@@ -1,0 +1,9 @@
+#SET{FiltreGroupes,#ARRAY}
+<BOUCLE_FiltreGroupes(GROUPES_MOTS){titre==^[^_]}{tables_liees LIKE %#ENV{typemot,articles}%}>
+#SET{FiltreGroupes,
+       #GET{FiltreGroupes}|push{#ID_GROUPE}}
+</BOUCLE_FiltreGroupes>
+[<div id="mots_filtres" class="espaceavant ajax">
+(#FORMULAIRE_RECHERCHE_PAR_MOTS{#GET{FiltreGroupes},#URL_PAGE{mots_filtres}})
+</div>]
+#FILTRE{mini_html}

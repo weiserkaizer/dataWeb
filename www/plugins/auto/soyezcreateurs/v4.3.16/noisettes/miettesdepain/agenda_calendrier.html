@@ -1,0 +1,30 @@
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+[(#ENV{'date_ev'}|!={''}|non)
+	[(#ENV{'month'}|oui)
+		[(#ENV{'year'}|oui)
+			#SET{'date', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01 00:00:00'}}
+			#SET{'date_th', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01'}}
+		]
+	]
+	[(#ENV{'month'}|non)
+		#SET{'date', #ENV{date}}
+		#SET{'date_th', #ENV{date}|affdate{'Y-m-d'}
+	]
+]
+[(#ENV{'date_ev'}|!={''}|oui)
+	#SET{'date', #ENV{date_ev}|concat{' 00:00:00'}}
+	#SET{'date_th', #ENV{date_ev}}
+]
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+<nav id="miettesdepain">
+	<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+	<ul>
+		<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+		<BOUCLE_plan(HIERARCHIE){id_rubrique}>
+		<li><a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #ID_RUBRIQUE}|parametre_url{'date_ev', [(#GET{date_th, [(#ENV{date})]}|annee)]'-[(#GET{date_th,[(#ENV{date})]}|mois)]-01'}|parametre_url{'id_mot', [(#ENV{id_mot,''}|urlencode)]})]"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#TITRE|replace{<br />,''})]</a></li>
+		</BOUCLE_plan>
+		<li>[(#TITRE|replace{<br />,''})]</li>
+	</ul>
+</nav>
+</BOUCLE_rubrique_principal>
+#FILTRE{mini_html}

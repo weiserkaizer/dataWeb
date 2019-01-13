@@ -1,0 +1,16 @@
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+[(#REM) Trouver, par rapport à la date du jour, la date de début de la période ]
+[(#SET{date_debut,[(#ENV{date_debut,#DATE}|programmation_debut{#ENV{jour_debut}}|affdate{'Y-m-d'})]})]
+[(#SET{periode,[(#GET{date_debut}|agenda_affdate_debut_fin{[(#GET{date_debut}|programmation_datedecalejours{[(#ENV{duree,7}|moins{1})]})],non, abbr}|typo)]})]
+<nav id="miettesdepain">
+	<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+	<ul>
+		<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+		<BOUCLE_plan(HIERARCHIE){id_rubrique}>
+		<li><a href="[(#URL_PAGE{agenda_programmation}|parametre_url{'id_rubrique', #ID_RUBRIQUE})]"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#TITRE|replace{<br />,''})]</a></li>
+		</BOUCLE_plan>
+		<li>[(#TITRE|replace{<br />,''})]</li>
+	</ul>
+</nav>
+</BOUCLE_rubrique_principal>
+#FILTRE{mini_html}

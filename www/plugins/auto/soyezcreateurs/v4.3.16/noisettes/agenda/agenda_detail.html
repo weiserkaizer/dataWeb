@@ -1,0 +1,8 @@
+<B_DetailAgenda>
+<ul id="ArticleAgendaDetail">
+<BOUCLE_DetailAgenda(EVENEMENTS){id_article}{par date_debut}>
+[(#INCLURE{fond=noisettes/agenda/agendaliste_evenement,id_evenement,lang})]
+</BOUCLE_DetailAgenda>
+</ul>
+</B_DetailAgenda>
+#FILTRE{mini_html}

@@ -1,0 +1,10 @@
+<B_articles_rubrique>
+<div id="artrecents"[ class="(#ENV{classe})"]>
+		<h2 title="<:soyezcreateurs:archives|replace{\.\.\.,''}:>: [(#INFO_TITRE{rubrique,#ID_RUBRIQUE}|supprimer_tags|attribut_html)]"><:soyezcreateurs:archives:></h2>
+		<ul>
+		<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par num titre}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}} {lang} {archive}>
+			<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]">[(#ID_ARTICLE|!={#ENV{id_article}}|oui)<a href="[(#ARTICLE_URL|parametre_url{archive,oui})]"[ title="(#DESCRIPTIF|attribut_html)"]>][(#TITRE)][(#ID_ARTICLE|!={#ENV{id_article}}|?{'</a>'})]</li>
+		</BOUCLE_articles_rubrique>
+		</ul>
+		</B_articles_rubrique>
+#FILTRE{mini_html}

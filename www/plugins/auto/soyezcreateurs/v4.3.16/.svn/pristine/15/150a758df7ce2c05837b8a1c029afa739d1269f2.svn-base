@@ -1,0 +1,26 @@
+[(#SET{titretop,<:transaction:merci|attribut_html|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{title=<:transaction:merci|attribut_html|texte_script:>}
+	{titretop=#GET{titretop}}
+	{type=transaction_merci}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+	<div class="cartouche">
+		<div class="titrepage"><h1><:transaction:merci|typo:></h1></div>
+	</div>
+]
+	<div id="letexte">
+		  	<p><:transaction:texte_merci|typo:></p>
+	</div><!-- Fin de #LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{template=Connexion}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}

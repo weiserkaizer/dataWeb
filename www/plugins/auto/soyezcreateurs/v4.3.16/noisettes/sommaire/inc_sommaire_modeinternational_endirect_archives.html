@@ -1,0 +1,48 @@
+<BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons} /></BOUCLE_Secteurs_Exclus>
+<BOUCLE_Rubriques_Exclues(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}><BOUCLE_Articles_Exclus(ARTICLES){id_rubrique}{doublons}{lang} /></BOUCLE_Rubriques_Exclues>
+<BOUCLE_exclus_Mots(ARTICLES){titre_mot IN PasDansQuoiDeNeuf,Goodies,ZoomSur,ZoomSur2,ZoomSur2_Variante1,ZoomSur2_Variante2,ALaUne}{doublons} />
+			<div id="direct" class="outerbox #ENV{hauteur,hauteur1}">
+				<div class="box simple">
+					<b class="top">
+						<b class="tl"></b>
+						<b class="tr"></b>
+					</b>
+					<div class="inner">
+						<BOUCLE_TitreZoneEnDirect(GROUPES_MOTS){titre=_EnDirect}>
+						<div class="hd bam h1">[(#DESCRIPTIF|ptobr)] (<:soyezcreateurs:archives:>)</div>
+						</BOUCLE_TitreZoneEnDirect>
+						<div class="bd">
+						<B3>
+							<BOUCLE_TitreQuoiDeNeuf(MOTS){type=_EnDirect}{par num titre}{0,1}>
+							<h3 class="subtitle">[<img src="(#LOGO_MOT_NORMAL|extraire_attribut{src})" alt="" />]#TITRE</h3>
+							</BOUCLE_TitreQuoiDeNeuf>
+							<dl>
+							<BOUCLE3(ARTICLES){age>=(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})}{doublons}{!par date}{!id_groupe=7}{pagination direct} >
+								[<dt[(#3:COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">(#TITRE)</a></dt>]    
+								[<dd>(#INCLURE{fond=noisettes/inc_liste_document_article,id_article})</dd>]
+							</BOUCLE3>
+							</dl>
+							<p class="pagination">#PAGINATION</p>
+						</B3>
+						<BOUCLE_MotsEnDirect(MOTS){type=_EnDirect}{par num titre}{1,n}>
+						<B7>
+						<h3 class="subtitle">[<img src="(#LOGO_MOT_NORMAL||extraire_attribut{src})"  alt="" />][(#TITRE|supprimer_numero)]</h3>
+							<dl>
+							<BOUCLE7(ARTICLES) {id_mot}{age>=(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})}{!par date}{pagination #ID_GROUPE}>
+								[<dt[(#7:COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">(#TITRE)</a></dt>]
+								[<dd>(#INCLURE{fond=noisettes/inc_liste_document_article,id_article})</dd>]
+							</BOUCLE7>
+							</dl>
+							<p class="pagination">#PAGINATION</p>
+						</B7>
+						</BOUCLE_MotsEnDirect>
+						</div>
+						<div class="hd bam archives"><a href="[(#SELF|parametre_url{endirect,''})]"><:spip:retour:></a></div>
+					</div>
+					<b class="bottom">
+						<b class="bl"></b>
+						<b class="br"></b>
+					</b>
+				</div>
+			</div>
+#FILTRE{mini_html}

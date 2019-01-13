@@ -1,0 +1,14 @@
+<BOUCLE_ExclureArticleCourant(ARTICLES){id_article}{doublons} />
+
+<BOUCLE_MotsClefsArticleConnexes(MOTS){type==^[^_]}{id_article}>
+<BOUCLE_ArticlesConnexesMem(ARTICLES){id_mot}{doublons}{doublons listeconnexes} {lang} />
+</BOUCLE_MotsClefsArticleConnexes>
+
+<B_ArticlesConnexes>
+<h2><:soyezcreateurs:articlesconnexes:></h2>
+<ul>
+<BOUCLE_ArticlesConnexes(ARTICLES){!doublons listeconnexes}{!par date}>
+	<li class="#EDIT{titre}"><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+</BOUCLE_ArticlesConnexes>
+</ul>
+</B_ArticlesConnexes>#FILTRE{mini_html}

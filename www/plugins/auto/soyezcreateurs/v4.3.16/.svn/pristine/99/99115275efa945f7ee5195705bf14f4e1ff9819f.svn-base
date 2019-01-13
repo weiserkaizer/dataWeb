@@ -1,0 +1,10 @@
+<B_MotsArticles>
+<div id="mots_agenda" class="surlignable">
+<BOUCLE_MotsArticles(MOTS){id_article}{par titre}{type==^[^_]}>
+<h2 class="#EDIT{titre}">#TITRE</h2>
+[<div class="#EDIT{descriptif} descriptifmot">(#DESCRIPTIF)</div>]
+[<div class="#EDIT{texte} textemot">(#TEXTE)</div>]
+</BOUCLE_MotsArticles>
+</div>
+</B_MotsArticles>
+#FILTRE{mini_html}

@@ -1,0 +1,55 @@
+<?php
+	$bannieres= array();
+?>
+<BOUCLE_FooterBannerRubrique(HIERARCHIE){tout}{id_rubrique}{type_mot=_FooterBanner}{inverse}{0,1}>
+<BOUCLE_LogoHeader(MOTS){id_rubrique}{type=_FooterBanner}>
+<?php
+$bannieres[] = array(
+	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'hauteur' => '[(#LOGO_MOT_NORMAL|hauteur)]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
+</BOUCLE_LogoHeader>
+</BOUCLE_FooterBannerRubrique>
+<BOUCLE_FooterBannerTemplate(MOTS){type=_FooterBanner}{descriptif!=''}{descriptif=#ENV{template}}>
+<?php
+$bannieres[] = array(
+	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'hauteur' => '[(#LOGO_MOT_NORMAL|hauteur)]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
+</BOUCLE_FooterBannerTemplate>
+#SET{ExclureBannieresRubriques,#ARRAY}<BOUCLE_ExclureBannieresRubriques(RUBRIQUES){type_mot=_FooterBanner}{fusion id_mot}>[(#ID_MOT|unique|oui)[(#SET{ExclureBannieresRubriques,#GET{ExclureBannieresRubriques}|push{#ID_MOT}})]]</BOUCLE_ExclureBannieresRubriques>
+<BOUCLE_FooterBanner(MOTS){type=_FooterBanner}{descriptif=''}{id_mot !IN #GET{ExclureBannieresRubriques}}>
+<?php
+$bannieres[] = array(
+	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'hauteur' => '[(#LOGO_MOT_NORMAL|hauteur)]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
+</BOUCLE_FooterBanner><//B_FooterBannerTemplate><//B_FooterBannerRubrique>
+<?php
+if (count($bannieres) > 0) {
+$banniere = $bannieres[mt_rand(0, count($bannieres) - 1)];;
+if ($banniere['banniere']!='') {
+?><style type="text/css">
+/*<!\[CDATA\[*/
+#footer {
+	background-image: <?php if ($banniere['hachures']!='') { ?>url("<?php echo($banniere['hachures']); ?>"), <?php } ?>url("<?php echo($banniere['banniere']); ?>");
+	background-repeat: <?php if ($banniere['hachures']!='') { ?>repeat, <?php } ?>no-repeat;
+	background-position: <?php if ($banniere['hachures']!='') { ?>top, <?php } ?>bottom;
+	min-height: <?php echo($banniere['hauteur']); ?>px;
+	height: <?php echo($banniere['hauteur']); ?>px;
+	display: table;
+}
+#footer_inner {
+    display: table-cell;
+	vertical-align: bottom;
+}
+/*\]\]>*/
+</style><?php }
+} ?>
+#FILTRE{mini_html}

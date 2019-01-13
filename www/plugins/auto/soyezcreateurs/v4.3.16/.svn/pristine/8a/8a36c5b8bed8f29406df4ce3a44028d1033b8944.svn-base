@@ -1,0 +1,63 @@
+#SET{defaut_tri,#ARRAY{num titre,1,#CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif},-1}}
+[(#CONFIG{soyezcreateurs/tri_slideshow_communiquant,parnum}|=={parnum}|oui)
+#SET{tri,num titre}]
+[(#CONFIG{soyezcreateurs/tri_slideshow_communiquant,parnum}|=={antichrono}|oui)
+#SET{tri,#CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}]
+<B_articles_recentsAlaUne>
+<div id="homeSpecialFeature">
+	<ul>
+	<BOUCLE_articles_recentsAlaUne(ARTICLES) {tri #GET{tri},#GET{defaut_tri}} {0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{titre_mot=AlaUne}{lang}>
+		<li id="hSFItem#COMPTEUR_BOUCLE" class="hSFItem">
+		<div class="postListItem" title="[(#DESCRIPTIF|textebrut|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">	
+			<h2 class="postListItemTitle #EDIT{titre}"><a href="#ARTICLE_URL">[(#TITRE)]</a></h2>
+			<span class="hSFDecoSpan"></span>
+		</div><!-- .postListItem -->
+		[(#SET{Masque,[(#CHEMIN{images/hsf#ENV{mode}.png})]})]
+		[(#SET{LargeurMasque,[(#GET{Masque}|largeur)]})]
+		[(#SET{HauteurMasque,[(#GET{Masque}|hauteur)]})]
+		[(#SET{Cadre,[(#CHEMIN{images/hsf_over.png})]})]
+		[(#SET{LargeurCadre,[(#GET{Cadre}|largeur)]})]
+		[(#SET{HauteurCadre,[(#GET{Cadre}|hauteur)]})]
+		[(#SET{ImageCadree,
+			[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}
+			)]}
+		)]
+		[(#GET{ImageCadree}|largeur|<={#GET{LargeurMasque}}|ou{
+			[(#GET{ImageCadree}|hauteur|<={#GET{HauteurMasque}})]}|oui)
+				[(#SET{ImageCadree, [(#GET{ImageCadree}
+					|image_recadre{#GET{LargeurMasque}:#GET{HauteurMasque},'+',right,transparent}
+					|image_recadre{#GET{LargeurMasque},#GET{HauteurMasque},right,transparent}
+					)]}
+				)]
+			
+		]
+		[(#GET{ImageCadree}|largeur|>{#GET{LargeurMasque}}|oui)
+			[(#GET{ImageCadree}|hauteur|>{#GET{HauteurMasque}}|oui)
+				[(#SET{ImageCadree, [(#GET{ImageCadree}
+					|image_recadre{#GET{LargeurMasque}:#GET{HauteurMasque},'-',focus,transparent}
+					|image_reduire{#GET{LargeurMasque},#GET{HauteurMasque}}
+					)]}
+				)]
+			]
+		]
+		[(#SET{ImageCadree, [(#GET{ImageCadree}
+			|image_masque{#GET{Masque}}
+			|image_masque{#GET{Cadre},mode=normal}
+			|image_reduire{[(#GET{LargeurCadre,[(#ENV{Largeurcontent_central})]})],0}
+			)]}
+		)]
+		[(#CONFIG{soyezcreateurs_couleurs/slideshow_bk,transparent}|=={transparent}|non) 
+		[(#SET{ImageCadree,
+			[(#GET{ImageCadree}
+			|image_aplatir{jpg,[(#CONFIG{soyezcreateurs_couleurs/slideshow_bk}|replace{#})],80,1})]}
+		)]
+		]
+		[<img src="(#GET{ImageCadree}|extraire_attribut{src})" alt="[(#TITRE|textebrut|attribut_html)]" class="hSFDecoImg cursor-pointer" onclick="location.href='#ARTICLE_URL';" title="[(#TITRE|textebrut|attribut_html)][ - (#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]" />]
+		</li>
+	</BOUCLE_articles_recentsAlaUne>
+	</ul>
+</div><!-- homeSpecialFeature -->
+</B_articles_recentsAlaUne>
+<INCLURE{fond=noisettes/sommaire/sommaire_modecommuniquant_edito}>
+[(#CONFIG{soyezcreateurs/positiongoodies,extra}|=={underedito}|oui)<INCLURE{fond=noisettes/sommaire/goodiesunderedito}>]
+#FILTRE{mini_html}

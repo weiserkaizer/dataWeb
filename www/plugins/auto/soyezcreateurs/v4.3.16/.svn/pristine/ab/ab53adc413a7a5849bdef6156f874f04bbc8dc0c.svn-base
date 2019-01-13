@@ -1,0 +1,11 @@
+<page>
+	<nom>corps_sommaire_modecognac.html</nom>
+	<description>Le sommaire et unique page de ce site</description>
+	<!-- <icon>article.png</icon> -->
+	<!-- <bloc id="sommaire" nom="sommaire"  description="Le sommaire" /> -->
+	<!-- <bloc id="header" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
+	<!-- <bloc id="footer" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
+	<!-- <bloc id="nav" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
+	<!-- <bloc id="breadcrumb" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
+	<!-- <bloc id="extra1" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
+</page>

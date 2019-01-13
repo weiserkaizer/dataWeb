@@ -1,0 +1,12 @@
+<BOUCLE_ExclureAdmins(GROUPES_MOTS){titre!==^_}>
+<B_MotsClefsFinArticle>
+<dl>
+<dt>#_ExclureAdmins:TITRE</dt>
+<dd>
+<BOUCLE_MotsClefsFinArticle(MOTS){id_article}{id_groupe}{logo}>
+[<a href="#URL_MOT" rel="tag"[ title="(#TITRE|attribut_html)"]><img src="(#LOGO_MOT_NORMAL|image_reduire{40,40}|extraire_attribut{src})" alt="[(#TITRE|attribut_html)]"></a>]
+</BOUCLE_MotsClefsFinArticle>
+</dd>
+</dl>
+</B_MotsClefsFinArticle>
+</BOUCLE_ExclureAdmins>#FILTRE{mini_html}

@@ -1,0 +1,13 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<div class="cartouche surlignable">
+[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={contenthauttitre}|oui)[<img src="(#GET{logo_article}|extraire_attribut{src})" class="logo_article" alt="" width="[(#GET{logo_article}|largeur)]" height="[(#GET{logo_article}|hauteur)]" />]]
+[<div class="#EDIT{surtitre} surtitre"><span>(#SURTITRE)</span></div>]
+<div class="titrepage"><h1 class="#EDIT{titre} entry-title">[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={content}|oui)[<img src="(#GET{logo_article}|extraire_attribut{src})" class="logo_article" alt="" width="[(#GET{logo_article}|largeur)]" height="[(#GET{logo_article}|hauteur)]" />]][(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)][(#PLUGIN{ARTICLE_PDF}|oui)#ARTICLE_PDF]</h1>[(#FORMULAIRE_FAVORI)][(#CONFIG{soyezcreateurs_google/googleplusun,non}|=={oui}|?{'<div class="googleplusun"><div class="g-plusone"></div></div>'})]</div>
+[<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>][(#INCLURE{fond=noisettes/liste_auteurs,id_article,lang})]
+[(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})]
+[(#ENV{archive}|non)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives,id_rubrique,lang}|oui)<div class="lienarchives pas_surlignable"><a href="[(#SELF|parametre_url{archive,oui})]" title="<:soyezcreateurs:archives_title|attribut_html:>"><:soyezcreateurs:archives:></a></div>]]
+[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={contentbastitre}|oui)[<img src="(#GET{logo_article}|extraire_attribut{src})" class="logo_article" alt="" width="[(#GET{logo_article}|largeur)]" height="[(#GET{logo_article}|hauteur)]" />]]
+[<div class="notation pas_surlignable">(#FORMULAIRE_NOTATION)</div>]
+</div>
+</BOUCLE_article_principal>
+#FILTRE{mini_html}

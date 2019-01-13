@@ -1,0 +1,45 @@
+#CACHE{3600}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+[(#REM) Trouver, par rapport à la date du jour, la date de début de la période ]
+[(#SET{date_debut,[(#ENV{date_debut,#DATE}|programmation_debut{#ENV{jour_debut}}|affdate{'Y-m-d'})]})]
+[(#SET{periode,[(#GET{date_debut}|agenda_affdate_debut_fin{[(#GET{date_debut}|programmation_datedecalejours{[(#ENV{duree,7}|moins{1})]})],non, abbr}|typo)]})]
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)] - #GET{periode}})]
+<INCLURE{fond=noisettes/header/header}
+	{title=(#TITRE|attribut_html|texte_script) - (#GET{periode})}
+	{titretop=#GET{titretop}}
+	{id_rubrique}
+	{date_debut}{jour_debut}{duree}
+	{type=agenda_programmation}
+	
+>
+<div class="texte">
+<main id="main" role="main">
+	<!-- Une : contenu de la rubrique -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+	<div class="cartouche">
+		<div class="titrepage"><h1>
+			[(#SET{lelogo,[(#LOGO_RUBRIQUE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})" width="[(#GET{lelogo}|largeur)]" height="[(#GET{lelogo}|hauteur)]" alt="" />]
+			[(#TITRE)] - [(#GET{periode})]
+		</h1></div>
+	</div>
+]
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)[(#INCLURE{fond=noisettes/cartouches/themes_agenda_mensuel,page=agenda_programmation,id_rubrique=#ID_SECTEUR,date_th=#GET{date_th},id_mot,mots})]]
+	<div id="letexte">
+		[<div class="descriptif">(#DESCRIPTIF)</div>]
+		[(#TEXTE)]
+		<INCLURE{fond=inclure/agenda_programmation,id_rubrique,jour_debut=0,duree=8,date_debut,env,ajax}>
+		[<div class="notes">(#NOTES)</div>]
+	</div><!-- Fin de #LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/themes_agenda_mensuel,page=agenda_programmation,id_rubrique=#ID_SECTEUR,date_th=#GET{date_th},id_mot,mots,classe=artrecent_bas})]]
+</BOUCLE_rubrique_principal>
+
+<INCLURE{fond=noisettes/footer/footer}
+	{rubriqueencours=#ID_RUBRIQUE}
+	{id_rubrique}
+	{secteurencours=#GET{secteurencours}}
+	{titretop=#GET{titretop}}
+>
+</B_rubrique_principal>
+#FILTRE{mini_html}

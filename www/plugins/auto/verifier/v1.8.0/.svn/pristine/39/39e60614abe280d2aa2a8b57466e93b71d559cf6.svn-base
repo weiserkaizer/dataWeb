@@ -1,0 +1,37 @@
+
+titre: '<:verifier:type_decimal:>'
+description: '<:verifier:type_decimal_description:>'
+options:
+  -
+    saisie: 'input'
+    options:
+      nom: 'separateur'
+      label: '<:verifier:option_decimal_separateur_label:>'
+      explication: '<:verifier:option_decimal_separateur_explication:>'
+      defaut: ','
+  -
+    saisie: 'input'
+    options:
+      nom: 'min'
+      label: '<:verifier:option_entier_min_label:>'
+    verifier:
+      type: 'decimal'
+      options:
+        separateur: ','
+  -
+    saisie: 'input'
+    options:
+      nom: 'max'
+      label: '<:verifier:option_entier_max_label:>'
+    verifier:
+      type: 'decimal'
+      options:
+        separateur: ','
+  -
+    saisie: 'input'
+    options:
+      nom: 'nb_decimales'
+      label: '<:verifier:option_decimal_nb_decimales_label:>'
+    verifier:
+      type: 'entier'
+      min: 0

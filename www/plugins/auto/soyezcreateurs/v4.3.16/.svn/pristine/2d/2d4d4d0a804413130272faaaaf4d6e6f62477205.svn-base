@@ -1,0 +1,24 @@
+<BOUCLE_site(SITES){id_syndic}>
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<BOUCLE_ariane(HIERARCHIE){id_syndic}{!titre_mot=PasDansFildAriane}><li><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE|replace{<br />,''})]</a></li></BOUCLE_ariane><li><a href="#URL_PAGE{site}"><:sites_web:></a></li>
+			<BOUCLE_UnArticleSyndique(SYNDIC_ARTICLES) {id_syndic_article}>
+			<li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">[(#NOM_SITE|typo)]</a></li>
+			<li>[(#TITRE|typo)]</li>
+			</BOUCLE_UnArticleSyndique>
+			<li>[(#NOM_SITE|typo|couper{80})]</li>
+			<//B_UnArticleSyndique>
+		</ul>
+	</nav>
+</BOUCLE_site>
+<nav id="miettesdepain">
+	<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+	<ul>
+		<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+		<li><:sites_web:></li>
+	</ul>
+</nav>
+<//B_site>
+#FILTRE{mini_html}

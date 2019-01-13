@@ -1,0 +1,17 @@
+#SET{d_titraille_degrade,#CONFIG{soyezcreateurs_couleurs/titraille_degrade,on}}
+<style type="text/css">
+/*<![CDATA[*/
+#content h1, #content .surtitre span, #content .soustitre span {
+	background: #[(#ENV{couleur})];
+	color: #[(#ENV{couleur}|couleur_foncer|couleur_foncer)];
+}
+#content h1 { 
+	background-color: #ENV{couleur};
+	[(#ENV{couleur}|!={transparent}|oui|et{[(#GET{d_titraille_degrade}|non)]})
+	background: #ENV{couleur}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas4.png}|image_sepia{[(#ENV{couleur})]}|image_aplatir{jpg}|extraire_attribut{src}|embarque_fichier)) repeat-x top];]
+	border-bottom: 4px solid [#(#ENV{couleur}|couleur_foncerluminosite)];
+}
+
+/*]]>*/
+</style>
+#FILTRE{mini_html}

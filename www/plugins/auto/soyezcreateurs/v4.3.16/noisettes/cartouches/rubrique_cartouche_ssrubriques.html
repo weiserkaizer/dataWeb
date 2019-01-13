@@ -1,0 +1,15 @@
+<B_SsRubriques>
+<div id="artrecents"[ class="(#ENV{classe})"]>
+	<h2><:ecrire:onglet_contenu:></h2>
+	<ul>
+		<BOUCLE_SsRubriques(RUBRIQUES) {id_parent=#ID_RUBRIQUE}{par num titre}{!titre_mot=PasDansMenu}>
+		<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]"><BOUCLE_articles_plusdun(ARTICLES) {id_rubrique} {1,1} {lang}{!archive}><a href="#URL_RUBRIQUE" title="[(#_SsRubriques:DESCRIPTIF|attribut_html)] ([(#_SsRubriques:DATE|nom_jour)] [(#_SsRubriques:DATE|affdate)])">[(#_SsRubriques:TITRE)]</a></BOUCLE_articles_plusdun><BOUCLE_articles_unseul(ARTICLES) {id_rubrique} {0,1} {lang}{!archive}><a href="#ARTICLE_URL" title="[(#_SsRubriques:DESCRIPTIF|attribut_html)] ([(#_SsRubriques:DATE|nom_jour)] [(#_SsRubriques:DATE|affdate)])">[(#_SsRubriques:TITRE)]</a></BOUCLE_articles_unseul><a href="#URL_RUBRIQUE" title="[(#_SsRubriques:DESCRIPTIF|attribut_html)] ([(#_SsRubriques:DATE|nom_jour)] [(#_SsRubriques:DATE|affdate)])">[(#_SsRubriques:TITRE)]</a><//B_articles_unseul>  <//B_articles_plusdun></li>
+		</BOUCLE_SsRubriques>
+	</ul>
+[(#VAL{cartouche}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
+	[(#INCLURE{fond=modeles/documentsjoints,id_rubrique,cartouche=_cartouche})]
+]
+	[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche,id_rubrique})]]
+</div>
+</B_SsRubriques>
+#FILTRE{mini_html}

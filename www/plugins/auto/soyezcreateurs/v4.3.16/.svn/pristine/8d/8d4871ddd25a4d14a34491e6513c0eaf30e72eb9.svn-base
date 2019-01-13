@@ -1,0 +1,21 @@
+<h1><:soyezcreateursprive:ieconfig_import_spe:></h1>
+
+<ul >
+	[
+	(#AUTORISER{webmestre}|oui)<li><a href="./?exec=sc_import&nom=soyezcreateurs_couleurs_cfg_bleu&blanc&rouge&option=fusion">Je veux importer le mode cogniac de SoyezCréateurs</a></li>
+	]
+
+
+
+<?php
+$nom = _request('nom');
+$option = _request('option');
+if (isset($nom) and isset($option)) {
+	include_spip('soyezcreateurs_fonctions_ieconfig');
+	if(!eregi('[^a-zA-Z0-9_]', $nom)) {
+		$ok = sc_ieconfig_importer_fichier($fichier,$option);
+	}
+	
+}
+?>
+</ul>

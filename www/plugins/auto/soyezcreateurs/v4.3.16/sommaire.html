@@ -1,0 +1,11 @@
+#FASTCACHE
+<INCLURE{fond=noisettes/header/header}
+		{template=Sommaire}
+		{idbody=sommaire_mode_#CONFIG{soyezcreateurs/mode_affichage,communiquant}}
+		{type=sommaire}
+>
+<INCLURE{fond=noisettes/sommaire/sommaire_mode#CONFIG{soyezcreateurs/mode_affichage,communiquant},env}>
+<INCLURE{fond=noisettes/footer/footer}
+		{template=Sommaire}
+>
+#FILTRE{mini_html}

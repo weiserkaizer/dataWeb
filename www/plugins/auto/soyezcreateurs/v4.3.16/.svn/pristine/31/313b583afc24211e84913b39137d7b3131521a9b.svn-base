@@ -1,0 +1,21 @@
+#CACHE{3600}
+<BOUCLE_Evenement(EVENEMENTS){id_evenement}>
+<li><dl id='evenement#ID_EVENEMENT'><dt>[<strong>(#DATE_DEBUT|sc_decoder_date{#DATE_FIN,#HORAIRE,'skel'})</strong>]<B_Statut> <span class="agendastatut"><BOUCLE_Statut(MOTS) {id_evenement}{type=_AgendaStatut}{doublons statut}>[ <strong class="agendastatut agendastatut#ID_MOT"[(#INCLURE{fond=noisettes/agenda/agenda_statut,couleur=#TEXTE*})][ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>(#TITRE)</strong> ]</BOUCLE_Statut></span></B_Statut>[(#CONFIG{soyezcreateurs/agenda_ical_masque, ''}|=={'on'}|non)[<a class="ical" href="(#URL_PAGE{exporter-ical}|parametre_url{id_evenement, #ID_EVENEMENT}|url_absolue|replace{'http://','webcal://'})" title="<:soyezcreateurs:agenda_exporter_ical:>"><img src="#CHEMIN{img_pack/ical-16.png}" alt="iCal" width="16" height="16" /></a>]]</dt><dd><BOUCLE_ArticleConcerne(ARTICLES){id_article}><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[<strong class="#EDIT{titre}">(#TITRE)</strong>&nbsp;: ]</BOUCLE_TitreRub>[(#_Evenement:TITRE|=={[(#TITRE)]}|?{[<span class="#_Evenement:EDIT{titre}">(#_Evenement:TITRE)</span>],[<span class="#EDIT{titre}">(#TITRE)</span>]&nbsp;: [<span class="#_Evenement:EDIT{titre}">(#_Evenement:TITRE)</span>]})]<B_genres> (<BOUCLE_genres(MOTS){id_evenement}{", "}{par titre}{doublons statut}><a href="#URL_MOT" rel="tag" title="<:soyezcreateurs:savoirpluscritere:>: [(#TITRE|supprimer_tags|attribut_html)]">[(#TITRE)]</a></BOUCLE_genres>)</B_genres>
+</BOUCLE_ArticleConcerne></dd>[<dd class="#EDIT{descriptif}">(#DESCRIPTIF|ptobr)</dd>][<dd class="#EDIT{lieu} lieu"><strong><:agenda:evenement_lieu:></strong>&nbsp;: (#LIEU|ptobr)</dd>][<dd class="#EDIT{adresse} lieu"><strong><:agenda:evenement_adresse:></strong>&nbsp;: (#ADRESSE|ptobr)</dd>]
+<BOUCLE_ArticleParent(ARTICLES){id_article}>
+[(#CHEMIN{noisettes/agenda/inc_complement_agenda_rub#ID_RUBRIQUE.html}|?{
+[(#INCLURE{fond=noisettes/agenda/inc_complement_agenda_rub#ID_RUBRIQUE,env})],
+[(#CHEMIN{noisettes/agenda/inc_complement_agenda_sect#ID_SECTEUR.html}|?{
+[(#INCLURE{fond=noisettes/agenda/inc_complement_agenda_sect#ID_SECTEUR,env})],
+})
+]})
+]
+</BOUCLE_ArticleParent>
+[<dd class="notes">(#NOTES)</dd>]</dl>
+[(#PLUGIN{critere_mots}|oui)[(#INCLURE{fond=noisettes/agenda/etiquette_evenement,id_evenement})]]
+[(#CONFIG{soyezcreateurs/agenda_inscription, ''}|=={'on'}|oui)
+[<br /> <a href="(#URL_PAGE{inscription_evenement}|parametre_url{id_evenement, #ID_EVENEMENT})" onclick="if (jQuery.modalbox) {$.fn.mediabox({href:'[(#URL_PAGE{inscription_evenement}|parametre_url{id_evenement, #ID_EVENEMENT}|parametre_url{modal, oui})]', minHeight: '350px'});return false;}"><:soyezcreateurs:agenda_sinscrire:></a>]
+]
+</li>
+</BOUCLE_Evenement>
+#FILTRE{mini_html}

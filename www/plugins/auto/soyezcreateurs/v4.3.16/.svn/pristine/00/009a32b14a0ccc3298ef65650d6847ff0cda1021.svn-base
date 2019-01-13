@@ -1,0 +1,8 @@
+<BOUCLE_RubriqueDefilant(RUBRIQUES){titre_mot=Defilant}{0,1}><B_defile>
+<ul id="ticker01">
+<BOUCLE_defile(BREVES){id_rubrique}{age<400}{lang}>
+<li><span>[(#DATE|affdate_jourcourt)&nbsp;:]</span> <a href="#URL_BREVE">[(#TITRE|couper{100})]</a></li>
+</BOUCLE_defile>
+</ul>
+</B_defile></BOUCLE_RubriqueDefilant>
+#FILTRE{mini_html}

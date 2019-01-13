@@ -1,0 +1,92 @@
+#CACHE{0}[(#HTTP_HEADER{Content-Type: text/plain; charset=#CHARSET})]
+	//les groupes puis mots
+[(#INCLURE{fond=dev/motconf})]
+
+
+
+	// Les articles du site
+<BOUCLE_ListeArticles(ARTICLES){par id_rubrique}>
+	/* #TITRE* */
+	if ($article == "[(#TITRE*|sc_NewLine2str)]") {
+		$contenu[(#VAL{91}|chr)]'titre'[(#VAL{93}|chr)] = "[(#TITRE*|sc_NewLine2str)]";[
+		$contenu[(#VAL{91}|chr)]'chapo'[(#VAL{93}|chr)] = <<<EOF
+(#CHAPO*)
+EOF;][
+		$contenu[(#VAL{91}|chr)]'texte'[(#VAL{93}|chr)] = <<<EOF
+(#TEXTE*)
+EOF;][
+		$contenu[(#VAL{91}|chr)]'ps'[(#VAL{93}|chr)] = <<<EOF
+(#PS*)
+EOF;][
+		$contenu[(#VAL{91}|chr)]'surtitre'[(#VAL{93}|chr)] = "(#SURTITRE*|sc_NewLine2str)";][
+		$contenu[(#VAL{91}|chr)]'soustitre'[(#VAL{93}|chr)] = "(#SOUSTITRE*|sc_NewLine2str)";][
+		$contenu[(#VAL{91}|chr)]'nom_site'[(#VAL{93}|chr)] = "(#NOM_SITE*|sc_NewLine2str)";][
+		$contenu[(#VAL{91}|chr)]'url_site'[(#VAL{93}|chr)] = "(#URL_SITE*|sc_NewLine2str)";]
+	}
+</BOUCLE_ListeArticles>
+
+	// Structure et contenu du site
+<BOUCLE_ListeRubriques(RUBRIQUES){racine}{par num titre}{tout}>
+	$id_rubrique = create_rubrique("[(#TITRE*|sc_NewLine2str)]", '0', "[(#DESCRIPTIF*|sc_NewLine2str)]");[
+		create_logo('documents/(#LOGO_RURIQUE_NORMAL|fichier)', $type='rub', $id_rubrique, '[(#LOGO_RURIQUE_NORMAL|fichier|sc_extension)]');][
+		create_logo('documents/(#LOGO_RURIQUE_SURVOL|fichier)', $type='rub', $id_rubrique, '[(#LOGO_RURIQUE_SURVOL|fichier|sc_extension)]','off');][(#REM)
+	]<BOUCLE_MotsRub(MOTS){id_rubrique}>
+		create_rubrique_mot("[(#INFO_TITRE*{rubrique,#ID_RUBRIQUE}|sc_NewLine2str)]", "[(#TITRE*|sc_NewLine2str)]", "[(#INFO_TITRE*{groupe_mot,#ID_GROUPE}|sc_NewLine2str)]");[(#REM)
+	]</BOUCLE_MotsRub>[(#REM)
+	]<BOUCLE_ArticlesRub(ARTICLES){id_rubrique}{par num titre,date}>
+		$id_article = create_article(trouve_article_sc("[(#TITRE*|sc_NewLine2str)]"), "[(#INFO_TITRE*{rubrique,#ID_RUBRIQUE}|sc_NewLine2str)]");[
+			create_logo('documents/(#LOGO_ARTICLE_NORMAL|fichier)', $type='art', $id_article, '[(#LOGO_ARTICLE_NORMAL|fichier|sc_extension)]');][
+			create_logo('documents/(#LOGO_ARTICLE_SURVOL|fichier)', $type='art', $id_article, '[(#LOGO_ARTICLE_SURVOL|fichier|sc_extension)]','off');][(#REM)
+	]<BOUCLE_MotsArt(MOTS){id_article}>
+			create_article_mot("[(#_ArticlesRub:TITRE*|sc_NewLine2str)]", "[(#INFO_TITRE*{rubrique,#ID_RUBRIQUE}|sc_NewLine2str)]", "[(#TITRE*|sc_NewLine2str)]", "[(#INFO_TITRE*{groupe_mot,#ID_GROUPE}|sc_NewLine2str)]");[(#REM)
+	]</BOUCLE_MotsArt>[(#REM)
+	]</BOUCLE_ArticlesRub>[(#REM)
+	]<BOUCLE_SitesRub(spip_syndic){id_rubrique}{par num nom_site,date}>
+			$sites = array();
+			$sites['nom_site'] = "[(#NOM_SITE*|sc_NewLine2str)]";
+			$sites['url_site'] = "#URL_SITE";
+			$sites['descriptif'] = "[(#DESCRIPTIF*|sc_NewLine2str)]";
+			$sites['url_syndic'] = "#URL_SYNDIC";
+			$sites['statut'] = '#STATUT';
+			$id_site = create_site($sites, "[(#INFO_TITRE*{rubrique,#ID_RUBRIQUE}|sc_NewLine2str)]");[
+				create_logo('documents/(#LOGO_SITE_NORMAL{#ID_SYNDIC}|fichier)', $type='site', $id_site, '[(#LOGO_SITE_NORMAL{#ID_SYNDIC}|fichier|sc_extension)]');][
+				create_logo('documents/(#LOGO_SITE_SURVOL{#ID_SYNDIC}|fichier)', $type='site', $id_site, '[(#LOGO_SITE_SURVOL{#ID_SYNDIC}|fichier|sc_extension)]','off');][(#REM)
+	]<BOUCLE_MotsSite(MOTS){id_syndic}{tout}>
+				create_site_mot($id_site, "[(#TITRE*|sc_NewLine2str)]", "[(#INFO_TITRE*{groupe_mot,#ID_GROUPE}|sc_NewLine2str)]");[(#REM)
+	]</BOUCLE_MotsSite>[(#REM)
+	]</BOUCLE_SitesRub>
+	<B_ListeSsRubriques>
+	$id_parent = $id_rubrique;
+	<BOUCLE_ListeSsRubriques(RUBRIQUES){id_parent}{par num titre}{tout}>
+		$id_rubrique = create_rubrique("[(#TITRE*|sc_NewLine2str)]", $id_parent, "[(#DESCRIPTIF*|sc_NewLine2str)]");[
+			create_logo('documents/(#LOGO_RURIQUE_NORMAL|fichier)', $type='rub', $id_rubrique, '[(#LOGO_RURIQUE_NORMAL|fichier|sc_extension)]');][
+			create_logo('documents/(#LOGO_RURIQUE_SURVOL|fichier)', $type='rub', $id_rubrique, '[(#LOGO_RURIQUE_SURVOL|fichier|sc_extension)]','off');][(#REM)
+	]<BOUCLE_MotsSsRub(MOTS){id_rubrique}>
+			create_rubrique_mot("[(#INFO_TITRE*{rubrique,#ID_RUBRIQUE}|sc_NewLine2str)]", "[(#TITRE*|sc_NewLine2str)]", "[(#INFO_TITRE*{groupe_mot,#ID_GROUPE}|sc_NewLine2str)]");[(#REM)
+	]</BOUCLE_MotsSsRub>[(#REM)
+	]<BOUCLE_ArticlesSsRub(ARTICLES){id_rubrique}{par num titre,date}>
+			$id_article = create_article(trouve_article_sc("[(#TITRE*|sc_NewLine2str)]"), "[(#INFO_TITRE*{rubrique,#ID_RUBRIQUE}|sc_NewLine2str)]");[
+				create_logo('documents/(#LOGO_ARTICLE_NORMAL|fichier)', $type='art', $id_article, '[(#LOGO_ARTICLE_NORMAL|fichier|sc_extension)]');][
+				create_logo('documents/(#LOGO_ARTICLE_SURVOL|fichier)', $type='art', $id_article, '[(#LOGO_ARTICLE_SURVOL|fichier|sc_extension)]','off');][(#REM)
+	]<BOUCLE_MotsSsArt(MOTS){id_article}>
+				create_article_mot("[(#_ArticlesSsRub:TITRE*|sc_NewLine2str)]", "[(#INFO_TITRE*{rubrique,#ID_RUBRIQUE}|sc_NewLine2str)]", "[(#TITRE*|sc_NewLine2str)]", "[(#INFO_TITRE*{groupe_mot,#ID_GROUPE}|sc_NewLine2str)]");[(#REM)
+	]</BOUCLE_MotsSsArt>[(#REM)
+	]</BOUCLE_ArticlesSsRub>[(#REM)
+	]<BOUCLE_SitesSsRub(spip_syndic){id_rubrique}{par num nom_site,date}>
+				$sites = array();
+				$sites['nom_site'] = "[(#NOM_SITE*|sc_NewLine2str)]";
+				$sites['url_site'] = "#URL_SITE";
+				$sites['descriptif'] = "[(#DESCRIPTIF*|sc_NewLine2str)]";
+				$sites['url_syndic'] = "#URL_SYNDIC";
+				$sites['statut'] = '#STATUT';
+				$id_site = create_site($sites, "[(#INFO_TITRE*{rubrique,#ID_RUBRIQUE}|sc_NewLine2str)]");[
+					create_logo('documents/(#LOGO_SITE_NORMAL{#ID_SYNDIC}|fichier)', $type='site', $id_site, '[(#LOGO_SITE_NORMAL{#ID_SYNDIC}|fichier|sc_extension)]');][
+					create_logo('documents/(#LOGO_SITE_SURVOL{#ID_SYNDIC}|fichier)', $type='site', $id_site, '[(#LOGO_SITE_SURVOL{#ID_SYNDIC}|fichier|sc_extension)]','off');][(#REM)
+	]<BOUCLE_MotsSsSite(MOTS){id_syndic}{tout}>
+					create_site_mot($id_site, "[(#TITRE*|sc_NewLine2str)]", "[(#INFO_TITRE*{groupe_mot,#ID_GROUPE}|sc_NewLine2str)]");[(#REM)
+	]</BOUCLE_MotsSsSite>[(#REM)
+	]</BOUCLE_SitesSsRub>
+	<BOUCLE_SSRub(BOUCLE_ListeSsRubriques) />[(#REM)
+	]</BOUCLE_ListeSsRubriques>
+	
+</BOUCLE_ListeRubriques>

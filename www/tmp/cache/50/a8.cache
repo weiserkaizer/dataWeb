@@ -1,0 +1,18 @@
+a:2:{s:9:"nom_cache";s:38:"50a8e84904054e9366fa63eff135a2a5.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_42d17d5bdd449cf3548473eb6fd438f7";s:6:"source";s:49:"plugins/auto/ppp/v1.0.8/barre_generalisee.js.html";s:11:"process_ins";s:4:"html";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"50a8e84904054e9366fa63eff135a2a5.cache";}s:7:"entetes";a:2:{s:12:"Content-Type";s:30:"text/javascript; charset=utf-8";s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:472:"(function($){
+$(document).ready(function(){
+	function addbarre(){
+	$('.formulaire_spip').not('.formulaire_spip_compact')
+		.find('.editer_ps, .editer_chapo, .editer_bio')
+		.find('textarea')
+		.barre_outils('edition');
+	
+	 $('#descriptif_site')
+		.barre_outils('edition');
+	 $('#text_area').height(($(window).height()/2.2)+'px');
+   $('textarea[class~=porte_plume_partout]').barre_outils('edition');
+	}
+	addbarre();
+	onAjaxLoad(addbarre);
+});
+})(jQuery);
+";s:5:"notes";s:0:"";s:8:"contexte";a:5:{s:4:"page";s:20:"barre_generalisee.js";s:4:"date";s:19:"2018-08-13 09:58:38";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2018-08-13 09:58:38";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1534154317;s:2:"gz";b:0;s:3:"sig";i:3417208848;}}

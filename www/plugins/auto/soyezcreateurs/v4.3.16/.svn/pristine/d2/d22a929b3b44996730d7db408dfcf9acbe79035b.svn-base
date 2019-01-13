@@ -1,0 +1,14 @@
+<BOUCLE_groupe(GROUPES_MOTS){id_groupe}>
+<!-- Autres mots-clefs du meme groupe -->
+<div id="artrecents"[ class="(#ENV{classe})"]>
+<h2 [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</h2>
+<B_MotsduGroupe>
+<ul>
+<BOUCLE_MotsduGroupe(MOTS) {id_groupe}{par num titre}>
+	<li>[(#ID_MOT|!={#ENV{id_mot}}|?{<a href="#URL_MOT" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">})][(#TITRE)][(#ID_MOT|!={#_mot_principal:ID_MOT}|?{</a>})]</li>
+</BOUCLE_MotsduGroupe>
+</ul>
+</B_MotsduGroupe>
+</div>
+</BOUCLE_groupe>
+#FILTRE{mini_html}

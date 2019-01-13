@@ -1,0 +1,22 @@
+#CACHE{900}<B_AgendaDerniersAjouts>
+	<div class="agendaderniersajouts">
+		<ul>
+		<BOUCLE_AgendaDerniersAjouts(EVENEMENTS)
+			{branche?}
+			{par date_debut}
+			{0,(#CONFIG{soyezcreateurs/nombres_agenda,5})}
+			{date_fin>=(#ENV{date}|affdate{'Y-m-d'})}
+			{statut=publie}
+		>
+		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#_AgendaDerniersAjouts:EDIT{titre} clearfix">[(#CHEMIN{noisettes/agenda/logo.html}|?{[(#INCLURE{fond=noisettes/agenda/logo,id_evenement=#ID_EVENEMENT})]})]
+		<BOUCLE_DernierEvenementArticle(ARTICLES){id_article}>
+			[<a href="(#ARTICLE_URL|ancre_url{'#evenement'#ID_EVENEMENT})"[ title="(#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[(#TITRE|supprimer_tags|attribut_html)][&nbsp;: (#_AgendaDerniersAjouts:TITRE|supprimer_tags|attribut_html)] - [(#_AgendaDerniersAjouts:DATE_DEBUT|sc_decoder_date{#_AgendaDerniersAjouts:DATE_FIN,#HORAIRE,'skel'})],[(#TITRE|supprimer_tags|attribut_html)] - [(#_AgendaDerniersAjouts:DATE_DEBUT|sc_decoder_date{#_AgendaDerniersAjouts:DATE_FIN,#HORAIRE,'skel'})]})"]>]
+				[ (#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[<strong class="caractencadre-spip spip">(#TITRE)</strong>][&nbsp;: (#_AgendaDerniersAjouts:TITRE)]<br />[<i><small>(#_AgendaDerniersAjouts:DATE_DEBUT|sc_decoder_date{#_AgendaDerniersAjouts:DATE_DEBUT,#HORAIRE,'skel'})</small></i>],[<strong class="caractencadre-spip spip">(#TITRE)</strong>]<br />[<i><small>(#_AgendaDerniersAjouts:DATE_DEBUT|sc_decoder_date{#_AgendaDerniersAjouts:DATE_DEBUT,#HORAIRE,'skel'})</small></i>]})]
+			</a>
+		</BOUCLE_DernierEvenementArticle>
+		</li>
+		</BOUCLE_AgendaDerniersAjouts>
+		</ul>
+	</div>
+</B_AgendaDerniersAjouts>
+#FILTRE{mini_html}

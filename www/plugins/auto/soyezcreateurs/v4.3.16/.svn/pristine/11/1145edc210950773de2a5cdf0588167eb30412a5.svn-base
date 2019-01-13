@@ -1,0 +1,28 @@
+[(#SET{titretop,<:medias:info_documents|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{template=Documents}
+	{title=<:medias:info_documents|texte_script:>}
+	{titretop=#GET{titretop}}
+	{idbody=telecharger}
+	{type=telecharger}
+>
+	<div class="texte">
+	<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+	<div class="cartouche">
+		<div class="titrepage"><h1><:medias:info_documents:></h1></div>
+	</div>
+]
+		[(#VAL{masquerdocumentsvus}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)[(#SET{vu,non})]]
+
+			[(#INCLURE{fond=noisettes/telecharger_tableau,env,vu=#GET{vu},ajax})]
+	</main>
+	</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{template=Documents}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}

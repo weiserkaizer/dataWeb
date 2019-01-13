@@ -1,0 +1,144 @@
+#CACHE{3600}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+[(#ENV{'date_ev'}|!={''}|non)
+	[(#ENV{'month'}|oui)
+		[(#ENV{'year'}|oui)
+			#SET{'date', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01 00:00:00'}}
+			#SET{'date_th', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01'}}
+		]
+	]
+	[(#ENV{'month'}|non)
+		#SET{'date', #ENV{date}}
+		#SET{'date_th', #ENV{date}|affdate{'Y-m-d'}
+	]
+]
+[(#ENV{'date_ev'}|!={''}|oui)
+	#SET{'date', #ENV{date_ev}|concat{' 00:00:00'}}
+	#SET{'date_th', #ENV{date_ev}}
+]
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+<INCLURE{fond=noisettes/header/header}
+	{title=(#TITRE|attribut_html|texte_script) - (#GET{date}|affdate_mois_annee)}
+	{titretop=#GET{titretop}}
+	{id_rubrique}
+	{date_ev=#ENV{'date_ev'}}{month=#ENV{'month'}}{year=#ENV{'year'}}
+	{type=agenda_calendrier}
+>
+<div class="texte">
+<main id="main" role="main">
+	<!-- Une : contenu de la rubrique -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+	<div class="cartouche">
+		<div class="titrepage"><h1>
+			[(#SET{lelogo,[(#LOGO_RUBRIQUE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})" width="[(#GET{lelogo}|largeur)]" height="[(#GET{lelogo}|hauteur)]" alt="" />]
+			[(#TITRE)] - [(#GET{date}|affdate_mois_annee)]
+		</h1></div>
+	</div>
+]
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)[(#INCLURE{fond=noisettes/cartouches/themes_agenda_mensuel,id_rubrique=#ID_SECTEUR,date_th=#GET{date_th},id_mot,mots})]]
+	<div id="letexte">
+		[<div class="descriptif">(#DESCRIPTIF)</div>]
+		[(#TEXTE)]
+		<!-- Fabrication du tableau : l'en tete -->
+		<form id="frmnavigation" method="get" action="[(#URL_PAGE{agenda_calendrier}|parametre_url{id_rubrique, #ID_RUBRIQUE})]">
+			<fieldset>
+			<input type="hidden" value="agenda_calendrier" name="page" alt="" />
+			<input type="hidden" value="#ID_RUBRIQUE" name="id_rubrique" alt="" />
+				<legend><:soyezcreateurs:precisezrecherche:></legend>
+				<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{par date_debut}{0,1}>
+				[(#DATE_DEBUT|affdate{'Y-m'}|>={#GET{date_th,#ENV{date}}|affdate{'Y-m'}}|non)
+					<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{-1,'Y-m-01'}}|parametre_url{'id_mot', #ENV{id_mot,''}|urlencode})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent|ucfirst:>" alt="<:precedent|ucfirst:>" /></a>
+				]
+				</BOUCLE_PremiereAnnee>
+				<select name="month" id="var_nav_month">
+					<option value="01"[ (#GET{date}|nom_mois|=={<:date_mois_1:>}|oui) selected="selected"]><:date_mois_1|ucfirst:></option>
+					<option value="02"[ (#GET{date}|nom_mois|=={<:date_mois_2:>}|oui) selected="selected"]><:date_mois_2|ucfirst:></option>
+					<option value="03"[ (#GET{date}|nom_mois|=={<:date_mois_3:>}|oui) selected="selected"]><:date_mois_3|ucfirst:></option>
+					<option value="04"[ (#GET{date}|nom_mois|=={<:date_mois_4:>}|oui) selected="selected"]><:date_mois_4|ucfirst:></option>
+					<option value="05"[ (#GET{date}|nom_mois|=={<:date_mois_5:>}|oui) selected="selected"]><:date_mois_5|ucfirst:></option>
+					<option value="06"[ (#GET{date}|nom_mois|=={<:date_mois_6:>}|oui) selected="selected"]><:date_mois_6|ucfirst:></option>
+					<option value="07"[ (#GET{date}|nom_mois|=={<:date_mois_7:>}|oui) selected="selected"]><:date_mois_7|ucfirst:></option>
+					<option value="08"[ (#GET{date}|nom_mois|=={<:date_mois_8:>}|oui) selected="selected"]><:date_mois_8|ucfirst:></option>
+					<option value="09"[ (#GET{date}|nom_mois|=={<:date_mois_9:>}|oui) selected="selected"]><:date_mois_9|ucfirst:></option>
+					<option value="10"[ (#GET{date}|nom_mois|=={<:date_mois_10:>}|oui) selected="selected"]><:date_mois_10|ucfirst:></option>
+					<option value="11"[ (#GET{date}|nom_mois|=={<:date_mois_11:>}|oui) selected="selected"]><:date_mois_11|ucfirst:></option>
+					<option value="12"[ (#GET{date}|nom_mois|=={<:date_mois_12:>}|oui) selected="selected"]><:date_mois_12|ucfirst:></option>
+				</select>
+				<B_Annees>
+				<select name="year" id="var_nav_year">
+					<BOUCLE_Annees(EVENEMENTS){branche}{par date_debut}>[
+					<option value="[(#DATE_DEBUT|annee)]"[(#GET{date}|annee|=={[(#DATE_DEBUT|annee)]}|?{' selected="selected"',''})]>
+						(#DATE_DEBUT|annee|unique)
+					</option>
+					]</BOUCLE_Annees>
+				</select>
+				</B_Annees>
+				[(#PLUGIN{critere_mots}|non)
+					[(#INCLURE{fond=noisettes/agenda/formulaire_agenda_mot_cle,id_mot=#ENV{id_mot}})]
+				]
+				<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
+				[(#DATE_DEBUT|affdate{'Y-m'}|<={#GET{date_th,#ENV{date}}|affdate{'Y-m'}}|non)
+					<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{1,'Y-m-01'}}|parametre_url{'id_mot', #ENV{id_mot,''}|urlencode})]" title="<:suivant|ucfirst|attribut_html:>"><img src="#CHEMIN{images/next.gif}" title="<:suivant|ucfirst:>" alt="<:suivant|ucfirst:>" /></a>
+				]
+				</BOUCLE_DerniereAnnee>
+				<input type="submit" value="<:pass_ok:>" class="form_submit" />
+				[(#REM) N'afficher le lien "Aujourd'hui" que si l'année ou le mois sont différents de celui affiché ]
+				#SET{'condition_m', 'non'}
+				[(#ENV{date}|annee|!={[(#GET{date}|annee)]}|oui)
+					#SET{'condition_m', 'oui'}]
+				[(#ENV{date}|mois|!={[(#GET{date}|mois)]}|oui)
+					#SET{'condition_m', 'oui'}]
+				[(#GET{'condition_m'}|=={'oui'}|oui)
+				<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #_rubrique_principal:ID_RUBRIQUE}|parametre_url{'id_mot', #ENV{id_mot}})]" title="<:spip:date_aujourdhui|ucfirst|attribut_html:>"><:spip:date_aujourdhui|ucfirst:></a>
+				]
+			</fieldset>
+		</form>
+		[(#PLUGIN{critere_mots}|oui)
+			[(#INCLURE{fond=noisettes/agenda/formulaire_agenda_criteres_mots})]
+		]
+		<h2>[(#TITRE)]</h2>
+		<table class="agenda">
+			<caption>
+					[(#GET{date}|nom_mois|ucfirst)]
+				[<a href="[(#URL_RUBRIQUE|parametre_url{calendrier,1})]"[ title="<:soyezcreateurs:voirdetailannee:> (#ENV{date}|annee)"]>
+					(#GET{date}|annee)
+				</a>]
+			</caption>
+				<tr>
+					<th class="agendahead" scope="col"><:date_jour_2|ucfirst:></th>
+					<th class="agendahead" scope="col"><:date_jour_3|ucfirst:></th>
+					<th class="agendahead" scope="col"><:date_jour_4|ucfirst:></th>
+					<th class="agendahead" scope="col"><:date_jour_5|ucfirst:></th>
+					<th class="agendahead" scope="col"><:date_jour_6|ucfirst:></th>
+					<th class="agendahead" scope="col"><:date_jour_7|ucfirst:></th>
+					<th class="agendahead" scope="col"><:date_jour_1|ucfirst:></th>
+				</tr>
+			<BOUCLE_evenement(EVENEMENTS){branche}
+			{date_debut > (#GET{date}|affdate{'Y-m-01'}|sc_DateAdd{-6})}
+			{date_debut < (#GET{date}|affdate{'Y-m-01'}|sc_DateAdd{35})}
+			{par date_debut}{statut=publie}
+			{id_mot ?}
+			{mots_selon_id ?}>
+			<BOUCLE_ArticleAssocie(ARTICLES){id_article}>
+				[(#DATE_DEBUT|sc_Agenda_memo_full{#DATE_FIN,[(#TITRE)],
+				#DESCRIPTIF,#LIEU,
+				#ID_ARTICLE})]
+			</BOUCLE_ArticleAssocie>
+			</BOUCLE_evenement>
+			[(#GET{date}|sc_agenda_grand)]
+		</table>
+		[<div class="notes">(#NOTES)</div>]
+	</div><!-- Fin de #LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/themes_agenda_mensuel,id_rubrique=#ID_SECTEUR,date_th=#GET{date_th},id_mot,mots,classe=artrecent_bas})]]
+</BOUCLE_rubrique_principal>
+
+<INCLURE{fond=noisettes/footer/footer}
+	{rubriqueencours=#ID_RUBRIQUE}
+	{id_rubrique}
+	{secteurencours=#GET{secteurencours}}
+	{titretop=#GET{titretop}}
+>
+</B_rubrique_principal>
+#FILTRE{mini_html}

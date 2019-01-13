@@ -1,0 +1,92 @@
+	<footer><div id="footer" class="clearbottom clearfix">
+	<div id="footer_inner">
+	<h1 class="nocontent offscreen">Pied de page</h1>
+[(#SET{div_menufooter,0})]
+		<B_MenuFooter><nav><div id="menufooter"><h2 class="nocontent offscreen">Menu transversal secondaire</h2><ul>[(#SET{div_menufooter,1})]<BOUCLE_MenuFooter(ARTICLES){titre_mot=MenuFooter}{par num titre}{" "}><li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#CONFIG{soyezcreateurs_layout/logomenufooter,oui}|=={oui}|oui)[<img class="menu_footer_logo" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogomenufooter,16},#CONFIG{soyezcreateurs_layout/hauteurlogomenufooter,16}}|extraire_attribut{src}|embarque_fichier)" alt="" />]][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li></BOUCLE_MenuFooter></B_MenuFooter>
+[(#CONFIG{soyezcreateurs_layout/positionliensnav,menu_footer}|=={menu_footer}|oui)
+[[(#GET{div_menufooter}|non)<nav><div id="menufooter"><h2 class="nocontent offscreen">Menu transversal secondaire</h2><ul>][(#SET{div_menufooter,1})](#INCLURE{fond=noisettes/liensnav/bloc_liensnav,template})]
+]
+		[(#GET{div_menufooter}|oui)</ul></div></nav>]
+		[(#PLUGIN{nuage}|oui)[(#CONFIG{soyezcreateurs_layout/positionnuage,footer}|=={footer}|oui)<div id="nuage"><INCLURE{fond=noisettes/navigation/nuagedemotcle,env}></div>]]
+		[(#PLUGIN{campagnes}|oui)
+		  <div id="banfooter" class="encart vertical">
+			  <INCLURE{fond=inclure/encart, identifiant=banfooter}>  
+		  </div>]
+		
+		<div class="row text-center">
+		<div class="flexbox-wrap-space-around">
+		[(#PLUGIN{CLEVERMAIL}|oui|ou{[(#PLUGIN{MAILSUBSCRIBERS}|oui)]})
+		[(#CONFIG{soyezcreateurs_layout/affichage_lien_newsletter,affiche}|=={bas}|ou{#CONFIG{soyezcreateurs/mode_affichage,communiquant}|=={portailcognac}}|ou{#CONFIG{soyezcreateurs_layout/pictogrammesoutils,non}|=={avecoutils}})
+		<div id="newsletterinscription" class="cadreinfo avec-paddingx">
+			<h2><:soyezcreateurs:newsletter_recevoir:></h2>
+			<INCLURE{fond=noisettes/inscription_infolettre} />
+		</div>
+		]]
+		[(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/miniagenda,on}|=={bas}|ou{#CONFIG{soyezcreateurs/mode_affichage,communiquant}|=={portailcognac}}|ou{#CONFIG{soyezcreateurs_layout/pictogrammesoutils,non}|=={avecoutils}})[(#CONFIG{soyezcreateurs/homeagenda,on}|=={on}|oui)<div id="miniagenda" class="cadreinfo avec-padding">
+		<INCLURE{fond=noisettes/agenda/miniagenda,env,ajax}>
+		</div>]]]
+		</div>
+		</div>
+		[(#CONFIG{soyezcreateurs/bandeau_contact_extra,bas}|=={bas}|oui)
+		[<div id="bandeaucontact" class="#EDIT{meta-soyezcreateurs/bandeau_contact}">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
+		]
+		<B_PlanMenuHaut>
+		<div class="row">
+			<div id="miniplan">
+				<div class="titre-plan text-center">
+					<h1 class="titre-plan-texte"><a href="#URL_PAGE{plan}" title="<:soyezcreateurs:toutleplan:>"><:soyezcreateurs:plan_menu:></a></h1>
+				</div>
+				<div class="liste-rubriques flexbox-wrap-space-around">
+					<BOUCLE_PlanMenuHaut(RUBRIQUES){si #CONFIG{soyezcreateurs_layout/plansitefooter,generique}|=={miniplan}}{titre_mot=MenuHaut}{par num titre}>
+					<section class="avec-padding-bottom avec-margin-bottom">
+						<h2><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>#TITRE</a></h2>
+						<B_PlanMenuHautSsRub>
+						<ul class="menu vertical">
+							<BOUCLE_PlanMenuHautSsRub(RUBRIQUES){id_parent}{par num titre}>
+							<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>#TITRE</a></li>
+							</BOUCLE_PlanMenuHautSsRub>
+						</ul>
+						</B_PlanMenuHautSsRub>
+					</section>
+					</BOUCLE_PlanMenuHaut>
+				</div>
+			</div>
+		</div>
+		</B_PlanMenuHaut>
+		<B_PlanPasMenuHaut>
+		<div class="row">
+			<div id="plan" class="avec-margin-bottom avec-padding">
+				<div class="titre-plan text-center">
+					<h1><a href="#URL_PAGE{plan}" title="<:soyezcreateurs:toutleplan:>"><:soyezcreateurs:plan_menu:></a></h1>
+				</div>
+				<div class="liste-rubriques flexbox-wrap-space-around">
+					<BOUCLE_PlanPasMenuHaut(RUBRIQUES){si #CONFIG{soyezcreateurs_layout/plansitefooter,generique}|=={miniplan}}{!titre_mot=PasDansMenu}{par num titre}>
+					<section class="avec-padding-bottom avec-margin-bottom">
+						<h2><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>#TITRE</a></h2>
+						<B_PlanPasMenuHautSsRub>
+						<ul class="menu vertical">
+							<BOUCLE_PlanPasMenuHautSsRub(RUBRIQUES){id_parent}{par num titre}>
+							<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>#TITRE</a></li>
+							</BOUCLE_PlanPasMenuHautSsRub>
+						</ul>
+						</B_PlanPasMenuHautSsRub>
+					</section>
+					</BOUCLE_PlanPasMenuHaut>
+				</div>
+			</div>
+		</div>
+		</B_PlanPasMenuHaut>
+		<//B_PlanMenuHaut>
+		[<div id="qrcode" class="centrer_div">(#INCLURE{fond=noisettes/sc_qrcode,env})</div>]
+
+		<div id="footerbas">
+			<INCLURE{fond=noisettes/footer/footer_ours}>
+		</div>
+		[(#CONFIG{soyezcreateurs/positiondatemajsite,bottom}|=={bottom}|oui)<INCLURE{fond=noisettes/datemajsite,class=footer}>]
+	</div><!-- id="footer_inner" -->
+	</div><!-- id="footer" -->
+	</footer>
+  </div><!-- id="shadow" -->
+  <INCLURE{fond=noisettes/footer/participer}>
+</div><!-- id="container" -->
+#FILTRE{mini_html}

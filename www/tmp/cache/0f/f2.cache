@@ -1,0 +1,172 @@
+a:2:{s:9:"nom_cache";s:38:"0ff2fd166d7388ab26d282c813823bf4.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_d8e2490aa529236561dfe5c447a5a8b5";s:6:"source";s:64:"plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/header.html";s:11:"process_ins";s:3:"php";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"0ff2fd166d7388ab26d282c813823bf4.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:9453:"<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr" dir="ltr" prefix="og: http://ogp.me/ns#">
+<head><meta charset="utf-8" />
+<title>Votre site SPIP</title>
+<meta property="og:title" content="Votre site SPIP" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost/" />
+<meta property="og:image" content="http://localhost/local/cache-gd2/91/b5361e55d6e9e17da83988e1f3fa72.jpg?1533998927" />
+<meta property="og:site_name" content="Votre site SPIP" />
+<meta property="og:description" content="[ToDo : descriptif du site en 20 mots = 2 lignes max ]" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="ICBM" content="44.330445,-1.225561" />
+<meta name="description" content="[ToDo : descriptif du site en 20 mots = 2 lignes max ]" />
+<meta name="generator" content="SPIP 3.2.1 [23954]" />
+<meta name="robots" content="index,follow" />
+<meta name="DC.title" content="Votre site SPIP" />
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="Syndiquer tout le site Votre site SPIP" href="http://localhost/spip.php?page=backend" />
+<link rel="alternate" type="application/rss+xml" title="Syndiquer l’agenda Votre site SPIP" href="http://localhost/spip.php?page=backendagenda" />
+<!-- compact [
+squelettes-dist/css/reset.css?1531295018
+squelettes-dist/css/clear.css?1531295018
+squelettes-dist/css/font.css?1531295018
+squelettes-dist/css/links.css?1531295018
+squelettes-dist/css/typo.css?1531295018
+squelettes-dist/css/media.css?1531295018
+squelettes-dist/css/form.css?1531295018
+squelettes-dist/css/spip.css?1531295018
+plugins-dist/jquery_ui/css/ui/jquery-ui.css
+plugins-dist/mediabox/colorbox/black-striped/colorbox.css
+plugins-dist/porte_plume/css/barre_outils.css?1531294974
+local/cache-css/cssdyn-css_barre_outils_icones_css-994c44ce.css?1533998931
+plugins/auto/typoenluminee/v3.5.12/css/enluminurestypo.css
+plugins/auto/orthotypo/v1.4.5/css/typo_guillemets.css
+plugins/auto/boutonstexte/v2.0.6/css/boutonstexte.css
+plugins/auto/gis/v4.44.19/lib/leaflet/dist/leaflet.css
+plugins/auto/gis/v4.44.19/lib/leaflet/plugins/leaflet-plugins.css
+plugins/auto/gis/v4.44.19/lib/leaflet/plugins/leaflet.markercluster.css
+plugins/auto/gis/v4.44.19/css/leaflet_nodirection.css
+plugins/auto/gisgeom/v1.11.5/lib/leaflet-draw/leaflet.draw.css
+plugins/auto/slick/v1.2.7/lib/slick/slick.css
+plugins/auto/slick/v1.2.7/lib/slick/slick-theme.css
+plugins/auto/slick/v1.2.7/css/slick-spip.css
+plugins/auto/oembed/v2.0.7/css/oembed.css?1531296321
+local/cache-css/cssdyn-style_public_plugin_agenda-7cfeee27.css?1546817657
+local/cache-css/cssdyn-layout_css-6505f584.css?1533998932
+plugins/auto/soyezcreateurs/v4.3.16/css/box.css?1532611443
+local/cache-css/cssdyn-stylessoyezcreateurs_css-ee8d7d22.css?1546817661
+local/cache-css/cssdyn-stylesportailcognac_css-a7827717.css?1546817662
+plugins/auto/soyezcreateurs/v4.3.16/images/printer.css?1532611440
+plugins/auto/citations_bb/v0.1.4/css/citations_bb.css
+] 81.5% -->
+<link rel='stylesheet' href='local/cache-css/58d1fc34781b275caa469aea8bc4432a.css?1546817669' type='text/css' /><?php header('Link: <' . url_de_base() . (_DIR_RACINE ? _DIR_RESTREINT_ABS : '') . 'local/cache-css/58d1fc34781b275caa469aea8bc4432a.css?1546817669>;rel="stylesheet prefetch"'); ?>
+<script type="text/javascript">/* <![CDATA[ */
+var box_settings = {tt_img:true,sel_g:"#documents_portfolio a[type='image/jpeg'],#documents_portfolio a[type='image/png'],#documents_portfolio a[type='image/gif']",sel_c:".mediabox",trans:"elastic",speed:"200",ssSpeed:"2500",maxW:"90%",maxH:"90%",minW:"400px",minH:"",opa:"0.9",str_ssStart:"Diaporama",str_ssStop:"Arrêter",str_cur:"{current}/{total}",str_prev:"Précédent",str_next:"Suivant",str_close:"Fermer",splash_url:""};
+var box_settings_splash_width = "600px";
+var box_settings_splash_height = "90%";
+var box_settings_iframe = true;
+/* ]]> */</script>
+<!-- insert_head_css -->
+<style type='text/css'>div.onlytext {text-align:right;}</style>
+<?php echo recuperer_fond( 'noisettes/presentation/couleurrubrique', array('id_article' => '',
+	'id_rubrique' => '',
+	'lang' => 'fr'), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/header.html','html_d8e2490aa529236561dfe5c447a5a8b5','',75,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+<?php echo recuperer_fond( 'noisettes/header/headerbanner', array('id_rubrique' => '',
+	'template' => 'Sommaire',
+	'lang' => 'fr'), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/header.html','html_d8e2490aa529236561dfe5c447a5a8b5','',77,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+<?php echo recuperer_fond( 'noisettes/header/footerbanner', array('id_rubrique' => '',
+	'template' => 'Sommaire',
+	'lang' => 'fr'), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/header.html','html_d8e2490aa529236561dfe5c447a5a8b5','',78,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+<?php echo recuperer_fond( 'noisettes/header/fondpage', array('id_rubrique' => '',
+	'template' => 'Sommaire',
+	'lang' => 'fr'), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/header.html','html_d8e2490aa529236561dfe5c447a5a8b5','',79,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+<!--[if IE 6]>
+<link rel="stylesheet" href="plugins/auto/soyezcreateurs/v4.3.16/css/ie6.css?1532611442" type="text/css" />
+<![endif]-->
+<!--[if IE 7]>
+<link rel="stylesheet" href="plugins/auto/soyezcreateurs/v4.3.16/css/ie7.css?1532611442" type="text/css" />
+<![endif]-->
+<!--[if IE]>
+<link rel="stylesheet" href="local/cache-css/cssdyn-css_ie_css-1981eff2.css?1533998933" type="text/css" /> 
+<![endif]-->
+<script type="text/javascript">
+document.documentElement.className += ' hasJS';
+</script>
+<script type='text/javascript' src='local/cache-js/6af5e8b05322bad95fbd0d88b77efb17.js?1533998943'></script>
+<!-- insert_head -->
+<script type="text/javascript"><!--
+var boutonstexte_options = {
+'selector':'#contenu',
+'imgPath':'plugins/auto/soyezcreateurs/v4.3.16/boutonstexte/themes/soyezcreateurs/',
+'txtOnly':'',
+'txtBackSpip':'Retour à la page complète',
+'txtSizeUp':'Augmenter police',
+'txtSizeDown':'Diminuer police'
+};
+//-->
+</script><script type="text/javascript">/* <![CDATA[ */
+function ancre_douce_init() {
+if (typeof jQuery.localScroll=="function") {
+jQuery.localScroll({autoscroll:false, hash:true, onAfter:function(anchor, settings){ 
+jQuery(anchor).attr('tabindex', -1).on('blur focusout', function () {
+// when focus leaves this element, 
+// remove the tabindex attribute
+jQuery(this).removeAttr('tabindex');
+}).focus();
+}});
+}
+}
+if (window.jQuery) jQuery(document).ready(function() {
+ancre_douce_init();
+onAjaxLoad(ancre_douce_init);
+});
+/* ]]> */</script>
+<script type="text/javascript" src="//maps.google.com/maps/api/js?language=fr&amp;key="></script><?php if (!in_array(_request(_SPIP_PAGE),array('login')) AND strpos($_SERVER['REQUEST_URI'],'debut_')===false){?><link rel="alternate" type="application/json+oembed" href="<?php include_spip('inc/filtres_mini');echo parametre_url(url_absolue("oembed.api/?format=json"), "url", url_absolue(self()));?>" />
+<?php } ?>
+<script type="text/javascript">
+CanceladjustLayout = false;
+CancelMonitorTextSize = false;
+</script>
+<link rel="shortcut icon" type="image/x-icon" href="http://localhost/spip.php?page=favicon.ico" />
+</head>
+<body id="sommaire_mode_portailcognac" class="portailcognac ">
+<div id="container">
+<div id="shadow">
+<header>
+<?php echo recuperer_fond( 'noisettes/header/header_modeedito', array_merge(array (
+  'template' => 'Sommaire',
+  'idbody' => 'sommaire_mode_portailcognac',
+  'type' => 'sommaire',
+  'lang' => 'fr',
+  'date' => '2019-01-06 23:34:09',
+  'date_default' => true,
+  'date_redac' => '2019-01-06 23:34:09',
+  'date_redac_default' => true,
+),array('secteurencours' => '',
+	'lang' => 'fr')), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/header.html','html_d8e2490aa529236561dfe5c447a5a8b5','',111,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+<?php echo recuperer_fond( 'noisettes/logopage/logopage_aiguilleur', array_merge(array (
+  'template' => 'Sommaire',
+  'idbody' => 'sommaire_mode_portailcognac',
+  'type' => 'sommaire',
+  'lang' => 'fr',
+  'date' => '2019-01-06 23:34:09',
+  'date_default' => true,
+  'date_redac' => '2019-01-06 23:34:09',
+  'date_redac_default' => true,
+),array('lang' => 'fr')), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/header.html','html_d8e2490aa529236561dfe5c447a5a8b5','',112,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+</header>
+<div id="contenu">
+<?php echo recuperer_fond( 'noisettes/miettesdepain/sommaire', array_merge(array (
+  'template' => 'Sommaire',
+  'idbody' => 'sommaire_mode_portailcognac',
+  'type' => 'sommaire',
+  'lang' => 'fr',
+  'date' => '2019-01-06 23:34:09',
+  'date_default' => true,
+  'date_redac' => '2019-01-06 23:34:09',
+  'date_redac_default' => true,
+),array('lang' => 'fr')), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/header.html','html_d8e2490aa529236561dfe5c447a5a8b5','',116,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+<div id="wrapper">
+<div id="content" class="equilibre notstackable">
+";s:5:"notes";s:0:"";s:8:"contexte";a:8:{s:8:"template";s:8:"Sommaire";s:6:"idbody";s:27:"sommaire_mode_portailcognac";s:4:"type";s:8:"sommaire";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2019-01-06 23:34:09";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 23:34:09";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1546817633;s:2:"gz";b:0;s:3:"sig";i:2241170535;}}

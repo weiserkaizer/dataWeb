@@ -1,0 +1,13 @@
+<B_syndic>
+<div class="syndic">
+	<h2 class="menu-titre"><:nouveautes_web:></h2>
+	<div class="fond">
+		<ul>
+		<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {!par date} {si #CONFIG{soyezcreateurs/nouveautes_web,oui}|=={oui}} {0,(#CONFIG{soyezcreateurs/nombres_rssaccueil,6})} {!titre_mot=ReseauxSociaux}>
+			<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]>[(#DATE|affdate_court) &ndash; ]<a href="[(#ID_SYNDIC|generer_url_entite{'site'}|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]"[ title="(#NOM_SITE|attribut_html)"] class="spip_out">#TITRE</a></li>
+		</BOUCLE_syndic>
+		</ul>
+	</div>
+</div>
+</B_syndic>
+#FILTRE{mini_html}

@@ -1,0 +1,16 @@
+<B_preSlider>
+	<section id="fade" class="slider-fadeOut slider">
+		<BOUCLE_preSlider(ARTICLES){titre_mot=ZoomSur}{0,1}>
+			<BOUCLE_Slider(DOCUMENTS){id_article=#ID_ARTICLE}>
+			<div class="slick-slide">
+				<div class="slick-slide-content">
+					<div class="slick-texte-content">
+						<h1 class="slick-slide-texte #EDIT{titre}">#TITRE</h1>
+					</div>
+				</div>
+				<img src="[(#FICHIER)]">
+			</div>
+			</BOUCLE_Slider>
+		</BOUCLE_preSlider>
+	</section>
+</B_preSlider>

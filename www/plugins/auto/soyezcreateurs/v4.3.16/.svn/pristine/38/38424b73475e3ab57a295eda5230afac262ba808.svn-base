@@ -1,0 +1,31 @@
+<div class="texte">
+<main id="main" role="main">
+	<div id="letexte">
+
+<BOUCLE_EditoPicto(ARTICLES) {titre_mot=EDITO}{!par date}{0,1}>[<img class="logo_edito" src="(#LOGO_ARTICLE|image_reduire{200,0}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{200,0}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{200,0}|hauteur)]" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />]</BOUCLE_EditoPicto>
+<BOUCLE_agenda(RUBRIQUES){titre_mot=Agenda}{racine}>
+<B_AgendaDerniersAjouts>
+<div class="agendaderniersajouts">
+<h2>Coming Events</h2>
+	<ul>
+	<BOUCLE_AgendaDerniersAjouts(EVENEMENTS){branche}{par date_debut}{0,(#CONFIG{soyezcreateurs/nombres_agenda,5})}{date_fin>=(#ENV{date}|affdate{'Y-m-d'})}>
+	<li><BOUCLE_DernierEvenementArticle(ARTICLES){id_article}><a href="#ARTICLE_URL#evenement#ID_EVENEMENT">#_AgendaDerniersAjouts:TITRE</a></BOUCLE_DernierEvenementArticle><br />
+	[(#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[(#TITRE)] - [(#_AgendaDerniersAjouts:DATE_DEBUT|sc_decoder_date{#_AgendaDerniersAjouts:DATE_FIN,#HORAIRE,'skel'})],[(#DESCRIPTIF)] - [(#_AgendaDerniersAjouts:DATE_DEBUT|sc_decoder_date{#_AgendaDerniersAjouts:DATE_FIN,#HORAIRE,'skel'})]})]</li>
+	</BOUCLE_AgendaDerniersAjouts>
+	</ul>
+</div>
+</B_AgendaDerniersAjouts>
+</BOUCLE_agenda>
+
+<BOUCLE_Edito(ARTICLES) {titre_mot=EDITO}{!par date}{0,1}>
+<h2 class="#EDIT{titre} f">[(#TITRE)]</h2>
+<div class="important">
+[<div id="editochapo" class="#EDIT{chapo}">(#CHAPO)</div>][<div id="edito" class="#EDIT{texte}">(#TEXTE)</div>]
+</div>
+</BOUCLE_Edito>
+
+
+	</div><!-- Fin de LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+#FILTRE{mini_html}

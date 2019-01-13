@@ -1,0 +1,22 @@
+[<!--ZoomSur <pre>(#ENV**|unserialize|print_r{1})</pre>-->]
+
+<BOUCLE_SiMenu(CONDITION){si #ENV{menu}|=={oui}}>
+	
+</BOUCLE_SiMenu>
+	<B_preSlider>
+	<section id="fade" class="slider-fadeOut slider">
+		<BOUCLE_preSlider(ARTICLES){titre_mot=ZoomSur}{0,1}>
+			<BOUCLE_Slider(DOCUMENTS){id_article=#ID_ARTICLE}>
+			<div class="slick-slide">
+				<div class="slick-slide-content">
+					<div class="slick-texte-content">
+						<h1 class="slick-slide-texte #EDIT{titre}">#TITRE</h1>
+					</div>
+				</div>
+				<img src="[(#FICHIER)]" alt="" />
+			</div>
+			</BOUCLE_Slider>
+		</BOUCLE_preSlider>
+	</section>
+</B_preSlider>
+<//B_SiMenu>

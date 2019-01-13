@@ -1,0 +1,45 @@
+nom: soyezcreateurs_couleurs_cfg_violet
+soyezcreateurs:
+  soyezcreateurs_couleurs:
+    -
+      nom: soyezcreateurs_couleurs
+      valeur:
+        body_bk: '#a16e9e'
+        header: '#ffffff'
+        header_bk: '#664e3b'
+        datemajsite: '#ffffff'
+        datemajsite_bk: '#402816'
+        footer: '#ffffff'
+        footer_bk: '#664e3b'
+        navigation: '#013067'
+        navigation_bk: '#3fa3d7'
+        menuhaut: '#ffffff'
+        menuhaut_bk: '#a1856e'
+        logo_bk: transparent
+        extra: '#013067'
+        extra_bk: '#3fa3d7'
+        menu_a: '#ffffff'
+        menu_a_bk: '#5599cd'
+        menu_a_hover: '#ffffff'
+        menu_a_hover_bk: '#66aade'
+        menu_a_active: '#5599cd'
+        menu_a_active_bk: '#ffffff'
+        menu_a_strong: '#013067'
+        menu_a_strong_bk: '#ffffff'
+        vignettes_bk: '#3fa3d7'
+        container: '#013067'
+        container_bk: '#ffffff'
+        titraille: '#013067'
+        titraille_bk: '#a6cbec'
+        link: '#5599cd'
+        visited: '#66aade'
+        hover: '#a1856e'
+        active: '#402816'
+        fontsnavigation: 'Verdana, Arial, Geneva, sans-serif'
+        fontscontent: 'Verdana, Arial, Geneva, sans-serif'
+        fontsizeheader: '1.2'
+        fontsizefooter: '1.2'
+        fontsizenavigation: '1.2'
+        fontsizecontenu: '1.2'
+        autovignettes: auto
+        fontsizevignettes: '16'

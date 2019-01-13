@@ -1,0 +1,10 @@
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}{tous}>
+<div class="cartouche surlignable">
+<div class="titrepage"><h1 class="#EDIT{qui}">#NOM</h1></div>
+</div>
+</BOUCLE_auteur_principal>
+<div class="cartouche surlignable">
+<div class="titrepage"><h1><:soyezcreateurs:auteurs_site:></h1></div>
+</div>
+<//B_auteur_principal>
+#FILTRE{mini_html}

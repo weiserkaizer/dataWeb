@@ -1,0 +1,42 @@
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]<?xml 
+version="1.0"[ encoding="(#CHARSET)"]?>
+<rss version="2.0" [(#REM) rss 2.0.9)]
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:ev="http://purl.org/rss/1.0/modules/event/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+>
+
+<channel[ xml:lang="(#LANG)"]>
+	<title><:soyezcreateurs:agenda:>[ (#NOM_SITE_SPIP|supprimer_tags|texte_backend)]</title>
+	<link>#URL_SITE_SPIP/</link>
+	[<description>(#DESCRIPTIF_SITE_SPIP|supprimer_tags|texte_backend)</description>]
+	<language>#LANG</language>
+	<generator>SPIP - www.spip.net</generator>
+	<atom:link href="[(#SELF|url_absolue)]" rel="self" type="application/rss+xml" />
+
+[	<image>
+		<title><:soyezcreateurs:agenda:>[ (#NOM_SITE_SPIP|supprimer_tags|texte_backend)]</title>
+		<url>(#LOGO_SITE_SPIP|image_reduire{144,400}|extraire_attribut{src}|supprimer_timestamp|url_absolue|texte_backend)</url>
+		<link>#URL_SITE_SPIP/</link>
+		[<height>(#LOGO_SITE_SPIP|image_reduire{144,400}|hauteur)</height>]
+		[<width>(#LOGO_SITE_SPIP|image_reduire{144,400}|largeur)</width>]
+	</image>
+]
+
+[(#REM) Est-ce que l'on demande un Agenda pour une rubrique spécifique ? ]
+<BOUCLE_SyndicationRubriqueAgenda(RUBRIQUES){id_rubrique}><BOUCLE_EstAgenda(HIERARCHIE){titre_mot=Agenda}{inverse}{0,1}>
+[(#INCLURE{fond=noisettes/rss/backendagenda_detail,id_rubrique=#_SyndicationRubriqueAgenda:ID_RUBRIQUE})]
+</BOUCLE_EstAgenda></BOUCLE_SyndicationRubriqueAgenda>
+[(#REM) Non, alors on affiche tous les agenda du site ]
+<BOUCLE_agenda(RUBRIQUES){titre_mot=Agenda}{racine}>
+[(#INCLURE{fond=noisettes/rss/backendagenda_detail,id_rubrique})]
+</BOUCLE_agenda>
+[(#REM) Non, alors on affiche tous les événements du site ]
+[(#INCLURE{fond=noisettes/rss/backendagenda_detail})]
+<//B_agenda>
+<//B_SyndicationRubriqueAgenda>
+
+</channel>
+
+</rss>

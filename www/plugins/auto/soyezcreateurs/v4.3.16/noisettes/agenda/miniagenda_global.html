@@ -1,0 +1,54 @@
+#CACHE{900}
+#SET{'currentmonth', #ENV{date}|affdate{'Y-m-01'}}
+#SET{'date', #ENV{mini_date_ev}|sinon{#ENV{date}}|affdate{'Y-m-01'}|concat{' 00:00:00'}}
+#SET{'date_th', #ENV{mini_date_ev}|sinon{#ENV{date}}|affdate{'Y-m-01'}}
+<BOUCLE_Evenements(EVENEMENTS){0,1}>
+<div class="miniagenda">
+	<h2><:soyezcreateurs:agenda:></h2>
+	<table class="agenda">
+		<caption>
+		<BOUCLE_DatePassee(CONDITION){si #GET{currentmonth}|<{#GET{date_th}}}>
+		[<a href="(#SELF|parametre_url{mini_date_ev,[(#GET{date}|Agenda_moisdecal{-1,'Y-m-d'})]})" title="<:precedent|ucfirst:>" class='ajax' rel="nofollow">&#171;</a>]
+		</BOUCLE_DatePassee>
+		[(#GET{date}|nom_mois|ucfirst)]
+		[(#GET{date}|annee)]
+		<BOUCLE_DateFuture(EVENEMENTS){date_fin>=(#GET{date}|Agenda_moisdecal{1,'Y-m-d'}|affdate{'Y-m-01'})}{0,1}>
+		[<a href="(#SELF|parametre_url{mini_date_ev,[(#GET{date}|Agenda_moisdecal{1,'Y-m-d'})]})" title="<:suivant|ucfirst:>" class='ajax' rel="nofollow">&#187;</a>]
+		</BOUCLE_DateFuture>
+		</caption>
+		<thead>
+			<tr>
+				<th class="agendahead" scope="col"><abbr title="<:date_jour_2|ucfirst:>"><:date_jour_2|spip_substr{0,1}|strtoupper:></abbr></th>
+				<th class="agendahead" scope="col"><abbr title="<:date_jour_3|ucfirst:>"><:date_jour_3|spip_substr{0,1}|strtoupper:></abbr></th>
+				<th class="agendahead" scope="col"><abbr title="<:date_jour_4|ucfirst:>"><:date_jour_4|spip_substr{0,1}|strtoupper:></abbr></th>
+				<th class="agendahead" scope="col"><abbr title="<:date_jour_5|ucfirst:>"><:date_jour_5|spip_substr{0,1}|strtoupper:></abbr></th>
+				<th class="agendahead" scope="col"><abbr title="<:date_jour_6|ucfirst:>"><:date_jour_6|spip_substr{0,1}|strtoupper:></abbr></th>
+				<th class="agendahead" scope="col"><abbr title="<:date_jour_7|ucfirst:>"><:date_jour_7|spip_substr{0,1}|strtoupper:></abbr></th>
+				<th class="agendahead" scope="col"><abbr title="<:date_jour_1|ucfirst:>"><:date_jour_1|spip_substr{0,1}|strtoupper:></abbr></th>
+			</tr>
+		</thead>
+		<tbody>
+			<BOUCLE_evenement(EVENEMENTS)
+			{date_debut > (#GET{date}|affdate{'Y-m-01'}|sc_DateAdd{-6})}
+			{date_debut < (#GET{date}|affdate{'Y-m-01'}|sc_DateAdd{35})}
+			{par date_debut}{statut=publie}>
+			<BOUCLE_ArticleAssocie(ARTICLES){id_article}>
+				[(#DATE_DEBUT|sc_Agenda_memo_full{#DATE_FIN,[(#TITRE)],
+				#DESCRIPTIF,#LIEU,
+				#ID_ARTICLE, #HORAIRE})]
+			</BOUCLE_ArticleAssocie>
+			</BOUCLE_evenement>
+			[(#GET{date}|sc_agenda_mini)]
+		</tbody>
+	</table>
+	[(#PLUGIN{propevent}|oui)
+	<a href="#URL_PAGE{proposer_evenement}" title="<:soyezcreateurs:agenda_proposer_evenement_title:>" 	class="lien_proposer_evenement"><:soyezcreateurs:agenda_proposer_evenement:></a>]
+	<INCLURE{fond=noisettes/agenda/miniagenda_liste_prochains}>
+	[(#CONFIG{soyezcreateurs/positionfluxrss,bottom}|=={bottom}|oui)<div class="centrer_div rss_agenda">
+		<a href="[(#URL_PAGE{backendagenda}|parametre_url{id_rubrique,#ID_SECTEUR}|url_absolue)]">
+			<img src="#CHEMIN{images/fairytale_date_rss_24.png}" alt="<:soyezcreateurs:syndiquer_agenda:>&nbsp;: [(#TITRE|attribut_html)]" title="<:soyezcreateurs:syndiquer_agenda:>&nbsp;: [(#TITRE|attribut_html)]" width="52" height="24" />
+		</a>
+	</div>]
+</div><!-- class="miniagenda" -->
+</BOUCLE_Evenements>
+#FILTRE{mini_html}

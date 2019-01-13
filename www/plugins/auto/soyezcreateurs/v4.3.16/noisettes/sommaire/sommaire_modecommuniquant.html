@@ -1,0 +1,150 @@
+#SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
+#SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,180})}
+#SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,180})}
+#SET{Largeurcontent_central,(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|moins{#GET{LargeurMenuDroit}})}
+#SET{Largeurcontent_extra,(#GET{LargeurContaineur}|moins{#GET{Largeurcontent_central}})}
+<script type="text/javascript">
+	CanceladjustLayout = true;
+</script>
+<main id="main" role="main"><div id="communiquant_content">
+<a id="letexte"></a>
+[(#CONFIG{soyezcreateurs/largeur_slideshow_communiquant,etroite}|=={large}|oui)[(#INCLURE{fond=noisettes/sommaire/sommaire_modecommuniquant_slideshow,Largeurcontent_central=#GET{LargeurContaineur},mode=large})]]
+<div id="communiquant_content_central">
+<a id="menusite"></a>
+[(#CONFIG{soyezcreateurs/largeur_slideshow_communiquant,etroite}|=={etroite}|oui)[(#INCLURE{fond=noisettes/sommaire/sommaire_modecommuniquant_slideshow,Largeurcontent_central=#GET{Largeurcontent_central}})]]
+<div id="homeSecondblock">
+[(#CONFIG{soyezcreateurs/positionvideo,extra}|!={extra}|oui)[(#INCLURE{fond=noisettes/sommaire/video_alaune,largeurmax=[(#GET{Largeurcontent_central}|moins{20})]})]]
+[(#REM) afficher les rub & art qui ont le mot clef : ZoomSur ]
+<B_ZoomSur>
+<BOUCLE_ZoomSur(ARTICLES){titre_mot=ZoomSur}{!par date}{0,(#CONFIG{soyezcreateurs/nombres_zoomsur,1})}{lang}{doublons}>
+<div class="ZoomSur[ ZoomSur(#ID_RUBRIQUE) ][(#_ZoomSur:COMPTEUR_BOUCLE|alterner{' oddZoomSur',''})]">
+	<h2 class="#EDIT{titre}">[(#TEXTE**|oui)<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>][(#TITRE)][(#TEXTE**|oui)</a>]</h2>
+	<div>
+	[<div class="ZoomSur_ligne cursor-pointer" onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:> [(#TITRE|attribut_html)]">[<img class="logo_zoomsur" src="(#LOGO_ARTICLE|image_passe_partout{#GET{Largeurcontent_central}|div{6},#GET{Largeurcontent_central}|div{6}}|image_recadre{#GET{Largeurcontent_central}|div{6},#GET{Largeurcontent_central}|div{6},center,transparent}|extraire_attribut{src}|embarque_fichier)" width="[(#GET{Largeurcontent_central}|div{6})]" height="[(#GET{Largeurcontent_central}|div{6})]" alt="" />](#CHAPO|sinon{#DESCRIPTIF}|sinon{[<p>(#TEXTE|couper{300})</p>]}|ptobr|image_reduire{#GET{Largeurcontent_central}|div{3},0})</div>]
+	[(#TEXTE**|oui)[<div class="infos suite"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]"><:soyezcreateurs:liresuitede:> (#TITRE)</a></div>]]
+	</div>
+</div><!-- ZoomSur -->
+</BOUCLE_ZoomSur>
+</B_ZoomSur>
+
+[(#REM) afficher les rub & art qui ont le mot clef : DessousBreves ]
+<B_DessousBreves>
+<div id="homeDessousBreves">
+<BOUCLE_DessousBreves(RUBRIQUES){titre_mot=DessousBreves}{par num titre}>
+<div class="dessousbreves[ dessousbreves(#ID_RUBRIQUE) ][(#_DessousBreves:COMPTEUR_BOUCLE|alterner{' oddbreves',''})]">
+	<h2 class="#EDIT{titre}">[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_liens,on}|=={on}|?{<a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a>,[(#TITRE)]})]</h2>
+	[<div class="#EDIT{descriptif}">(#DESCRIPTIF)</div>]
+	<B_articles_recents><ul class="listeafficherimages[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_blocs,liste}|=={block}|oui|?{' block'})]">
+	<BOUCLE_articles_recents(ARTICLES) {id_rubrique}{par num titre}{!par date}{lang}{0,(#CONFIG{soyezcreateurs/nombres_dessousbreves,10})}{doublons}>
+		[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_blocs,liste}|=={liste}|oui)
+		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+		]
+		[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_blocs,liste}|=={block}|oui)
+		[(#SET{logoblock,[(#LOGO_ARTICLE_NORMAL|sinon{#LOGO_RUBRIQUE_NORMAL}|image_recadre{128:96,-,focus}|image_reduire{128,96})]})]
+		<li[ class="(#COMPTEUR_BOUCLE|alterner{'odd',''})"]>
+			<div class="dessousbreves_ligne clearfix">
+			[<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]><img src="(#GET{logoblock}|extraire_attribut{src}|embarque_fichier)" class="logo" alt=""[ width="(#GET{logoblock}|largeur)]"[ height="(#GET{logoblock}|hauteur)]" /></a>]
+			<div class="#EDIT{titre}"><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>#TITRE</a></div>
+			[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+			</div>
+		</li>
+		]
+	</BOUCLE_articles_recents>
+	</ul></B_articles_recents>[(#REM) Pas d'articles ? On tente les sous-rubriques]
+	<B_SsRubriques><ul class="listeafficherimages">
+	<BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par num titre}{0,(#CONFIG{soyezcreateurs/nombres_dessousbreves,10})}>
+		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></li>
+	</BOUCLE_SsRubriques>
+	</ul></B_SsRubriques>[(#REM) Pas de sous-rubrique ? On tente les sites référencés]
+	<B_SitesDessousBreves><ul class="listeafficherimages">
+	<BOUCLE_SitesDessousBreves(SITES){id_rubrique}{par num nom_site}{!par date}{0,(#CONFIG{soyezcreateurs/nombres_sitesaccueil,6})}>
+		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{nom_site}"><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]" title="[(#DESCRIPTIF|attribut_html)]">[(#NOM_SITE)]</a></li>
+	</BOUCLE_SitesDessousBreves>
+	</ul></B_SitesDessousBreves>
+	<//B_SsRubriques>
+	<//B_articles_recents>
+</div><!-- dessousbreves -->
+</BOUCLE_DessousBreves>
+</div><!-- homeDessousBreves -->
+</B_DessousBreves>
+
+[(#CONFIG{soyezcreateurs/positionquoi2neuf,content}|=={content}|oui)<INCLURE{fond=noisettes/sommaire/sommaire_modecommuniquant_quoi2neuf,doublons}>]
+[(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/homeagenda,on}|=={on}|oui)<INCLURE{fond=noisettes/agenda/homeagenda}>]]
+[(#CONFIG{soyezcreateurs/positiongoodies,extra}|=={content}|oui)<INCLURE{fond=noisettes/sommaire/goodies}>]
+
+[(#REM) Sur le Web ]
+[(#CONFIG{soyezcreateurs/positionnouveautes,extra}|!={extra}|oui)[(#CONFIG{soyezcreateurs/nouveautes_web,oui}|=={oui}|oui)#INCLURE{fond=noisettes/sommaire/nouveautes}]]
+
+<div class="clearing"></div>
+</div><!-- homeSecondblock -->
+
+<B_Outils>
+<div id="homecadre_outils">
+<ul>
+<BOUCLE_Outils(ARTICLES){si #CONFIG{soyezcreateurs_layout/positionlogooutils,mixte}|=={mixte}}{titre_mot=Outils}{par num titre} {lang}>[(#SET{logooutil,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|image_reduire{0,64})]})]
+	<li>[<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]><img src="(#GET{logooutil}|extraire_attribut{src}|embarque_fichier)" class="logo_outil" alt=""[ width="(#GET{logooutil}|largeur)]"[ height="(#GET{logooutil}|hauteur)]" /></a><br />]<div class="#EDIT{titre}"><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>#TITRE</a></div></li>
+</BOUCLE_Outils>
+</ul>
+</div><!-- homecadre_outils -->
+</B_Outils>
+
+[(#CONFIG{soyezcreateurs/affiche_forum_sommaire,oui}|=={oui}|oui)
+<INCLURE{fond=noisettes/forums/forum_sommaire}>]
+
+[(#PLUGIN{SOCIALTAGS}|oui)<div id="socialtags"></div>]
+</div><!-- communiquant_content_central -->
+
+<div id="communiquant_content_extra">
+[(#CONFIG{soyezcreateurs/positionquoi2neuf,content}|=={extra}|oui)<INCLURE{fond=noisettes/sommaire/sommaire_modecommuniquant_quoi2neuf,doublons}>]
+[(#PLUGIN{campagnes}|oui)
+  <div id="bangoodiesavant" class="encart">
+	  <INCLURE{fond=inclure/encart, identifiant=bangoodiesavant}>  
+  </div>
+]
+[(#CONFIG{soyezcreateurs/positiongoodies,extra}|=={extra}|oui)[(#INCLURE{fond=noisettes/sommaire/goodies})]]
+[(#CONFIG{soyezcreateurs/positionvideo,extra}|=={extra}|oui)[(#INCLURE{fond=noisettes/sommaire/video_alaune,largeurmax=[(#GET{Largeurcontent_extra}|moins{20})]})]]
+
+[(#CONFIG{soyezcreateurs_layout/positionliensnav,menu_footer}|=={nav}|oui)
+[<div class="espaceavant">
+<ul>(#INCLURE{fond=noisettes/liensnav/bloc_liensnav,template})</ul>
+</div><!-- espaceavant -->]
+]
+[(#CONFIG{soyezcreateurs/affichage_ephemeride,oui}|=={oui}|oui)<INCLURE{fond=noisettes/ephemeride/ephemeride_bloc,env}>]
+
+[(#REM) Sur le Web ]
+[(#CONFIG{soyezcreateurs/positionnouveautes,extra}|=={extra}|oui)[(#CONFIG{soyezcreateurs/nouveautes_web,oui}|=={oui}|oui)#INCLURE{fond=noisettes/sommaire/nouveautes}]]
+
+[(#PLUGIN{campagnes}|oui)
+  <div id="banlocalisationavant" class="encart">
+	  <INCLURE{fond=inclure/encart, identifiant=banlocalisationavant}>  
+  </div>
+]
+
+[(#CONFIG{soyezcreateurs/positionrecherche,header}|=={navigation}|oui)[(#INCLURE{fond=noisettes/header/cadre_recherche,env,id_recherche=cadre_recherche})]]
+#INCLURE{fond=noisettes/extra/ousommesnous}
+[(#CONFIG{soyezcreateurs/positionfluxrss,bottom}|=={bottom}|oui)<div class="centrer_div rss_bottom">
+<INCLURE{fond=noisettes/liensnav/reseaux_sociaux}>
+</div>]
+[(#CONFIG{soyezcreateurs/bandeau_contact_extra}|match{^(extra|navigation)$}|oui)
+	[<div id="bandeaucontact" class="#EDIT{meta-soyezcreateurs/bandeau_contact}">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
+]
+[(#PLUGIN{ACCESRESTREINT}|oui)<INCLURE{fond=noisettes/accesrestreint/login-logout,env}>]
+
+[(#CONFIG{soyezcreateurs_google/xiti_id}|!={''}|oui)[(#INCLURE{fond=noisettes/compteur})]]
+
+</div><!-- communiquant_content_extra -->
+<div class="clearing"></div>
+
+<B_Actualites>
+<div id="communiquant_actus">
+	<h2><:soyezcreateurs:derniereactualites:></h2>
+	<ul>
+	<BOUCLE_Actualites(BREVES){!par date}{0,5}{lang}>
+		<li><a href="#URL_BREVE">[(#TITRE)]</a> - le [(#DATE|affdate)]</li>
+	</BOUCLE_Actualites>
+	</ul>
+</div>
+</B_Actualites>
+
+</div><!-- communiquant_content --></main>
+#FILTRE{mini_html}

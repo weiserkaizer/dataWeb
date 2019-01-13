@@ -1,0 +1,45 @@
+[(#ENV{login}|=={oui}|non)
+            <div class='texte'>
+              <div class='cartouche'>
+                <div class="titrepage"><h1>Premiers pas dans le squelette SoyezCreateurs</h1></div>
+              </div>
+              <div id='letexte'>
+<p>Bravo&nbsp;!!!!</p>
+<p>Vous avez correctement passé la première étape en installant ce squelette.</p>
+<p>Et maintenant vous vous demandez &laquo;&nbsp;Que faire&nbsp;?&nbsp;&raquo;</p>
+][(#ENV{login}|=={oui}|oui)<div class='texte' style='text-align:left;'>
+              <div class='cartouche'>
+                <div class="titrepage"><h1>Mode d'emploi SoyezCreateurs</h1></div>
+              </div>
+              <div id='letexte'>]
+<p>Ce squelette est entièrement personnalisable et il va vous permettre de changer les différents critères suivants&nbsp;:</p>
+<ul class="spip">
+	<BOUCLE_ConfigFaite(GROUPES_MOTS){titre=_LayoutGala}{0,1}> </BOUCLE_ConfigFaite><li> <a href="ecrire/?exec=postconfig" class="spip_out">Création et modification des mots clés</a></li><//B_ConfigFaite>
+	<BOUCLE_Edito(MOTS){titre=EDITO}><li><a href="#URL_MOT" class="spip_out">Pour changer la page d&#8217;accueil</a></li></BOUCLE_Edito>
+	<li><a href="ecrire/?exec=configurer_identite" class="spip_out">Pour changer le nom du site et son logo</a></li>
+	<li><a href="ecrire/?exec=configurer_soyezcreateurs&cfg=soyezcreateurs" class="spip_out">Configuration du Squelette SoyezCreateurs</a> (ex&nbsp;: position Logo)&nbsp;[<a href="#nb1" name="nh1" id="nh1" class="spip_note" rel="footnote" title='[1] Attention, l&#39;acc&#232;s &#224; cette configuration est r&#233;serv&#233;e aux webmestres du (...)' >1</a>]</li>
+	<li> <a href="ecrire/?exec=configurer_soyezcreateurs&cfg=soyezcreateurs_layout" class="spip_out">Choisir la disposition des différents parties du site parmi 40 modèles disponibles</a> (source&nbsp;: <a href="http://blog.html.it/layoutgala/index.html" class="spip_out">Layoutgala</a>)</li>
+</ul>
+<p>Vous trouverez aussi plusieurs documentations disponibles aux adresses ci-dessous&nbsp;:</p>
+<ul class="spip">
+	<li> <a href="https://www.pyrat.net/" class="spip_out">pyrat.net</a>&nbsp;:
+		<ul class="spip">
+			<li> <a href="https://www.pyrat.net/556" class="spip_out">Rédacteurs SPIP : la boîte à outils</a></li>
+			<li> <a href="https://www.pyrat.net/452" class="spip_out">Les raccourcis typographiques indispensables de SPIP</a></li>
+			<li> <a href="https://www.pyrat.net/313" class="spip_out">Rédiger pour Internet afin d’être lu et trouvé</a></li>
+			<li> <a href="https://www.pyrat.net/351" class="spip_out">Erreurs classiques de mise en forme typographique</a></li>
+		</ul>
+	</li>
+	<li> Les 2 groupes de Mots Clés&nbsp;: 
+		<ul class="spip">
+			<li> <a href="#URL_PAGE{mot}" class="spip_out">Navigation</a></li>
+			<li> <a href="#URL_PAGE{motsfonctionnels}" class="spip_out">Fonctionnels</a></li>
+		</ul>
+	</li>
+</ul>
+<div class="ps">Pour <a href="https://www.pyrat.net/361" class="spip_out">retrouver ce mode d&#8217;emploi</a>, consulter le site de l&#8217;auteur.</div>
+<div class="notes">
+<p>[<a href="#nh1" name="nb1" class="spip_note" title="Notes 1" rev="footnote">1</a>] Attention, l&#8217;accès à cette configuration est réservée aux webmestres du site, par défaut, l&#8217;auteur n&#176;1 avec ce squelette.</p></div>
+	</div><!-- Fin de eTexte -->
+</div><!-- Fin de .texte -->
+#FILTRE{mini_html}

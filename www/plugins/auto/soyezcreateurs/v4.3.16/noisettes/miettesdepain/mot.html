@@ -1,0 +1,31 @@
+<BOUCLE_mot_principal(MOTS){id_mot}>
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<li><a href="#URL_PAGE{mot}" title="<:soyezcreateurs:mots_title|attribut_html:>"><:soyezcreateurs:mots:></a></li>
+			<li><a href="[(#URL_PAGE{mot}|parametre_url{id_groupe,#ID_GROUPE})]" title="<:soyezcreateurs:motsgroupe|attribut_html:>"><BOUCLE_TitreGroupe(GROUPES_MOTS){id_groupe}>#TITRE</BOUCLE_TitreGroupe></a></li>
+			<li>[(#TITRE|replace{<br />,''})]</li>
+		</ul>
+	</nav>
+</BOUCLE_mot_principal>
+<BOUCLE_Groupe_principal(GROUPES_MOTS){id_groupe}>
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<li><a href="#URL_PAGE{mot}" title="<:soyezcreateurs:mots_title:>"><:soyezcreateurs:mots:></a></li>
+			<li>[(#TITRE|replace{<br />,''})]</li>
+		</ul>
+	</nav>
+</BOUCLE_Groupe_principal>
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<li><:soyezcreateurs:mots:></li>
+		</ul>
+	</nav>
+<//B_Groupe_principal>
+<//B_mot_principal>
+#FILTRE{mini_html}

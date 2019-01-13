@@ -1,0 +1,26 @@
+<B_messages>
+		<BOUCLE_messages(CM_POSTS){pst_id}{pst_date_sent!=0}{!par pst_date_sent}>
+		</BOUCLE_messages>
+</B_messages>
+<BOUCLE_list(CM_LISTS){lst_id}>
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<li><a href="#URL_PAGE{liste_mail}" title="<:soyezcreateurs:newsletter|attribut_html:>"><:soyezcreateurs:newsletter:></a></li>
+			<BOUCLE_Uneliste(CM_LISTS) {lst_id}>
+			<li>#LST_NAME</li>
+			</BOUCLE_Uneliste>
+		</ul>
+	</nav>
+</BOUCLE_list>
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<li><:soyezcreateurs:newsletter:></li>
+		</ul>
+	</nav>
+<//B_list>
+<//B_messages>
+#FILTRE{mini_html}

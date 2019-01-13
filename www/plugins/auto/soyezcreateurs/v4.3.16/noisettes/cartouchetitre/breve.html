@@ -1,0 +1,7 @@
+<BOUCLE_breve_principal(BREVES) {id_breve}>
+<div class="cartouche">
+<div class="datepublication"><span><:soyezcreateurs:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
+<div class="titrepage"><h1 class="#EDIT{titre} surlignable">[<img class="logo_breve" src="(#LOGO_BREVE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|extraire_attribut{src})" alt="" />][(#TITRE)]</h1></div>
+</div>
+</BOUCLE_breve_principal>
+#FILTRE{mini_html}

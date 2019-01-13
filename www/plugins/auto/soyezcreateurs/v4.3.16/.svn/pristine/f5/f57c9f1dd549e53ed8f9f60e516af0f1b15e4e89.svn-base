@@ -1,0 +1,6 @@
+		<BOUCLE_Articles_Racine(ARTICLES) {id_rubrique} {par num titre}{!par date}{archive}{lang}{pagination 10}>
+		[(#INCLURE{fond=noisettes/articles/contenu_article,id_article})]
+		</BOUCLE_Articles_Racine>
+		#PAGINATION
+		</B_Articles_Racine>
+#FILTRE{mini_html}

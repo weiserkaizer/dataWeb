@@ -1,0 +1,6 @@
+<BOUCLE_article_titre(ARTICLES) {id_article}>
+<div class="cartouche">
+<div class="titrepage"><h1 class="structure">#TITRE : <:poster_message:></h1></div>
+</div>
+</BOUCLE_article_titre>
+#FILTRE{mini_html}

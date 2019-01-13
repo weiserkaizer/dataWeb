@@ -1,0 +1,5 @@
+# toutes les options possible dans le XML actuel sauf les blocs qui sont vus autrement
+nom: 'edito'
+description: 'La noizettes de l''edito'
+contexte: 'menu'
+ajax: 'non'

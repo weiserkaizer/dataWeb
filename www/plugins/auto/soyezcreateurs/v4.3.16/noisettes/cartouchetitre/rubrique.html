@@ -1,0 +1,7 @@
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}{!lang_select}>
+<div class="cartouche surlignable">
+<div class="titrepage"><h1 class="#EDIT{titre} surlignable">[(#CONFIG{soyezcreateurs_layout/logorubriquenavigation,content}|=={content}|oui)[<img src="(#GET{logo_rubrique}|extraire_attribut{src})" class="logo_rubrique" alt="" width="[(#GET{logo_rubrique}|largeur)]" height="[(#GET{logo_rubrique}|hauteur)]" />]][(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)]</h1>[(#FORMULAIRE_FAVORI)]</div>
+[(#ENV{archive}|non)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives,id_rubrique,lang}|oui)<div class="lienarchives pas_surlignable"><a href="[(#SELF|parametre_url{archive,oui})]" title="<:soyezcreateurs:archives_title|attribut_html:>"><:soyezcreateurs:archives:></a></div>]]
+</div>
+</BOUCLE_rubrique_principal>
+#FILTRE{mini_html}

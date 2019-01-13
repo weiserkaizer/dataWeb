@@ -1,0 +1,47 @@
+[(#SET{titretop,<:soyezcreateurs:articlesordreantichrono|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{title=<:soyezcreateurs:articlesordreantichrono|texte_script:>}
+	{titretop=#GET{titretop}}
+	{type=antichrono}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:articlesordreantichrono:></h1></div>
+</div>
+]
+<div id="letexte">
+<p><:soyezcreateurs:voirle:> <a href="#URL_PAGE{plan}" title="<:plan_site|attribut_html:>"><:plan_site:></a></p>
+<BOUCLE_ExclureRubriquesDuPlan(RUBRIQUES){titre_mot=PasDansPlan}><BOUCLE_ExclureArticlesDuPlan(ARTICLES){branche}{doublons articles}{lang} /></BOUCLE_ExclureRubriquesDuPlan>
+
+<B_Annee>
+	<BOUCLE_Annee(ARTICLES){!par date}{fusion YEAR(date)}{doublons articles}{lang}>
+	<h2>[(#DATE|annee)]</h2>
+	<B_Mois>
+		<BOUCLE_Mois(ARTICLES){annee_relatif=0}
+		{!par date}{lang}
+		{fusion MONTH(date)}>
+		<h3>[(#DATE|nom_mois|ucfirst)]</h3>
+		<B_ArticlesDuMois>
+		<ul class="spip">
+			<BOUCLE_ArticlesDuMois(ARTICLES){mois_relatif=0}
+			{!par date}{lang}>
+			<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+			</BOUCLE_ArticlesDuMois>
+		</ul>
+		</B_ArticlesDuMois>
+		</BOUCLE_Mois>
+	</B_Mois>
+	</BOUCLE_Annee>
+</B_Annee>
+
+</div>
+</main>
+</div><!-- Fin de .texte -->
+
+<INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titretop}}
+	{template=Plan}
+>
+#FILTRE{mini_html}

@@ -1,0 +1,42 @@
+a:2:{s:9:"nom_cache";s:38:"82cb9d8f8df1a5e5f1d02f326785f277.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_b7b536a4be6bbf25b7fa691ab131335c";s:6:"source";s:66:"plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/fondpage.html";s:11:"process_ins";s:3:"php";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"82cb9d8f8df1a5e5f1d02f326785f277.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:1067:"<?php
+	$fonds= array();
+?>
+
+
+
+
+<?php
+if (count($fonds) > 0) {
+$fond = $fonds[mt_rand(0, count($fonds) - 1)];;
+if ($fond['fond']!='') {
+?><style type="text/css">
+/*<![CDATA[*/
+@media only screen and (min-width: 960px) {
+html {
+background-color:<?php echo($fond['couleur']); ?>;
+background-image:url("<?php echo($fond['fond']); ?>");
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center; 
+-webkit-background-size: cover; /* pour Chrome et Safari */
+-moz-background-size: cover; /* pour Firefox */
+-o-background-size: cover; /* pour Opera */
+background-size: cover; /* version standardisée */
+}
+<?php 
+if ($fond['hachures']!='') { ?>/* Combinaison de http://www.dreevoo.com/content.php?id=2270 et https://gist.github.com/omurphy27/5243251 avec http://www.patternify.com/ */
+html:after { background: url("<?php echo($fond['hachures']); ?>") center repeat;
+content: "";
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+top: 0;
+opacity: 0.5;
+z-index: -2;
+}<?php } ?>
+}
+/*]]>*/
+</style><?php }
+} ?>
+";s:5:"notes";s:0:"";s:8:"contexte";a:7:{s:11:"id_rubrique";s:0:"";s:8:"template";s:8:"Sommaire";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2019-01-06 23:34:31";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 23:34:31";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1546817633;s:2:"gz";b:0;s:3:"sig";i:838034828;}}

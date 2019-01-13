@@ -1,0 +1,13 @@
+<BOUCLE_breve_principal(BREVES) {id_breve}>
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<BOUCLE_plan(HIERARCHIE){id_rubrique}{tout}{!titre_mot=PasDansFildAriane}>
+			<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|replace{<br />,''})]</a></li>
+			</BOUCLE_plan>
+			<li>[(#TITRE|replace{<br />,''})]</li>
+		</ul>
+	</nav>
+</BOUCLE_breve_principal>
+#FILTRE{mini_html}

@@ -1,0 +1,38 @@
+<!-- Articles recents -->
+<B_articles_recentsAlaUne>
+<div id="artrecents"[ class="(#ENV{classe})"]>
+<h2><:soyezcreateurs:quoideneuf:></h2>
+<ul class="alaune">
+<BOUCLE_articles_recentsAlaUne(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#ENV{nombres_alanune}|sinon{(#CONFIG{soyezcreateurs/nombres_alanune,4})})}{doublons}{titre_mot=AlaUne} {lang}>
+	<li><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+</BOUCLE_articles_recentsAlaUne>
+</ul>
+<BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons} /></BOUCLE_Secteurs_Exclus>
+<BOUCLE_Rubriques_Exclues(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}><BOUCLE_Articles_Exclus(ARTICLES){id_rubrique}{doublons}{lang} /></BOUCLE_Rubriques_Exclues>
+<BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons} />
+	<B_articles_recentsSiUne>
+	<ul>
+	<BOUCLE_articles_recentsSiUne(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#ENV{nombres_quoideneuf}|sinon{(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})})}{doublons} {lang}>
+		<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+	</BOUCLE_articles_recentsSiUne>
+	</ul>
+	</B_articles_recentsSiUne>
+	[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)<p><a href="#URL_PAGE{antichrono}"><:soyezcreateurs:tousarticlesantichrono:></a></p>]
+</div>
+</B_articles_recentsAlaUne>
+<BOUCLE_Secteurs_Exclus2(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus2(ARTICLES){id_secteur}{doublons} /></BOUCLE_Secteurs_Exclus2>
+<BOUCLE_Rubriques_Exclues2(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}><BOUCLE_Articles_Exclus2(ARTICLES){id_rubrique}{doublons}{lang} /></BOUCLE_Rubriques_Exclues2>
+<BOUCLE_exclus2(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons} />
+<B_articles_recents>
+<div id="artrecents"[ class="(#ENV{classe})"]>
+<h2><:soyezcreateurs:quoideneuf:></h2>
+<ul>
+<BOUCLE_articles_recents(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#ENV{nombres_quoideneuf}|sinon{(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})})}{doublons} {lang}>
+	<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+</BOUCLE_articles_recents>
+</ul>
+[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)<p><a href="#URL_PAGE{antichrono}"><:soyezcreateurs:tousarticlesantichrono:></a></p>]
+</div>
+</B_articles_recents>
+<//B_articles_recentsAlaUne>
+#FILTRE{mini_html}

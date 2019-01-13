@@ -1,0 +1,7 @@
+							<INCLURE{fond=inclure/horlogeflash,timezone='America/New_York',ville='Washington'}>
+							<INCLURE{fond=inclure/horlogeflash,timezone='America/Cayenne',ville='Kourou'}>
+							<INCLURE{fond=inclure/horlogeflash,timezone='Europe/Paris',ville='Evry'}>
+							<INCLURE{fond=inclure/horlogeflash,timezone='Asia/Almaty',ville='Baïkonour'}>
+							<INCLURE{fond=inclure/horlogeflash,timezone='Asia/Singapore',ville='Singapour'}>
+							<INCLURE{fond=inclure/horlogeflash,timezone='Asia/Tokyo',ville='Tokyo'}>
+#FILTRE{mini_html}

@@ -1,0 +1,32 @@
+<div id="tmp_id" class="formulaire_spip formulaire_ieconfig_import">
+<h3 class="titrem"><:ieconfig:titre_import:></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+<form id="tmp_id2" action="#ENV{action}" method="post" enctype="multipart/form-data"><div>
+	#ACTION_FORMULAIRE{#ENV{action}}
+	<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+		#GENERER_SAISIES{#ENV{_saisies}}
+	</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+	[<textarea name="_code_yaml" id="_code_yaml" style="display:none;">(#ENV{_code_yaml})</textarea>]
+	<p class="boutons">
+		[(#ENV{_code_yaml}|oui)
+		<input type="submit" class="submit link" name="annuler" value="<:bouton_annuler:>" />
+		<input type="submit" class="submit" name="importer" value="<:ieconfig:titre_import:>" />]
+		[(#ENV{_code_yaml}|non)
+		<input type="submit" class="submit" name="suivant" value="<:ieconfig:titre_import:>" />]
+	</p>
+</div></form>
+</div>
+<script type='text/javascript' src='jwplayer.js'></script>
+<script type='text/javascript'>
+	function idRandom() {
+		var length = 9;
+		var prefix = 'id-formulaire-import-'; // To be 100% sure id starts with letter
+		// Convert it to base 36 (numbers + letters), and grab the first 9 characters
+		// after the decimal.
+		var id = prefix + Math.random().toString(36).substr(2, length);
+		return id;
+	}
+	document.getElementById('tmp_id').id = idRandom();
+	document.getElementById('tmp_id2').id = idRandom();
+</script>

@@ -1,0 +1,26 @@
+[(#SET{titretop,<:transaction:regret|attribut_html|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{title=<:transaction:regret|attribut_html|texte_script:>}
+	{titretop=#GET{titretop}}
+	{type=transaction_regret}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+	<div class="cartouche">
+		<div class="titrepage"><h1><:transaction:regret|typo:></h1></div>
+	</div>
+]
+	<div id="letexte">
+		  	<p><:transaction:texte_regret|typo:></p>
+	</div><!-- Fin de #LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{template=Connexion}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}

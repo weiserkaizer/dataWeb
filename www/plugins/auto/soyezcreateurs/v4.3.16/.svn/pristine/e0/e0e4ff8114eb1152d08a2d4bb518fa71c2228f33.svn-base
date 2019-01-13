@@ -1,0 +1,62 @@
+<B_forums>
+<div id="cadreforum">
+<h1 class="structure">[(#CONFIG{soyezcreateurs/zone_forum_titre}|sinon{<:soyezcreateurs:forum_vosreponses:>})]</h1>
+<ul class="forum-total">
+<BOUCLE_forums(FORUMS){id_article}{!par date}>
+<li>
+<div class="forum-fil surlignable">
+<div id="forum#ID_FORUM" class="forum">
+<div class="forum-chapo">
+<span class="#EDIT{titre} forum-titre"><a href="[(#URL_ARTICLE|url_absolue)#forum#ID_FORUM]">
+#SET{nomvu,''}[(#INFO_TITRE{article,#ID_ARTICLE}|!={#TITRE}|?{#TITRE,#NOM[(#SET{nomvu,oui})]})]</a></span>
+[(#REM) Affichage du Gravatar si le plugin est présent]
+[<span class="logo-auteur">(#LOGO_AUTEUR|image_reduire{48,48}||sinon{[<img src="(#EMAIL|appliquer_filtre{gravatar})" alt="" />]})</span>]
+<span class="#EDIT{qui} forum-auteur">[(#DATE|affdate)][ (#DATE|affdate{"H:i"})][(#GET{nomvu}|non|?{[, <:soyezcreateurs:par:> (#NOM)]})]</span>
+</div>
+<div class="#EDIT{texte} forum-item">
+<BOUCLE_PasdeSiteDansForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[(#_forums:TEXTE|sc_anti_glouton)]</BOUCLE_PasdeSiteDansForums>
+[(#_forums:TEXTE)]
+[<div class='#EDIT{hyperlien} forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+<//B_PasdeSiteDansForums>
+[<div class="notes">(#NOTES|safehtml)</div>]
+<B_LivredOr>
+<BOUCLE_LivredOr(MOTS){id_article}{titre = Livre d'Or}>
+</BOUCLE_LivredOr>
+</B_LivredOr>
+[<div class='forum-repondre-message'><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow"><:forum:repondre_message:></a></div>]
+<//B_LivredOr>
+</div>
+</div>
+
+<B_forums_fils>
+	<ul>
+	<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+	<li>
+	<div class="forum">
+	<div class="forum-chapo">
+	<span class="#EDIT{titre} forum-titre"><a href="[(#ARTICLE_URL|url_absolue)#forum#ID_FORUM]" id="forum#ID_FORUM">[(#TITRE)]</a></span>
+	[(#REM) Affichage du Gravatar si le plugin est présent]
+	[<span class="logo-auteur">(#LOGO_AUTEUR|image_reduire{32,32}||sinon{[<img src="(#EMAIL|appliquer_filtre{gravatar})" alt="" />]})</span>]
+	<span class="#EDIT{qui} forum-auteur">[(#DATE|affdate)][ (#DATE|affdate{"H:i"})][, <:soyezcreateurs:par:> (#NOM)]</span>
+	</div>
+	<div class="#EDIT{texte} forum-item">
+	<BOUCLE_PasdeSiteDansSsForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[(#_forums_fils:TEXTE|sc_anti_glouton)]</BOUCLE_PasdeSiteDansSsForums>
+	[(#_forums_fils:TEXTE)]
+	[<div class='#EDIT{hyperlien} forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+	<//B_PasdeSiteDansSsForums>
+	[<div class="notes">(#NOTES|safehtml)</div>]
+	[<div class='forum-repondre-message'><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow"><:forum:repondre_message:></a></div>]
+	</div>
+	</div>
+	<BOUCLE_Forums_Boucle(BOUCLE_forums_fils) />
+	</li>
+	</BOUCLE_forums_fils>
+	</ul>
+</B_forums_fils>
+</div>
+</li>
+</BOUCLE_forums>
+</ul>
+</div>
+</B_forums>
+#FILTRE{mini_html}

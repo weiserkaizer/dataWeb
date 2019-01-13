@@ -1,0 +1,46 @@
+#CACHE{3600}
+<BOUCLE_rubrique_principale(RUBRIQUES){id_rubrique}>
+[(#CONFIG{soyezcreateurs/agendafuturseul,oui}|=={oui}|oui)
+	[(#SET{lafin,[(#ENV{date_ev,#ENV{date}}|affdate{'Y-m-d'})]})]
+][(#CONFIG{soyezcreateurs/agendafuturseul,oui}|=={non}|oui)
+	[(#SET{lafin,[(#ENV{date_ev,#ENV{date}}|sc_annee_scolaire)]-09-01})]
+]
+<BOUCLE_ListeEvenements(EVENEMENTS)
+	{id_mot ?}
+	{mots_selon_id ?}
+	{branche}
+	{date_fin>=#GET{lafin}}
+	{date_debut<=(#ENV{date_ev,(#ENV{date})}|sc_annee_scolaire|plus{1})-12-31}
+	{par date_debut}
+>
+	<BOUCLE_premierdumois(EVENEMENTS)
+		{id_evenement}
+		{doublons}
+	>
+	<h2[ id="m(#DATE_DEBUT|affdate{'Ym'})"]>[(#DATE_DEBUT|nom_mois|ucfirst)] [(#DATE_DEBUT|annee)]</h2>
+	<ul class="spip">
+	 [(#INCLURE{fond=noisettes/agenda/agendaliste_evenement_court,id_evenement,mots})]
+	</BOUCLE_premierdumois>
+		<BOUCLE_rappel_rubrique_principale(RUBRIQUES)
+			{id_rubrique=#_rubrique_principale:ID_RUBRIQUE}
+		>
+		<BOUCLE_Mois(EVENEMENTS)
+			{branche}
+			{id_mot ?}
+			{mots_selon_id ?}
+			{date_debut==^(#_ListeEvenements:DATE_DEBUT|affdate{'Y-m'})}
+			{date_fin>=#GET{lafin}}
+			{date_debut<=(#ENV{date_ev,(#ENV{date})}|sc_annee_scolaire|plus{1})-12-31}
+			{par date_debut}
+			{doublons}
+		>
+		 [(#INCLURE{fond=noisettes/agenda/agendaliste_evenement_court,id_evenement,mots})]
+		</BOUCLE_Mois>
+		</BOUCLE_rappel_rubrique_principale>
+	</ul>
+	</B_premierdumois>
+</BOUCLE_ListeEvenements>
+<p><:soyezcreateurs:recherche_infructueuse:></p>
+<//B_ListeEvenements>
+</BOUCLE_rubrique_principale>
+#FILTRE{mini_html}

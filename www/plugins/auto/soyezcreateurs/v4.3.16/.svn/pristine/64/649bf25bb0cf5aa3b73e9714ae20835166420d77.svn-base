@@ -1,0 +1,43 @@
+<BOUCLE_breve_principal(BREVES) {id_breve}>
+[(#SET{secteurencours,#ID_RUBRIQUE})]
+[(#SET{id_breve,#ID_BREVE})]
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+<INCLURE{fond=noisettes/header/header}
+	{rubriqueencours=#ID_RUBRIQUE}
+	{secteurencours=#GET{secteurencours}}
+	{metadescription=(#INTRODUCTION{150}|supprimer_tags|attribut_html)}
+	{title=(#TITRE|attribut_html|texte_script)}
+	{titretop=#GET{titretop}}
+	{id_rubrique}
+	{id_secteur}
+	{id_breve}
+	{type=breve}
+>
+<div class="texte">
+<main id="main" role="main">
+<!-- Contenu : corps de la breve -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="datepublication"><span><:soyezcreateurs:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
+<div class="titrepage"><h1 class="#EDIT{titre} surlignable">[<img class="logo_breve" src="(#LOGO_BREVE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|extraire_attribut{src})" alt="" />][(#TITRE)]</h1></div>
+</div>
+]
+	<div id="letexte" class="surlignable">
+[<div class="#EDIT{texte} entry-content">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
+[<div class="chapo"><:voir_en_ligne:>&nbsp;: <a href="(#URL_SITE)" class="spip_out" title="[(#NOM_SITE|attribut_html)]">#NOM_SITE</a>.</div>]
+[<div class="notes">(#NOTES)</div>]
+	</div><!-- Fin de #LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+</BOUCLE_breve_principal>
+<INCLURE{fond=noisettes/footer/footer}
+	{secteurencours=#GET{secteurencours}}
+	{titretop=#GET{titretop}}
+	{id_rubrique=#GET{secteurencours}}
+	{id_breve=#GET{id_breve}}
+>
+</B_breve_principal>
+#FILTRE{mini_html}

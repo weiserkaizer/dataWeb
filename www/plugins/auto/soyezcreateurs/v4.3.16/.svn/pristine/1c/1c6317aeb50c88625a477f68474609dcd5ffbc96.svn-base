@@ -1,0 +1,27 @@
+#CACHE{3600}
+#SET{service,weather}[(#CONFIG{rainette/wunderground/inscription}|oui)#SET{service,wunderground}]
+#SET{nom_ville,#RAINETTE_INFOS{#CONFIG{soyezcreateurs/rainette_ville, FRXX0099}, ville, #GET{service}}}
+[(#SET{titre_meteo,#VAL{<:rainette:meteo_de:>}|replace{@ville@,#GET{nom_ville}}})]
+<INCLURE{fond=noisettes/header/header}
+	{title=#GET{titre_meteo}|attribut_html|texte_script}
+	{titretop=#GET{titre_meteo}|attribut_html|sc_nettoyer_marqueur|texte_script}
+	{type=meteo}
+>
+
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:rainette:meteo_de{ville=#GET{nom_ville}}:></h1></div>
+</div>
+]
+	<div id="letexte">
+		[(#MODELE{rainette_previsions, lieu=[(#CONFIG{soyezcreateurs/rainette_ville, FRXX0099})], premier_jour=0, sous_modele=previsions_24h, service=#GET{service}})]
+	</div>
+</main>
+</div><!-- Fin de .texte -->
+
+<INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titre_meteo}|attribut_html|sc_nettoyer_marqueur|texte_script}
+>
+#FILTRE{mini_html}

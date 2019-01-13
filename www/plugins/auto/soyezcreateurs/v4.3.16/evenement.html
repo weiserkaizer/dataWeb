@@ -1,0 +1,5 @@
+<BOUCLE_ArticleEvenement(EVENEMENTS){id_evenement}><?php
+	header("HTTP/1.1 302");
+	header("Location: #URL_ARTICLE[#evenement(#ID_EVENEMENT)]");
+	exit;
+?></BOUCLE_ArticleEvenement>

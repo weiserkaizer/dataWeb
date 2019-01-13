@@ -1,0 +1,13 @@
+a:2:{s:9:"nom_cache";s:38:"e53740efac54148b400ec392062b64c5.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_1c1e2d3b328233079b32a85b91fcba8e";s:6:"source";s:51:"plugins/auto/soyezcreateurs/v4.3.16/layout.css.html";s:11:"process_ins";s:4:"html";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"e53740efac54148b400ec392062b64c5.cache";}s:7:"entetes";a:5:{s:12:"X-Spip-Cache";s:5:"86400";s:13:"Cache-Control";s:13:"max-age=86400";s:15:"X-Spip-Statique";s:3:"oui";s:12:"Content-Type";s:29:"text/css; charset=iso-8859-15";s:4:"Vary";s:15:"Accept-Encoding";}s:5:"duree";i:86400;s:5:"texte";s:390:"/* http://blog.html.it/layoutgala/index.html */
+ /* 33 */
+div#container{width:960px;margin:0 auto}
+div#content{float:left;width:780px}
+div#navigation{float:right;width:180px}
+div#extra{float:right;clear:right;width:180px}
+div#footer{clear:both;width:100%}
+@media (max-width: 960px) {
+div#wrapper{margin-left:0}
+div#navigation{float:left;width:50%}
+div#extra{float:left;width:50%;}
+}
+";s:5:"notes";s:0:"";s:8:"contexte";a:6:{s:10:"layoutgala";s:2:"33";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2019-01-06 23:34:17";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 23:34:17";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1546817633;s:2:"gz";b:0;s:3:"sig";i:3827827856;}}

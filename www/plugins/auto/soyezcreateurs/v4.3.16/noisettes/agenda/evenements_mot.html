@@ -1,0 +1,13 @@
+<!-- Evenements Web lies au mot-cle -->
+<B_Evenements>
+<h2><:soyezcreateurs:agenda:></h2>
+	<ul class="spip">
+<BOUCLE_Evenements(EVENEMENTS)
+	{id_mot}
+	{par date_debut}
+>
+	[(#INCLURE{fond=noisettes/agenda/agendaliste_evenement,id_evenement})]
+</BOUCLE_Evenements>
+	</ul>
+</B_Evenements>
+#FILTRE{mini_html}

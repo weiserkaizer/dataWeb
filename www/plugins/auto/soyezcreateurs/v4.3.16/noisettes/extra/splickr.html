@@ -1,0 +1,6 @@
+#SET{largeur, #CONFIG{soyezcreateurs_layout/largeursplickrbox,#CONFIG{soyezcreateurs_layout/largeurmenudroit,180}}|moins{10}}
+#SET{reduire, (#GET{largeur}|div{3}|floor|mult{2})}
+[<div id="splickr" style="width: [(#GET{largeur})]px;">
+(#MODELE{splickrbox}{reduire=#GET{reduire}}{taille=9}{colonnes=3}{align=center})
+</div>]
+#FILTRE{mini_html}

@@ -1,0 +1,39 @@
+<BOUCLE_Autres(RUBRIQUES){id_parent=#ENV{id_rubrique}}{par num titre}{!titre_mot=PasDansPlanLocal}>
+	<div class="innermulticolonnes">
+	<h2 class="#EDIT{titre}"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
+
+		<B_articles_rubrique_Racine>
+		<ul class="spip">
+		<BOUCLE_articles_rubrique_Racine(ARTICLES) {id_rubrique} {par num titre}{!par date} {lang}{!titre_mot=PasDansPlanLocal}{archive}>
+			<li class="#EDIT{titre}" style="clear:left;"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>[ ((#SOUSTITRE))]<INCLURE{fond=noisettes/inc_liste_document_article,id_article}></li>
+		</BOUCLE_articles_rubrique_Racine>
+		</ul>
+		</B_articles_rubrique_Racine>
+
+	<B_Autres_Details>
+		<ul class="spip">
+		<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansPlanLocal}>
+			<li class="#EDIT{titre}" style="clear:left;"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
+			<BOUCLE_Recurssion(BOUCLE_Autres_Details) />
+				<B_articles_rubrique>
+				<ul class="spip">
+				<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par num titre}{!par date} {lang}{!titre_mot=PasDansPlanLocal}{archive}>
+					<li class="#EDIT{titre}" style="clear:left;"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>[ ((#SOUSTITRE))]<INCLURE{fond=noisettes/inc_liste_document_article,id_article}></li>
+				</BOUCLE_articles_rubrique>
+				</ul>
+				</B_articles_rubrique>
+			</li>
+		</BOUCLE_Autres_Details>
+		</ul>
+	</B_Autres_Details>
+	</div><!-- Fin .innermulticolonnes -->
+</BOUCLE_Autres>
+		<B_articles_rubrique2>
+		<ul class="spip">
+		<BOUCLE_articles_rubrique2(ARTICLES) {id_rubrique=#ENV{id_rubrique}} {par num titre}{!par date} {lang}{!titre_mot=PasDansPlanLocal}{archive}>
+			<li class="#EDIT{titre}" style="clear:left;"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>[ ((#SOUSTITRE))]</li>
+		</BOUCLE_articles_rubrique2>
+		</ul>
+		</B_articles_rubrique2>
+<//B_Autres>
+#FILTRE{mini_html}

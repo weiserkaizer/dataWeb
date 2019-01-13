@@ -1,0 +1,6 @@
+		[(#PLUGIN{CLEVERMAIL}|oui)
+			[(#FORMULAIRE_CLEVERMAIL{0,html})]
+			<p><a href="#URL_PAGE{liste_mail}" title="<:soyezcreateurs:newsletter:>"><:soyezcreateurs:newsletter_consulter:></a></p>
+		]
+		[(#PLUGIN{MAILSUBSCRIBERS}|oui)[(#INCLURE{fond=noisettes/navigation/inc_frmabonnement_mailsubscriber})]]
+#FILTRE{mini_html}

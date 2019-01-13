@@ -1,0 +1,8 @@
+<!-- <p>hello</p> -->
+[(#SET{listenoisettes, [(#VAL{contenu/corps}|hello)]})]
+<BOUCLE_MenuhautNoisette(DATA){source table, #GET{listenoisettes}}>
+	<p>#VALEUR</p>
+</BOUCLE_MenuhautNoisette>
+<?php
+	var_dump(hello('contenu/corps'));
+?>

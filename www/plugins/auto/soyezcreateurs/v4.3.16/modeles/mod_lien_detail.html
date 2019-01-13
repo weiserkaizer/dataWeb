@@ -1,0 +1,9 @@
+[(#REM)<!-- 
+	Ce sous-modele est celui utilise par la noisette Rainette du squelette
+	pour presenter les conditions temps reel d'une ville
+ -->
+]
+#SET{service, #ENV{service, weather}}
+[(#ENV{donnees/icone}|rainette_afficher_icone{grand}|image_reduire{32}|inserer_attribut{class,menu_gauche_logo})]<a href="#URL_PAGE{la_meteo}" title="<:rainette:meteo_previsions_n_jours{nbj=10}|ucfirst:>">#RAINETTE_INFOS{#CONFIG{soyezcreateurs/rainette_ville, FRXX0099}, ville, #GET{service}}</a><br />
+[(#ENV{derniere_maj, #VAL{Y-m-d H:i:s}|date}|heures)h][(#ENV{derniere_maj, #VAL{Y-m-d H:i:s}|date}|minutes)], [(#ENV{donnees}|table_valeur{temperature_reelle, '', #EVAL{true}}|rainette_afficher_unite{temperature, -1, #GET{service}})]
+#INCLURE{fond=modeles/inc-credits,texte=service,env}

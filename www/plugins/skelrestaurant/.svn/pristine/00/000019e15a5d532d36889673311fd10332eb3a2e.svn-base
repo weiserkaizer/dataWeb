@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title></title>
+    <style>
+        span{
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Mentions légales Thiviers Kebab</h1> </br>
+Le  responsable de la publication du site <span>Thiviers-kebab.fr</span> est <span>Monsieur Daban ABDLRAHMAN</span></br >
+Entreprise inscrite au RCS de Périgueux en Août 2017 </br >
+N°SIRET 539 215 350 00031</br >
+Adresse 25 Rue Lamy 24800 Thiviers </br >
+Tel : 09 86 54 52 26</br >
+</br >
+<span>Créé par <a href="https://www.pyrat.net/">www.pyrat.net</a></span> et Thomas Deléron.</br >
+SASu Pyrat Moulin de la Jaury 24160 St Médard d'Excideuil Tel : 05 53 62 52 13</br >
+</br >
+Hébergé par <a href="https://www.siegler-informatique.fr/">Siegler Informatique</a></br >
+</body>
+</html>

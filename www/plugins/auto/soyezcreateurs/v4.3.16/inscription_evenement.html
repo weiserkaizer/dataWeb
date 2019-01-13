@@ -1,0 +1,25 @@
+[(#ENV{modal}|=={oui}|non)
+	<INCLURE{fond=noisettes/header/header}
+	        {template=InscriptionEvenement}
+	        {idbody=sommaire_mode_#CONFIG{soyezcreateurs/mode_affichage,communiquant}}
+	        {title=<:soyezcreateurs:accueil|texte_script:>}
+			{id_evenement}
+			{type=inscription_evenement}
+	>
+	<div class="texte">
+	<main id="main" role="main">
+		<div id="letexte" class="surlignable">
+]
+<div class='ajax'>
+	#FORMULAIRE_PARTICIPER_EVENEMENT{#ID_EVENEMENT}
+</div>
+[(#ENV{modal}|=={oui}|non)
+			
+		</div><!-- Fin de LeTexte -->
+	</main>
+	</div><!-- Fin de .texte -->
+	<INCLURE{fond=noisettes/footer/footer}
+	        {template=InscriptionEvenement}
+	>
+]
+#FILTRE{mini_html}

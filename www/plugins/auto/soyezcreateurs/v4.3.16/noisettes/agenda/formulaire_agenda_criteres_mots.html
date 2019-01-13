@@ -1,0 +1,9 @@
+#SET{FiltreGroupesEvenements,#ARRAY}
+<BOUCLE_FiltreGroupesEvenements(GROUPES_MOTS){titre==^[^_]}{tables_liees LIKE %evenements%}>
+	#SET{FiltreGroupesEvenements,
+	#GET{FiltreGroupesEvenements}|push{#ID_GROUPE}}
+</BOUCLE_FiltreGroupesEvenements>
+[<div id="mots_filtres_evenements" class="espaceavant ajax">
+	(#FORMULAIRE_EVENEMENTS_PAR_MOTS{#GET{FiltreGroupesEvenements},#SELF})
+</div>]
+#FILTRE{mini_html}

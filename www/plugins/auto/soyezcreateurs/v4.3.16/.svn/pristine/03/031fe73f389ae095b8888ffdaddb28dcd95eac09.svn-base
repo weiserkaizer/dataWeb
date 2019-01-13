@@ -1,0 +1,19 @@
+	<B_Annee>
+		<BOUCLE_Annee(ARTICLES){id_rubrique}{!archive}{!par date}{fusion YEAR(date)}>
+			<h2>[(#DATE|annee)]</h2>
+				<B_ArticlesDuMois>
+					<BOUCLE_ArticlesDuMois(ARTICLES){id_rubrique}{annee_relatif=0}{!archive}{!par date}>
+					<dl class="magazines">
+						<dt class="#EDIT{titre}">#TITRE</dt>
+						<dd>
+						<BOUCLE_Magazine(DOCUMENTS){id_article}{mode=document}{extension=pdf}>
+							[<a href="#URL_DOCUMENT" title="<:ecrire:ical_methode_http:>[: (#TITRE|textebrut|attribut_html|sinon{<:info_document:>})][ ((#TYPE_DOCUMENT)][, (#TAILLE|taille_en_octets))]"><img src="(#LOGO_DOCUMENT|image_reduire{160,0}|extraire_attribut{src})" class="logo_outil" alt="[(#TITRE|sinon{<:ecrire:info_sans_titre:>}|texte_script|supprimer_tags|attribut_html)]" width="[(#LOGO_DOCUMENT|image_reduire{160,0}|largeur)]" height="[(#LOGO_DOCUMENT|image_reduire{160,0}|hauteur)]" /></a>]
+						</BOUCLE_Magazine>
+						</dd>
+						[<dd class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out" title="<:voir_en_ligne|attribut_html:>[:  (#TITRE|attribut_html)]">#TITRE</a></dd>]
+					</dl>
+					</BOUCLE_ArticlesDuMois>
+				</B_ArticlesDuMois>
+			</BOUCLE_Annee>
+	</B_Annee>
+#FILTRE{mini_html}

@@ -1,0 +1,26 @@
+[(#SET{titretop,<:plan_site|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{template=Plan}
+	{title=<:plan_site|texte_script:>}
+	{titretop=#GET{titretop}}
+	{type=plan}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:plan_site:></h1></div>
+</div>
+]
+
+[(#INCLURE{fond=noisettes/plan/plan})]
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{template=Plan}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}

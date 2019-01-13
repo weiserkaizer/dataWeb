@@ -1,0 +1,96 @@
+#SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
+<?php
+	$bannieres= array();
+?>
+<BOUCLE_HeaderBannerRubrique(HIERARCHIE){tout}{id_rubrique}{type_mot=_HeaderBanner}{inverse}{0,1}>
+<BOUCLE_LogoHeader(MOTS){id_rubrique}{type=_HeaderBanner}>
+<?php
+$bannieres[] = array(
+	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'hauteur' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|hauteur)]',
+	'hauteurrelative' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
+</BOUCLE_LogoHeader>
+</BOUCLE_HeaderBannerRubrique>
+<BOUCLE_HeaderBannerTemplate(MOTS){type=_HeaderBanner}{descriptif!=''}{descriptif=#ENV{template}}>
+<?php
+$bannieres[] = array(
+	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'hauteur' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|hauteur)]',
+	'hauteurrelative' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
+</BOUCLE_HeaderBannerTemplate>
+#SET{ExclureBannieresRubriques,#ARRAY}<BOUCLE_ExclureBannieresRubriques(RUBRIQUES){type_mot=_HeaderBanner}{fusion id_mot}>[(#ID_MOT|unique|oui)[(#SET{ExclureBannieresRubriques,#GET{ExclureBannieresRubriques}|push{#ID_MOT}})]]</BOUCLE_ExclureBannieresRubriques>
+<BOUCLE_HeaderBanner(MOTS){type=_HeaderBanner}{descriptif=''}{id_mot !IN #GET{ExclureBannieresRubriques}}>
+<?php
+$bannieres[] = array(
+	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'hauteur' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|hauteur)]',
+	'hauteurrelative' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
+</BOUCLE_HeaderBanner><//B_HeaderBannerTemplate><//B_HeaderBannerRubrique>
+<?php
+if (count($bannieres) > 0) {
+$banniere = $bannieres[mt_rand(0, count($bannieres) - 1)];;
+if ($banniere['banniere']!='') {
+?><style type="text/css">
+/*<!\[CDATA\[*/
+#header { position: relative; }
+#header:before {
+	background-image: <?php if ($banniere['hachures']!='') { ?>url("<?php echo($banniere['hachures']); ?>"), <?php } ?>url("<?php echo($banniere['banniere']); ?>");
+	background-repeat: <?php if ($banniere['hachures']!='') { ?>repeat, <?php } ?>no-repeat;
+	background-position-x: center;
+	display: block;
+	content: "";
+	width: 100%;
+	background-size: <?php if ($banniere['hachures']!='') { ?>initial, <?php } ?>cover;
+	<?php if(#CONFIG{soyezcreateurs/hauteurbannierre,0}==0){ ?>
+	padding-top: <?php echo($banniere['hauteurrelative']); ?>%;
+	<?php } ?>
+}
+@media screen and (min-width:[(#GET{LargeurContaineur})]px) {
+	#header:before {
+		<?php if(#CONFIG{soyezcreateurs/hauteurbannierre,0}==0){ ?>
+		padding-top: <?php echo($banniere['hauteurrelative']); ?>%;
+		<?php } ?>
+		[(#CONFIG{soyezcreateurs/hauteurbannierre,0}|=={0}|non)
+		padding-top: [(#CONFIG{soyezcreateurs/hauteurbannierre,0})]px;
+		]
+	}
+}
+#headerbackground {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+<?php if(#CONFIG{soyezcreateurs/hauteurbannierre,0}==0){ ?>
+#header_inner{ 
+	position:relative;
+	margin-top: -<?php echo($banniere['hauteurrelative']); ?>%; 
+	min-height: <?php echo($banniere['hauteur']); ?>px;
+}
+<?php } ?>
+[(#CONFIG{soyezcreateurs/hauteurbannierre,0}|=={0}|non) 
+#header_inner { 
+	position:relative;
+	min-height: #CONFIG{soyezcreateurs/hauteurbannierre}px;
+	height: #CONFIG{soyezcreateurs/hauteurbannierre}px;
+	margin-top: -#CONFIG{soyezcreateurs/hauteurbannierre}px;
+}
+]
+
+[(#CONFIG{soyezcreateurs/afficher_titre,visible}|=={invisible}|oui)
+#header h1 { position:absolute !important; overflow:hidden !important; top:-2000px !important; left:-2000px !important; height:0 !important; width:0 !important; }
+]
+/*\]\]>*/
+</style><?php }
+} ?>
+#FILTRE{mini_html}

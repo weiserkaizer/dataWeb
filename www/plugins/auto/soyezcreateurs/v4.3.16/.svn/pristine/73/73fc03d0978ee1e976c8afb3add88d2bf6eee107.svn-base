@@ -1,0 +1,29 @@
+<h1>Suppression des articles de démonstration inutiles</h1>
+<ul>
+	<li><a href="./?exec=sc_aide">Je suis venu ici par erreur</a></li>
+	<li><a href="./?exec=sc_vide&doit=1">Oui, je veux vraiment vider le site</a></li>
+	<li><a href="./?exec=sc_vide&doit=1&tout=1">Oui, je veux en vider un peu plus !</a></li>
+<?php
+if (autoriser('webmestre') AND _request('doit')==1) {
+	include_spip('base/soyezcreateurs');
+	if (_request('tout')==1) {
+		$tout = true;
+	} else {
+		$tout = false;
+	}
+	soyezcreateurs_vider($tout);
+?>
+<p>Les articles inutiles ont <?php if (_request('tout')==1) { ?><b>tous</b><?php } ?> été placés dans la poubelle.</p>
+<?php
+} else {
+if (autoriser('webmestre')) {
+?>
+<p>Faites votre choix !</p>
+<?php
+} else {
+?>
+<p>Rien n'a été supprimé (il faut être webmestre).</p>
+<?php
+}
+}
+?>

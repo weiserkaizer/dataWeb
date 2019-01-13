@@ -1,0 +1,6 @@
+a:2:{s:9:"nom_cache";s:38:"2e073e09d2236dcebb6f96dfef063564.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_547ef137f209605d597c6ab7037f8d9b";s:6:"source";s:52:"plugins/auto/soyezcreateurs/v4.3.16/favicon.ico.html";s:11:"process_ins";s:3:"php";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"2e073e09d2236dcebb6f96dfef063564.cache";}s:7:"entetes";a:3:{s:12:"Content-Type";s:12:"image/x-icon";s:25:"Content-Transfer-Encoding";s:6:"binary";s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:192:"<?php
+$file="local/cache-gd2/af/529fa21559cdc830bc384e6e7af92d.ico?1533998960";
+if ($cl = filesize($file=preg_replace(',[?].*$,','',$file)))
+	header("Content-Length: ". $cl);
+
+readfile($file);";s:5:"notes";s:0:"";s:8:"contexte";a:5:{s:4:"page";s:11:"favicon.ico";s:4:"date";s:19:"2019-01-06 23:34:58";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 23:34:58";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1546817698;s:2:"gz";b:0;s:3:"sig";i:3218667959;}}

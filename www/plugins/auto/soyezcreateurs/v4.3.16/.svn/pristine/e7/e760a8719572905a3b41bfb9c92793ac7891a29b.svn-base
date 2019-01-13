@@ -1,0 +1,5 @@
+<BOUCLE_Tags(MOTS){id_mot IN #ENV{mots}}{par titre}>[(#SET{tags,[(#GET{tags}|concat{[[(#COMPTEUR_BOUCLE|>{1}|?{+})](#TITRE|ucfirst)]})]})]</BOUCLE_Tags>
+<div class="cartouche">
+<div class="titrepage"><h1><:resultats_recherche:> : #GET{tags}</h1></div>
+</div>
+#FILTRE{mini_html}

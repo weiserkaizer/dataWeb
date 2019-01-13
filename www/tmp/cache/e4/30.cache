@@ -1,0 +1,8 @@
+a:2:{s:9:"nom_cache";s:38:"e430d6d815c3028a91422fc72a0f04fb.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_187ad0ad611a6ccd0f2c258a880d1cab";s:6:"source";s:91:"plugins/auto/soyezcreateurs/v4.3.16/noisettes/miettesdepain/sommaire_modeportailcognac.html";s:11:"process_ins";s:4:"html";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"e430d6d815c3028a91422fc72a0f04fb.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:179:"	<nav id="miettesdepain">
+<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+<ul>
+<li><a href="./">Accueil</a></li>
+<li>Votre site <span class="caps">SPIP</span></li>
+</ul>
+</nav>
+";s:5:"notes";s:0:"";s:8:"contexte";a:8:{s:8:"template";s:8:"Sommaire";s:6:"idbody";s:27:"sommaire_mode_portailcognac";s:4:"type";s:8:"sommaire";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2018-08-13 09:58:07";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2018-08-13 09:58:07";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1534154279;s:2:"gz";b:0;s:3:"sig";i:2212209477;}}

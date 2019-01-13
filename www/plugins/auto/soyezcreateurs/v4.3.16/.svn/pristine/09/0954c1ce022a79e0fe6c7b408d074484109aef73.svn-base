@@ -1,0 +1,14 @@
+<BOUCLE_RubGoodies(RUBRIQUES){titre_mot=Goodies}{par num titre}>
+<B_Goodies>
+<div class="goodies underedito">
+<h2 class="#EDIT{titre}"><BOUCLE_articles_plusdun(ARTICLES) {id_rubrique} {1,1}{lang}><a href="#URL_RUBRIQUE"[ title="(#_RubGoodies:DESCRIPTIF|attribut_html)"]>#_RubGoodies:TITRE</a></BOUCLE_articles_plusdun><BOUCLE_articles_unseul(ARTICLES) {id_rubrique} {0,1}{lang}><a href="#ARTICLE_URL"[ title="(#_RubGoodies:DESCRIPTIF|attribut_html)"]>#_RubGoodies:TITRE</a></BOUCLE_articles_unseul><a href="#URL_RUBRIQUE"[ title="(#_RubGoodies:DESCRIPTIF|attribut_html)"]>#_RubGoodies:TITRE</a><//B_articles_unseul><//B_articles_plusdun></h2>
+<ul>
+<BOUCLE_Goodies(ARTICLES) {branche}{par num titre}{!par date}{lang}{0,(#CONFIG{soyezcreateurs/nombres_goodies,5})}>
+[(#SET{logooutil,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogogoody,48},#CONFIG{soyezcreateurs_layout/hauteurlogogoody,48}}|image_format{png}|image_recadre{#CONFIG{soyezcreateurs_layout/largeurlogogoody,48},#CONFIG{soyezcreateurs_layout/hauteurlogogoody,48},center,transparent}|sinon{[(#CHEMIN{images/actualites.png}|balise_img)]})]})]
+	<li class="#EDIT{titre}"><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]><figure>[<img src="(#GET{logooutil}|extraire_attribut{src}|embarque_fichier)" class="logo_outil" alt=""[ width="(#GET{logooutil}|largeur)]"[ height="(#GET{logooutil}|hauteur)]" />]<figcaption>#TITRE</figcaption></figure></a></li>
+</BOUCLE_Goodies>
+</ul>
+</div><!-- goodies underedito -->
+</B_Goodies>
+</BOUCLE_RubGoodies>
+#FILTRE{mini_html}

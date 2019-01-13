@@ -1,0 +1,130 @@
+#CACHE{24*3600,cache-client}
+#HTTP_HEADER{Content-Type: text/css; charset=iso-8859-15}
+#HTTP_HEADER{Vary: Accept-Encoding}
+
+#SET{c_vignettes_bk,(#CONFIG{soyezcreateurs_couleurs/vignettes_bk,#ffffff})}
+#SET{c_navigation,(#CONFIG{soyezcreateurs_couleurs/navigation,#017ca5})}
+#SET{c_body_bk,(#CONFIG{soyezcreateurs_couleurs/body_bk,#eceded})}
+#SET{c_logo_bk,(#CONFIG{soyezcreateurs_couleurs/logo_bk,transparent})}
+#SET{c_header,(#CONFIG{soyezcreateurs_couleurs/header,#262626})}
+	#SET{c_header_bk,(#CONFIG{soyezcreateurs_couleurs/header_bk,#ffffff})}
+#SET{c_footer,(#CONFIG{soyezcreateurs_couleurs/footer,#595959})}
+	#SET{c_footer_bk,(#CONFIG{soyezcreateurs_couleurs/footer_bk,#ffffff})}
+#SET{c_navigation,(#CONFIG{soyezcreateurs_couleurs/navigation,#017ca5})}
+	#SET{c_navigation_bk,(#CONFIG{soyezcreateurs_couleurs/navigation_bk,#ffffff})}
+#SET{c_menuhaut,(#CONFIG{soyezcreateurs_couleurs/menuhaut,#017ca5})}
+	#SET{c_menuhaut_bk,(#CONFIG{soyezcreateurs_couleurs/menuhaut_bk,#ffffff})}
+#SET{c_extra,(#CONFIG{soyezcreateurs_couleurs/extra,#017ca5})}
+	#SET{c_extra_bk,(#CONFIG{soyezcreateurs_couleurs/extra_bk,#ffffff})}
+#SET{c_datemajsite,(#CONFIG{soyezcreateurs_couleurs/datemajsite,#595959})}
+	#SET{c_datemajsite_bk,(#CONFIG{soyezcreateurs_couleurs/datemajsite_bk,#ffffff})}
+#SET{c_menu_a,(#CONFIG{soyezcreateurs_couleurs/menu_a,#005e7a})}
+	#SET{c_menu_a_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_bk,#ffffff})}
+#SET{c_menu_a_hover,(#CONFIG{soyezcreateurs_couleurs/menu_a_hover,#ffffff})}
+	#SET{c_menu_a_hover_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_hover_bk,#0b7899})}
+#SET{c_menu_a_active,(#CONFIG{soyezcreateurs_couleurs/menu_a_active,#ffffff})}
+	#SET{c_menu_a_active_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_active_bk,#0b7899})}
+#SET{c_menu_a_strong,(#CONFIG{soyezcreateurs_couleurs/menu_a_strong,#ffffff})}
+	#SET{c_menu_a_strong_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_strong_bk,#0b7899})}
+
+#SET{c_container,(#CONFIG{soyezcreateurs_couleurs/container,#02265a})}
+	#SET{c_container_bk,(#CONFIG{soyezcreateurs_couleurs/container_bk,#f6f6f6})}
+
+#SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
+#SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,180})}
+#SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,180})}
+#SET{LargeurMilieu,(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|moins{#GET{LargeurMenuDroit}}|div{2})}
+
+
+div#content { width: 100%; }
+#content, #navigation, #extra { padding-bottom:0; margin-bottom:0; }
+#miettesdepain, .boutonstexte {display: none; }
+
+{
+  /* clearfix */
+  /* ---- grid ---- */
+  /* ---- grid-item ---- */
+}
+iframe {
+  width: 100%;
+}
+img {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+  -ms-interpolation-mode: bicubic;
+}
+select {
+  cursor: pointer;
+}
+.ariaformprop {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 99;
+  background-color: white;
+  font-size: 80%;
+}
+.ajaxbloc {
+  height: 100%;
+}
+
+/* L'équipe
+------------- */
+.content-lequipe {
+	display: flex;
+	flex-wrap:wrap;
+	justify-content:space-around;
+}
+.content-lequipe article {
+	max-width: 280px;
+	margin: 1em 1em 2em;
+	text-align: center;
+}
+.content-lequipe figure {
+	display: inline-block;
+}
+.content-lequipe article img {
+	padding: 0!important;
+}
+
+/* Réalisations
+------------- */
+.content-realisations {}
+
+/* Prestations
+------------- */
+.content-prestations {
+	display: flex;
+	flex-wrap:wrap;
+	justify-content:space-around;
+}
+.content-prestations article {
+	max-width: 250px;
+	margin: 1em 1em 2em;
+	text-align: center;
+}
+.content-prestations article img {
+	padding: 0!important;
+}
+
+
+
+[(#PLUGIN{lesscss}|oui)
+	[(#CHEMIN{images/stylesportailagence_perso.less.html}|?{'/* Surcharge eventuelle */'})
+
+		[(#PRODUIRE{fond=images/stylesportailagence_perso.less,format=less}
+				|supprimer_timestamp
+				|appliquer_filtre{less_css}
+				|file_get_contents
+		)
+		#SET{lessdone,1}
+		]
+	]
+]
+[(#GET{lessdone}|non)
+[(#CHEMIN{images/stylesportailagence_perso.css}|?{'/* Surcharge eventuelle */'})
+[(#INCLURE{#CHEMIN{images/stylesportailagence_perso.css}|url_absolue_css}|compacte{css})]
+]
+]

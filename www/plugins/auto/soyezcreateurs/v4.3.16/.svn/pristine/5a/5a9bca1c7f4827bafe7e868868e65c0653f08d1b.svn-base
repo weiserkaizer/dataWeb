@@ -1,0 +1,27 @@
+	<B_Annee>
+	<dl>
+	<BOUCLE_Annee(ARTICLES){id_rubrique}{archive}{lang}{!par date}{fusion YEAR(date)}{doublons articles}>
+	<dt class="h2">[(#DATE|annee)]</dt>
+	<B_Mois>
+		<BOUCLE_Mois(ARTICLES){id_rubrique}{annee_relatif=0}{archive}
+		{!par date}{lang}
+		{fusion MONTH(date)}>
+		<dd>
+			<dl>
+				<dt class="h3">[(#DATE|nom_mois|ucfirst)]</dt>
+				<B_ArticlesDuMois>
+					<BOUCLE_ArticlesDuMois(ARTICLES){id_rubrique}{lang}{mois_relatif=0}{archive}
+					{!par date}>
+					<dd>
+						[(#INCLURE{fond=noisettes/articles/contenu_article,id_article})]
+					</dd>
+					</BOUCLE_ArticlesDuMois>
+				</B_ArticlesDuMois>
+			</dl>
+		</dd>
+		</BOUCLE_Mois>
+	</B_Mois>
+	</BOUCLE_Annee>
+	</dl>
+	</B_Annee>
+#FILTRE{mini_html}

@@ -1,0 +1,25 @@
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+[(#ENV{'date_ev'}|!={''}|non)
+	[(#ENV{'month'}|oui)
+		[(#ENV{'year'}|oui)
+			#SET{'date', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01 00:00:00'}}
+			#SET{'date_th', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01'}}
+		]
+	]
+	[(#ENV{'month'}|non)
+		#SET{'date', #ENV{date}}
+		#SET{'date_th', #ENV{date}|affdate{'Y-m-d'}
+	]
+]
+[(#ENV{'date_ev'}|!={''}|oui)
+	#SET{'date', #ENV{date_ev}|concat{' 00:00:00'}}
+	#SET{'date_th', #ENV{date_ev}}
+]
+	<div class="cartouche">
+		<div class="titrepage"><h1>
+			[(#SET{lelogo,[(#LOGO_RUBRIQUE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})" width="[(#GET{lelogo}|largeur)]" height="[(#GET{lelogo}|hauteur)]" alt="" />]
+			[(#TITRE)] - [(#GET{date}|affdate_mois_annee)]
+		</h1></div>
+	</div>
+</BOUCLE_rubrique_principal>
+#FILTRE{mini_html}

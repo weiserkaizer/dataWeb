@@ -1,0 +1,31 @@
+			<BOUCLE_MemoGoodies(ARTICLES){titre_mot=#ENV{mc,Goodies}}{doublons goodies}{age>=(#CONFIG{soyezcreateurs/age_goodies,30})} />
+			<BOUCLE_MemoGoodiesRubrique(RUBRIQUES){titre_mot=#ENV{mc,Goodies}}><BOUCLE_Articles_Exclus(ARTICLES){id_rubrique}{doublons goodies}{age>=(#CONFIG{soyezcreateurs/age_goodies,30})}{lang} /></BOUCLE_MemoGoodiesRubrique>
+			<BOUCLE_MemoGoodiesArchives(ARTICLES){titre_mot=#ENV{mc,Goodies}}{doublons goodies}{archive} />
+			<BOUCLE_MemoGoodiesRubriqueArchives(RUBRIQUES){titre_mot=#ENV{mc,Goodies}}><BOUCLE_Articles_ExclusArchives(ARTICLES){id_rubrique}{doublons goodies}{archive}{lang} /></BOUCLE_MemoGoodiesRubriqueArchives>
+			<B_Goodies>
+			<div id="info" class="outerbox hauteur2">
+				<div class="box simple">
+				<b class="top">
+					<b class="tl"></b>
+					<b class="tr"></b>
+				</b>
+				<div class="inner">
+					<div class="hd bam h1"><BOUCLE_TitreGoodies(MOTS){type=_ModePortail}{titre=#ENV{mc,Goodies}}{0,1}>[(#TEXTE|ptobr)]</BOUCLE_TitreGoodies><:soyezcreateurs:plus_loin:><//B_TitreGoodies> (<:soyezcreateurs:archives:>)</div>
+					<div class="bd">
+						<dl>
+						<BOUCLE_Goodies(ARTICLES){!doublons goodies}{!par date}{pagination 6}>
+							<dt[(#COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">#TITRE</a></dt>
+						</BOUCLE_Goodies>
+						</dl>
+						<p class="pagination">#PAGINATION{page}</p>
+					</div>
+					<div class="hd bam archives"><a href="[(#SELF|parametre_url{#ENV{mc,Goodies},''}|parametre_url{debut_Goodies,''})]"><:spip:retour:></a></div>
+				</div>
+				<b class="bottom">
+					<b class="bl"></b>
+					<b class="br"></b>
+				</b>
+				</div>
+			</div>
+			</B_Goodies>
+#FILTRE{mini_html}

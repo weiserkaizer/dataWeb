@@ -1,0 +1,4 @@
+a:2:{s:9:"nom_cache";s:38:"95f9aac7adeb1c0e78c6e35ec6592d37.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_b61633ce6b9e199cba76da4ae8977bb5";s:6:"source";s:86:"plugins/auto/soyezcreateurs/v4.3.16/noisettes/sommaire_modeportailcognac_sc_edito.html";s:11:"process_ins";s:4:"html";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"95f9aac7adeb1c0e78c6e35ec6592d37.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:6:"
+
+
+";s:5:"notes";s:0:"";s:8:"contexte";a:8:{s:11:"id_noisette";s:3:"707";s:12:"id_conteneur";s:33:"contenu/corps_sommaire_modecognac";s:13:"rang_noisette";s:1:"3";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2019-01-06 23:34:37";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 23:34:37";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1546817633;s:2:"gz";b:0;s:3:"sig";i:1350395625;}}

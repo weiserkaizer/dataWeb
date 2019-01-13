@@ -1,0 +1,2 @@
+[(#INCLURE{fond=json/gis_articles_branche,env})#SET{articlesvus,1}][[(#GET{articlesvus}|?{','})]
+		(#INCLURE{fond=json/gis_sites_branche,env})]

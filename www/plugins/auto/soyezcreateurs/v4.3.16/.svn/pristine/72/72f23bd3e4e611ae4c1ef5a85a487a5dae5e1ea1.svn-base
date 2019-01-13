@@ -1,0 +1,27 @@
+[(#SET{titretop,<:soyezcreateurs:newsletter_recevoir|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{template=inscription_infolettre}
+	{title=<:soyezcreateurs:newsletter_recevoir|texte_script:>}
+	{titretop=#GET{titretop}}
+	{type=inscription_infolettre}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:newsletter_recevoir:></h1></div>
+</div>
+]
+	<div id="letexte">
+<INCLURE{fond=noisettes/inscription_infolettre} />
+	</div>
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{template=inscription_infolettre}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}

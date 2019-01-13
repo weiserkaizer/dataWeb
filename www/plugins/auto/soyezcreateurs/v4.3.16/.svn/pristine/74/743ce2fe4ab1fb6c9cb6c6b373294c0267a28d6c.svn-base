@@ -1,0 +1,46 @@
+<div class="texte">
+<main id="main" role="main">
+	<div id="letexteblog"> 
+		<div class="modeblog_art">
+		
+<BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons}{doublons exclus} /></BOUCLE_Secteurs_Exclus>
+<BOUCLE_Rubriques_Exclues(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}><BOUCLE_Articles_Exclus(ARTICLES){id_rubrique}{doublons}{lang} /></BOUCLE_Rubriques_Exclues>
+<BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons}{doublons exclus} />
+<BOUCLE_articles_AlaUneExclus(ARTICLES){lang}{0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{titre_mot=AlaUne}{doublons} />
+<BOUCLE_articles_recents(ARTICLES){lang}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,3})}{doublons}>
+	
+	<dl class="odd">
+	<dt><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></dt>
+	<dt class="quiquand">[<span><:soyezcreateurs:par:> #LESAUTEURS</span> (#INCLURE{fond=noisettes/aff_datepublication,id_article})]</dt>
+	[<dd onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:>[ (#TITRE|attribut_html)]" class="cursor-pointer">
+	[<img class="logo_modeblog" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogodernartblog,150},#CONFIG{soyezcreateurs_layout/hauteurlogodernartblog,200}}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogodernartblog,150},#CONFIG{soyezcreateurs_layout/hauteurlogodernartblog,200}}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogodernartblog,150},#CONFIG{soyezcreateurs_layout/hauteurlogodernartblog,200}}|hauteur)]" alt="" />]	
+	<div>(#CHAPO|sinon{#DESCRIPTIF}|sinon{[<p>(#TEXTE|couper{300})</p>]}|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720}|div{2},0})</div>
+	</dd>]
+	<dd class="clearing"></dd>
+	</dl>
+	 	
+</BOUCLE_articles_recents>
+<BOUCLE_Secteurs_Exclus2(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus2(ARTICLES){id_secteur}{doublons} /></BOUCLE_Secteurs_Exclus2>
+<BOUCLE_Rubriques_Exclues2(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}><BOUCLE_Articles_Exclus2(ARTICLES){id_rubrique}{doublons}{lang} /></BOUCLE_Rubriques_Exclues2>
+<BOUCLE_exclus2(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons} />
+
+		</div><!--Fin modeblog_art-->
+		<div class="blog_alaune">
+
+<BOUCLE_articles_AlaUne(ARTICLES){lang}{0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{titre_mot=AlaUne}{doublons exclus}>
+	
+	<dl [(#COMPTEUR_BOUCLE|alterner{' class="une_gauche"',''})]>
+	<dt><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></dt>
+	<dd onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:>[ (#TITRE|attribut_html)]" class="cursor-pointer">
+	[<img class="logo_modeblog" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogoalauneblog,96},#CONFIG{soyezcreateurs_layout/hauteurlogoalauneblog,96}}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogoalauneblog,96},#CONFIG{soyezcreateurs_layout/hauteurlogoalauneblog,96}}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogoalauneblog,96},#CONFIG{soyezcreateurs_layout/hauteurlogoalauneblog,96}}|hauteur)]" alt="" />]
+	</dd>
+	<dd class="clearing"></dd>
+	</dl>
+	
+</BOUCLE_articles_AlaUne>
+
+		</div><!--Fin alaune_blog-->
+	</div><!-- Fin letexteblog-->
+</main>
+</div><!-- Fin de .texte -->
+#FILTRE{mini_html}

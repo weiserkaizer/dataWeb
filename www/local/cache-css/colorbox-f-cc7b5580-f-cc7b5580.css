@@ -1,0 +1,74 @@
+/*
+    Colorbox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox {-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;}
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxWrapper {max-width:none;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto; -webkit-overflow-scrolling: touch;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width:none; -ms-interpolation-mode:bicubic;}
+.cboxIframe{width:100%; height:100%; display:block; border:0; padding:0; margin:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box; -moz-box-sizing:content-box; -webkit-box-sizing:content-box;}
+
+/* 
+    User Style:
+    Change the following styles to modify the appearance of Colorbox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:#fff; opacity: 0.9; filter: alpha(opacity = 90);}
+#colorbox{outline:0;}
+    #cboxTopLeft{width:25px; height:25px; background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAAAq1BMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8AAAAAAAAAAADR0dHt7e0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADT09MAAAAAAAAAAAAAAAAAAAAAAAAAAABMTEzHx8cAAADW1tbV1dUAAADT09PS0tL7+/vY2NgAAAAAAAAAAADo6Oj///+WQ/F2AAAAOHRSTlMAAQIEAwoHIBMOJxkALwYNm80IBQkSHhgUDwwRFiUkHAsQmRcbLCEaIhU1eimXmC2ah/GWHSojrzF2D1MAAAJMSURBVHhexJZZr9sgEEad3DjOUmHJC7axDd6z7+v//2VlcBo3Ca0KfbjnLdIczTcEA8YPZQwpvQeGHHlxn/Mvoqj94C/Wo34wGHw94T+EJZeEAOWui564LmhCkhtQj9DQcbwHjjNECCxw5IbL6z0zI8QWEJKZHrfcTwcMaMEFM7PHUR77gjiPxnZmcgkagfNmuMgxiR3FfrhIyoBTJovQjyObmA5y3xxIJQwuhEkwq9gZc86smgVJyCXhvGQTcyAns/NRMmXYml9pyqHXuYXZNBnlduYgMc9LLOiRh2WFGzpZX+p6t6vry3pCG1yVYQ59fo8mYg3BCJhFl6vTZlsU+31RbDen1ZJaLABnCNE6BZqQaFSyJj0c7y8cD2nDylFE2jZdLmgSJ5WV3u4f3FKrSmJoI5I9csHsUTjF9HCXcKB4GkaZgyBZl8vjTVizPMqU47JhvI3XJWtzjf0A09VdyoriwB+LZJ0CuWbW5CRXThNrBsk6BUYh+aKarzdyZbOeV4sc1qxVeqB4hI9yvWzlyvZy5cMQD5TeU7H98kzrQq4UNT2Xvt0p/VYJcPpnJcVBq/TflN1erux3/6VoBNMZX2ORVf9K9Q2jsy11Nr/OJ6bxISsfFzqHksbRp37Aahzj6peF+pWkfvGpX6/ql7jeU0H/QaL/7JGLxjfSU8boK2MMlDG+lDF+ti/fNgACQQAEF/Oek6Ab+q+MFtj8Jp+qUTSGRtdYGk1jaoTGrfFqWf7KkiXLoxEaU6NpLI2uMTSKRtU4NE6NXWPTuLQPTo3aahSYZIQAAAAASUVORK5CYII=") no-repeat 0 0;}
+    #cboxTopCenter{height:25px; background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAAAq1BMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8AAAAAAAAAAADR0dHt7e0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADT09MAAAAAAAAAAAAAAAAAAAAAAAAAAABMTEzHx8cAAADW1tbV1dUAAADT09PS0tL7+/vY2NgAAAAAAAAAAADo6Oj///+WQ/F2AAAAOHRSTlMAAQIEAwoHIBMOJxkALwYNm80IBQkSHhgUDwwRFiUkHAsQmRcbLCEaIhU1eimXmC2ah/GWHSojrzF2D1MAAAJMSURBVHhexJZZr9sgEEad3DjOUmHJC7axDd6z7+v//2VlcBo3Ca0KfbjnLdIczTcEA8YPZQwpvQeGHHlxn/Mvoqj94C/Wo34wGHw94T+EJZeEAOWui564LmhCkhtQj9DQcbwHjjNECCxw5IbL6z0zI8QWEJKZHrfcTwcMaMEFM7PHUR77gjiPxnZmcgkagfNmuMgxiR3FfrhIyoBTJovQjyObmA5y3xxIJQwuhEkwq9gZc86smgVJyCXhvGQTcyAns/NRMmXYml9pyqHXuYXZNBnlduYgMc9LLOiRh2WFGzpZX+p6t6vry3pCG1yVYQ59fo8mYg3BCJhFl6vTZlsU+31RbDen1ZJaLABnCNE6BZqQaFSyJj0c7y8cD2nDylFE2jZdLmgSJ5WV3u4f3FKrSmJoI5I9csHsUTjF9HCXcKB4GkaZgyBZl8vjTVizPMqU47JhvI3XJWtzjf0A09VdyoriwB+LZJ0CuWbW5CRXThNrBsk6BUYh+aKarzdyZbOeV4sc1qxVeqB4hI9yvWzlyvZy5cMQD5TeU7H98kzrQq4UNT2Xvt0p/VYJcPpnJcVBq/TflN1erux3/6VoBNMZX2ORVf9K9Q2jsy11Nr/OJ6bxISsfFzqHksbRp37Aahzj6peF+pWkfvGpX6/ql7jeU0H/QaL/7JGLxjfSU8boK2MMlDG+lDF+ti/fNgACQQAEF/Oek6Ab+q+MFtj8Jp+qUTSGRtdYGk1jaoTGrfFqWf7KkiXLoxEaU6NpLI2uMTSKRtU4NE6NXWPTuLQPTo3aahSYZIQAAAAASUVORK5CYII=") repeat-x 0 -50px;}
+    #cboxTopRight{width:25px; height:25px; background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAAAq1BMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8AAAAAAAAAAADR0dHt7e0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADT09MAAAAAAAAAAAAAAAAAAAAAAAAAAABMTEzHx8cAAADW1tbV1dUAAADT09PS0tL7+/vY2NgAAAAAAAAAAADo6Oj///+WQ/F2AAAAOHRSTlMAAQIEAwoHIBMOJxkALwYNm80IBQkSHhgUDwwRFiUkHAsQmRcbLCEaIhU1eimXmC2ah/GWHSojrzF2D1MAAAJMSURBVHhexJZZr9sgEEad3DjOUmHJC7axDd6z7+v//2VlcBo3Ca0KfbjnLdIczTcEA8YPZQwpvQeGHHlxn/Mvoqj94C/Wo34wGHw94T+EJZeEAOWui564LmhCkhtQj9DQcbwHjjNECCxw5IbL6z0zI8QWEJKZHrfcTwcMaMEFM7PHUR77gjiPxnZmcgkagfNmuMgxiR3FfrhIyoBTJovQjyObmA5y3xxIJQwuhEkwq9gZc86smgVJyCXhvGQTcyAns/NRMmXYml9pyqHXuYXZNBnlduYgMc9LLOiRh2WFGzpZX+p6t6vry3pCG1yVYQ59fo8mYg3BCJhFl6vTZlsU+31RbDen1ZJaLABnCNE6BZqQaFSyJj0c7y8cD2nDylFE2jZdLmgSJ5WV3u4f3FKrSmJoI5I9csHsUTjF9HCXcKB4GkaZgyBZl8vjTVizPMqU47JhvI3XJWtzjf0A09VdyoriwB+LZJ0CuWbW5CRXThNrBsk6BUYh+aKarzdyZbOeV4sc1qxVeqB4hI9yvWzlyvZy5cMQD5TeU7H98kzrQq4UNT2Xvt0p/VYJcPpnJcVBq/TflN1erux3/6VoBNMZX2ORVf9K9Q2jsy11Nr/OJ6bxISsfFzqHksbRp37Aahzj6peF+pWkfvGpX6/ql7jeU0H/QaL/7JGLxjfSU8boK2MMlDG+lDF+ti/fNgACQQAEF/Oek6Ab+q+MFtj8Jp+qUTSGRtdYGk1jaoTGrfFqWf7KkiXLoxEaU6NpLI2uMTSKRtU4NE6NXWPTuLQPTo3aahSYZIQAAAAASUVORK5CYII=") no-repeat -25px 0;}
+    #cboxBottomLeft{width:25px; height:25px; background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAAAq1BMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8AAAAAAAAAAADR0dHt7e0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADT09MAAAAAAAAAAAAAAAAAAAAAAAAAAABMTEzHx8cAAADW1tbV1dUAAADT09PS0tL7+/vY2NgAAAAAAAAAAADo6Oj///+WQ/F2AAAAOHRSTlMAAQIEAwoHIBMOJxkALwYNm80IBQkSHhgUDwwRFiUkHAsQmRcbLCEaIhU1eimXmC2ah/GWHSojrzF2D1MAAAJMSURBVHhexJZZr9sgEEad3DjOUmHJC7axDd6z7+v//2VlcBo3Ca0KfbjnLdIczTcEA8YPZQwpvQeGHHlxn/Mvoqj94C/Wo34wGHw94T+EJZeEAOWui564LmhCkhtQj9DQcbwHjjNECCxw5IbL6z0zI8QWEJKZHrfcTwcMaMEFM7PHUR77gjiPxnZmcgkagfNmuMgxiR3FfrhIyoBTJovQjyObmA5y3xxIJQwuhEkwq9gZc86smgVJyCXhvGQTcyAns/NRMmXYml9pyqHXuYXZNBnlduYgMc9LLOiRh2WFGzpZX+p6t6vry3pCG1yVYQ59fo8mYg3BCJhFl6vTZlsU+31RbDen1ZJaLABnCNE6BZqQaFSyJj0c7y8cD2nDylFE2jZdLmgSJ5WV3u4f3FKrSmJoI5I9csHsUTjF9HCXcKB4GkaZgyBZl8vjTVizPMqU47JhvI3XJWtzjf0A09VdyoriwB+LZJ0CuWbW5CRXThNrBsk6BUYh+aKarzdyZbOeV4sc1qxVeqB4hI9yvWzlyvZy5cMQD5TeU7H98kzrQq4UNT2Xvt0p/VYJcPpnJcVBq/TflN1erux3/6VoBNMZX2ORVf9K9Q2jsy11Nr/OJ6bxISsfFzqHksbRp37Aahzj6peF+pWkfvGpX6/ql7jeU0H/QaL/7JGLxjfSU8boK2MMlDG+lDF+ti/fNgACQQAEF/Oek6Ab+q+MFtj8Jp+qUTSGRtdYGk1jaoTGrfFqWf7KkiXLoxEaU6NpLI2uMTSKRtU4NE6NXWPTuLQPTo3aahSYZIQAAAAASUVORK5CYII=") no-repeat 0 -25px;}
+    #cboxBottomCenter{height:25px; background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAAAq1BMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8AAAAAAAAAAADR0dHt7e0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADT09MAAAAAAAAAAAAAAAAAAAAAAAAAAABMTEzHx8cAAADW1tbV1dUAAADT09PS0tL7+/vY2NgAAAAAAAAAAADo6Oj///+WQ/F2AAAAOHRSTlMAAQIEAwoHIBMOJxkALwYNm80IBQkSHhgUDwwRFiUkHAsQmRcbLCEaIhU1eimXmC2ah/GWHSojrzF2D1MAAAJMSURBVHhexJZZr9sgEEad3DjOUmHJC7axDd6z7+v//2VlcBo3Ca0KfbjnLdIczTcEA8YPZQwpvQeGHHlxn/Mvoqj94C/Wo34wGHw94T+EJZeEAOWui564LmhCkhtQj9DQcbwHjjNECCxw5IbL6z0zI8QWEJKZHrfcTwcMaMEFM7PHUR77gjiPxnZmcgkagfNmuMgxiR3FfrhIyoBTJovQjyObmA5y3xxIJQwuhEkwq9gZc86smgVJyCXhvGQTcyAns/NRMmXYml9pyqHXuYXZNBnlduYgMc9LLOiRh2WFGzpZX+p6t6vry3pCG1yVYQ59fo8mYg3BCJhFl6vTZlsU+31RbDen1ZJaLABnCNE6BZqQaFSyJj0c7y8cD2nDylFE2jZdLmgSJ5WV3u4f3FKrSmJoI5I9csHsUTjF9HCXcKB4GkaZgyBZl8vjTVizPMqU47JhvI3XJWtzjf0A09VdyoriwB+LZJ0CuWbW5CRXThNrBsk6BUYh+aKarzdyZbOeV4sc1qxVeqB4hI9yvWzlyvZy5cMQD5TeU7H98kzrQq4UNT2Xvt0p/VYJcPpnJcVBq/TflN1erux3/6VoBNMZX2ORVf9K9Q2jsy11Nr/OJ6bxISsfFzqHksbRp37Aahzj6peF+pWkfvGpX6/ql7jeU0H/QaL/7JGLxjfSU8boK2MMlDG+lDF+ti/fNgACQQAEF/Oek6Ab+q+MFtj8Jp+qUTSGRtdYGk1jaoTGrfFqWf7KkiXLoxEaU6NpLI2uMTSKRtU4NE6NXWPTuLQPTo3aahSYZIQAAAAASUVORK5CYII=") repeat-x 0 -75px;}
+    #cboxBottomRight{width:25px; height:25px; background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkCAMAAADzNpNpAAAAq1BMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8AAAAAAAAAAADR0dHt7e0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADT09MAAAAAAAAAAAAAAAAAAAAAAAAAAABMTEzHx8cAAADW1tbV1dUAAADT09PS0tL7+/vY2NgAAAAAAAAAAADo6Oj///+WQ/F2AAAAOHRSTlMAAQIEAwoHIBMOJxkALwYNm80IBQkSHhgUDwwRFiUkHAsQmRcbLCEaIhU1eimXmC2ah/GWHSojrzF2D1MAAAJMSURBVHhexJZZr9sgEEad3DjOUmHJC7axDd6z7+v//2VlcBo3Ca0KfbjnLdIczTcEA8YPZQwpvQeGHHlxn/Mvoqj94C/Wo34wGHw94T+EJZeEAOWui564LmhCkhtQj9DQcbwHjjNECCxw5IbL6z0zI8QWEJKZHrfcTwcMaMEFM7PHUR77gjiPxnZmcgkagfNmuMgxiR3FfrhIyoBTJovQjyObmA5y3xxIJQwuhEkwq9gZc86smgVJyCXhvGQTcyAns/NRMmXYml9pyqHXuYXZNBnlduYgMc9LLOiRh2WFGzpZX+p6t6vry3pCG1yVYQ59fo8mYg3BCJhFl6vTZlsU+31RbDen1ZJaLABnCNE6BZqQaFSyJj0c7y8cD2nDylFE2jZdLmgSJ5WV3u4f3FKrSmJoI5I9csHsUTjF9HCXcKB4GkaZgyBZl8vjTVizPMqU47JhvI3XJWtzjf0A09VdyoriwB+LZJ0CuWbW5CRXThNrBsk6BUYh+aKarzdyZbOeV4sc1qxVeqB4hI9yvWzlyvZy5cMQD5TeU7H98kzrQq4UNT2Xvt0p/VYJcPpnJcVBq/TflN1erux3/6VoBNMZX2ORVf9K9Q2jsy11Nr/OJ6bxISsfFzqHksbRp37Aahzj6peF+pWkfvGpX6/ql7jeU0H/QaL/7JGLxjfSU8boK2MMlDG+lDF+ti/fNgACQQAEF/Oek6Ab+q+MFtj8Jp+qUTSGRtdYGk1jaoTGrfFqWf7KkiXLoxEaU6NpLI2uMTSKRtU4NE6NXWPTuLQPTo3aahSYZIQAAAAASUVORK5CYII=") no-repeat -25px -25px;}
+    #cboxMiddleLeft{width:25px; background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAECAYAAADMHGwBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFlJREFUeNpi+P//PwMQMAIxExAzAzELELMDMRcQ8wGxMBBLArECEKsDsf7Fixdn/6cRePv27VmQHVC7FKB2C0PdwgV1GwvUrSA3M4L8AGIMCzDqkcEGAAIMAOqFZeFEvOpiAAAAAElFTkSuQmCC") repeat-y 0 0;}
+    #cboxMiddleRight{width:25px; background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAECAYAAADMHGwBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFlJREFUeNpi+P//PwMQMAIxExAzAzELELMDMRcQ8wGxMBBLArECEKsDsf7Fixdn/6cRePv27VmQHVC7FKB2C0PdwgV1GwvUrSA3M4L8AGIMCzDqkcEGAAIMAOqFZeFEvOpiAAAAAElFTkSuQmCC") repeat-y -25px 0;}
+    #cboxContent{background:#fff; overflow:hidden;}
+        .cboxIframe{background:#fff;}
+        #cboxError{padding:50px; border:1px solid #ccc;}
+        #cboxLoadedContent{margin-bottom:20px;}
+        #cboxTitle{position:absolute; bottom:0px; left:0; text-align:center; width:100%; color:#999;}
+        #cboxCurrent{position:absolute; bottom:0px; left:150px; color:#999;}
+        #cboxLoadingOverlay{background:#fff url('//localhost/plugins-dist/mediabox/prive/colorbox/white-shadow/images/loading.gif') no-repeat 5px 5px;}
+
+        /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
+        #cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {border:0; padding:0; margin:0; overflow:visible; text-indent:-9999px; width:20px; height:20px; position:absolute; top:-3px; background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAAyCAMAAABGUCSuAAAAS1BMVEW/v7+fn5/v7+////+Hh4cPDw8/Pz9/f3/f39+AgIAAAADPz8+Xl5e3t7dvb2+vr6/n5+f39/cvLy+np6ePj4/Hx8dfX1/X19dPT08As0YMAAABqklEQVR4Xu3V2WrsMAwAUC3enX2W9v+/9HrChNKxzERQeh9qPSRgER0UIgX4f0bXu36TgduqA8IiU4QIfEMkSV+HKANxEPh1MA9kMXUSYhb1ECMyxhgEfTGxpccC1UQ53R8CITUq9VzwiIiX78iMiCVRdbO7Jj8ui6DHy6rRIR7x0vcRo8THGj9qDXReH2NLf8cvLOvR0Gkdfl4fzuuc3+lZ+eZx5bP6UWwEgJdKAONuSLiB5lc3KyeOhvbEDaScuMxKnde5oYvjs5jnthF6N4G1envTypuL6LhVCrEYBPDBHwDU/3Fd/+3oete73vWrDFxJWTLLVHDO89W5IOm0JRlIm8DTZh9ItnXSJxR1SMmxSwkEPdvU0lOBaqKc7g95ITUpdSx4cs59fkfu5agkqm521+LjkgU9fZJG9+mIl76PmCQ+1fhRawvn9Sm19Hd8ZllPNpzW/c/r23md8Z2OyjfviM/qR7HJe/9SyftpNyTc+uZXd1dOXNjaE7cF5cQhK3Wme0MXxyfb57YRerfAWr29aVE8DeG4VUpgMYL3M8/eh7/4j+t617v+DxheWmCszl0eAAAAAElFTkSuQmCC") no-repeat 0 0;}
+
+        /* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
+        #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {outline:0;}
+
+        #cboxPrevious{background-position:0px 0px; right:44px;}
+        #cboxPrevious:hover{background-position:0px -25px;}
+        #cboxNext{background-position:-25px 0px; right:22px;}
+        #cboxNext:hover{background-position:-25px -25px;}
+        #cboxClose{background-position:-50px 0px; right:0;}
+        #cboxClose:hover{background-position:-50px -25px;}
+        .cboxSlideshow_on #cboxPrevious, .cboxSlideshow_off #cboxPrevious{right:66px;}
+        .cboxSlideshow_on #cboxSlideshow{background-position:-75px -25px; right:44px;}
+        .cboxSlideshow_on #cboxSlideshow:hover{background-position:-100px -25px;}
+        .cboxSlideshow_off #cboxSlideshow{background-position:-100px 0px; right:44px;}
+        .cboxSlideshow_off #cboxSlideshow:hover{background-position:-75px -25px;}
+
+/*
+  The following fixes a problem where IE7 and IE8 replace a PNG's alpha transparency with a black fill
+  when an alpha filter (opacity change) is set on the element or ancestor element.  This style is not applied to or needed in IE9.
+  See: http://jacklmoore.com/notes/ie-transparency-problems/
+*/
+.cboxIE #cboxTopLeft,
+.cboxIE #cboxTopCenter,
+.cboxIE #cboxTopRight,
+.cboxIE #cboxBottomLeft,
+.cboxIE #cboxBottomCenter,
+.cboxIE #cboxBottomRight,
+.cboxIE #cboxMiddleLeft,
+.cboxIE #cboxMiddleRight {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
+}

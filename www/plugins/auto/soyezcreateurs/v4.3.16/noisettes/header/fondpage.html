@@ -1,0 +1,68 @@
+<?php
+	$fonds= array();
+?>
+<BOUCLE_FondPageRubrique(HIERARCHIE){tout}{id_rubrique}{type_mot=_FondPage}{inverse}{0,1}>
+<BOUCLE_LogoPage(MOTS){id_rubrique}{type=_FondPage}>
+<?php
+$fonds[] = array(
+	'fond' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'couleur' => '[#(#LOGO_MOT_NORMAL|image_reduire{30,0}|couleur_extraire{15,5})]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
+</BOUCLE_LogoPage>
+</BOUCLE_FondPageRubrique>
+<BOUCLE_FondPageTemplate(MOTS){type=_FondPage}{descriptif!=''}{descriptif=#ENV{template}}>
+<?php
+$fonds[] = array(
+	'fond' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'couleur' => '[#(#LOGO_MOT_NORMAL|image_reduire{30,0}|couleur_extraire{15,5})]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
+</BOUCLE_FondPageTemplate>
+#SET{ExclureBannieresRubriques,#ARRAY}<BOUCLE_ExclureBannieresRubriques(RUBRIQUES){type_mot=_FondPage}{fusion id_mot}>[(#ID_MOT|unique|oui)[(#SET{ExclureBannieresRubriques,#GET{ExclureBannieresRubriques}|push{#ID_MOT}})]]</BOUCLE_ExclureBannieresRubriques>
+<BOUCLE_FondPage(MOTS){type=_FondPage}{descriptif=''}{id_mot !IN #GET{ExclureBannieresRubriques}}>
+<?php
+$fonds[] = array(
+	'fond' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'couleur' => '[#(#LOGO_MOT_NORMAL|image_reduire{30,0}|couleur_extraire{15,5})]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
+</BOUCLE_FondPage><//B_FondPageTemplate><//B_FondPageRubrique>
+<?php
+if (count($fonds) > 0) {
+$fond = $fonds[mt_rand(0, count($fonds) - 1)];;
+if ($fond['fond']!='') {
+?><style type="text/css">
+/*<!\[CDATA\[*/
+@media only screen and (min-width: #CONFIG{soyezcreateurs_layout/largeurconteneur,960}px) {
+html {
+	background-color:<?php echo($fond['couleur']); ?>;
+	background-image:url("<?php echo($fond['fond']); ?>");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center; 
+    -webkit-background-size: cover; /* pour Chrome et Safari */
+    -moz-background-size: cover; /* pour Firefox */
+    -o-background-size: cover; /* pour Opera */
+    background-size: cover; /* version standardisée */
+}
+<?php 
+if ($fond['hachures']!='') { ?>/* Combinaison de http://www.dreevoo.com/content.php?id=2270 et https://gist.github.com/omurphy27/5243251 avec http://www.patternify.com/ */
+html:after { background: url("<?php echo($fond['hachures']); ?>") center repeat;
+	content: "";
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	opacity: 0.5;
+	z-index: -2;
+}<?php } ?>
+}
+/*\]\]>*/
+</style><?php }
+} ?>
+#FILTRE{mini_html}

@@ -1,0 +1,18 @@
+<BOUCLE_Contact(CONTACTS){id_contact}>
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:annuaire:>&nbsp;: [<span class="#EDIT{prenom}">(#CIVILITE)</span> ][<span class="#EDIT{prenom}">(#PRENOM)</span> ][<span class="#EDIT{nom}">(#NOM)</span>]</h1></div>
+</div>
+
+<div id="letexte">
+</BOUCLE_Contact>
+<BOUCLE_Organisation(ORGANISATIONS){id_organisation}>
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:annuaire:>&nbsp;: #NOM</h1></div>
+</div>
+</BOUCLE_Organisation>
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:annuaire:></h1></div>
+</div>
+<//B_Organisation>
+<//B_Contact>
+#FILTRE{mini_html}

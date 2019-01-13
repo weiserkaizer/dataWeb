@@ -1,0 +1,26 @@
+<BOUCLE_noisettes(NOISETTES)
+	{plugin=noizetier}
+	{id_conteneur=#ENV{id_conteneur}}
+	{par rang_noisette}>
+	#SET{conteneur, #ARRAY{type_noisette, #TYPE_NOISETTE, id_noisette, #ID_NOISETTE}}
+	<B_noisettes_enfants>
+		#SET{balise, #PARAMETRES|unserialize|table_valeur{conteneur_balise}|sinon{div}}
+		[<(#GET{balise}) class="noisette noisette_#TYPE_NOISETTE[ (#PARAMETRES|unserialize|table_valeur{conteneur_css})]">]
+	<BOUCLE_noisettes_enfants(NOISETTES)
+		{plugin=noizetier}
+		{id_conteneur=#CONTENEUR_IDENTIFIER{noizetier, #GET{conteneur}, #ENV{stockage}}}
+		{par rang_noisette}>
+		#SET{conteneur, #ARRAY{type_noisette, #TYPE_NOISETTE, id_noisette, #ID_NOISETTE}}
+		<BOUCLE_noisettes_descendants(BOUCLE_noisettes_enfants)></BOUCLE_noisettes_descendants>
+		#SET{avec_div, #CHAMP_SQL{balise}|=={defaut}|?{#CONFIG{noizetier/balise_noisette}, #CHAMP_SQL{balise}}}
+		[[(#GET{avec_div}|oui)<div class="noisette noisette_#TYPE_NOISETTE[ (#CHAMP_SQL{css})]">]
+			(#NOISETTE_COMPILER{#ID_NOISETTE})
+		[(#GET{avec_div}|oui)</div>]]
+	</BOUCLE_noisettes_enfants>
+		[</(#GET{balise})>]
+	</B_noisettes_enfants>
+	#SET{avec_div, #CHAMP_SQL{balise}|=={defaut}|?{#CONFIG{noizetier/balise_noisette}, #CHAMP_SQL{balise}}}
+	[[(#GET{avec_div}|oui)<div class="noisette noisette_#TYPE_NOISETTE[ (#CHAMP_SQL{css})]">]
+		(#NOISETTE_COMPILER{#ID_NOISETTE})
+	[(#GET{avec_div}|oui)</div>]]
+</BOUCLE_noisettes>

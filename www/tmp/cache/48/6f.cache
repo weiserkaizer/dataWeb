@@ -1,0 +1,23 @@
+a:2:{s:9:"nom_cache";s:38:"486fc1952cd299c0131a44a86fe44a63.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_72b406104ed41a028a13d4e6cd31dbf4";s:6:"source";s:97:"plugins/auto/soyezcreateurs/v4.3.16/noisettes/sommaire/sommaire_modeportailcognac_quoideneuf.html";s:11:"process_ins";s:4:"html";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"486fc1952cd299c0131a44a86fe44a63.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:414:"			
+
+
+
+
+
+
+
+
+
+
+
+<div class="grid-item">
+<div class="content-actus quoideneuf crayon article-titre-33 ">
+<a href="spip.php?article33">
+<img src="local/cache-gd2/b5/4f983afc37ac7528b4a41ee76ef858.jpg?1546817681" alt="" width="308" height="340" />
+<div class="h2"><span class="titre-actus">Le zoom sur</span>
+<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
+</a>
+</div>
+</div>
+
+";s:5:"notes";s:0:"";s:8:"contexte";a:5:{s:4:"lang";s:2:"fr";s:4:"date";s:19:"2019-01-06 23:34:38";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 23:34:38";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1546817633;s:2:"gz";b:0;s:3:"sig";i:1204956393;}}

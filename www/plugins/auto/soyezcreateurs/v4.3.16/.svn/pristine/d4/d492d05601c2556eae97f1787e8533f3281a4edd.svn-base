@@ -1,0 +1,10 @@
+<BOUCLE_Tags(MOTS){id_mot IN #ENV{mots}}{par titre}>[(#SET{tags,[(#GET{tags}|concat{[[(#COMPTEUR_BOUCLE|>{1}|?{+})](#TITRE|ucfirst)]})]})]</BOUCLE_Tags>
+[(#SET{title,<:resultats_recherche|texte_script:>[ : (#GET{tags}|attribut_html|texte_script)]})]
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<li>#GET{tags}</li>
+		</ul>
+	</nav>
+#FILTRE{mini_html}

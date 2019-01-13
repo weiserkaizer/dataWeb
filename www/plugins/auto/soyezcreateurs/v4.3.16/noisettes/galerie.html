@@ -1,0 +1,14 @@
+#SET{c_container,(#CONFIG{soyezcreateurs_couleurs/container,#02265a})}
+	#SET{c_container_bk,(#CONFIG{soyezcreateurs_couleurs/container_bk,#f6f6f6})}
+[(#REM) On peut arriver avec id_article ou id_rubrique. On les réaffecte sur objet, id_objet. ]
+[(#ENV{id_article}|oui)[(#VAL{article}|setenv{objet})][(#ENV{id_article}|setenv{id_objet})]]
+[(#ENV{id_rubrique}|oui)[(#VAL{rubrique}|setenv{objet})][(#ENV{id_rubrique}|setenv{id_objet})]]
+<B_imgs>
+<div id="galerie" class="surlignable">
+	<div id="documents_portfolio">
+	<BOUCLE_imgs(DOCUMENTS){objet?} {id_objet?}{mode=document}{par rang_lien, num titre, titre}{!par date}{extension IN png,jpg,gif}{vu=non}>[(#SET{grandeversion,[(#FICHIER|copie_locale|image_reduire{1600,0}|image_masque{#CHEMIN{images/copyright_masque.png}})]})][(#SET{lavignette,[(#FICHIER|copie_locale|image_focus{110,110})]})]<a class="mediabox" href="[(#GET{grandeversion}|extraire_attribut{src})]" type="#MIME_TYPE" title="[(#TITRE|attribut_html|sinon{<:info_document:>})]" rel="gal"><img src="[(#GET{lavignette}|extraire_attribut{src})]"  width="[(#GET{lavignette}|largeur)]" height="[(#GET{lavignette}|hauteur)]" alt="[(#TITRE|attribut_html|sinon{<:info_document:>})][ - (#DESCRIPTIF|attribut_html)]" /></a>
+	</BOUCLE_imgs>
+	</div>
+</div>
+</B_imgs>
+#FILTRE{mini_html}

@@ -1,0 +1,2 @@
+<BOUCLE_AuMoinsUnSite(SITES){0,1}{!titre_mot=ReseauxSociaux}><li class="menu_lien_sites">[(#ENV{template}|=={Sites}|?{<strong>})]<a href="#URL_PAGE{site}" title="<:sites:icone_voir_sites_references|attribut_html:>"><:sites_web:></a>[(#ENV{template}|=={Sites}|?{</strong>})]</li></BOUCLE_AuMoinsUnSite>
+#FILTRE{mini_html}

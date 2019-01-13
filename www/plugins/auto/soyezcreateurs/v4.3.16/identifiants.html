@@ -1,0 +1,26 @@
+#CACHE{0}
+[(#SET{titretop,<:pass_vousinscrire|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{template=Plan}
+	{title=<:pass_vousinscrire|texte_script:>}
+	{titretop=#GET{titretop}}
+	{type=identifiants}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+	<div class="cartouche">
+		<div class="titrepage"><h1><:pass_vousinscrire:></h1></div>
+	</div>
+]
+	#FORMULAIRE_INSCRIPTION{#ENV{mode},#ENV{focus},#ENV{id_rubrique}}
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{template=Plan}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}

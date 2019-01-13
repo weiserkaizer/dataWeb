@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Thiviers Kebab</title>
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="css/pricing.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- CSS Slick -->
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
+
+
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.flexslider.min.js"></script>
+    <!--<script type="text/javascript">
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlsContainer: ".flexslider-container"
+            });
+        });
+    </script>-->
+
+    <script>
+        function initMap() {
+            var tk = {
+                lat: 45.415665,
+                lng: 0.921259
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'), {
+                zoom: 17,
+                center: tk
+            });
+            var marker = new google.maps.Marker({
+                position: tk,
+                map: map
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhfQtzbOrHavlDE9hbS601xtzHIP5LYKk&callback=initMap">
+    </script>
+    <style>
+        .slider {
+            width: 100%;
+        }
+
+        .slick-slide img {
+            width: 100%;
+            height: 55vw;
+            vertical-align: middle;
+            overflow: hidden;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        #fade {
+            height: 55vw;
+        }
+
+        .slick-slide {
+            transition: all ease-in-out .3s;
+            opacity: .2;
+        }
+
+        .slick-slide-content {
+            position: absolute;
+            width: 80vw;
+            margin-top: 15vw;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 2vw;
+        }
+
+        .slick-texte-content {
+            width: 100%;
+        }
+
+        .slick-slide-texte {
+            font-family: 'Raleway', 'Open-Sans', sans-serif;
+            font-size: 5em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        #section-contact{
+            font-size: 20px;
+        }
+        
+        @media (max-width: 740px) {
+            .slick-slide-texte {
+                font-size: 4em;
+            }
+
+            .slick-slide-content {
+                position: absolute;
+                width: 100vw;
+                height: 50%;
+                vertical-align: middle;
+                margin-top: 20vw;
+                background-color: rgba(255, 255, 255, 0.5);
+                padding: 2vw;
+            }
+            .img-responsive {
+                width: 80%;
+            }
+            #buttonnav{
+                margin-bottom: -10px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .slick-slide-texte {
+                font-size: 2em;
+            }
+            .slick-slide-content {
+                position: absolute;
+                width: 100vw;
+                height: 100%;
+                vertical-align: middle;
+                margin-top: 20vw;
+                background-color: rgba(255, 255, 255, 0.5);
+                padding: 2vw;
+            }
+            .img-responsive {
+                width: 60%;
+            }
+            #sectionmenu{
+                width: 100vw;
+                overflow: hidden;
+            }
+        }
+         @media (max-width: 200px) {
+           #sectionmenu{
+                width: 95vw;
+                overflow: hidden;
+            }  
+        }
+    </style>
+
+</head>
+
+<body data-spy="scroll">
+
+
+    <!--== 4. Navigation ==-->
+    <nav id="template-navbar" class="navbar navbar-default custom-navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://www.thiviers-kebab.fr/">
+                    <img id="logo" src="images/Logo_main.png" class="logo img-responsive">
+                </a>
+                <button type="button" id="buttonnav" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#Food-fair-toggle" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="Food-fair-toggle">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#pricing">Menu</a></li>
+                    <li><a href="#horaire">Horaires</a></li>
+                    <li><a href="#contact">Infos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!--== 5. Ancien Header 
+    <section id="header-slider" class="owl-carousel fadeOut owl-theme">
+        <div class="item">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="header-title">THIVIERS KEBAB</h1>
+                </div>
+        </div>
+        <div class="item">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="header-title">Sur place ou à emporter</h1>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="header-title">Un large choix de plats</h1>
+                    <p class="header-sub-title">Sandwichs ou Assiettes</p>
+                </div>
+            </div>
+        </div>
+    </section>==-->
+
+
+    <!-- Slider FadeOut -->
+    <section id="fade" class="slider-fadeOut slider">
+        <div class="slick-slide">
+            <div class="slick-slide-content">
+                <div class="slick-texte-content">
+                    <h1 class="slick-slide-texte">Sur place ou à emporter</h1>
+                </div>
+            </div>
+            <img src="images/kebab-carousel-2.jpg">
+        </div>
+        <div class="slick-slide">
+            <div class="slick-slide-content">
+                <div class="slick-texte-content">
+                    <h1 class="slick-slide-texte">THIVIERS KEBAB</h1>
+                </div>
+            </div>
+            <img src="images/kebab-carousel-1.jpg">
+        </div>
+        <div class="slick-slide">
+            <div class="slick-slide-content">
+                <div class="slick-texte-content">
+                    <h1 class="slick-slide-texte">Un large choix de plats</h1>
+                </div>
+            </div>
+            <img src="images/kebab-carousel-3.jpg">
+        </div>
+    </section>
+
+    <!--== 6. About us ==-->
+    <!--
+        <section id="about" class="about">
+            <img src="images/icons/about_color.png" class="img-responsive section-icon hidden-sm hidden-xs">
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <div class="row dis-table">
+                        <div class="hidden-xs col-sm-6 section-bg about-bg dis-table-cell">
+
+                        </div>
+                        <div class="col-xs-12 col-sm-6 dis-table-cell">
+                            <div class="section-content">
+                                <h2 class="section-content-title">About us</h2>
+                                <p class="section-content-para">
+                                    Astronomy compels the soul to look upward, and leads us from this world to another.  Curious that we spend more time congratulating people who have succeeded than encouraging people who have not. As we got further and further away, it [the Earth] diminished in size.
+                                </p>
+                                <p class="section-content-para">
+                                    beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.  Where ignorance lurks, so too do the frontiers of discovery and imagination.
+                                </p>
+                            </div> <!- /.section-content ->
+                        </div>
+                    </div> <!-- /.row ->
+                </div> <!-- /.container-fluid ->
+            </div> <!-- /.wrapper ->
+        </section> <!-- /#about -->
+    <div id="sectionmenu">
+        <section id="pricing" class="pricing">
+            <div id="w">
+                <div class="pricing-filter">
+                    <div class="pricing-filter-wrapper">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="section-header">
+                                        <h2 class="pricing-title">Menu</h2>
+                                        <ul id="filter-list" class="clearfix">
+                                            <li class="filter active" data-filter="all">Tous les plats</li>
+                                            <li class="filter" data-filter=".breakfast">Sandwichs</li>
+                                            <li class="filter" data-filter=".special">Assiettes</li>
+                                            <li class="filter" data-filter=".desert">Assiettes Froides</li>
+                                            <li class="filter" data-filter=".dinner">Frites</li>
+                                        </ul>
+                                        <!-- @end #filter-list -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <ul id="menu-pricing" class="menu-price">
+                                <li class="item breakfast">
+
+                                    <a>
+                                        <img src="images/plats/02-americain.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Américain</h3>
+                                                Steak haché
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Américain</h2>
+                                </li>
+                                <li class="item special">
+
+                                    <a>
+                                        <img src="images/plats/15-assiette-americain.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Américain</h3>
+                                                Steak hachée
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Assiette Américain</h2>
+                                </li>
+                                <li class="item breakfast">
+
+                                    <a>
+                                        <img src="images/plats/05-brochette.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Brochette</h3>
+                                                Steak hachée
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Brochette</h2>
+                                </li>
+                                <li class="item special">
+
+                                    <a>
+                                        <img src="images/plats/18-assiette-brochette.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Brochette</h3>
+                                                Steak haché
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Assiette Brochette</h2>
+                                </li>
+                                <li class="item special">
+
+                                    <a>
+                                        <img src="images/plats/21-assiette-cotelette.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Cotelette</h3>
+                                                Agneau, garniture au choix
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Assiette Cotelette</h2>
+                                </li>
+                                <li class="item breakfast">
+
+                                    <a>
+                                        <img src="images/plats/12-cheeseburger.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Cheeseburger</h3>
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Cheeseburger</h2>
+                                </li>
+                                <li class="item breakfast">
+
+                                    <a>
+                                        <img src="images/plats/13-maxi-cheeseburger.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Maxi Cheeseburger</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <h2 class="white">Maxi Cheeseburger</h2>
+                                </li>
+                                <li class="item desert">
+
+                                    <a>
+                                        <img src="images/plats/26-assiette-froide-feta.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Fêta</h3>
+                                                Fromage de vache
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Assiette Fêta</h2>
+                                </li>
+                                <li class="item breakfast">
+
+                                    <a>
+                                        <img src="images/plats/11-feta.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Feta</h3>
+                                                Fromage de vache
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Fêta</h2>
+                                </li>
+                                <li class="item dinner">
+
+                                    <a>
+                                        <img src="images/plats/23-petite-frites.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Petite portion de Frites</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Frites</h2>
+                                </li>
+                                <li class="item dinner">
+
+                                    <a>
+                                        <img src="images/plats/22-grande-frites.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Grande portion de Frites</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Frites</h2>
+                                </li>
+                                <li class="item breakfast">
+
+                                    <a>
+                                        <img src="images/plats/07-galette.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Galette</h3>
+                                                Au choix : kebab, americain, kofte, escalope, brocchette
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Galette</h2>
+                                </li>
+                                <li class="item special">
+
+                                    <a>
+                                        <img src="images/plats/14-assiette-kebab.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Kebab</h3>
+                                                Veau et dinde
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Assiette Kebab</h2>
+                                </li>
+                                <li class="item breakfast">
+
+                                    <a>
+                                        <img src="images/plats/01-kebab-ou-maxi.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc text-center">
+                                            <span>
+                                                <h3>Kebab</h3>
+                                                Veau et dinde <br /> (Royal 1€ de plus)
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Kebab</h2>
+                                </li>
+                                <li class="item special">
+
+                                    <a>
+                                        <img src="images/plats/17-assiette-kofte.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Kofte</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Assiette Kofte</h2>
+                                </li>
+                                <li class="item breakfast">
+
+                                    <a>
+                                        <img src="images/plats/03-kofte.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Kofte</h3>
+                                                Viande de veau hachée avec épices
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Kofte</h2>
+                                </li>
+                                <li class="item special">
+
+                                    <a>
+                                        <img src="images/plats/16-assiette-merguez.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Merguez</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Assiette Merguez</h2>
+                                </li>
+                                <li class="item breakfast">
+
+                                    <a>
+                                        <img src="images/plats/04-merguez.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Merguez</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Merguez</h2>
+                                </li>
+                                <li class="item special">
+
+                                    <a>
+                                        <img src="images/plats/20-assiette-mixte.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Mixte</h3>
+                                                Différentes viandes au choix
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Assiette Mixte</h2>
+                                </li>
+                                <li class="item breakfast">
+                                    <a>
+                                        <img src="images/plats/09-panini.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Panini</h3>
+                                                Au choix : kebab, americain, kofte, escalope, brochette, agneau, nutella, fromage
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Panini</h2>
+                                </li>
+                                <li class="item special">
+
+                                    <a>
+                                        <img src="images/plats/19-assiette-poulet.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Poulet</h3>
+                                                Escalope de poulet
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Assiette Poulet</h2>
+                                </li>
+                                <li class="item breakfast">
+
+                                    <a>
+                                        <img src="images/plats/06-poulet.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Poulet</h3>
+                                                Escalope de poulet
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Poulet</h2>
+                                </li>
+                                <li class="item desert">
+
+                                    <a>
+                                        <img src="images/plats/24-assiette-froide-salade.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Froide de Salade</h3>
+                                                Assortiment de légumes de saison
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Assiette Froide de Salade</h2>
+                                </li>
+                                <li class="item breakfast">
+
+                                    <a>
+                                        <img src="images/plats/10-tacos.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Tacos</h3>
+                                                Au choix : kebab, americain, kofte, escalope, brocchette
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Tacos</h2>
+                                </li>
+                                <li class="item desert">
+
+                                    <a>
+                                        <img src="images/plats/25-assiette-froide-thon.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Thon</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Assiette Thon</h2>
+                                </li>
+                                <li class="item breakfast">
+
+                                    <a>
+                                        <img src="images/plats/08-thon.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Thon</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                    <h2 class="white">Thon</h2>
+                                </li>
+                            </ul>
+
+                            <!-- <div class="text-center">
+                                    <a id="loadPricingContent" class="btn btn-middle hidden-sm hidden-xs">Load More <span class="caret"></span></a>
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!--==  7. Afordable Pricing  ==-->
+    <!--<section id="pricing" class="pricing">
+        <div id="w">
+            <div class="pricing-filter">
+                <div class="pricing-filter-wrapper">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="section-header">
+                                    <h2 class="pricing-title">MENU</h2>
+                                    <ul id="filter-list" class="clearfix">
+                                        <li class="filter" data-filter="all">Tous nos plats</li>
+                                        <li class="filter" data-filter=".special">Assiettes</li>
+                                        <li class="filter" data-filter=".breakfast">Sandwichs</li>
+                                        <li class="filter" data-filter=".desert">Assiettes Froides</li>
+                                        <li class="filter" data-filter=".dinner">Frites</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <ul id="menu-pricing" class="menu-price">
+
+                            <li class="item breakfast">
+
+                                <a>
+                                        <img src="images/plats/02-americain.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Americain</h3>
+                                                Steak haché
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Américain</h2>
+                            </li>
+                            <li class="item special">
+
+                                <a>
+                                        <img src="images/plats/15-assiette-americain.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Americain</h3>
+                                                Steak hachée
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Assiette Americain</h2>
+                            </li>
+                            <li class="item breakfast">
+
+                                <a>
+                                        <img src="images/plats/05-brochette.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Brochette</h3>
+                                                Steak hachée
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Brochette</h2>
+                            </li>
+                            <li class="item special">
+
+                                <a>
+                                        <img src="images/plats/18-assiette-brochette.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Brochette</h3>
+                                                Steak haché
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Assiette Brochette</h2>
+                            </li>
+                            <li class="item special">
+
+                                <a>
+                                        <img src="images/plats/21-assiette-cotelette.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Cotelette</h3>
+                                                Agneau, garniture au choix
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Assiette Cotelette</h2>
+                            </li>
+                            <li class="item breakfast">
+
+                                <a>
+                                        <img src="images/plats/12-cheeseburger.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Cheeseburger</h3>
+                                                Excepteur sint occaecat cupidatat non
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Cheeseburger</h2>
+                            </li>
+                            <li class="item breakfast">
+
+                                <a>
+                                        <img src="images/plats/13-maxi-cheeseburger.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Maxi Cheeseburger</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+                                <h2 class="white">Maxi Cheeseburger</h2>
+                            </li>
+                            <li class="item desert">
+
+                                <a>
+                                        <img src="images/plats/26-assiette-froide-feta.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Fêta</h3>
+                                                Fromage de vache
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Assiette Fêta</h2>
+                            </li>
+                            <li class="item breakfast">
+
+                                <a>
+                                        <img src="images/plats/11-feta.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Feta</h3>
+                                                Fromage de vache
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Fêta</h2>
+                            </li>
+                            <li class="item dinner">
+
+                                <a>
+                                        <img src="images/plats/23-petite-frites.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Petite portion de Frites</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Frites</h2>
+                            </li>
+                            <li class="item dinner">
+
+                                <a>
+                                        <img src="images/plats/22-grande-frites.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Grande portion de Frites</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Frites</h2>
+                            </li>
+                            <li class="item breakfast">
+
+                                <a>
+                                        <img src="images/plats/07-galette.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Galette</h3>
+                                                Au choix : kebab, americain, kofte, escalope, brocchette
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Galette</h2>
+                            </li>
+                            <li class="item special">
+
+                                <a>
+                                        <img src="images/plats/14-assiette-kebab.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Kebab</h3>
+                                                Veau et dinde
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Assiette Kebab</h2>
+                            </li>
+                            <li class="item breakfast">
+
+                                <a>
+                                        <img src="images/plats/01-kebab-ou-maxi.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc text-center">
+                                            <span>
+                                                <h3>Kebab</h3>
+                                                Veau et dinde <br /> (Royal 1€ de plus)
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Kebab</h2>
+                            </li>
+                            <li class="item special">
+
+                                <a>
+                                        <img src="images/plats/17-assiette-kofte.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Kofte</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Assiette Kofte</h2>
+                            </li>
+                            <li class="item breakfast">
+
+                                <a>
+                                        <img src="images/plats/03-kofte.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Kofte</h3>
+                                                Viande de veau hachée avec épices
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Kofte</h2>
+                            </li>
+                            <li class="item special">
+
+                                <a>
+                                        <img src="images/plats/16-assiette-merguez.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Merguez</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Assiette Merguez</h2>
+                            </li>
+                            <li class="item breakfast">
+
+                                <a>
+                                        <img src="images/plats/04-merguez.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Merguez</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Merguez</h2>
+                            </li>
+                            <li class="item special">
+
+                                <a>
+                                        <img src="images/plats/20-assiette-mixte.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Mixte</h3>
+                                                Différentes viandes au choix
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Assiette Mixte</h2>
+                            </li>
+                            <li class="item breakfast">
+                                <a>
+                                        <img src="images/plats/09-panini.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Panini</h3>
+                                                Au choix : kebab, americain, kofte, escalope, brochette, agneau, nutella, fromage
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Panini</h2>
+                            </li>
+                            <li class="item special">
+
+                                <a>
+                                        <img src="images/plats/19-assiette-poulet.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Poulet</h3>
+                                                Escalope de poulet
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Assiette Poulet</h2>
+                            </li>
+                            <li class="item breakfast">
+
+                                <a>
+                                        <img src="images/plats/06-poulet.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Poulet</h3>
+                                                Escalope de poulet
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Poulet</h2>
+                            </li>
+                            <li class="item desert">
+
+                                <a>
+                                        <img src="images/plats/24-assiette-froide-salade.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Froide de Salade</h3>
+                                                Assortiment de légumes de saison
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Assiette Froide de Salade</h2>
+                            </li>
+                            <li class="item breakfast">
+
+                                <a>
+                                        <img src="images/plats/10-tacos.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Tacos</h3>
+                                                Au choix : kebab, americain, kofte, escalope, brocchette
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Tacos</h2>
+                            </li>
+                            <li class="item desert">
+
+                                <a>
+                                        <img src="images/plats/25-assiette-froide-thon.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Assiette Thon</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Assiette Thon</h2>
+                            </li>
+                            <li class="item breakfast">
+
+                                <a>
+                                        <img src="images/plats/08-thon.png" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Thon</h3>
+                                                
+                                            </span>
+                                        </div>
+                                    </a>
+
+                                <h2 class="white">Thon</h2>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>-->
+
+    <!--
+        <!--== 8. Great Place to enjoy ==->
+        <section id="great-place-to-enjoy" class="great-place-to-enjoy">
+            <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/beer_black.png">
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <div class="row dis-table">
+                        <div class="col-xs-6 col-sm-6 dis-table-cell color-bg">
+                            <h2 class="section-title">Great Place to enjoy</h2>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 dis-table-cell section-bg">
+                            
+                        </div>
+                    </div> <!-- /.dis-table ->
+                </div> <!-- /.row ->
+            </div> <!-- /.wrapper ->
+        </section> <!-- /#great-place-to-enjoy ->
+
+
+
+        <!--==  9. Our Beer  ==->
+        <section id="beer" class="beer">
+            <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/beer_color.png">
+            <div class="container-fluid">
+                <div class="row dis-table">
+                    <div class="hidden-xs col-sm-6 dis-table-cell section-bg">
+
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 dis-table-cell">
+                        <div class="section-content">
+                            <h2 class="section-content-title">Our Beer</h2>
+                            <div class="section-description">
+                                <p class="section-content-para">
+                                    Astronomy compels the soul to look upward, and leads us from this world to another.  Curious that we spend more time congratulating people who have succeeded than encouraging people who have not. As we got further and further away, it [the Earth] diminished in size.
+                                </p>
+                                <p class="section-content-para">
+                                    beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.  Where ignorance lurks, so too do the frontiers of discovery and imagination.Astronomy compels the soul to look upward, and leads us from this world to another.  Curious that we spend more time congratulating people who have succeeded than encouraging people who have not. As we got further and further away, it [the Earth] diminished in size.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!--== 10. Our Breakfast Menu ==->
+        <section id="breakfast" class="breakfast">
+            <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/bread_black.png">
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <div class="row dis-table">
+                        <div class="col-xs-6 col-sm-6 dis-table-cell color-bg">
+                            <h2 class="section-title">Our Breakfast Menu</h2>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 dis-table-cell section-bg">
+                            
+                        </div>
+                    </div> <!-- /.dis-table ->
+                </div> <!-- /.row ->
+            </div> <!-- /.wrapper ->
+        </section> <!-- /#breakfast -->
+
+
+
+    <!--== 11. Our Bread ==->
+        <section id="bread" class="bread">
+            <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/bread_color.png">
+            <div class="container-fluid">
+                <div class="row dis-table">
+                    <div class="hidden-xs col-sm-6 dis-table-cell section-bg">
+
+                    </div>
+                    <div class="col-xs-12 col-sm-6 dis-table-cell">
+                        <div class="section-content">
+                            <h2 class="section-content-title">
+                                Our Bread
+                            </h2>
+                            <div class="section-description">
+                                <p class="section-content-para">
+                                    Astronomy compels the soul to look upward, and leads us from this world to another.  Curious that we spend more time congratulating people who have succeeded than encouraging people who have not. As we got further and further away, it [the Earth] diminished in size.
+                                </p>
+                                <p class="section-content-para">
+                                    beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.  Where ignorance lurks, so too do the frontiers of discovery and imagination.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!--== 12. Our Featured Dishes Menu ==->
+        <section id="featured-dish" class="featured-dish">
+            <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/food_black.png">
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <div class="row dis-table">
+                        <div class="col-xs-6 col-sm-6 dis-table-cell color-bg">
+                            <h2 class="section-title">Our Featured Dishes Menu</h2>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 dis-table-cell section-bg">
+                            
+                        </div>
+                    </div> <!-- /.dis-table ->
+                </div> <!-- /.row ->
+            </div> <!-- /.wrapper ->
+        </section> <!-- /#featured-dish -->
+
+
+
+
+    <!--13. Menu List-->
+    <section id="menu-list" class="menu-list">
+        <div id="horaire" class="pricing-filter">
+            <div class="pricing-filter-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="section-header">
+                                <h2 class="pricing-title">Horaires</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row menu">
+                <div class="col-md-10 col-md-offset-1 col-sm-9 col-sm-offset-2 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="menu-catagory">
+                                    <h2>Lundi</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="menu-item">
+                                    <h3 class="menu-title">Fermé</h3>
+                                    <!--<h3 class="menu-title">17h - 22h</h3>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="menu-catagory">
+                                    <h2>Mardi</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="menu-item">
+                                    <h3 class="menu-title">11h30 - 14h</h3>
+                                    <h3 class="menu-title">18h00 - 23h00</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="menu-catagory">
+                                    <h2>Mercredi</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="menu-item">
+                                    <h3 class="menu-title">11h30 - 14h</h3>
+                                    <h3 class="menu-title">18h00 - 23h00</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="menu-catagory">
+                                    <h2>Jeudi</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="menu-item">
+                                    <h3 class="menu-title">11h30 - 14h</h3>
+                                    <h3 class="menu-title">18h00 - 23h00</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="menu-catagory">
+                                    <h2>Vendredi</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="menu-item">
+                                    <h3 class="menu-title">18h00 - 23h00</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="menu-catagory">
+                                    <h2>Samedi</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="menu-item">
+                                    <h3 class="menu-title">11h30 - 14h</h3>
+                                    <h3 class="menu-title">18h00 - 23h00</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="menu-catagory">
+                                    <h2>Dimanche</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="menu-item">
+                                    <h3 class="menu-title">11h30 - 14h</h3>
+                                    <h3 class="menu-title">18h00 - 23h00</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+        <!--== 14. Have a look to our dishes ==->
+
+        <section id="have-a-look" class="have-a-look hidden-xs">
+            <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/food_color.png">
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="menu-gallery" style="width: 50%; float:left;">
+                            <div class="flexslider-container">
+                                <div class="flexslider">
+                                    <ul class="slides">
+                                        <li>
+                                            <img src="images/menu-gallery/menu1.png" />
+                                        </li>
+                                        <li>
+                                            <img src="images/menu-gallery/menu2.jpg" />
+                                        </li>
+                                        <li>
+                                            <img src="images/menu-gallery/menu3.png" />
+                                        </li>
+                                        <li>
+                                            <img src="images/menu-gallery/menu4.jpg" />
+                                        </li>
+                                        <li>
+                                            <img src="images/menu-gallery/menu5.jpg" />
+                                        </li>
+                                        <li>
+                                            <img src="images/menu-gallery/menu6.jpg" />
+                                        </li>
+                                        <li>
+                                            <img src="images/menu-gallery/menu7.jpg" />
+                                        </li>
+                                        <li>
+                                            <img src="images/menu-gallery/menu8.jpg" />
+                                        </li>
+                                        <li>
+                                            <img src="images/menu-gallery/menu9.jpg" />
+                                        </li>
+                                        <li>
+                                            <img src="images/menu-gallery/menu10.jpg" />
+                                        </li>
+                                        <li>
+                                            <img src="images/menu-gallery/menu11.jpg" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-heading hidden-xs color-bg" style="width: 50%; float:right;">
+                            <h2 class="section-title">Have A Look To Our Dishes</h2>
+                        </div>
+                        
+
+                    </div> <!-- /.row ->
+                </div> <!-- /.container-fluid ->
+            </div> <!-- /.wrapper ->
+        </section>
+
+
+
+        <!--
+        <!--== 15. Reserve A Table! ==->
+        <section id="reserve" class="reserve">
+            <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/reserve_black.png">
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <div class="row dis-table">
+                        <div class="col-xs-6 col-sm-6 dis-table-cell color-bg">
+                            <h2 class="section-title">Reserve A Table !</h2>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 dis-table-cell section-bg">
+                            
+                        </div>
+                    </div> <!-- /.dis-table ->
+                </div> <!-- /.row ->
+            </div> <!-- /.wrapper ->
+        </section> <!-- /#reserve ->
+
+
+
+        <section class="reservation">
+            <img class="img-responsive section-icon hidden-sm hidden-xs" src="images/icons/reserve_color.png">
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <div class=" section-content">
+                        <div class="row">
+                            <div class="col-md-5 col-sm-6">
+                                <form class="reservation-form" method="post" action="reserve.php">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control reserve-form empty iconified" name="name" id="name" required="required" placeholder="  &#xf007;  Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" name="email" class="form-control reserve-form empty iconified" id="email" required="required" placeholder="  &#xf1d8;  e-mail">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="tel" class="form-control reserve-form empty iconified" name="phone" id="phone" required="required" placeholder="  &#xf095;  Phone">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control reserve-form empty iconified" name="datepicker" id="datepicker" required="required" placeholder="&#xf017;  Time">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-sm-12">
+                                            <textarea type="text" name="message" class="form-control reserve-form empty iconified" id="message" rows="3" required="required" placeholder="  &#xf086;  We're listening"></textarea>
+                                        </div>
+
+                                        <div class="col-md-12 col-sm-12">
+                                            <button type="submit" id="submit" name="submit" class="btn btn-reservation">
+                                                <span><i class="fa fa-check-circle-o"></i></span>
+                                                Make a reservation
+                                            </button>
+                                        </div>
+                                            
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col-md-2 hidden-sm hidden-xs"></div>
+
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="opening-time">
+                                    <h3 class="opening-time-title">Hours</h3>
+                                    <p>Mon to Fri: 7:30 AM - 11:30 AM</p>
+                                    <p>Sat & Sun: 8:00 AM - 9:00 AM</p>
+
+                                    <div class="launch">
+                                        <h4>Lunch</h4>
+                                        <p>Mon to Fri: 12:00 PM - 5:00 PM</p>
+                                    </div>
+
+                                    <div class="dinner">
+                                        <h4>Dinner</h4>
+                                        <p>Mon to Sat: 6:00 PM - 1:00 AM</p>
+                                        <p>Sun: 5:30 PM - 12:00 AM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+-->
+
+
+
+
+    <section id="contact" class="contact">
+        <div class="container-fluid color-bg">
+            <div class="row dis-table">
+                <div class="hidden-xs col-sm-6 dis-table-cell">
+                    <h2 class="section-title">Venez manger&nbsp;!</h2>
+                </div>
+                <div class="col-xs-6 col-sm-6 dis-table-cell">
+                    <div id="section-contact" class="section-content">
+                        <p>25 Rue Lamy 24800 THIVIERS</p>
+                        <p>09 86 54 52 26</p>
+                    </div>
+                </div>
+            </div>
+            <div class="social-media">
+                <div class="row">
+                    <!--<div class="col-md-6 col-md-offset-3">
+                            <ul class="center-block">
+                                <li><a href="#" class="fb"></a></li>
+                                <li><a href="#" class="twit"></a></li>
+                                <li><a href="#" class="g-plus"></a></li>
+                                <li><a href="#" class="link"></a></li>
+                            </ul>-->
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div id="map-canvas"></div>
+        </div>
+    </div>
+
+    <!--
+        <section class="contact-form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+                        <div class="row">
+                             <form class="contact-form" method="post" action="contact.php">
+                                
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <input  name="name" type="text" class="form-control" id="name" required="required" placeholder="  Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="email" type="email" class="form-control" id="email" required="required" placeholder="  Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="subject" type="text" class="form-control" id="subject" required="required" placeholder="  Subject">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6">
+                                    <textarea name="message" type="text" class="form-control" id="message" rows="7" required="required" placeholder="  Message"></textarea>
+                                </div>
+
+                                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                                    <div class="text-center">
+                                        <button type="submit" id="submit" name="submit" class="btn btn-send">Send </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+-->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="copyright text-center">
+                        <p>
+                            &copy; Copyright <a href="mentionslegales.html">Mentions légales</a> - Thiviers Kebab - 2018 <a href="https://www.pyrat.net/">Réalisation Pyrat.net</br></a> Theme by <a href="http://themewagon.com/" target="_blank">ThemeWagon</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- Utile à la présentation du menu -->
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/script.js"></script>
+    <!--<script src="js/jquery.validate.js"></script>-->
+    <!--<script type="text/javascript" src="js/jquery.hoverdir.js"></script>-->
+    <!--<script type="text/javascript" src="js/jQuery.scrollSpeed.js"></script>-->
+
+    <!-- Script Slick -->
+    <script src="js/slick.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('#fade').slick({
+                dots: true,
+                infinite: true,
+                centerMode: true,
+                slidesToShow: 1,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear',
+                autoplay: true,
+                autoplaySpeed: 5000,
+            })
+        });
+    </script>
+
+
+</body>
+
+</html>

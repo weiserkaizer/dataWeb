@@ -1,0 +1,49 @@
+<?php 
+spip_log('404 REQUEST_URI: '.$_SERVER['REQUEST_URI'].' | User agent: '.$_SERVER['HTTP_USER_AGENT'].' | Referer: '.$_SERVER['HTTP_REFERER'], 'quatrecentquatre'._LOG_INFO_IMPORTANTE);
+header("HTTP/1.1 404 Not Found", true);
+?>[(#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+)][(#HTTP_HEADER{Pragma: no-cache}
+)][(#HTTP_HEADER{Connection: close}
+)][(#SET{titretop,<:pass_erreur:>_404})]
+<INCLURE{fond=noisettes/header/header}
+	{lang}
+	{template=404}
+	{title=#GET{titretop}}
+	{env}
+	{titretop=#GET{titretop}}
+	{type=404}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:erreur_excuses_404:></h1></div>
+</div>
+]
+	<div id="letexte">
+	[(#SET{nomsite,[(#NOM_SITE_SPIP|supprimer_tags)]})]
+	<:soyezcreateurs:erreur_excuses_404_explications{nomsite=#GET{nomsite},urlsite=#URL_SITE_SPIP}:>
+	<br />
+	#FORMULAIRE_RECHERCHE
+	<br />
+	</div>
+[(#SET{banniere,[(#CHEMIN{images/404.jpg}|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})]})]
+<div class="spip_documents spip_documents_center"><img src="[(#GET{banniere}|extraire_attribut{src})]" width="[(#GET{banniere}|largeur)]" height="[(#GET{banniere}|hauteur)]" /></div>
+</main>
+</div><!-- Fin de .texte -->
+[<div class='hrspip'><hr class='spip' /></div>
+[(#REM) Initiative http://notfound.org/index.php?locale=fr_FR ]
+<iframe 
+  src="https://notfound-static.fwebservices.be/404/index.html?&amp;key=(#CONFIG{soyezcreateurs_google/notfoundorg})" 
+  width="100%" 
+  height="650" 
+>
+]
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{lang}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}

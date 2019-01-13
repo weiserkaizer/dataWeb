@@ -1,0 +1,11 @@
+<BOUCLE_test(CONDITION){si #ENV{menu}|=={oui}}>
+
+</BOUCLE_test>
+</B_test>
+	
+	<div class="container-fluid">
+		<div class="row">
+			[(#INCLURE{fond=modeles/carte_gis,scale=oui,zoom_wheel=non,fullscreen=oui})]
+		</div>
+	</div>
+<//B_test>

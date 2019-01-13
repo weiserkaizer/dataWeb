@@ -1,0 +1,76 @@
+	<div class="retourtop">
+	  <a href="#[(#ENV{titretop}|sinon{<:soyezcreateurs:sommaire|sc_nettoyer_marqueur:>})]"><:soyezcreateurs:retourtop:></a>
+	</div>
+</div><!-- id="content" -->
+	</div><!-- id="wrapper" -->
+	<nav><div id="navigation" class="equilibre stackable">
+[(#CONFIG{soyezcreateurs/logoheader,header}|=={navigation}|oui)#INCLURE{fond=noisettes/logosite}]
+<div id="menu" class="navStuff">
+<div class="espaceavant">
+<ul>
+  <li>[(#ENV{template}|=={Sommaire}|?{'<strong>',''})]<a id="menusite" href="./" title="<:soyezcreateurs:accueil_site:>"><:soyezcreateurs:accueil:></a>[(#ENV{template}|=={Sommaire}|?{'</strong>',''})]</li>
+
+<BOUCLE_EstMenuHaut(RUBRIQUES){titre_mot=MenuHaut}{id_rubrique=#ENV{secteurencours}}{!lang_select}>
+
+<B_Racines_Systematique>
+<BOUCLE_Racines_Systematique(ARTICLES){par num titre}{titre_mot=MENURACINE_Systematique}>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{16,16}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{16,16}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{16,16}|hauteur)]" alt="" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+</BOUCLE_Racines_Systematique>
+</B_Racines_Systematique>
+
+</BOUCLE_EstMenuHaut>
+
+<BOUCLE_Racines(ARTICLES){par num titre}{titre_mot IN 'MENURACINE','MENURACINE_Systematique'}>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{16,16}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{16,16}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{16,16}|hauteur)]" alt="" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+</BOUCLE_Racines>
+
+<//B_EstMenuHaut>
+</ul>
+</div>
+
+<div class="espaceavant">
+<B_Secteurs>
+<ul class="tv">
+  <BOUCLE_Secteurs(RUBRIQUES){id_rubrique=#ENV{racinetype}}{par num titre}{doublons}{!lang_select}>
+  <li><INCLURE{fond=noisettes/menus/rubrique_li,id_rubrique,id_article,rubriqueencours=#ENV{rubriqueencours},letitre=#TITRE,ledescriptif=#DESCRIPTIF}>
+<B_Rubriques>
+<ul>
+  <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{doublons}{!lang_select}>
+  <li><INCLURE{fond=noisettes/menus/rubrique_li,id_rubrique,id_article,rubriqueencours=#ENV{rubriqueencours},letitre=#TITRE,ledescriptif=#DESCRIPTIF}><BOUCLE_SsRubriques(BOUCLE_Rubriques) /></li>
+  </BOUCLE_Rubriques>
+</ul>
+</B_Rubriques>
+   </li>
+  </BOUCLE_Secteurs>
+</ul>
+</B_Secteurs>
+</div>
+
+<B_RacinesBas>
+<div class="espaceavant">
+<ul>
+<BOUCLE_RacinesBas(ARTICLES){par num titre}{titre_mot IN 'MENURACINEBAS','MENURACINEBAS_Systematique'}>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{16,16}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{16,16}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{16,16}|hauteur)]" alt="" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+</BOUCLE_RacinesBas>
+</ul>
+</div>
+</B_RacinesBas>
+
+[(#PLUGIN{ACCESRESTREINT}|oui)<INCLURE{fond=noisettes/accesrestreint/login-logout,env}>]
+
+[<div class="espaceavant">
+<ul>(#INCLURE{fond=noisettes/liensnav/bloc_liensnav,template})</ul>
+</div>]
+
+[(#CONFIG{soyezcreateurs/positionrecherche,header}|=={navigation}|oui)
+[(#INCLURE{fond=noisettes/header/cadre_recherche,env})]
+]
+[(#CONFIG{soyezcreateurs_google/google_search}|!={''}|oui)[(#INCLURE{fond=noisettes/navigation/ads_search})]]
+</div>
+[(#CONFIG{soyezcreateurs/bandeau_contact_extra}|=={navigation}|oui)
+	[<div id="bandeaucontact" class="#EDIT{meta-soyezcreateurs/bandeau_contact}">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
+]
+
+	</div><!-- id="navigation" --></nav>
+<INCLURE{fond=noisettes/menus/menu_right,id_rubrique,id_article,template,env}>
+#FILTRE{mini_html}

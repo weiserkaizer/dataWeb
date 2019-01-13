@@ -1,0 +1,13 @@
+a:2:{s:9:"nom_cache";s:38:"9a475de18ebbb86757ca2e79cec46a76.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_f43d21bf134b580098f24d90ad4dea1a";s:6:"source";s:73:"plugins/auto/soyezcreateurs/v4.3.16/noisettes/miettesdepain/sommaire.html";s:11:"process_ins";s:3:"php";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"9a475de18ebbb86757ca2e79cec46a76.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:571:" 
+<?php echo recuperer_fond( 'noisettes/miettesdepain/sommaire_modeportailcognac', array_merge(array (
+  'template' => 'Sommaire',
+  'idbody' => 'sommaire_mode_portailcognac',
+  'type' => 'sommaire',
+  'lang' => 'fr',
+  'date' => '2019-01-06 23:34:09',
+  'date_default' => true,
+  'date_redac' => '2019-01-06 23:34:09',
+  'date_redac_default' => true,
+),array('lang' => 'fr')), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/miettesdepain/sommaire.html','html_f43d21bf134b580098f24d90ad4dea1a','',2,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+";s:5:"notes";s:0:"";s:8:"contexte";a:8:{s:8:"template";s:8:"Sommaire";s:6:"idbody";s:27:"sommaire_mode_portailcognac";s:4:"type";s:8:"sommaire";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2019-01-06 23:34:09";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 23:34:09";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1546817633;s:2:"gz";b:0;s:3:"sig";i:3891993866;}}

@@ -1,0 +1,25 @@
+
+<B_CycloShow>
+<!-- SLIDER -->
+<div id="cycloshow" class="zone-slider">
+	<div class="slider-slick">
+		<BOUCLE_CycloShow(ARTICLES){titre_mot=CycloShow}{par num titre}{!par date}{lang}>
+		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
+			<div class="slider-diapo-imgfull">
+				<a href="#URL_ARTICLE" tabindex="-1">
+					<img src="[(#LOGO_ARTICLE_NORMAL|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{#GET{LargeurContaineur},#CONFIG{soyezcreateurs/hauteur_slider,580}}|extraire_attribut{src})]" alt="">
+					<div class="slider-content desc-gauche text-center">
+						<h3 class="#EDIT{titre}">#TITRE</h3>
+						[<p class="hide-for-small-only #EDIT{descriptif}">(#DESCRIPTIF|ptobr)</p>]
+						[<p class="hide-for-small-only">(#INCLURE{fond=noisettes/liste_auteurs,id_article,nodiv=1,nolink=1})</p>]
+						[<p class="hide-for-small-only">(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})</p>]
+					</div>
+				</a>
+			</div>
+		</div>
+		</BOUCLE_CycloShow>
+	</div>
+</div>
+</B_CycloShow>
+
+#FILTRE{mini_html}

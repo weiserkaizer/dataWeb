@@ -1,0 +1,16 @@
+<BOUCLE_tous(DOCUMENTS types_documents) {id_document=#ID} {tout}>[
+(#REM) on trouvera plusieurs variable de hauteur/largeur
+- #ENV{hauteur} et {largeur} correspondant <emb|hauteur=xx...>
+- #GET{hauteur} et #GET{largeur} correspondent prioritairement a #ENV
+]
+#SET{largeur,#ENV{largeur,#LARGEUR}}
+#SET{hauteur,#ENV{hauteur,#HAUTEUR}}
+<div class='spip_document_#ID_DOCUMENT spip_document_svg spip_documents[ spip_documents_(#ENV{align})]'
+	style='[(#ENV{align}|match{^(left|right)$}|oui)float:#ENV{align};][width:(#GET{largeur})]'>
+		<img src="#FICHIER" title="[(#TITRE|sinon{[(#FICHIER|basename)]}|texte_backend)]" alt="[(#TITRE|sinon{[(#FICHIER|basename)]}|texte_backend)]" width="#GET{largeur}" height="#GET{hauteur}" />
+[(#ENV{nolegend}|non)
+[<div class='#EDIT{titre} spip_doc_titre'><strong>(#TITRE)</strong></div>]
+[<div class='#EDIT{descriptif} spip_doc_descriptif'>(#DESCRIPTIF|PtoBR)[(#NOTES|PtoBR)]</div>]
+]
+</div>
+</BOUCLE_tous>

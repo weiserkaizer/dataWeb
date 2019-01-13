@@ -1,0 +1,7 @@
+<BOUCLE_(ARTICLES){id_article}>
+					<div class="bd">
+					[<a href="#ARTICLE_URL" title="[(#TITRE|supprimer_tags|attribut_html)]"><img class="logo_modenews" src="(#LOGO_ARTICLE_NORMAL|image_reduire{0,120}|extraire_attribut{src})" alt="[(#TITRE|supprimer_tags|attribut_html)]" /></a>]<h3><a href="#ARTICLE_URL">#TITRE</a></h3>
+					[(#CHAPO|sinon{#DESCRIPTIF})]
+					</div>
+</BOUCLE_>
+#FILTRE{mini_html}

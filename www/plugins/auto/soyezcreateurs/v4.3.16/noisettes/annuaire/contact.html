@@ -1,0 +1,13 @@
+<BOUCLE_Contact(CONTACTS){id_contact}>
+	[<p class="#EDIT{fonction} contact_fonction">Fonction: (#FONCTION)</p>]
+	[(#REM) faudra mettre {si #ID_AUTEUR} sur la 3.0 ]
+	<BOUCLE_auteur_lie(AUTEURS){id_auteur}{tout}{statut==.*}>[<div class="#EDIT{descriptif} contact_descriptif">[(#LOGO_AUTEUR|image_reduire{200,200}|inserer_attribut{'style','float:right;'})](#_Contact:DESCRIPTIF)</li>]
+	</BOUCLE_auteur_lie>
+	<BOUCLE_AdressesContact(ADRESSES){id_contact}>
+	<p>[(#TITRE)<br />]
+	[(#VOIE)<br />]
+	[(#COMPLEMENT)<br />]
+	#CODE_POSTAL #VILLE</p>
+	</BOUCLE_AdressesContact>
+</BOUCLE_Contact>
+#FILTRE{mini_html}

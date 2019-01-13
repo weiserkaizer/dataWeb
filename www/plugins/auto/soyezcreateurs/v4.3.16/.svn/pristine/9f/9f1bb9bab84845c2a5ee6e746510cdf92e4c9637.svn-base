@@ -1,0 +1,4 @@
+[(#CHEMIN{noisettes/cartouchetitre/sommaire_mode#CONFIG{soyezcreateurs/mode_affichage,communiquant}.html}|oui)
+	<INCLURE{fond=noisettes/cartouchetitre/sommaire_mode#CONFIG{soyezcreateurs/mode_affichage,communiquant},env}>
+]
+#FILTRE{mini_html}

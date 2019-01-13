@@ -1,0 +1,14 @@
+<BOUCLE_site(SITES){id_syndic}>
+<div class="cartouche">
+	<div class="titrepage"><h1 class="titre">[<img src="(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|extraire_attribut{src})" class="logo_site" alt="" width="[(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|largeur)]" height="[(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|hauteur)]" />]
+	<:sites_web:>&nbsp;: 
+	<span class="#EDIT{nom_site}">[(#NOM_SITE|typo)]</span>
+	</h1></div>
+	<div class="datepublication"><span><:soyezcreateurs:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
+</div>
+</BOUCLE_site>
+<div class="cartouche">
+	<div class="titrepage"><h1 class="titre"><:sites_web:></h1></div>
+</div>
+<//B_site>
+#FILTRE{mini_html}

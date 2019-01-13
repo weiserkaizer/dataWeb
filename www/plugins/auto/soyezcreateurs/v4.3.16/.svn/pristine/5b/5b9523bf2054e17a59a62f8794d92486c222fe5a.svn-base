@@ -1,0 +1,2 @@
+<B_MotsEvenement><br /><BOUCLE_MotsEvenement(MOTS){id_evenement}{type==^[^_]}{id_mot !IN #ENV{mots}}{par titre}{" "}>[(#SET{ajoutermot,[(#ARRAY{}|push{#ID_MOT})]})]<a href="[(#URL_PAGE{mots_filtres_agenda}|parametre_url{mots,#GET{ajoutermot}})]" class="tags ajouter" rel="nofollow">#TITRE</a></BOUCLE_MotsEvenement>
+#FILTRE{mini_html}

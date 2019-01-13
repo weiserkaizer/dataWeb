@@ -1,0 +1,4 @@
+[(#CONFIG{soyezcreateurs_layout/affichage_lien_sites_web,affiche}|=={affiche}|oui)
+[(#INCLURE{fond=noisettes/liensnav/sites_lien,template})]
+]
+#FILTRE{mini_html}

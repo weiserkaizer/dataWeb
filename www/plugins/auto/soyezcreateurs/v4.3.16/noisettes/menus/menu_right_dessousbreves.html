@@ -1,0 +1,14 @@
+#SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,180}|moins{20})}
+[(#REM) afficher les rub & art qui ont le mot clef : DessousBreves ]
+<BOUCLE_DessousBreves(RUBRIQUES){id_rubrique?}{mots.titre = DessousBreves }{!mots.titre=PasDansMenuExtra}{par num titre}>
+<B_articles_recents>
+ <h2 [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#SET{lelogo,[(#LOGO_RUBRIQUE_NORMAL|image_reduire{#GET{LargeurMenuDroit},0})]})][<img class="menu_right_logo" src="(#GET{lelogo}|extraire_attribut{src}|embarque_fichier)"[ width="(#GET{lelogo}|largeur)"][ height="(#GET{lelogo}|hauteur)"] alt="" /><br />][(#TITRE|image_reduire{#GET{LargeurMenuDroit},0})]</h2>
+ <ul>
+<BOUCLE_articles_recents(ARTICLES) {id_rubrique}{par num titre}{!par date} {lang}{0,(#CONFIG{soyezcreateurs/nombres_dessousbreves,10})}>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[<img class="menu_right_logo" src="(#LOGO_ARTICLE_NORMAL|image_reduire{#GET{LargeurMenuDroit},0}|extraire_attribut{src}|embarque_fichier)"[ width="(#LOGO_ARTICLE_NORMAL|image_reduire{#GET{LargeurMenuDroit},0}|largeur)"][ height="(#LOGO_ARTICLE_NORMAL|image_reduire{#GET{LargeurMenuDroit},0}|hauteur)"] alt="" /><br />][(#TITRE|image_reduire{#GET{LargeurMenuDroit},0})]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+</BOUCLE_articles_recents>
+</ul>
+</B_articles_recents>
+</BOUCLE_DessousBreves>
+[(#REM) finde afficher les rub & art qui ont le mot clef : DessousBreves ]
+#FILTRE{mini_html}

@@ -1,0 +1,318 @@
+[[(#HTTP_HEADER{HTTP/1.1 503 Service Temporarily Unavailable})][(#HTTP_HEADER{Status: 503 Service Temporarily Unavailable})][(#HTTP_HEADER{Retry-After: 7200})](#CONFIG{soyezcreateurs_google/indexation,oui}|=={non}|oui)]<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+
+<title><:entravaux:en_travaux:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+
+<meta property="og:title" content="[(#ENV{title}|sinon{<:soyezcreateurs:sommaire:>})]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="[(#SELF|url_absolue)]" />
+<BOUCLE_LogoArticle(ARTICLES){id_article}{logo}>[<meta property="og:image" content="(#LOGO_ARTICLE_NORMAL|extraire_attribut{src}|url_absolue)" />]</BOUCLE_LogoArticle><BOUCLE_LogoRubrique(RUBRIQUES){id_rubrique}{logo}>[<meta property="og:image" content="(#LOGO_RUBRIQUE_NORMAL|extraire_attribut{src}|url_absolue)" />]</BOUCLE_LogoRubrique>[<meta property="og:image" content="(#LOGO_SITE_SPIP_NORMAL|extraire_attribut{src}|url_absolue)" />]<//B_LogoRubrique><//B_LogoArticle>
+<meta property="og:site_name" content="[(#NOM_SITE_SPIP|textebrut)]" />
+[<meta property="og:description" content="(#DESCRIPTIF_SITE_SPIP|supprimer_tags|attribut_html)" />]
+<meta property="og:locale" content="[(#LANG|strtolower)]_[(#LANG|strtoupper)]" />
+
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|supprimer_tags|attribut_html)" />]
+<meta name="generator" content="SPIP [(#SPIP_VERSION|attribut_html)]" />
+
+<meta name="author" content="Jacques PYRAT https://www.pyrat.net/" />
+<meta name="DC.title" content="[(#NOM_SITE_SPIP|attribut_html)]" />
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+[(#REM) D'apres http://www.la-grange.net/w3c/html4.01/present/styles.html#default-style ]
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+
+<link rel="shortcut icon" type="image/x-icon" href="#URL_SITE_SPIP/spip.php?page=favicon.ico" />
+<!-- Vegas : http://vegas.jaysalvat.com/documentation/setup/ -->
+<link rel="stylesheet" href="#CHEMIN{javascript/vegas.jaysalvat.com/vegas.min.css}">
+
+[(#VAL{''}|f_jQuery	)]
+<script src="#CHEMIN{javascript/vegas.jaysalvat.com/vegas.min.js}"></script>
+
+[(#PLUGIN{GIS}|oui|gis_insert_head_css)]
+[(#PLUGIN{GIS}|oui|gis_insert_head)]
+[(#PLUGIN{GISGEOM}|oui|gisgeom_insert_head_css)]
+<style type="text/css">
+/*<![CDATA[*/
+/*
+This was coded by João Sardinha
+Visit me at http://johnsardine.com/
+
+It has been tested in all modern browsers.
+
+This coming soon page design has been created by the awesome Orman Clark,
+you can download a PSD version of this at his website, PremiumPixels.
+http://www.premiumpixels.com/freebies/coming-soon-splash-page-psd/
+*/
+
+/*
+Im reseting this style for optimal view using Eric Meyer's CSS Reset - http://meyerweb.com/eric/tools/css/reset/
+------------------------------------------------------------------ */
+body, html  { height: 100%; }html, body, div, span, applet, object, iframe,/*h1,2, h3, h4, h5, h6,*/ p, blockquote, pre,a, abbr, acronym, address,del, dfn, em, font, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td {margin: 0;padding: 0;border: 0;outline: 0;font-size: 100%;vertical-align: baseline;background: transparent;}body { line-height: 1; }ol, ul { list-style: none; }blockquote, q { quotes: none; }blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }:focus { outline: 0; }del { text-decoration: line-through; }table {border-spacing: 0; }
+
+/* Clear Floated Elements http://sonspring.com/journal/clearing-floats */
+.clear {clear: both;display: block;overflow: hidden;visibility: hidden;width: 0;height: 0;}
+
+/*------------------------------------------------------------------ */
+
+/* Page Style */
+html { height: auto; }
+body{
+	color: #e9e2ee;
+	font-size: 14px;
+	font-family: sans-serif;
+	line-height: 20px;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.75);
+	background: #55575c;
+	-webkit-background-size: cover; /* pour Chrome et Safari */
+	-moz-background-size: cover; /* pour Firefox */
+	-o-background-size: cover; /* pour Opera */
+	background-size: cover; /* version standardisée */}
+a,
+a:link,
+a:visited {
+	color: #c6eaf7;
+	font-weight: bold;
+	text-decoration:none;
+}
+a:active,
+a:hover {
+	color: #d8f3fd;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.75), 0 0 5px rgba(198,234,247,0.4);
+}
+p{
+	margin-bottom: 0.3em;
+}
+ol.spip, ul.spip {
+    padding-left: .5em;
+	margin-bottom: 0.3em;
+}
+ul.spip li{
+    list-style: disc inside;
+	padding-left: 1em;
+}
+.center,
+img.center {
+	text-align: center;
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+#icone_travaux { display: none; }
+#coming-soon{
+	background: rgba(0,0,0,0.7);
+	-webkit-box-sizing : border-box;‌​
+      -moz-box-sizing : border-box;
+           box-sizing : border-box;
+	-webkit-box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+	   -moz-box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+			box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+	display: block;
+	width: 80%;
+	margin: 2em auto;
+	padding: 1em 3em;
+}
+#coming-soon h1{
+	text-align: center;
+	font-size: 35px;
+}
+#coming-soon h2 { margin: 0 0 2em; 0 }
+#coming-soon h2 img.logo { float: right; padding-left: 1em; padding-bottom: 1em; }
+#coming-soon h2 sub { display: block; padding-left: 8px; margin-left: 2em; border-left: 1.2em solid #aaa; font-size: 50%; font-weight: normal; line-height:normal; font-size:.8em;}
+#coming-soon p{
+	text-align: center;
+}
+
+#bandeau_annonce, #bandeaucontact {
+	display: block;
+	margin: 2em 0 0 0;
+}
+#bandeaucontact {
+	clear: both;
+}
+#bandeau_annonce p { text-align: left; }
+/*Submit Form*/
+#subscribe {
+	display: block;
+	clear: both;
+}
+#subscribe h2 { margin: 0; }
+#subscribe input{
+	display: block;
+	font-size: 1.5em;
+	font-weight: bold;
+	border: 0;
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+			border-radius: 3px;
+	padding: 0 10px;
+	height: 2em;
+}
+#subscribe input[type="text"],
+#subscribe input[type="email"]{
+	color: #335;
+	margin: 0 4px 0 0;
+	width: 100%;
+	-webkit-box-sizing : border-box;‌​
+       -moz-box-sizing : border-box;
+            box-sizing : border-box;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.3);
+	   -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.3);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,0.3);
+}
+#subscribe input[type="submit"]{
+	margin:0;
+	margin-top: 1em;
+	display: inline-block;
+	color: #222;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+	background: #b6d76f;
+	background: -webkit-gradient(linear, left top, left bottom, from(#cae285), to(#9dc954));
+	background: -moz-linear-gradient(top,  #cae285,  #9dc954);
+	-webkit-box-shadow: inset 0px 1px 2px rgba(255,255,255,1), 0 1px 1px rgba(0,0,0,0.3);
+	   -moz-box-shadow: inset 0px 1px 2px rgba(255,255,255,1), 0 1px 1px rgba(0,0,0,0.3);
+			box-shadow: inset 0px 1px 2px rgba(255,255,255,1), 0 1px 1px rgba(0,0,0,0.3);
+}
+#subscribe input[type="submit"]:hover{
+	cursor: pointer;
+	-webkit-box-shadow: inset 0px 1px 2px rgba(255,255,255,1), 0 1px 1px rgba(0,0,0,0.3), 0 0 5px rgba(255,255,190,0.5);
+	   -moz-box-shadow: inset 0px 1px 2px rgba(255,255,255,1), 0 1px 1px rgba(0,0,0,0.3), 0 0 5px rgba(255,255,190,0.5);
+			box-shadow: inset 0px 1px 2px rgba(255,255,255,1), 0 1px 1px rgba(0,0,0,0.3), 0 0 5px rgba(255,255,190,0.5);
+}
+#subscribe input[type="submit"]:active{
+	cursor: pointer;
+	position: relative;
+	top: 1px;
+	text-shadow: 0 -1px 0 rgba(255,255,255,0.4);
+	background: #9dc954;
+	background: -webkit-gradient(linear, left top, left bottom, from(#9dc954), to(#cae285));
+	background: -moz-linear-gradient(top,  #9dc954,  #cae285);
+	-webkit-box-shadow: inset 0 0 0 transparent, inset 0 0 0 transparent;
+	   -moz-box-shadow: inset 0 0 0 transparent, inset 0 0 0 transparent;
+			box-shadow: inset 0 0 0 transparent, inset 0 0 0 transparent;
+}
+
+#coming-soon p.boutons { text-align: right; }
+
+#coming-soon .twitter:before{
+	content: '@';
+	padding-top: 2px;
+	padding-left: 24px;
+	background: url(twitter.png) no-repeat 0 0px;
+}
+#coming-soon .twitter{
+	padding-top: 5px;
+}
+#footerbas { text-align: right; }
+
+.container {
+  position: absolute;
+  bottom: 2em;
+  right: 2em;
+}
+
+.vegas-overlay {
+  opacity: .2;
+}
+
+.vegas-timer-progress {
+  background: #fff;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(.8);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(.8);
+  }
+}
+
+
+
+/*]]>*/
+</style>
+[<link rel="stylesheet" href="(#CHEMIN{en_travaux/style.css})">]
+
+#INCLURE{fond=noisettes/googleanalytics}
+
+</head>
+
+<body>
+
+<div id="coming-soon">
+
+	<h1><:info_travaux_titre:></h1>
+	<h2>[<img class="logo" src="(#LOGO_SITE_SPIP_NORMAL|extraire_attribut{src})" width="[(#LOGO_SITE_SPIP_NORMAL|largeur)]" height="[(#LOGO_SITE_SPIP_NORMAL|hauteur)]" alt="[(#NOM_SITE_SPIP|supprimer_tags|attribut_html)]" />]#NOM_SITE_SPIP[ <sub>(#SLOGAN_SITE_SPIP|ptobr)</sub>]</h2>
+
+	[<div id="bandeau_annonce">(#CONFIG{entravaux_message,<:entravaux:info_travaux_texte:>}|propre)</div>]
+
+	[(#PLUGIN{CLEVERMAIL}|oui)[<div id="subscribe"><h2><:soyezcreateurs:vous_souhaitez_etre_tenu_au_courant:></h2>(#FORMULAIRE_CLEVERMAIL{0,html})</div>]]
+	<!--<a href="http://twitter.com/#!/jpyrat" title="Visit pyrat.net on Twitter" class="twitter center">pyrat.net</a>-->
+	[<div id="bandeaucontact">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
+	
+	<div id="footerbas">
+		<div id="copymentions"><abbr lang="en" title="Copyright">&copy;</abbr> [(#DATE|annee)][, (#NOM_SITE_SPIP*|sc_supprimer_slogan|propre|supprimer_tags)]</div>
+		<div id="w3cgohome" class="navstuff"><span class="#EDIT{meta-soyezcreateurs/realisation}"><:soyezcreateurs:copyright_realisation:>[(#CONFIG{soyezcreateurs/realisation}|trim|sinon{'<a href="https://www.pyrat.net/" title="Visiter le site du créateur de ce squelette">pyrat.net</a>'}|propre|ptobr)</span>] — <:soyezcreateurs:copyright_spip:></div>
+	</div>
+
+	<p class="retour">
+	 \[ <a href="#URL_PAGE{login_sos,url=./}"><:lien_connecter:></a> \]&nbsp;&nbsp;
+	 \[ <a href="#URL_PAGE{login_sos,url=ecrire/}"><:login_acces_prive:></a> \]
+	</p>
+	
+</div>
+
+</body>
+<script type="text/javascript">
+(function() {
+	var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+	if(isSafari) {
+	   document.getElementById('support-note').style.display = 'block';
+	}
+})();
+
+$('body').vegas({
+	overlay: true,
+	transition: 'fade', 
+	transitionDuration: 1000,
+	delay: 10000,
+	color: 'black',
+	animation: 'random',
+	shuffle: true,
+	loop: true,
+
+	slides: [
+<BOUCLE_FonddePage(MOTS){type=_FondPage}{par hasard}{","}>
+			{ src: '[(#LOGO_MOT_NORMAL|extraire_attribut{src})]' }[(#REM) 
+			S'il n'y a qu'une image, on met l'image une 2e fois pour l'effet de kernburn soit appliqué en boucle 
+			][(#TOTAL_BOUCLE|=={1}|oui), { src: '[(#LOGO_MOT_NORMAL|extraire_attribut{src})]' }]
+</BOUCLE_FonddePage>
+			{ src: '#CHEMIN{en_travaux/fond.jpg}' },
+			[(#REM) On met l'image une 2e fois pour l'effet de kernburn soit appliqué en boucle ]
+			{ src: '#CHEMIN{en_travaux/fond.jpg}' }
+<//B_FonddePage>
+	],
+
+	
+    init: function (globalSettings) {
+        console.log("Init");
+    },
+    play: function (index, slideSettings) {
+        console.log("Play");
+    },
+    walk: function (index, slideSettings) {
+        console.log("Slide index " + index + " image " + slideSettings.src);
+    }
+});
+
+</script>
+</html>
+#FILTRE{mini_html}

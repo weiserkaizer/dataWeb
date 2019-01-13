@@ -1,0 +1,6 @@
+[(#PLUGIN{propevent}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:agenda_proposer_evenement:></h1></div>
+</div>
+]
+#FILTRE{mini_html}

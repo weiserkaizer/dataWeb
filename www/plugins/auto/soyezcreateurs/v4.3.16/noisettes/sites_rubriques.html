@@ -1,0 +1,17 @@
+[
+(#PLUGIN{SEDNA}|oui)<p><:soyezcreateurs:voirsitespar:> <a href="#URL_PAGE{sedna}"><:soyezcreateurs:sedna:></a></p>
+]<BOUCLE_SecteursAvecSite(SITES){fusion id_secteur}><BOUCLE_MemoriseSecteurs(RUBRIQUES){id_rubrique=#_SecteursAvecSite:ID_SECTEUR}{doublons SecteursAvecSite}{!titre_mot=PasDansPlan} /></BOUCLE_SecteursAvecSite><BOUCLE_BrancheContientSite(RUBRIQUES){par num titre}{!doublons SecteursAvecSite}>
+	<h2><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
+	[(#INCLURE{fond=noisettes/sites_branche_detail,id_rubrique})]
+	<B_Autres_Details>
+	<ul class="listesitesssrub">
+	<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansPlan}><BOUCLE_SousBrancheContientSite(SITES){branche}{0,1}>
+		<li><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
+		<BOUCLE_Recursion(BOUCLE_Autres_Details) />
+			[(#INCLURE{fond=noisettes/sites_branche_detail,id_rubrique})]
+		</li>
+		</BOUCLE_SousBrancheContientSite></BOUCLE_Autres_Details>
+	</ul>
+	</B_Autres_Details>
+</BOUCLE_BrancheContientSite>
+#FILTRE{mini_html}

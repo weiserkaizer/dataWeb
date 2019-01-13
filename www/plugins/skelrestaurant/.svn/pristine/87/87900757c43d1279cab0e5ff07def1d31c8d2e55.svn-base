@@ -1,0 +1,68 @@
+<?php
+/**
+ * Fichier gérant l'installation et désinstallation du plugin SoyezCréateurs OnePage Mammas Kitchen
+ *
+ * @plugin     SoyezCréateurs OnePage Mammas Kitchen
+ * @copyright  2018
+ * @author     andreas
+ * @licence    GNU/GPL
+ * @package    SPIP\Sc_mamaskitchen\Installation
+ */
+
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
+
+
+/**
+ * Fonction d'installation et de mise à jour du plugin SoyezCréateurs OnePage Mammas Kitchen.
+ *
+ * @param string $nom_meta_base_version
+ *     Nom de la meta informant de la version du schéma de données du plugin installé dans SPIP
+ * @param string $version_cible
+ *     Version du schéma de données dans ce plugin (déclaré dans paquet.xml)
+ * @return void
+**/
+function sc_mammaskitchen_upgrade($nom_meta_base_version, $version_cible) {
+	$maj = array();
+	
+	$maj['create'] = array(
+		array('sc_noisettespardefaut')
+	);
+	include_spip('base/upgrade');
+	maj_plugin($nom_meta_base_version, $version_cible, $maj);
+}
+
+
+/**
+ * Fonction de désinstallation du plugin SoyezCréateurs OnePage Mammas Kitchen.
+ *
+ * @param string $nom_meta_base_version
+ *     Nom de la meta informant de la version du schéma de données du plugin installé dans SPIP
+ * @return void
+**/
+function sc_mammaskitchen_vider_tables($nom_meta_base_version) {
+	effacer_meta($nom_meta_base_version);
+}
+
+function sc_noisettespardefaut() {
+	include_spip('inc/noizetier_conteneur');
+	include_spip('inc/config');
+	include_spip('inc/ncore_type_noisette');
+	include_spip('inc/ncore_noisette');
+	include_spip('ncore/ncore');
+	include_spip('ncore/noizetier');
+	$conteneur = array();
+	//Liste tous les noisettes de tous les conteneurs existant
+	$liste_noisettes = noizetier_noisette_lister('noizetier', $conteneur, '', $cle = 'rang_noisette');
+	if (!isset($liste_noisettes['contenu/corps'])) {//S'il n'y a pas de noisettes dans contenu/corps
+		//Liste des noisettes à inserer
+		$noisettes = array('zoomsur', 'edito', 'cycloshow', 'alaune', 'goodies', 'zoomsur2', 'maps');
+		$conteneur = noizetier_conteneur_decomposer('contenu/corps');
+
+		//Insersion des noisettes
+		foreach ($noisettes as $noisette) {
+			$id_noisette = noisette_ajouter('noizetier', $noisette, $conteneur);
+		}
+	}
+}

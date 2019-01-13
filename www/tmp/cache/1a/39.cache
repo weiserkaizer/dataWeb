@@ -1,0 +1,76 @@
+a:2:{s:9:"nom_cache";s:38:"1a39bbad6967079a6e1cf28b04182ffa.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_a9519a39f9f20b07ae646882c5f275a4";s:6:"source";s:74:"plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/header_modeedito.html";s:11:"process_ins";s:3:"php";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"1a39bbad6967079a6e1cf28b04182ffa.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:4193:"
+<div id="header">
+<div id="headerbackground"></div>
+<div id="header_inner">
+<div id="escapelinks" class="escapelinks"><ul><li><a href="#main">Aller au texte</a></li><li><a href="#menusite">Aller au menu</a></li><li><a href="#formulaire_recherche">Aller à la recherche</a></li><li><a href="spip.php?article2">Politique d&#8217;accessibilité du site</a></li></ul></div>
+<?php echo recuperer_fond( 'noisettes/menus/menu_navhaute', array_merge(array (
+  'template' => 'Sommaire',
+  'idbody' => 'sommaire_mode_portailcognac',
+  'type' => 'sommaire',
+  'lang' => 'fr',
+  'date' => '2018-08-11 14:48:46',
+  'date_default' => true,
+  'date_redac' => '2018-08-11 14:48:46',
+  'date_redac_default' => true,
+  'secteurencours' => '',
+),array('lang' => 'fr')), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/header_modeedito.html','html_a9519a39f9f20b07ae646882c5f275a4','',6,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+<div id="logo">
+<a href="./" title="Revenir à l’Accueil du site Votre site SPIP">
+<img src="IMG/siteon0.jpg?1531296516" width="160" height="160" alt="Votre site SPIP" />
+</a>
+</div>
+<a id="sommaire"></a>
+<h1 class="crayon meta-valeur-nom_site "><a href="http://localhost" title="Accueil">Votre site <span class="caps">SPIP</span> <sub>[Todo : Slogan du site]</sub></a></h1>
+<div id="cadre_outils">
+<ul>
+
+<li id="cadre_outil_6" class="first"><a href="spip.php?article6"><img src="local/cache-vignettes/L16xH16/arton6-414ff.jpg?1533998945" class="logo_outil" alt="" width="16" height="16" />Outil 1</a></li>
+
+<li id="cadre_outil_7"><a href="spip.php?article7"><img src="local/cache-vignettes/L16xH16/arton7-de6cd.jpg?1533998945" class="logo_outil" alt="" width="16" height="16" />Outil 2</a></li>
+
+<li id="cadre_outil_8"><a href="spip.php?article8"><img src="local/cache-vignettes/L16xH16/arton8-3be12.jpg?1533998945" class="logo_outil" alt="" width="16" height="16" />Outil 3</a></li>
+
+<li id="cadre_outil_9" class="last"><a href="spip.php?article9"><img src="local/cache-vignettes/L16xH16/arton9-00ee4.jpg?1533998945" class="logo_outil" alt="" width="16" height="16" />Outil 4</a></li>
+
+
+
+
+
+
+
+<li id="cadre_outil_envelope"><a href="#bandeaucontact" title="Contact"><span class="icon icon-envelope  icon-lg texte-blanc"></span><span class="hide">Contact</span></a></li>
+
+<li id="cadre_outil_search"><a href="#formulaire_recherche" title="Aller à la recherche" class="js-modal" data-modal-prefix-class="sombre" data-modal-focus-id="formulaire_recherche" data-modal-content-id="cadre_recherche" data-modal-close-text="Fermer"
+data-modal-close-title="Fermer"><span class="icon icon-search icon-lg texte-blanc"></span><span class="hide">Aller à la recherche</span></a></li>
+
+</ul>
+</div>
+<div id="cadre_recherche" class="cadre_recherche">
+
+<div itemscope itemtype="http://schema.org/WebSite">
+<meta itemprop="url" content="http://localhost"/>
+<form action='spip.php?page=recherche' method='get' id='form_rech' class='searchfrm' itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction">
+<meta itemprop="target" content="http://localhost/spip.php?page=recherche&amp;recherche={recherche}"/>
+<div>
+<input name="page" value="recherche" type="hidden"
+/>
+<label for="formulaire_recherche" title="Veuillez saisir votre recherche">Rechercher sur le site</label>
+<input itemprop="query-input" name='recherche' type='search' id='formulaire_recherche' class="searchfield" title="Veuillez saisir votre recherche" placeholder="Recherche ?" autocapitalize="off" autocorrect="off" />
+<input type="submit" id="sendsearch" class="okfield form_submit" title="Lancer la recherche" value="OK" />
+</div>
+</form>
+</div>
+</div>
+<div class="clearing">&nbsp;</div>
+</div><!-- id="header_inner" -->
+</div><!-- id="header" -->
+<?php echo recuperer_fond( 'noisettes/menus/menuhaut', array('secteurencours' => '',
+	'rubriqueencours' => '',
+	'id_article' => '',
+	'id_groupe' => '',
+	'id_mot' => '',
+	'mots' => '',
+	'lang' => 'fr'), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/header_modeedito.html','html_a9519a39f9f20b07ae646882c5f275a4','',12,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+";s:5:"notes";s:0:"";s:8:"contexte";a:9:{s:8:"template";s:8:"Sommaire";s:6:"idbody";s:27:"sommaire_mode_portailcognac";s:4:"type";s:8:"sommaire";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2018-08-11 14:48:46";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2018-08-11 14:48:46";s:18:"date_redac_default";b:1;s:14:"secteurencours";s:0:"";}s:12:"lastmodified";i:1533998917;s:2:"gz";b:0;s:3:"sig";i:2444842323;}}

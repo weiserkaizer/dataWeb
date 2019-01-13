@@ -1,0 +1,78 @@
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}{tous}>[(#SET{titretop,[(#NOM|attribut_html|sc_nettoyer_marqueur|texte_script)]})][(#SET{title,<:soyezcreateurs:auteur|texte_script:>: [(#NOM|attribut_html|texte_script)]})]<INCLURE{fond=noisettes/header/header}
+	{title=#GET{title}}
+	{titretop=#GET{titretop}}
+	{idbody=auteur}
+	{id_auteur}
+	{type=auteur}
+>
+<div class="texte surlignable">
+<main id="main" role="main">
+<!-- Une : affichage de l'auteur -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche surlignable">
+<div class="titrepage"><h1 class="#EDIT{qui}">#NOM</h1></div>
+</div>
+]
+<div id="letexte">
+
+[<div class="#EDIT{bio}">[(#LOGO_AUTEUR|image_reduire{200,200}inserer_attribut{class, 'spip_logo spip_logos logo_auteur'})](#BIO)</div>]
+[<div class="#EDIT{hyperlien} ps"><a rel="me" href="(#URL_SITE)" title="">#NOM_SITE</a></div>]
+[<div class="notes">(#NOTES)</div>]
+
+[<div id="carto">
+(#PLUGIN{GIS}|oui)[(#INCLURE{fond=json/gis_auteurs,id_auteur,limit=1}|oui)[(#INCLURE{fond=modeles/carte_gis,id_auteur,objets=auteurs,autocenterandzoom=oui,hauteur=#CONFIG{soyezcreateurs_layout/hauteurgisarticles,400px},cluster=[(#PLUGIN{GISGEOM}|?{'non','oui'})],maxClusterRadius=40,clusterShowCoverageOnHover=oui,clusterSpiderfyOnMaxZoom=oui,fullscreen=oui,zoom_wheel=non})]]
+</div>]
+
+[(#FORMULAIRE_ECRIRE_AUTEUR)]
+
+<B_articles>
+<!-- Articles de l'auteur -->
+<h2><:articles_auteur:> (#TOTAL_BOUCLE)</h2>
+<ul class="spip pas_surlignable">
+<BOUCLE_articles(ARTICLES) {id_auteur} {par titre}>
+	<li><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+</BOUCLE_articles>
+</ul>
+</B_articles>
+
+</div><!-- Fin de #LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+
+
+</BOUCLE_auteur_principal>
+[(#SET{titretop,<:soyezcreateurs:auteurs_site|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{title=<:soyezcreateurs:auteurs_site|texte_script:>}
+	{titretop=#GET{titretop}}
+	{idbody=auteurs}
+	{type=auteur}
+>
+<div class="texte">
+<main id="main" role="main">
+<!-- Contenu : Tous les auteurs -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche surlignable">
+<div class="titrepage"><h1><:soyezcreateurs:auteurs_site:></h1></div>
+</div>
+]
+	<div id="letexte">
+<ul class="spip">
+<BOUCLE_LesAuteurs(AUTEURS){par nom}>
+<li><a href="#URL_AUTEUR">[(#NOM)]</a> <BOUCLE_comptearticles(ARTICLES) {id_auteur}> </BOUCLE_comptearticles>[((#TOTAL_BOUCLE) articles)]</B_comptearticles></li>
+</BOUCLE_LesAuteurs>
+</ul>
+
+[<div id="carto">
+(#PLUGIN{GIS}|oui)[(#INCLURE{fond=json/gis_auteurs,limit=1}|oui)[(#INCLURE{fond=modeles/carte_gis,objets=auteurs,autocenterandzoom=oui,hauteur=#CONFIG{soyezcreateurs_layout/hauteurgisarticles,400px},cluster=[(#PLUGIN{GISGEOM}|?{'non','oui'})],maxClusterRadius=40,clusterShowCoverageOnHover=oui,clusterSpiderfyOnMaxZoom=oui,fullscreen=oui,zoom_wheel=non})]]
+</div>]
+
+	</div><!-- Fin de #LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+<//B_auteur_principal>
+
+<INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}

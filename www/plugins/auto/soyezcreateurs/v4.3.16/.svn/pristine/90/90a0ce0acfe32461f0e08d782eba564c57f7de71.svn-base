@@ -1,0 +1,44 @@
+- placer les {par ...} avant les {xxx IN ...} pour tenir compte de l'optimisation : http://trac.rezo.net/trac/spip/changeset/12849 et http://trac.rezo.net/trac/spip/changeset/12865
+reportée en 2.0 beta par http://trac.rezo.net/trac/spip/changeset/12908 (finalement inutile)
+- Inclusion de la possibilité d'utiliser le plugin social tags
+- Les Citations ont désormais leur bulle d'aide dans le champ bulle d'aide (descriptif rapide). Rétro compatibilité assurée.
+- petite correction de style sur bouton texte en mode plein écran
+- du coup, suppression de la CFG spécifique à SoyezCreateurs de Bouton texte : le plein écran fonctionne !
+- rationalisation du menu de CFG de SoyezCreateurs.
+Au passage, 2 bugs de levés : 
+ - dans plugin.xml, pour qu'un fond de config soit surchargé par un autre, il faut mettre un "necessite", "utilise" n'est pas suffisant.
+ - L'onglet n'est surligné *que* si on n'est pas dans le fond de CFG principal
+- Fin du fork permettant de considérer un .css ou un .js comme une squelette
+- Simplification du .htaccess en conséquence
+- Synchronisation du .htaccess avec celui de SPIP
+- Suppresion de la nécessité de la rewriterule plan.html (remplacé par @plan.html)
+- Suppression de l'obligation d'être en racine d'un serveur web !!! (non testé) (Philippe)
+Testé par philippe : ça marche !
+- passage en noisettes des éléments inclus par un autre squelette afin de rendre plus lisible la racine du squelette.
+- amélioration significative du processus de login pour accès à l'espace réservé. Permet en particulier de communiquer des adresses de cet espace à un tiers pour qu'il puisse directement d'autentifier sur la page en question.
+
+
+
+Social tags :
+- mise en conformité xHTML des images
+- ajout d'un clear:both; pour pouvoir afficher après un float sans floter à côter.
+- label dans l'interface de CFG pour être plus accessible et validité du formulaire (avec passage en gras seulement de ce qui est actif)
+- correction d'un title sur l'icone de Delicious (pour faire bien, il faudrait aussi afficher ces icones dans CFG, et ne pas stocker dans la CFG les URL des services !!!)
+
+- Finalement, les fond dégradés, il vaut mieux en user avec parcimonie
+- Ne pas afficher la date de publication dans les bulles d'aide des liens de navigation (et du coup, en profiter pour afficher aussi la date de dernière modification)
+- Pouvoir utiliser les raccourcis typo dans la mention de réalisation (avec les paragraphes remplacés par des <br />)
+- Suppression de la cfg 'mode_statique' qui n'était plus utilisée.
+- Il est désormais possible d'utiliser les Mots-clefs MENURACINE et MENURACINEBAS à l'intérieur d'article placées dans un secteur servant de MenuHaut de manière à ce qu'il s'affichent dans ce seul secteur.
+
+- En mode portail, passer "Rubriques" au dessus de "À voir aussi".
+- Portail : les liens de "À voir aussi" et "Nouveautés sur le web" pointent sur la page description dans le site et non plus sur le site d'origine directement.
+- Portail : Lien vers "Sites web" rajouté sur la colonne de gauche.
+- Bulle d'aide sur le lien "Sites web"
+- Suppression des dernière AccessKey  — fausse bonne idée de l'accessibilité car jamais standardisé :~(
+- Ne pas afficher sous le mini agenda les événements associés à des articles non publiés !
+- MiniAgenda : si plusieurs événéments à la même date, bulle d'aide plus explicite !
+- Amélioration de l'affichage du détail des événements et affichage de l'adresse
+- Agenda : quand il n'y avait pas de liste déroulante de mots clefs, le bouton OK de l'agenda mensuel ne fonctionnait pas (tricky!)
+- Correction d'accessibilité en mode portail (2 ancres qui manquaient)
+- Accessibilité : passer les éléments qui étaient abusivement masqués en déportés hors de l'affichage

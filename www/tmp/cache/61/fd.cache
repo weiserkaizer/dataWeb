@@ -1,0 +1,126 @@
+a:2:{s:9:"nom_cache";s:38:"61fd94ff0e9fb4ee4879e30c71124c8f.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_d606c47f353743e42409dac0282c2ff7";s:6:"source";s:16:"prive/login.html";s:11:"process_ins";s:3:"php";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"61fd94ff0e9fb4ee4879e30c71124c8f.cache";}s:7:"entetes";a:2:{s:12:"Content-Type";s:24:"text/html; charset=utf-8";s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:4507:"
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+<head>
+<title>Votre site SPIP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="none" />
+<meta name="viewport" content="width=device-width" />
+<link rel='stylesheet' href='local/cache-css/128fcba82da1adfdfb57abfe2f088899.css?1533999159' type='text/css' /><?php header('Link: <' . url_de_base() . (_DIR_RACINE ? _DIR_RESTREINT_ABS : '') . 'local/cache-css/128fcba82da1adfdfb57abfe2f088899.css?1533999159>;rel="stylesheet prefetch"'); ?><?php header('Link: <' . url_de_base() . (_DIR_RACINE ? _DIR_RESTREINT_ABS : '') . 'local/cache-css/ea2559d047c2bd21afef6e56374e22cb.css?1533999152>;rel="stylesheet prefetch"'); ?>
+
+
+
+<script type='text/javascript' src='local/cache-js/1cbf03adb4ee5eaf86c176a88b874104.js?1533999160'></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">/* <![CDATA[ */
+var box_settings = {tt_img:true,sel_g:"#documents_portfolio a[type='image/jpeg'],#documents_portfolio a[type='image/png'],#documents_portfolio a[type='image/gif']",sel_c:".mediabox",trans:"elastic",speed:"200",ssSpeed:"2500",maxW:"90%",maxH:"90%",minW:"400px",minH:"",opa:"0.9",str_ssStart:"Diaporama",str_ssStop:"Arrêter",str_cur:"{current}/{total}",str_prev:"Précédent",str_next:"Suivant",str_close:"Fermer",splash_url:""};
+var box_settings_splash_width = "600px";
+var box_settings_splash_height = "90%";
+var box_settings_iframe = true;
+/* ]]> */</script>
+<!-- insert_head_css -->
+
+
+
+
+<style type='text/css'>div.onlytext {text-align:right;}</style>
+
+
+
+
+
+<!-- insert_head -->
+	
+	
+
+
+
+
+
+<script type="text/javascript"><!--
+	var boutonstexte_options = {
+		'selector':'#contenu',
+		'imgPath':'plugins/auto/soyezcreateurs/v4.3.16/boutonstexte/themes/soyezcreateurs/',
+		'txtOnly':'',
+		'txtBackSpip':'Retour à la page complète',
+		'txtSizeUp':'Augmenter police',
+		'txtSizeDown':'Diminuer police'
+	};
+//-->
+</script><script type="text/javascript">/* <![CDATA[ */
+function ancre_douce_init() {
+	if (typeof jQuery.localScroll=="function") {
+		jQuery.localScroll({autoscroll:false, hash:true, onAfter:function(anchor, settings){ 
+			jQuery(anchor).attr('tabindex', -1).on('blur focusout', function () {
+				// when focus leaves this element, 
+				// remove the tabindex attribute
+				jQuery(this).removeAttr('tabindex');
+			}).focus();
+		}});
+	}
+}
+if (window.jQuery) jQuery(document).ready(function() {
+	ancre_douce_init();
+	onAjaxLoad(ancre_douce_init);
+});
+/* ]]> */</script>
+
+
+<script type="text/javascript" src="//maps.google.com/maps/api/js?language=fr&amp;key="></script><?php if (!in_array(_request(_SPIP_PAGE),array('login')) AND strpos($_SERVER['REQUEST_URI'],'debut_')===false){?><link rel="alternate" type="application/json+oembed" href="<?php include_spip('inc/filtres_mini');echo parametre_url(url_absolue("oembed.api/?format=json"), "url", url_absolue(self()));?>" />
+<?php } ?>
+<script type='text/javascript'><!--
+jQuery(function(){ jQuery('input#var_login').focus();
+jQuery('a#spip_pass').click(function(){window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=380'); return false;});
+});
+// --></script>
+<meta name="generator" content="SPIP 3.2.1 [23954]" />
+</head>
+<body class="page_login">
+
+<div id="minipres">
+
+	<h1>Votre site <span class="caps">SPIP</span></h1>
+	
+	 
+	<h3 class="spip">accès à l’espace privé</h3>
+	<?php 
+include_once("./" . _DIR_RACINE . "ecrire/balise/menu_lang_ecrire.php");
+if ($lang_select = "fr") $lang_select = lang_select($lang_select);
+inserer_balise_dynamique(balise_MENU_LANG_ECRIRE_dyn('fr'), array('prive/login.html', 'html_d606c47f353743e42409dac0282c2ff7', '', 31, 'fr'));
+if ($lang_select) lang_select();
+?>
+	
+	
+	<?php 
+include_once("./" . _DIR_RACINE . "ecrire/balise/formulaire_.php");
+if ($lang_select = "fr") $lang_select = lang_select($lang_select);
+inserer_balise_dynamique(balise_FORMULAIRE__dyn('FORMULAIRE_LOGIN', '/ecrire/'), array('prive/login.html', 'html_d606c47f353743e42409dac0282c2ff7', '', 14, 'fr'));
+if ($lang_select) lang_select();
+?>
+	<p class="retour">
+		<a href="spip.php?page=identifiants&amp;focus=nom_inscription&amp;mode=1comite">s’inscrire</a> | 
+		<a href="http://localhost/">retour au site public</a>
+	</p>
+	<p class="generator">
+		<a href="http://www.spip.net/" title="Site réalisé avec SPIP"><img src='prive/themes/spip/images/spip.png' alt='' width='53' height='40' /></a>
+	</p>
+	
+</div><!--#minipres-->
+
+</body>
+</html>";s:5:"notes";s:0:"";s:8:"contexte";a:7:{s:4:"page";s:5:"login";s:3:"url";s:8:"/ecrire/";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2019-01-06 23:34:26";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 23:34:26";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1546817665;s:2:"gz";b:0;s:3:"sig";i:4069362784;}}

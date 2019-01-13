@@ -1,0 +1,594 @@
+<div class="formulaire_spip formulaire_configurer_sc">
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	<form method="post" action="#ENV{action}">
+		<div>
+			#ACTION_FORMULAIRE{#ENV{action}}
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_couleurs_css:></h3>
+				<table style="width:100%;">
+					<tbody>
+						<tr>
+							<th></th>
+							<th><:ecrire:info_texte:></th>
+							<th><:soyezcreateursprive:cfg_fond:></th>
+							<th style="width:50%"><:soyezcreateursprive:cfg_exemple_rendu:></th>
+							<th><:soyezcreateursprive:cfg_fond_degrade:></th>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_page:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color_bk=#ENV{body_bk,#eceded},
+								name=body}>
+							<td><div class="choix">#SET{valeur,#ENV{body_degrade}|is_null|?{on,#ENV{body_degrade}}}<input type="hidden" name="body_degrade" value="" /><input type="checkbox" name="body_degrade" class="checkbox" id='champ_body_degrade'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_body_degrade"><:ecrire:item_non:></label></div></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_triadea:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{triadea,#be1621},
+								name=triadea}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_triadeb:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{triadeb,#129b9b},
+								name=triadeb}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_triadec:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{triadec,#c38f06},
+								name=triadec}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_entete_page:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{header,#262626},
+								color_bk=#ENV{header_bk,#ffffff},
+								name=header}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_entete_outils:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{outils,#ENV{header,#262626}},
+								name=outils}>
+							<td></td>
+						</tr>
+						<tr>
+							<th colspan="2">Transparence en-tête</th>
+							<td><input type="text" name="transparenceheader" value="#ENV{transparenceheader,1}" id="sc_transparenceheader" size="4" class="fondl" /></td>
+							<td style="[background-color:(#ENV{body_bk,#eceded});]"><div style="[color:(#ENV{header,#262626});][background-color:(#ENV{header_bk,#ffffff});][(#ENV{transparenceheader,1}|!={1}|oui)background-color: rgba([(#ENV{header_bk,#ffffff}|sc_rgb)], #ENV{transparenceheader,1});]"><:soyezcreateursprive:cfg_exemple:> #ENV{transparenceheader,1}</div></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_fildariane:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{fildariane,#ENV{container,#02265a}},
+								color_bk=#ENV{fildariane_bk,#ENV{container_bk,#f6f6f6}},
+								name=fildariane}>
+							<td></td>
+						</tr>
+						<tr>
+							<th colspan="2">Transparence Fil d'Ariane</th>
+							<td><input type="text" name="transparencefildariane" value="#ENV{transparencefildariane,1}" id="sc_transparencefildariane" size="4" class="fondl" /></td>
+							<td style="[background-color:(#ENV{fildariane_bk,#ENV{container_bk,#f6f6f6}});]"><div style="[color:(#ENV{fildariane,#ENV{container,#02265a}});][background-color:(#ENV{fildariane_bk,#ENV{container_bk,#f6f6f6}});][(#ENV{transparencefildariane,1}|!={1}|oui)background-color: rgba([(#ENV{fildariane_bk,#ENV{container_bk,#f6f6f6}}|sc_rgb)], #ENV{transparencefildariane,1});]"><:soyezcreateursprive:cfg_exemple:> #ENV{transparencefildariane,1}</div></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_fildarianehome:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{fildarianehome,#EA5044},
+								color_bk=#ENV{fildarianehome_bk,#EA5044},
+								name=fildarianehome}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_maj:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{datemajsite,#595959},
+								color_bk=#ENV{datemajsite_bk,#ffffff},
+								name=datemajsite}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_pied:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{footer,#595959},
+								color_bk=#ENV{footer_bk,#ffffff},
+								name=footer}>
+							<td><div class="choix">#SET{valeur,#ENV{footer_degrade}|is_null|?{on,#ENV{footer_degrade}}}<input type="hidden" name="footer_degrade" value="" /><input type="checkbox" name="footer_degrade" class="checkbox" id='champ_footer_degrade'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_footer_degrade"><:ecrire:item_non:></label></div></td>
+						</tr>
+						<tr>
+							<th colspan="2">Transparence pied</th>
+							<td><input type="text" name="transparencefooter" value="#ENV{transparencefooter,1}" id="sc_transparencefooter" size="4" class="fondl" /></td>
+							<td style="[background-color:(#ENV{body_bk,#eceded});]"><div style="[color:(#ENV{footer,#595959});][background-color:(#ENV{footer_bk,#ffffff});][(#ENV{transparencefooter,1}|!={1}|oui)background-color: rgba([(#ENV{footer_bk,#ffffff}|sc_rgb)], #ENV{transparencefooter,1});]"><:soyezcreateursprive:cfg_exemple:> #ENV{transparencefooter,1}</div></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_menu_haut:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{menuhaut,#017ca5},
+								color_bk=#ENV{menuhaut_bk,#ffffff},
+								name=menuhaut}>
+							<td><div class="choix">#SET{valeur,#ENV{menuhaut_degrade}|is_null|?{on,#ENV{menuhaut_degrade}}}<input type="hidden" name="menuhaut_degrade" value="" /><input type="checkbox" name="menuhaut_degrade" class="checkbox" id='champ_menuhaut_degrade'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_menuhaut_degrade"><:ecrire:item_non:></label></div></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_menu_bas:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{menubas,#ENV{menuhaut,#017ca5}},
+								color_bk=#ENV{menubas_bk,#ENV{menuhaut_bk,#ffffff}},
+								name=menubas}>
+							<td><div class="choix">#SET{valeur,#ENV{menubas_degrade}|is_null|?{on,#ENV{menubas_degrade}}}<input type="hidden" name="menubas_degrade" value="" /><input type="checkbox" name="menubas_degrade" class="checkbox" id='champ_menubas_degrade'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_menubas_degrade"><:ecrire:item_non:></label></div></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_logo:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color_bk=#ENV{logo_bk,transparent},
+								name=logo}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_nav_p:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{navigation,#017ca5},
+								color_bk=#ENV{navigation_bk,#ffffff},
+								name=navigation}>
+							<td></td>
+						</tr>
+						<tr>
+							<th colspan="2">Transparence nav princ</th>
+							<td><input type="text" name="transparencenavigation" value="#ENV{transparencenavigation,1}" id="sc_transparencenavigation" size="4" class="fondl" /></td>
+							<td style="[background-color:(#ENV{body_bk,#eceded});]"><div style="[color:(#ENV{navigation,#017ca5});][background-color:(#ENV{navigation_bk,#ffffff});][(#ENV{transparencenavigation,1}|!={1}|oui)background-color: rgba([(#ENV{navigation_bk,#ffffff}|sc_rgb)], #ENV{transparencenavigation,1});]"><:soyezcreateursprive:cfg_exemple:> #ENV{transparencenavigation,1}</div></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_nav_sec:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{extra,#017ca5},
+								color_bk=#ENV{extra_bk,#ffffff},
+								name=extra}>
+							<td></td>
+						</tr>
+						<tr>
+							<th colspan="2">Transparence nav sec</th>
+							<td><input type="text" name="transparenceextra" value="#ENV{transparenceextra,1}" id="sc_transparenceextra" size="4" class="fondl" /></td>
+							<td style="[background-color:(#ENV{body_bk,#eceded});]"><div style="[color:(#ENV{extra,#017ca5});][background-color:(#ENV{extra_bk,#ffffff});][(#ENV{transparenceextra,1}|!={1}|oui)background-color: rgba([(#ENV{extra_bk,#ffffff}|sc_rgb)], #ENV{transparenceextra,1});]"><:soyezcreateursprive:cfg_exemple:> #ENV{transparenceextra,1}</div></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_menu_inactif:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{menu_a,#005e7a},
+								color_bk=#ENV{menu_a_bk,#ffffff},
+								name=menu_a}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_menu_survol:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{menu_a_hover,#ffffff},
+								color_bk=#ENV{menu_a_hover_bk,#0b7899},
+								name=menu_a_hover}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_menu_clic:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{menu_a_active,#ffffff},
+								color_bk=#ENV{menu_a_active_bk,#0b7899},
+								name=menu_a_active}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_menu_actif:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{menu_a_strong,#ffffff},
+								color_bk=#ENV{menu_a_strong_bk,#0b7899},
+								name=menu_a_strong}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_cadre_vignettes:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color_bk=#ENV{vignettes_bk,#ffffff},
+								name=vignettes}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_cadreinfo:></th>
+							<td colspan="3" style="[color: #(#ENV{menu_a_bk,#ffffff}|couleur_inverserluminosite{20,true});] [background: #(#ENV{menu_a_bk,#ffffff}|couleur_inverserluminosite{30});]"><:soyezcreateursprive:cfg_menu_inactif:>(<:soyezcreateursprive:cfg_fond:>)|couleur_inverserluminosite{20,true}<br /><:soyezcreateursprive:cfg_menu_inactif:>(<:soyezcreateursprive:cfg_fond:>)|couleur_inverserluminosite{30}</td>
+							<td><div class="choix">#SET{valeur,#ENV{cadreinfo_degrade}|is_null|?{on,#ENV{cadreinfo_degrade}}}<input type="hidden" name="cadreinfo_degrade" value="" /><input type="checkbox" name="cadreinfo_degrade" class="checkbox" id='champ_cadreinfo_degrade'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_cadreinfo_degrade"><:ecrire:item_non:></label></div></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_citations:></th>
+							<td colspan="3" style="[color: #(#ENV{menu_a_bk,#ffffff}|couleur_foncerluminosite);] [background: #(#ENV{menu_a_bk,#ffffff}|couleur_inverserluminosite{80});]"><:soyezcreateursprive:cfg_menu_inactif:>(<:soyezcreateursprive:cfg_fond:>)|couleur_foncerluminosite<br /><:soyezcreateursprive:cfg_menu_inactif:>(<:soyezcreateursprive:cfg_fond:>)|couleur_inverserluminosite{80}</td>
+							<td><div class="choix">#SET{valeur,#ENV{citations_degrade}|is_null|?{on,#ENV{citations_degrade}}}<input type="hidden" name="citations_degrade" value="" /><input type="checkbox" name="citations_degrade" class="checkbox" id='champ_citations_degrade'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_citations_degrade"><:ecrire:item_non:></label></div></td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_couleurs_css_contenu:></h3>
+				<table style="width:100%;">
+					<tbody>
+						<tr>
+							<th></th>
+							<th><:ecrire:info_texte:></th>
+							<th><:soyezcreateursprive:cfg_fond:></th>
+							<th style="width:50%"><:soyezcreateursprive:cfg_exemple_rendu:></th>
+							<th><:soyezcreateursprive:cfg_fond_degrade:></th>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_texte_central:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{container,#02265a},
+								color_bk=#ENV{container_bk,#f6f6f6},
+								name=container}>
+							<td></td>
+						</tr>
+						<tr>
+							<th colspan="2">Transparence contenu</th>
+							<td><input type="text" name="transparencecontent" value="#ENV{transparencecontent,1}" id="sc_transparencecontent" size="4" class="fondl" /></td>
+							<td style="[background-color:(#ENV{body_bk,#eceded});]"><div style="[color:(#ENV{container,#02265a});][background-color:(#ENV{container_bk,#f6f6f6});][(#ENV{transparencecontent,1}|!={1}|oui)background-color: rgba([(#ENV{container_bk,#f6f6f6}|sc_rgb)], #ENV{transparencecontent,1});]"><:soyezcreateursprive:cfg_exemple:> #ENV{transparencecontent,1}</div></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_slideshow:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color_bk=#ENV{slideshow_bk,transparent},
+								name=slideshow}>
+							<td></td>
+						</tr>
+						<tr>
+							<th colspan="3"><:soyezcreateursprive:cfg_cartouche:></th>
+							<td style="[color:(#ENV{navigation,#017ca5})];[background-color:(#ENV{navigation_bk,#ffffff})]"><:soyezcreateursprive:cfg_nav_p:></td>
+							<td><div class="choix">#SET{valeur,#ENV{cartouche_degrade}|is_null|?{on,#ENV{cartouche_degrade}}}<input type="hidden" name="cartouche_degrade" value="" /><input type="checkbox" name="cartouche_degrade" class="checkbox" id='champ_cartouche_degrade'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_cartouche_degrade"><:ecrire:item_non:></label></div></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_titraille:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{titraille,#005e7a},
+								color_bk=#ENV{titraille_bk,#f6f6f6},
+								name=titraille}>
+							<td><div class="choix">#SET{valeur,#ENV{titraille_degrade}|is_null|?{on,#ENV{titraille_degrade}}}<input type="hidden" name="titraille_degrade" value="" /><input type="checkbox" name="titraille_degrade" class="checkbox" id='champ_titraille_degrade'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_titraille_degrade"><:ecrire:item_non:></label></div></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_titraille_ssniveaux:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{titraille_ssniveaux,#005e7a},
+								color_bk=#ENV{titraille_ssniveaux_bk,#f6f6f6},
+								name=titraille_ssniveaux}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_lien_non_visite:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{link,#017ca5},
+								name=link}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_lien_visite:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{visited,#595959},
+								name=visited}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_lien_survol:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{hover,#02265a},
+								name=hover}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_lien_clic:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{active,#595959},
+								name=active}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_cadrestexte:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{cadrestexte,#02265a},
+								color_bk=#ENV{cadrestexte_bk,#eceded},
+								name=cadrestexte}>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_ombres:></h3>
+				<p><:soyezcreateursprive:cfg_ombres_explications:></p>
+				<style>#cfgsccontent { position:relative; overflow:hidden; }
+[(#ENV{ombrecontentbefore,none}!={none}|oui)
+  #cfgsccontent:before {
+  content: " "; position:absolute; z-index: 1; 
+[(#ENV{ombrecontentbefore,none}|=={left}|oui)
+  top: 0; height:100%; left: -10px; width: 10px; border-radius: 5px / 100px;
+]
+[(#ENV{ombrecontentbefore,none}|=={top}|oui)
+  left: 0; width:100%; top: -10px; height: 10px; border-radius: 100px / 5px;
+]
+[(#ENV{ombrecontentbefore,none}|=={right}|oui)
+  top: 0; height:100%; right: -10px; width: 10px; border-radius: 5px / 100px;
+]
+[(#ENV{ombrecontentbefore,none}|=={bottom}|oui)
+  left: 0; width:100%; bottom: -10px; height: 10px; border-radius: 100px / 5px;
+]
+  -webkit-box-shadow: [(#ENV{ombrecontentbeforeparametres,0px 0px 13px 0px})] rgba([(#ENV{ombrecontentbeforecouleur,#000000}|sc_rgb)], #ENV{ombrecontentbeforetransparence,0.6});
+  -moz-box-shadow: [(#ENV{ombrecontentbeforeparametres,0px 0px 13px 0px})] rgba([(#ENV{ombrecontentbeforecouleur,#000000}|sc_rgb)], #ENV{ombrecontentbeforetransparence,0.6});
+  box-shadow: [(#ENV{ombrecontentbeforeparametres,0px 0px 13px 0px})] rgba([(#ENV{ombrecontentbeforecouleur,#000000}|sc_rgb)], #ENV{ombrecontentbeforetransparence,0.6});
+}
+]
+[(#ENV{ombrecontentafter,none}!={none}|oui)
+  #cfgsccontent:after {
+  content: " "; position:absolute; z-index: 1; 
+[(#ENV{ombrecontentafter,none}|=={left}|oui)
+  top: 0; height:100%; left: -10px; width: 10px; border-radius: 5px / 100px;
+]
+[(#ENV{ombrecontentafter,none}|=={top}|oui)
+  left: 0; width:100%; top: -10px; height: 10px; border-radius: 100px / 5px;
+]
+[(#ENV{ombrecontentafter,none}|=={right}|oui)
+  top: 0; height:100%; right: -10px; width: 10px; border-radius: 5px / 100px;
+]
+[(#ENV{ombrecontentafter,none}|=={bottom}|oui)
+  left: 0; width:100%; bottom: -10px; height: 10px; border-radius: 100px / 5px;
+]
+  -webkit-box-shadow: [(#ENV{ombrecontentafterparametres,0px 0px 13px 0px})] rgba([(#ENV{ombrecontentaftercouleur,#000000}|sc_rgb)], #ENV{ombrecontentaftertransparence,0.6});
+  -moz-box-shadow: [(#ENV{ombrecontentafterparametres,0px 0px 13px 0px})] rgba([(#ENV{ombrecontentaftercouleur,#000000}|sc_rgb)], #ENV{ombrecontentaftertransparence,0.6});
+  box-shadow: [(#ENV{ombrecontentafterparametres,0px 0px 13px 0px})] rgba([(#ENV{ombrecontentaftercouleur,#000000}|sc_rgb)], #ENV{ombrecontentaftertransparence,0.6});
+}
+]
+				</style>
+				<div style="[background-color:(#ENV{body_bk,#eceded});] height: auto;padding:1em;box-sizing:border-box;"><table style="box-sizing:border-box; height:100%; width:100%; [color:(#ENV{container,#02265a});][background-color:(#ENV{container_bk,#f6f6f6});][(#ENV{transparencecontent,1}|!={1}|oui)background-color: rgba([(#ENV{container_bk,#f6f6f6}|sc_rgb)], #ENV{transparencecontent,1});] [(#GET{valeur}|=={on}|non)-webkit-box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1}); -moz-box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1}); box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1});]">
+					<tr><td><:soyezcreateursprive:cfg_exemple_rendu:></td></tr>
+					<tr><td id="cfgsccontent"><:soyezcreateursprive:cfg_exemple:> #ENV{transparencecontent,1}</td></tr>
+					<tr><td></td></tr>
+					</table>
+				</div>
+				<table style="width:100%;">
+					<tbody>
+							<th><:soyezcreateursprive:cfg_zone:></th>
+							<th><:soyezcreateursprive:cfg_couleur:> / <:soyezcreateursprive:cfg_transparence:> /<:soyezcreateursprive:cfg_parametres:> </th>
+						</tr>
+						<tr>#SET{valeur,#ENV{ombrepagenon}|is_null|?{on,#ENV{ombrepagenon}}}
+							<th><:soyezcreateursprive:cfg_page:> : <input type="hidden" name="ombrepagenon" value="" /><input type="checkbox" name="ombrepagenon" class="checkbox" id='champ_ombrepagenon'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_ombrepagenon"><:soyezcreateursprive:cfg_ombrenon:></label></th>
+							
+							<td><INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{ombrepagecouleur,#aaaaaa},nobk=oui,nosample=oui,nocell=oui,
+								name=ombrepagecouleur}>
+								<input type="text" name="ombrepagetransparence" value="#ENV{ombrepagetransparence,1}" id="sc_ombrepagetransparence" size="4" class="fondl" />
+								<input type="text" name="ombrepageparametres" value="#ENV{ombrepageparametres,0px 0px 10px 0px}" id="sc_ombrepageparametres" size="20" class="fondl" />
+							</td>
+						</tr>
+						<tr>
+							<td>[(#SAISIE{input,pagemargehaute,
+									label=<:soyezcreateursprive:cfg_pagemargehaute_label:>,
+									size=10,
+									defaut=3em}
+								)]
+							</td>
+							<td>[(#SAISIE{input,pagemargebasse,
+									label=<:soyezcreateursprive:cfg_pagemargebasse_label:>,
+									size=10,
+									defaut=3em}
+								)]
+							</td>
+						</tr>
+						<tr>
+							<th>
+								[(#SAISIE{radio,ombrecontentbefore,
+									label=<:ecrire:onglet_contenu:>,
+									datas=#ARRAY{
+										none,<:soyezcreateursprive:cfg_ombrenon:>,
+										left,<:soyezcreateursprive:cfg_contenu_gauche:>,
+										top,<:soyezcreateursprive:cfg_contenu_haut:>,
+										right,<:soyezcreateursprive:cfg_contenu_droit:>,
+										bottom,<:soyezcreateursprive:cfg_contenu_bas:>,
+									},
+									defaut=none,
+									cacher_option_intro=oui}
+								)]
+							</th>
+							<td><INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{ombrecontentbeforecouleur,#000000},nobk=oui,nosample=oui,nocell=oui,
+								name=ombrecontentbeforecouleur}>
+								<input type="text" name="ombrecontentbeforetransparence" value="#ENV{ombrecontentbeforetransparence,0.6}" id="sc_ombrecontentbeforetransparence" size="4" class="fondl" />
+								<input type="text" name="ombrecontentbeforeparametres" value="#ENV{ombrecontentbeforeparametres,0px 0px 13px 0px}" id="sc_ombrecontentbeforeparametres" size="20" class="fondl" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								[(#SAISIE{radio,ombrecontentafter,
+									label=<:ecrire:onglet_contenu:>,
+									datas=#ARRAY{
+										none,<:soyezcreateursprive:cfg_ombrenon:>,
+										left,<:soyezcreateursprive:cfg_contenu_gauche:>,
+										top,<:soyezcreateursprive:cfg_contenu_haut:>,
+										right,<:soyezcreateursprive:cfg_contenu_droit:>,
+										bottom,<:soyezcreateursprive:cfg_contenu_bas:>,
+									},
+									defaut=none,
+									cacher_option_intro=oui}
+								)]
+							</th>
+							<td><INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{ombrecontentaftercouleur,#000000},nobk=oui,nosample=oui,nocell=oui,
+								name=ombrecontentaftercouleur}>
+								<input type="text" name="ombrecontentaftertransparence" value="#ENV{ombrecontentaftertransparence,0.6}" id="sc_ombrecontentaftertransparence" size="4" class="fondl" />
+								<input type="text" name="ombrecontentafterparametres" value="#ENV{ombrecontentafterparametres,0px 0px 13px 0px}" id="sc_ombrecontentafterparametres" size="20" class="fondl" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_couleurs_css_lettre:></h3>
+				<table style="width:100%;">
+					<tbody>
+						<tr>
+							<th></th>
+							<th><:ecrire:info_texte:></th>
+							<th><:soyezcreateursprive:cfg_fond:></th>
+							<th style="width:50%"><:soyezcreateursprive:cfg_exemple_rendu:></th>
+							<th><:soyezcreateursprive:cfg_fond_degrade:></th>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_entete_page:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{header_lettre,#02265a},
+								color_bk=#ENV{header_lettre_bk,#ffffff},
+								name=header_lettre}>
+							<td></td>
+						</tr>
+						<tr>
+							<th><:soyezcreateursprive:cfg_titraille:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{titraille_lettre,#02265a},
+								name=titraille_lettre}>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="5">
+								<img src="[(#CHEMIN{lettres/header.jpg}|
+									image_sepia{[(#ENV{header_lettre_bk,#ffffff}|replace{#,''})]}|
+									appliquer_filtre{image_smush_debrayer,force=true}|
+									image_masque{[(#NOM_SITE_SPIP|
+									  replace{<sub>.*</sub>,''}|
+									  replace{<sup>.*</sup>,''}|
+									  image_typo{police=AndBasR.ttf,largeur=460,couleur=[(#ENV{header_lettre,#02265a}|replace{#,''})],taille=32,padding=20}|
+									  image_format{png}|
+									  image_recadre{580,110,center left,transparent}|
+									  image_recadre{580,130,top left,transparent}|
+									  extraire_attribut{src})],
+									mode=normal}|
+									image_masque{[(#LOGO_SITE_SPIP_NORMAL|
+									  image_aplatir{png,[(#ENV{header_lettre_bk,#ffffff}|replace{#,''})]}|
+									  image_reduire{0,100}|
+									  image_recadre{570,105,bottom right,transparent}|
+									  image_recadre{580,130,top left,transparent}|					  
+									  extraire_attribut{src})],
+									mode=normal}|
+									appliquer_filtre{image_smush_embrayer,force=true}|
+									image_reduire{516,0}|
+									extraire_attribut{src})]" alt="" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_nombres_quoideneuf_lettres:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,nombres_alanune,
+						label=<:soyezcreateursprive:cfg_alaune_label:>,
+						size=2,
+						defaut=4}
+					)]
+					[(#SAISIE{input,nombres_quoideneuf,
+						label=<:soyezcreateursprive:cfg_quoideneuf_label:>,
+						size=2,
+						defaut=10}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_polices_affichage:></h3>
+				<p[ style='font-family:(#ENV{fontsnavigation,'Verdana, Arial, Geneva, sans-serif'});border:1px solid #aaa;']>
+					<:spip:icone_voir_en_ligne:> : <a href="http://www.angelfire.com/al4/rcollins/style/fonts.html">Fonts for the Web</a>
+					et <a href="http://www.ampsoft.net/webdesign-l/WindowsMacFonts.html">Common fonts to all versions of Windows &amp; Mac equivalents</a>.
+					<br /><em><:soyezcreateursprive:cfg_texte_police_choisie:></em>.
+				</p>
+				#SET{fonts, #ARRAY{'Arial, Helvetica, sans-serif','Arial, Helvetica, sans-serif',
+				'Calibri,Tahoma,Arial,Helvetica, sans-serif','Calibri,Tahoma,Arial,Helvetica, sans-serif',
+				'&quot;Courier New&quot;, Courier, monospace', '"Courier New", Courier, monospace',
+				'Georgia, serif','Georgia, serif',
+				'Impact, Charcoal, sans-serif','Impact, Charcoal, sans-serif',
+				'&quot;Lucida Console&quot;, Monaco, monospace','"Lucida Console", Monaco, monospace',
+				'&quot;Times New Roman&quot;, Times, serif','"Times New Roman", Times, serif',
+				'Verdana, Arial, Geneva, sans-serif','Verdana, Arial, Geneva, sans-serif',
+				'&quot;Trebuchet MS&quot;, Helvetica, sans-serif','"Trebuchet MS", Helvetica, sans-serif'}}
+				#SET{font_defaut, 'Verdana, Arial, Geneva, sans-serif'}
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{radio,fontsnavigation,
+						label=<:soyezcreateursprive:cfg_police_nav:>,
+						defaut=#GET{font_defaut},
+						datas=#GET{fonts}}
+					)]
+					[(#SAISIE{radio,fontscontent,
+						label=<:soyezcreateursprive:cfg_police_texte:>,
+						defaut=#GET{font_defaut},
+						datas=#GET{fonts}}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_polices_tailles:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,fontsizeheader,
+						label=<:soyezcreateursprive:cfg_header:>,
+						explication=<:soyezcreateursprive:cfg_em:>,
+						defaut='1.2'}
+					)]
+					[(#SAISIE{input,fontsizemenuhaut,
+						label=<:soyezcreateursprive:cfg_menu_haut:>,
+						explication=<:soyezcreateursprive:cfg_em:>,
+						defaut='1.2'}
+					)]
+					[(#SAISIE{input,fontsizefooter,
+						label=<:soyezcreateursprive:cfg_footer:>,
+						explication=<:soyezcreateursprive:cfg_em:>,
+						defaut='0.9'}
+					)]
+					[(#SAISIE{input,fontsizenavigation,
+						label=<:soyezcreateursprive:cfg_nav:>,
+						explication=<:soyezcreateursprive:cfg_em:>,
+						defaut='1.4'}
+					)]
+					[(#SAISIE{input,fontsizecontenu,
+						label=<:ecrire:onglet_contenu:>,
+						explication=<:soyezcreateursprive:cfg_em:>,
+						defaut='1.3'}
+					)]
+					[(#SAISIE{input,fontsizeartrecents,
+						label=<:soyezcreateursprive:cfg_cartouche:>,
+						explication=<:soyezcreateursprive:cfg_em:>,
+						defaut='1.1'}
+					)]
+					[(#SAISIE{radio,autovignettes,
+						label=<:soyezcreateursprive:cfg_vignettesauto:>,
+						datas=#ARRAY{
+							auto,<:soyezcreateursprive:cfg_vignettes_choix_auto:>,
+							graphiste,<:soyezcreateursprive:cfg_vignettes_choix_graphiste:>,
+						},
+						defaut='auto'}
+					)]
+					[(#ENV{autovignettes,auto}|=={auto}|oui)
+					[(#SAISIE{input,fontsizevignettes,
+						label=<:soyezcreateursprive:cfg_vignettes:>,
+						explication=<:soyezcreateursprive:cfg_px:>,
+						defaut='16'}
+					)]
+					]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+		</div>
+	</form>
+</div>

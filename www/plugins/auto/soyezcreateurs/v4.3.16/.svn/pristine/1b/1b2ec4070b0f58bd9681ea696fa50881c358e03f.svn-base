@@ -1,0 +1,28 @@
+#HTTP_HEADER{Content-Type: text/plain; charset=#CHARSET}
+
+# robots.txt
+# @url: #URL_SITE_SPIP
+# @generator: SPIP #SPIP_VERSION
+# @template: #SQUELETTE
+
+User-agent: *[(#CONFIG{soyezcreateurs_google/indexation,oui}|=={oui}|non)
+Disallow: /
+][(#CONFIG{soyezcreateurs_google/indexation,oui}|=={oui}|oui)
+Allow:    /local/cache-css/
+Allow:    /local/cache-js/
+Disallow: /local/
+Disallow: /ecrire/
+Disallow: /sites/
+Allow:    /sites/[(#URL_SITE_SPIP|replace{'www\.',''}|replace{'ww2\.',''}|replace{'\.g2w\.fr',''}|replace{'http://',''}|replace{'https://',''})]
+
+Sitemap: #URL_SITE_SPIP/sitemap.xml
+
+Crawl-delay: 13
+
+User-agent: bingbot
+Crawl-delay: 29
+
+User-Agent: MJ12bot
+Crawl-Delay: 31
+
+]

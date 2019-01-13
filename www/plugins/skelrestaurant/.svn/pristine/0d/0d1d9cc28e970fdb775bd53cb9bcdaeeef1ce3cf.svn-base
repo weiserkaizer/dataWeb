@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="#LANG">
+<head>
+    <meta charset="#CHARSET">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="#CHEMIN{css/main.css}">
+    <title></title>
+    <style>
+        span{
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+<BOUCLE_Mentions(ARTICLES){titre_mot=MentionsLegales}>
+    <h1 class="#EDIT{titre}">#TITRE</h1>
+	<div class="#EDIT{texte}">#TEXTE</div>
+ </BOUCLE_Mentions>
+</body>
+</html>

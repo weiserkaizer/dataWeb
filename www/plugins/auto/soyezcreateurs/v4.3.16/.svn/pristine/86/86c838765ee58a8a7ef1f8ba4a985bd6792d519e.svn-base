@@ -1,0 +1,2 @@
+<BOUCLE_AuMoinsUnEvenement(EVENEMENTS){0,1}{statut=publie}>	<li id="cadre_outil_miniagenda" class="call-js-modal"><a href="#miniagenda" title="<:soyezcreateurs:agenda:>" class="js-modal" data-modal-prefix-class="sombre" data-modal-content-id="miniagenda" data-modal-close-text="<:ecrire:bouton_fermer:>"
+ data-modal-close-title="<:ecrire:bouton_fermer:>"><span class="icon icon-calendar icon-lg texte-blanc"></span><span class="hide"><:socialtags:noisette_action_recommand:></span></a></li></BOUCLE_AuMoinsUnEvenement>

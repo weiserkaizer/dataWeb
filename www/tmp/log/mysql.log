@@ -1,0 +1,30 @@
+2018-07-26 13:24:09 127.0.0.1 (pid 4476) :Pri:ERREUR: Erreur 1064 de mysql: Erreur de syntaxe près de '' à la ligne 3
+in C:\wamp64\www\plugins\auto\soyezcreateurs\v4.3.16\base\soyezcreateurs.php L238 [sql_updateq(),remplacer_mot(),soyezcreateurs_upgrade(),spip_plugin_install(),plugins_installer_dist(),installer_plugin(),do_install(),do_action(),one_action(),action_actionner_dist(),traiter_appels_actions()]
+UPDATE `spip`.spip_mots
+SET titre='PasDansRecherche',descriptif='Permet de masquer un article, ou le contenu d’une rubrique des résultats de la recherche',texte='À affecter aux articles ou aux rubriques qui ne doivent pas être affichés dans les résultats de la recherche',id_groupe=14,type='_Specialisation_Rubrique_ou_Article'
+WHERE id_mot=
+2018-07-26 14:23:38 127.0.0.1 (pid 10204) :Pri:ERREUR: Erreur 1064 de mysql: Erreur de syntaxe près de '' à la ligne 3
+in C:\wamp64\www\plugins\auto\soyezcreateurs\v4.3.16\base\soyezcreateurs.php L238 [sql_updateq(),remplacer_mot(),soyezcreateurs_upgrade(),spip_plugin_install(),plugins_installer_dist(),installer_plugin(),do_install(),do_action(),one_action(),action_actionner_dist(),traiter_appels_actions()]
+UPDATE `spip`.spip_mots
+SET titre='PasDansRecherche',descriptif='Permet de masquer un article, ou le contenu d’une rubrique des résultats de la recherche',texte='À affecter aux articles ou aux rubriques qui ne doivent pas être affichés dans les résultats de la recherche',id_groupe=14,type='_Specialisation_Rubrique_ou_Article'
+WHERE id_mot=
+2018-07-26 14:27:30 127.0.0.1 (pid 10204) :Pri:ERREUR: Erreur 1064 de mysql: Erreur de syntaxe près de '' à la ligne 3
+in C:\wamp64\www\plugins\auto\soyezcreateurs\v4.3.16\base\soyezcreateurs.php L238 [sql_updateq(),remplacer_mot(),soyezcreateurs_upgrade(),spip_plugin_install(),plugins_installer_dist(),installer_plugin(),do_install(),do_action(),one_action(),action_actionner_dist(),traiter_appels_actions()]
+UPDATE `spip`.spip_mots
+SET titre='PasDansRecherche',descriptif='Permet de masquer un article, ou le contenu d’une rubrique des résultats de la recherche',texte='À affecter aux articles ou aux rubriques qui ne doivent pas être affichés dans les résultats de la recherche',id_groupe=14,type='_Specialisation_Rubrique_ou_Article'
+WHERE id_mot=
+2018-07-26 14:53:18 127.0.0.1 (pid 2056) :Pri:ERREUR: Erreur 1064 de mysql: Erreur de syntaxe près de '' à la ligne 3
+in C:\wamp64\www\plugins\auto\soyezcreateurs\v4.3.16\base\soyezcreateurs.php L238 [sql_updateq(),remplacer_mot(),soyezcreateurs_upgrade(),spip_plugin_install(),plugins_installer_dist(),installer_plugin(),do_install(),do_action(),one_action(),action_actionner_dist(),traiter_appels_actions()]
+UPDATE `spip`.spip_mots
+SET titre='PasDansRecherche',descriptif='Permet de masquer un article, ou le contenu d’une rubrique des résultats de la recherche',texte='À affecter aux articles ou aux rubriques qui ne doivent pas être affichés dans les résultats de la recherche',id_groupe=14,type='_Specialisation_Rubrique_ou_Article'
+WHERE id_mot=
+2018-07-26 14:54:14 127.0.0.1 (pid 2056) :Pri:ERREUR: Erreur 1064 de mysql: Erreur de syntaxe près de '' à la ligne 3
+in C:\wamp64\www\plugins\auto\soyezcreateurs\v4.3.16\base\soyezcreateurs.php L238 [sql_updateq(),remplacer_mot(),soyezcreateurs_upgrade(),spip_plugin_install(),plugins_installer_dist(),installer_plugin(),do_install(),do_action(),one_action(),action_actionner_dist(),traiter_appels_actions()]
+UPDATE `spip`.spip_mots
+SET titre='PasDansRecherche',descriptif='Permet de masquer un article, ou le contenu d’une rubrique des résultats de la recherche',texte='À affecter aux articles ou aux rubriques qui ne doivent pas être affichés dans les résultats de la recherche',id_groupe=14,type='_Specialisation_Rubrique_ou_Article'
+WHERE id_mot=
+2018-07-27 14:41:58 127.0.0.1 (pid 12732) :Pri:ERREUR: Erreur 1064 de mysql: Erreur de syntaxe près de '' à la ligne 3
+in C:\wamp64\www\plugins\auto\soyezcreateurs\v4.3.16\base\soyezcreateurs.php L238 [sql_updateq(),remplacer_mot(),soyezcreateurs_install_default(),serie_alter(),maj_while(),maj_plugin(),soyezcreateurs_upgrade(),spip_plugin_install(),plugins_installer_dist(),installer_plugin(),do_install(),do_action(),one_action(),action_actionner_dist(),traiter_appels_actions()]
+UPDATE `spip`.spip_mots
+SET titre='PasDansRecherche',descriptif='Permet de masquer un article, ou le contenu d’une rubrique des résultats de la recherche',texte='À affecter aux articles ou aux rubriques qui ne doivent pas être affichés dans les résultats de la recherche',id_groupe=14,type='_Specialisation_Rubrique_ou_Article'
+WHERE id_mot=

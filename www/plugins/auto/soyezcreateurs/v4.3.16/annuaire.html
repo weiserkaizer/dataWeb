@@ -1,0 +1,157 @@
+<BOUCLE_Contact(CONTACTS){id_contact}>
+[(#SET{letitre,<:soyezcreateurs:annuaire:>: [(#CIVILITE) ][(#PRENOM) ]#NOM})]
+[(#SET{titretop,[(#GET{letitre}|sc_nettoyer_marqueur|texte_script)]})]
+[(#SET{titretop,page_#GET{titretop}})]
+<INCLURE{fond=noisettes/header/header}
+	{template=annuaire}
+	{title=(#GET{letitre}|texte_script)}
+	{titretop=#GET{titretop}}
+	{id_contact}
+	{type=annuaire}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:annuaire:>&nbsp;: [<span class="#EDIT{prenom}">(#CIVILITE)</span> ][<span class="#EDIT{prenom}">(#PRENOM)</span> ][<span class="#EDIT{nom}">(#NOM)</span>]</h1></div>
+</div>
+]
+<div id="letexte">
+	<div id="annuaire">
+	<INCLURE{fond=noisettes/annuaire/contact,id_contact}>
+	
+	[(#REM) faudra mettre {si #ID_AUTEUR} sur la 3.0 ]
+	<BOUCLE_auteur_lie(AUTEURS){id_auteur}{tout}{statut==.*}>		
+		[(#FORMULAIRE_ECRIRE_AUTEUR)]
+	</BOUCLE_auteur_lie>
+
+	</BOUCLE_Contact>
+
+<BOUCLE_Organisation(ORGANISATIONS){id_organisation}>
+[(#SET{letitre,<:soyezcreateurs:annuaire:>: #NOM})]
+[(#SET{titretop,[(#GET{letitre}|sc_nettoyer_marqueur|texte_script)]})]
+[(#SET{titretop,page_#GET{titretop}})]
+<INCLURE{fond=noisettes/header/header}
+	{template=annuaire}
+	{title=(#GET{letitre}|texte_script)}
+	{titretop=#GET{titretop}}
+	{id_organisation}
+	{type=annuaire}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:annuaire:>&nbsp;: #NOM</h1></div>
+</div>
+]
+<div id="letexte">
+	<div id="annuaire">
+<BOUCLE_AdressesOrganisation(ADRESSES){id_organisation}>
+<p>[(#TITRE)<br />]
+[(#VOIE)<br />]
+[(#COMPLEMENT)<br />]
+#CODE_POSTAL #VILLE</p>
+</BOUCLE_AdressesOrganisation>
+	<B_ListeContacts>
+	<ol>
+	<BOUCLE_ListeContacts(CONTACTS){id_organisation}{par nom}>
+	<li><a href="#URL_PAGE{annuaire,id_contact=#ID_CONTACT}">#CIVILITE #PRENOM #NOM</a>
+	<INCLURE{fond=noisettes/annuaire/contact,id_contact}></li>
+	</BOUCLE_ListeContacts>
+	</ol>
+	</B_ListeContacts>
+	<B_ListeOrganisationFillesDetail>
+	<ul>
+	<BOUCLE_ListeOrganisationFillesDetail(ORGANISATIONS){id_parent=#ID_ORGANISATION}{par nom}>
+	<li><a href="#URL_PAGE{annuaire,id_organisation=#ID_ORGANISATION}">#NOM</a>
+		<B_ListeContactsOrganisationFillesDetail>
+		<ol>
+		<BOUCLE_ListeContactsOrganisationFillesDetail(CONTACTS){id_organisation}{par nom}>
+		<li><a href="#URL_PAGE{annuaire,id_contact=#ID_CONTACT}">#PRENOM #NOM</a></li>
+		</BOUCLE_ListeContactsOrganisationFillesDetail>
+		</ol>
+		</B_ListeContactsOrganisationFillesDetail>
+	<BOUCLE_OrganisationsRecursionDetail(BOUCLE_ListeOrganisationFillesDetail)/>
+	</li>
+	</BOUCLE_ListeOrganisationFillesDetail>
+	</ul>
+	</B_ListeOrganisationFillesDetail>
+	<//B_ListeOrganisationFillesDetail>
+
+
+</BOUCLE_Organisation>
+
+
+[(#SET{letitre,<:soyezcreateurs:annuaire:>})]
+[(#SET{titretop,[(#GET{letitre}|sc_nettoyer_marqueur|texte_script)]})]
+[(#SET{titretop,page_#GET{titretop}})]
+<INCLURE{fond=noisettes/header/header}
+	{template=annuaire}
+	{title=(#GET{letitre}|texte_script)}
+	{titretop=#GET{titretop}}
+	{type=annuaire}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:annuaire:></h1></div>
+</div>
+]
+<div id="letexte">
+	<div id="annuaire">
+
+
+<B_ListeOrganisationsRacine>
+<ul>
+<BOUCLE_ListeOrganisationsRacine(ORGANISATIONS){racine}{par nom}>
+	<li><a href="#URL_PAGE{annuaire,id_organisation=#ID_ORGANISATION}">#NOM</a>
+		<B_ListeContactsOrganisationRacine>
+		<ol>
+		<BOUCLE_ListeContactsOrganisationRacine(CONTACTS){id_organisation}{par nom}>
+		<li><a href="#URL_PAGE{annuaire,id_contact=#ID_CONTACT}">#PRENOM #NOM</a></li>
+		</BOUCLE_ListeContactsOrganisationRacine>
+		</ol>
+		</B_ListeContactsOrganisationRacine>
+		<B_ListeOrganisationFilles>
+		<ul>
+		<BOUCLE_ListeOrganisationFilles(ORGANISATIONS){id_parent=#ID_ORGANISATION}{par nom}>
+		<li><a href="#URL_PAGE{annuaire,id_organisation=#ID_ORGANISATION}">#NOM</a>
+			<B_ListeContactsOrganisationFilles>
+			<ol>
+			<BOUCLE_ListeContactsOrganisationFilles(CONTACTS){id_organisation}{par nom}>
+			<li><a href="#URL_PAGE{annuaire,id_contact=#ID_CONTACT}">#PRENOM #NOM</a></li>
+			</BOUCLE_ListeContactsOrganisationFilles>
+			</ol>
+			</B_ListeContactsOrganisationFilles>
+			<BOUCLE_OrganisationsRecursion(BOUCLE_ListeOrganisationFilles)/>
+		</li>
+		</BOUCLE_ListeOrganisationFilles>
+		</ul>
+		</B_ListeOrganisationFilles>
+	</li>
+</BOUCLE_ListeOrganisationsRacine>
+</ul>
+</B_ListeOrganisationsRacine>
+<p><:soyezcreateurs:annuaire_vide:></p>
+<//B_ListeOrganisationsRacine>
+
+<//B_Organisation>
+
+<//B_Contact>
+
+
+
+	</div>
+</div>
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{template=annuaire}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}

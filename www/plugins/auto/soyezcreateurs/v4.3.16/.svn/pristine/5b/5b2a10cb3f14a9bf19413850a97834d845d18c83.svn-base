@@ -1,0 +1,29 @@
+
+<B_GroupeBlocsDefilants>
+<!-- PRATIQUE -->
+<div id="pratique" class="zone-pratique">
+	<BOUCLE_GroupeBlocsDefilants(RUBRIQUES){titre_mot=Goodies}{par num titre}>
+	<B_BlocsDefilants>
+	<header class="titre-sommaire">
+		<h1[ title="(#DESCRIPTIF|attribut_html)"] class="#EDIT{titre}">#TITRE</h1>
+	</header>
+	<div role="region" aria-label="[(#TITRE|attribut_html)]">
+		<div class="slider-pratique">
+			<BOUCLE_BlocsDefilants(ARTICLES){id_rubrique}{par num titre}{lang}>
+			<div class="content-pratique #EDIT{titre}">
+				<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>
+					<img src="[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{280,190}|extraire_attribut{src})]" alt="" />
+					<div class="h2"><span class="titre-pratique">#TITRE</span>
+						<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
+				</a>
+			</div>
+			</BOUCLE_BlocsDefilants>
+		</div>
+	</div>
+	</B_BlocsDefilants>
+	</BOUCLE_GroupeBlocsDefilants>
+</div>
+<!-- fin PRATIQUE -->
+</B_GroupeBlocsDefilants>
+
+#FILTRE{mini_html}

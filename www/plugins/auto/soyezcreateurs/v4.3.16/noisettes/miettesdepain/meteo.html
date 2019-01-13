@@ -1,0 +1,10 @@
+#SET{service,weather}[(#CONFIG{rainette/wunderground/inscription}|oui)#SET{service,wunderground}]
+#SET{nom_ville,#RAINETTE_INFOS{#CONFIG{soyezcreateurs/rainette_ville, FRXX0099}, ville, #GET{service}}}
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<li><:rainette:meteo_de{ville=#GET{nom_ville}}:></li>
+		</ul>
+	</nav>
+#FILTRE{mini_html}

@@ -1,0 +1,1 @@
+<div id="datemajsite#ENV{class}"><span><BOUCLE_datemajsite(ARTICLES){!par date_modif}{0,1}{lang}><:soyezcreateurs:dernieremaj:> [(#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate)]</BOUCLE_datemajsite>[(#CONFIG{soyezcreateurs/positionfluxrss,bottom}|=={header}|oui)<INCLURE{fond=noisettes/liensnav/reseaux_sociaux}>]</span></div>#FILTRE{mini_html}

@@ -1,0 +1,67 @@
+#CACHE{3600}
+<BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1 class="#EDIT{titre}">[(#SET{lelogo,[(#LOGO_RUBRIQUE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|largeur)"][ height="(#GET{lelogo}|hauteur)"] alt="" />][(#TITRE)] - [(#ENV{date_ev,[(#ENV{date})]}|annee)]</h1></div>
+</div>
+]
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)[(#INCLURE{fond=noisettes/cartouches/themes,id_rubrique=#ID_SECTEUR,date_ev,mots,id_mot})]]
+	<div id="letexte">
+[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+[<div class="#EDIT{texte}">(#TEXTE)</div>]
+[<div class="notes">(#NOTES)</div>]
+[(#PLUGIN{propevent}|oui)
+<a href="#URL_PAGE{proposer_evenement}" title="<:soyezcreateurs:agenda_proposer_evenement_title:>" class="lien_proposer_evenement"><:soyezcreateurs:agenda_proposer_evenement:></a>]
+
+		<B_Annees>
+		<form id="timenavigation" method="get" action="#SELF"><fieldset><legend><:soyezcreateurs:precisezrecherche:></legend>
+		<input type="hidden" value="rubrique" name="page" alt="" />
+		<input type="hidden" value="#ID_RUBRIQUE" name="id_rubrique" alt="" />
+		<input type="hidden" value="1" name="calendrier" alt="" />
+		<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{par date_debut}{0,1}>
+		[(#DATE_DEBUT|annee|<{[(#ENV{date_ev,[(#ENV{date})]}|annee)]}|oui)
+		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee|moins{1})]-01-01}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
+		]
+		</BOUCLE_PremiereAnnee>
+		<select id="date_ev" name="date_ev">
+		<BOUCLE_Annees(EVENEMENTS){branche}{par date_debut}>[
+		<option value="[(#DATE_DEBUT|annee)-01-01]"[(#ENV{date_ev,[(#ENV{date})]}|annee|=={[(#DATE_DEBUT|annee)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|annee|unique)</option>
+		]</BOUCLE_Annees>
+		</select>		
+		[(#PLUGIN{critere_mots}|non)
+			[(#INCLURE{fond=noisettes/agenda/formulaire_agenda_mot_cle,id_mot=#ENV{id_mot}})]
+		]
+		<input type="submit" class="form_submit" value="<:pass_ok:>" />
+		<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
+		[(#DATE_DEBUT|annee|>{[(#ENV{date_ev,[(#ENV{date})]}|annee)]}|oui)
+		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee|plus{1})]-01-01}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
+		]
+		</BOUCLE_DerniereAnnee>
+		[(#ENV{date}|annee|!={[(#ENV{date_ev,[(#ENV{date})]}|annee)]}|oui)
+		<a href="[(#SELF|parametre_url{'date_ev',''})]"><:spip:date_aujourdhui|ucfirst:></a>
+		]
+		</fieldset>
+		</form>
+		</B_Annees>
+		[(#PLUGIN{critere_mots}|oui)
+			[(#INCLURE{fond=noisettes/agenda/formulaire_agenda_criteres_mots}|trim)]
+		]
+
+<BOUCLE_LiensMois(EVENEMENTS){branche}{date_fin>=(#ENV{date_ev,#ENV{date}}|affdate{'Y-m-d'})}{date_fin<(#ENV{date_ev,#ENV{date}}|annee|plus{1})-01-01}{id_mot ?}{par date_debut}{"&nbsp;| "}>[
+<a href="#m(#DATE_DEBUT|affdate{'Ym'}|unique)">[(#DATE_DEBUT|nom_mois|ucfirst)]&nbsp;[(#DATE_DEBUT|annee)]</a>
+]</BOUCLE_LiensMois>
+
+[(#INCLURE{fond=noisettes/agenda/agendaliste_filtre,id_rubrique,date_ev,mots,id_mot})]
+
+[<div class="notes">(#NOTES)</div>]
+
+	</div><!-- Fin de #LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/themes,id_rubrique=#ID_SECTEUR,date_ev,mots,id_mot,classe=artrecent_bas})]]
+
+
+</BOUCLE_rubrique_principal>
+#FILTRE{mini_html}

@@ -1,0 +1,93 @@
+#SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
+<script type="text/javascript">
+	CanceladjustLayout = true;
+</script>
+<main id="main" role="main"><div id="cognac_content">
+<a id="letexte"></a>
+
+#INCLURE{fond=bloc_compiler,id_conteneur=contenu/corps_sommaire_modecognac,env}
+
+[(#PLUGIN{SOCIALTAGS}|oui)<div id="socialtags"></div>]
+
+</div><!-- cognac_content --></main>
+
+[<script src="(#CHEMIN{javascript/packery.pkgd.min.js})" type="text/javascript"></script>]
+[<script src="(#CHEMIN{javascript/imagesloaded.pkgd.min.js})" type="text/javascript"></script>]
+<script type="text/javascript">
+	// slider Slick
+	$(document).ready(function(){
+		$('#diaporama .slider-slick').slick({
+		  autoplay: true,
+		  pauseOnHover: true,
+		  autoplaySpeed: #CONFIG{soyezcreateurs/vitesse_slider,10000},
+		  fade: true,
+		  cssEase: 'linear',
+		  arrows: false,
+		  dots: true,
+		  centerMode: true,
+		  focusOnSelect: true
+		});
+		
+		$('#cycloshow .slider-slick').slick({
+		  autoplay: true,
+		  pauseOnHover: true,
+		  autoplaySpeed: #CONFIG{soyezcreateurs/vitesse_slider,10000},
+		  fade: true,
+		  cssEase: 'linear',
+		  arrows: true,
+		  dots: true,
+		  centerMode: true,
+		  focusOnSelect: true
+		});
+		
+		// Pour que les éventuelles vidéos soient jouées
+		// Ceci concerne la première vidéo (ou la seule)
+		var vid = $('.slider-slick').find('video');
+		if (vid.length > 0)
+			$(vid).get(0).play();
+		//  Ceci concerne les autres vidéos
+		$('.slider-slick').on('afterChange', function(event, slick, currentSlide){
+			var vid = $(slick.$slides[currentSlide]).find('video');
+			if (vid.length > 0)
+				$(vid).get(0).play();
+		});
+		
+		$('.slider-pratique').slick({
+		  dots: false,
+		  slidesToShow: [(#GET{LargeurContaineur}|div{304}|intval)],
+		  slidesToScroll: 3,
+		  infinite: true,
+		  variableWidth: true,
+			responsive: [
+				{
+				  breakpoint: [(#GET{LargeurContaineur}|moins{304}|intval)],
+				  settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2,
+					infinite: true,
+					dots: true
+				  }
+				},
+				{
+				  breakpoint: 640,
+				  settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				  }
+				}
+			  ]
+		});
+	});
+	// external js: packery.pkgd.js, imagesloaded.pkgd.js
+	// init packery after all images have loaded
+	var $grid = $('.grid').imagesLoaded( function() {
+	  $grid.packery({
+		itemSelector: '.grid-item',
+		gutter: '.gutter-sizer',
+		columnWidth: '.grid-sizer',
+		percentPosition: false
+	  });
+	});
+</script>
+
+#FILTRE{mini_html}

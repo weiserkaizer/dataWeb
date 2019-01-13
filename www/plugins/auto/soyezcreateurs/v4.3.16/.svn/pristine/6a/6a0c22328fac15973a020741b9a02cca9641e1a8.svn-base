@@ -1,0 +1,566 @@
+<div class="formulaire_spip formulaire_configurer_sc">
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	<form method="post" action="#ENV{action}">
+		<div>
+			#ACTION_FORMULAIRE{#ENV{action}}
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_largeurs_colonnes:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,largeurconteneur,
+						label=<:soyezcreateursprive:cfg_largeur_conteneur:>,
+						defaut=960,
+						size=4}
+					)]
+					[(#SAISIE{input,largeurombre,
+						label=<:soyezcreateursprive:cfg_largeur_ombre:>,
+						defaut=0,
+						size=2}
+					)]
+					[(#SAISIE{input,largeurmenugauche,
+						label=<:soyezcreateursprive:cfg_largeur_menu_p:>,
+						defaut=180,
+						size=3}
+					)]
+					[(#SAISIE{input,largeurmenudroit,
+						label=<:soyezcreateursprive:cfg_largeur_menu_sec:>,
+						defaut=180,
+						size=3}
+					)]
+					[(#PLUGIN{SPLICKR}|oui)
+					[(#SAISIE{input,largeursplickrbox,
+						label=<:soyezcreateursprive:cfg_largeur_splickrbox:>,
+						defaut=140,
+						size=3}
+					)]
+					]
+					[(#SAISIE{input,maxlargeurimage,
+						label=<:soyezcreateursprive:cfg_largeur_max_img:>,
+						defaut=720,
+						size=3}
+					)]
+					[(#SAISIE{input,largeurvideoaccueil,
+						label=<:soyezcreateursprive:cfg_largeur_videoaccueil:>,
+						defaut=0,
+						size=3}
+					)]
+					[(#CONFIG{soyezcreateurs/mode_affichage,communiquant}|=={international}|oui)
+					[(#SAISIE{input,hauteurvideoaccueil,
+						label=<:soyezcreateursprive:cfg_hauteur_videoaccueil:>,
+						defaut=0,
+						size=3}
+					)]
+					[(#SAISIE{input,largeurcolonnes,
+						label=<:soyezcreateursprive:cfg_largeur_colonnes_centrales:>,
+						defaut=0,
+						size=3}
+					)]
+					[(#SAISIE{input,margescolonnes,
+						label=<:soyezcreateursprive:cfg_marges_colonnes_centrales:>,
+						defaut=12,
+						size=2}
+					)]
+					]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_taille_logos_max_menuprincipal:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,largeurlogomenuprincipal,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=16,
+						size=2}
+					)]
+					[(#SAISIE{input,hauteurlogomenuprincipal,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=16,
+						size=2}
+					)]
+					[(#SAISIE{radio,logomenuprincipal,
+						label=<:soyezcreateursprive:cfg_menu_affichagelogo_label:>,
+						datas=#ARRAY{
+							oui,<:soyezcreateursprive:cfg_menu_haut_affichagelogo_logoplustexte:>,
+							non,<:soyezcreateursprive:cfg_menu_haut_affichagelogo_deroulant_non:>,
+						},
+						defaut=oui}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_taille_logos_max_menufooter:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,largeurlogomenufooter,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=16,
+						size=2}
+					)]
+					[(#SAISIE{input,hauteurlogomenufooter,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=16,
+						size=2}
+					)]
+					[(#SAISIE{radio,logomenufooter,
+						label=<:soyezcreateursprive:cfg_menu_affichagelogo_label:>,
+						datas=#ARRAY{
+							oui,<:soyezcreateursprive:cfg_menu_haut_affichagelogo_logoplustexte:>,
+							non,<:soyezcreateursprive:cfg_menu_haut_affichagelogo_deroulant_non:>,
+						},
+						defaut=oui}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_taille_logos_max:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,largeurlogomenuhaut,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=16,
+						size=2}
+					)]
+					[(#SAISIE{input,hauteurlogomenuhaut,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=16,
+						size=2}
+					)]
+					[(#SAISIE{radio,menuhautlogo,
+						label=<:soyezcreateursprive:cfg_menu_affichagelogo_label:>,
+						datas=#ARRAY{
+							logoonly,<:soyezcreateursprive:cfg_menu_haut_affichagelogo_logoonly:>,
+							logoplustexte,<:soyezcreateursprive:cfg_menu_haut_affichagelogo_logoplustexte:>,
+							non,<:soyezcreateursprive:cfg_menu_haut_affichagelogo_deroulant_non:>,
+						},
+						defaut=logoplustexte}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_menu_haut_affichagelogo_deroulant:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,largeurlogomenuhautderoulant,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=16,
+						size=2}
+					)]
+					[(#SAISIE{input,hauteurlogomenuhautderoulant,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=16,
+						size=2}
+					)]
+					[(#SAISIE{radio,logomenuderoulant,
+						label=<:soyezcreateursprive:cfg_menu_affichagelogo_label:>,
+						datas=#ARRAY{
+							oui,<:soyezcreateursprive:cfg_menu_haut_affichagelogo_logoplustexte:>,
+							non,<:soyezcreateursprive:cfg_menu_haut_affichagelogo_deroulant_non:>,
+						},
+						defaut=oui}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_taille_logos_max_goody:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,largeurlogogoody,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=48,
+						size=2}
+					)]
+					[(#SAISIE{input,hauteurlogogoody,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=48,
+						size=2}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_taille_logos_max_outils:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,largeurlogooutils,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=16,
+						size=2}
+					)]
+					[(#SAISIE{input,hauteurlogooutils,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=16,
+						size=2}
+					)]
+					[(#SAISIE{radio,positionlogooutils,
+						label=<:soyezcreateursprive:cfg_position_logooutils_label:>,
+						datas=#ARRAY{
+							haut,<:soyezcreateursprive:cfg_position_logooutils_toutletempshaut:>,
+							mixte,<:soyezcreateursprive:cfg_position_logooutils_mixte:>,
+						},
+						defaut=mixte}
+					)]
+					[(#SAISIE{radio,pictogrammesoutils,
+						label=<:soyezcreateursprive:cfg_pictogrammesoutils_label:>,
+						datas=#ARRAY{
+							non,<:soyezcreateursprive:cfg_pictogrammesoutils_non:>,
+							avecoutils,<:soyezcreateursprive:cfg_pictogrammesoutils_avecoutils:>,
+						},
+						defaut=non}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_taille_logos_max_contenu_automatique:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,largeurlogocontenuautomatique,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=64,
+						size=2}
+					)]
+					[(#SAISIE{input,hauteurlogocontenuautomatique,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=64,
+						size=2}
+					)]
+					[(#SAISIE{radio,cadragelogocontenuautomatique,
+						label=<:soyezcreateursprive:cfg_cadragelogocontenuautomatique_label:>,
+						datas=#ARRAY{
+							entier,<:soyezcreateursprive:cfg_cadragelogocontenuautomatique_entier:>,
+							recadre,<:soyezcreateursprive:cfg_cadragelogocontenuautomatique_recadre:>,
+						},
+						defaut=entier}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_taille_logocontenuprincipal:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,largeurlogocontenuprincipal,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},
+						size=2}
+					)]
+					[(#SAISIE{input,hauteurlogocontenuprincipal,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64},
+						size=2}
+					)]
+					[(#SAISIE{radio,cadragelogocontenuprincipal,
+						label=<:soyezcreateursprive:cfg_cadragelogocontenuautomatique_label:>,
+						datas=#ARRAY{
+							entier,<:soyezcreateursprive:cfg_cadragelogocontenuautomatique_entier:>,
+							recadre,<:soyezcreateursprive:cfg_cadragelogocontenuautomatique_recadre:>,
+						},
+						defaut=#CONFIG{soyezcreateurs_layout/cadragelogocontenuautomatique,entier}}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_taille_logos_max_listes_sites:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,largeurlogolistessites,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=48,
+						size=2}
+					)]
+					[(#SAISIE{input,hauteurlogolistessites,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=48,
+						size=2}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_taille_logos_derniers_art_blog:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,largeurlogodernartblog,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=150,
+						size=2}
+					)]
+					[(#SAISIE{input,hauteurlogodernartblog,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=200,
+						size=2}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_taille_logos_alaune_blog:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,largeurlogoalauneblog,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=96,
+						size=2}
+					)]
+					[(#SAISIE{input,hauteurlogoalauneblog,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=96,
+						size=2}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_logolocal:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{radio,logolocal,
+						label=<:soyezcreateursprive:cfg_logolocal_label:>,
+						datas=#ARRAY{
+							local,<:soyezcreateursprive:cfg_logolocal_local:>,
+							herite,<:soyezcreateursprive:cfg_logolocal_herite:>,
+						},
+						defaut=local,
+						cacher_option_intro=oui}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_menuderoulantgauche:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{radio,menuderoulant,
+						label=<:soyezcreateursprive:cfg_menuderoulant_label:>,
+						datas=#ARRAY{
+							replie,<:soyezcreateursprive:cfg_menuderoulant_replie:>,
+							deroule,<:soyezcreateursprive:cfg_menuderoulant_deroule:>,
+						},
+						defaut=replie,
+						cacher_option_intro=oui}
+					)]
+					[(#SAISIE{radio,logorubriquenavigation,
+						label=<:soyezcreateursprive:cfg_logorubriquenavigation_label:>,
+						datas=#ARRAY{
+							header,<:soyezcreateursprive:cfg_logonavigation_header:>,
+							navigation,<:soyezcreateursprive:cfg_logonavigation_navigation:>,
+							contenthauttitre,<:soyezcreateursprive:cfg_logonavigation_hauttitre:>,
+							content,<:soyezcreateursprive:cfg_logonavigation_content:>,
+							contentbastitre,<:soyezcreateursprive:cfg_logonavigation_bastitre:>,
+							never,<:soyezcreateursprive:cfg_logonavigation_never:>,
+						},
+						defaut=content}
+					)]
+					[(#SAISIE{radio,logoarticlenavigation,
+						label=<:soyezcreateursprive:cfg_logoarticlenavigation_label:>,
+						datas=#ARRAY{
+							header,<:soyezcreateursprive:cfg_logonavigation_header:>,
+							navigation,<:soyezcreateursprive:cfg_logonavigation_navigation:>,
+							contenthauttitre,<:soyezcreateursprive:cfg_logonavigation_hauttitre:>,
+							content,<:soyezcreateursprive:cfg_logonavigation_content:>,
+							contentbastitre,<:soyezcreateursprive:cfg_logonavigation_bastitre:>,
+							never,<:soyezcreateursprive:cfg_logonavigation_never:>,
+						},
+						defaut=content}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_logoarticlerubrique:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{radio,logoarticlerubrique,
+						label=<:soyezcreateursprive:cfg_logoarticlenavigation_label:>,
+						datas=#ARRAY{
+							contenthauttitre,<:soyezcreateursprive:cfg_logonavigation_hauttitre:>,
+							content,<:soyezcreateursprive:cfg_logonavigation_content:>,
+							contentbastitre,<:soyezcreateursprive:cfg_logonavigation_bastitre:>,
+							never,<:soyezcreateursprive:cfg_logonavigation_never:>,
+						},
+						defaut=content}
+					)]
+					[(#SAISIE{input,largeurlogoarticlerubrique,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=870,
+						size=4}
+					)]
+					[(#SAISIE{input,hauteurlogoarticlerubrique,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=200,
+						size=4}
+					)]
+					[(#SAISIE{radio,cadragelogoarticlerubrique,
+						label=<:soyezcreateursprive:cfg_cadragelogocontenuautomatique_label:>,
+						datas=#ARRAY{
+							entier,<:soyezcreateursprive:cfg_cadragelogocontenuautomatique_entier:>,
+							recadre,<:soyezcreateursprive:cfg_cadragelogocontenuautomatique_recadre:>,
+						},
+						defaut=#CONFIG{soyezcreateurs_layout/cadragelogocontenuautomatique,entier}}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_position_cartouchetitre:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{radio,positioncartouchetitre,
+						label=<:soyezcreateursprive:cfg_affichagelistedocuments_label:>,
+						datas=#ARRAY{
+							haut,<:soyezcreateursprive:cfg_position_cartouchetitre_haut:>,
+							contenu,<:soyezcreateursprive:cfg_position_cartouchetitre_contenu:>,
+						},
+						defaut=contenu}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_position_cartouche:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{radio,positioncartouche,
+						label=<:soyezcreateursprive:cfg_affichagelistedocuments_label:>,
+						datas=#ARRAY{
+							haut,<:soyezcreateursprive:cfg_debut_contenu:>,
+							bas,<:soyezcreateursprive:cfg_fin_contenu:>,
+						},
+						defaut=bas}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			[(#PLUGIN{nuage}|oui)
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_position_nuage:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{radio,positionnuage,
+						label=<:soyezcreateursprive:cfg_affichagelistedocuments_label:>,
+						datas=#ARRAY{
+							footer,<:soyezcreateursprive:cfg_menu_footer_liens:>,
+							extra,<:soyezcreateursprive:cfg_affichage_zone_secondaire:>,
+						},
+						defaut=footer}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			]
+			[(#PLUGIN{GIS}|oui)
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_hauteur_gis:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,hauteurgisrubriques,
+						label=<:ecrire:info_rubriques:>,
+						defaut=400px,
+						size=7}
+					)]
+					[(#SAISIE{input,hauteurgisarticles,
+						label=<:ecrire:info_articles_2:>,
+						defaut=400px,
+						size=7}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			]
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_position_liens_nav:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{radio,positionliensnav,
+						label=<:soyezcreateursprive:cfg_position_liens_nav_label:>,
+						datas=#ARRAY{
+							nav,<:soyezcreateursprive:cfg_colonne_nav_liens:>,
+							menu_footer,<:soyezcreateursprive:cfg_menu_footer_liens:>,
+						},
+						defaut=menu_footer,
+						cacher_option_intro=oui}
+					)]
+					[(#SAISIE{radio,affichage_lien_sites_web,
+						label=<:sites_web:>,
+						datas=#ARRAY{
+							affiche,<:soyezcreateursprive:cfg_affichage_affiche:>,
+							masque,<:soyezcreateursprive:cfg_affichage_masquer:>,
+						},
+						defaut=affiche,
+						cacher_option_intro=oui}
+					)]
+					[(#SAISIE{radio,affichage_lien_documents,
+						label=<:medias:info_documents:>,
+						datas=#ARRAY{
+							affiche,<:soyezcreateursprive:cfg_affichage_affiche:>,
+							masque,<:soyezcreateursprive:cfg_affichage_masquer:>,
+						},
+						defaut=affiche,
+						cacher_option_intro=oui}
+					)]
+					[(#SAISIE{radio,affichage_lien_sigles,
+						label=<:acronymessigles:type_des_tables:>,
+						datas=#ARRAY{
+							affiche,<:soyezcreateursprive:cfg_affichage_affiche:>,
+							masque,<:soyezcreateursprive:cfg_affichage_masquer:>,
+						},
+						defaut=affiche,
+						cacher_option_intro=oui}
+					)]
+					[(#SAISIE{radio,affichage_lien_newsletter,
+						label=<:soyezcreateurs:newsletter:>,
+						datas=#ARRAY{
+							affiche,<:soyezcreateursprive:cfg_affichage_affiche:>,
+							bas,<:soyezcreateursprive:cfg_menu_footer_liens:> (formulaire),
+							masque,<:soyezcreateursprive:cfg_affichage_masquer:>,
+						},
+						defaut=affiche,
+						cacher_option_intro=oui}
+					)]
+					[(#SAISIE{radio,affichage_lien_annuaire,
+						label=<:soyezcreateurs:annuaire:>,
+						datas=#ARRAY{
+							affiche,<:soyezcreateursprive:cfg_affichage_affiche:>,
+							masque,<:soyezcreateursprive:cfg_affichage_masquer:>,
+						},
+						defaut=affiche,
+						cacher_option_intro=oui}
+					)]
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{radio,plansitefooter,
+						label=<:soyezcreateursprive:cfg_plansitefooter_label:>,
+						datas=#ARRAY{
+							generique,<:soyezcreateursprive:cfg_plansitefootergenerique:>,
+							miniplan,<:soyezcreateursprive:cfg_plansitefooterminiplan:>,
+						},
+						defaut=masquer,
+						cacher_option_intro=oui,
+						explication=}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_layout_gala:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					<[(#VAL{li}|saisie_balise_structure_formulaire)] class="editer">
+						<:soyezcreateursprive:cfg_layout_gala_intro:>
+						<:soyezcreateursprive:cfg_layout_gala_explications:>
+						<table style="border:1px solid #888;border-collapse:collapse;">
+							<thead>
+								<tr>
+									<th style="border:1px solid #888;"><:soyezcreateursprive:cfg_layout_agencement:></th>
+									<th style="border:1px solid #888;" title="<:soyezcreateurs:layout_defaut_title:>"><:soyezcreateursprive:cfg_layout_defaut:></th>
+									<th style="border:1px solid #888;" title="<:soyezcreateurs:layout_accueil_title:>"><:soyezcreateursprive:cfg_layout_accueil:></th>
+								</tr>
+							</thead>
+							<tbody>
+								<BOUCLE_Layouts(MOTS){type=_LayoutGala}{par num titre}>
+								<tr>
+									<td style="border:1px solid #888;"><img src="#CHEMIN{img_pack/layout0(#TITRE*|substr{0,2}).gif}" /> #TITRE</td>
+									<td style="border:1px solid #888;"><input type="radio" name="default_layout" id="sc_default_layout#ID_MOT" value="[(#TITRE*|substr{0,2})]"[ checked="(#ENV{default_layout,33}|=={#TITRE*|substr{0,2}}|?{checked})"] /><label style="margin-left:1px;" for="sc_default_layout#ID_MOT">&nbsp;[(#TITRE*|substr{0,2})]</label></td>
+									<td style="border:1px solid #888;"><input type="radio" name="sommaire_layout" id="sc_sommaire_layout#ID_MOT" value="[(#TITRE*|substr{0,2})]"[ checked="(#ENV{sommaire_layout,33}|=={#TITRE*|substr{0,2}}|?{checked})"] /><label style="margin-left:1px;"  for="sc_sommaire_layout#ID_MOT">&nbsp;[(#TITRE*|substr{0,2})]</label></td>
+								</tr>
+								</BOUCLE_Layouts>
+							</tbody>
+						</table>
+					</[(#VAL{li}|saisie_balise_structure_formulaire)]>
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+		</div>
+	</form>
+</div>

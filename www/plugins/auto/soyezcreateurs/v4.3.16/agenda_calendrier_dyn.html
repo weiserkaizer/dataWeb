@@ -1,0 +1,260 @@
+#CACHE{3600}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+[(#ENV{'date_ev'}|!={''}|non)
+	[(#ENV{'month'}|oui)
+		[(#ENV{'year'}|oui)
+			#SET{'date', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01 00:00:00'}}
+			#SET{'date_th', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01'}}
+		]
+	]
+	[(#ENV{'month'}|non)
+		#SET{'date', #ENV{date}}
+		#SET{'date_th', #ENV{date}|affdate{'Y-m-d'}
+	]
+]
+[(#ENV{'date_ev'}|!={''}|oui)
+	#SET{'date', #ENV{date_ev}|concat{' 00:00:00'}}
+	#SET{'date_th', #ENV{date_ev}}
+]
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+<INCLURE{fond=noisettes/header/header}
+	{title=(#TITRE|attribut_html|texte_script) - (#GET{date}|affdate_mois_annee)}
+	{titretop=#GET{titretop}}
+	{wdcalendar=oui}
+	{id_rubrique}
+	{date_ev=#ENV{'date_ev'}}{month=#ENV{'month'}}{year=#ENV{'year'}}
+	{type=agenda_calendrier_dyn}
+>
+<div class="texte">
+<main id="main" role="main">
+
+	<script type="text/javascript">
+        $(document).ready(function() {
+			dateObj = new Date('[(#ENV{date_ev,#DATE}|mySql2PhpTime|php2JsTime)]');
+            var DATA_FEED_URL = "[(#URL_PAGE{agenda_calendrier_dyn_json})]";
+			var view="month";          
+			var op = {
+				view: view,
+				theme:3,
+				showday: dateObj,
+				ViewCmdhandler:View,    
+				onWeekOrMonthToDay:wtd,
+				onBeforeRequestData: cal_beforerequest,
+				onAfterRequestData: cal_afterrequest,
+				onRequestDataError: cal_onerror, 
+				autoload:true,
+				url: DATA_FEED_URL,
+				readonly: true,
+			};
+            var $dv = $("#calhead");
+            var _MH = document.documentElement.clientHeight;
+            var dvH = $dv.height() + 2;
+            op.height = _MH - dvH;
+            op.eventItems =[];
+
+            var p = $("#gridcontainer").bcalendar(op).BcalGetOp();
+            if (p && p.datestrshow) {
+                $("#txtdatetimeshow").text(p.datestrshow);
+            }
+            $("#caltoolbar").noSelect();
+            
+            $("#hdtxtshow").datepicker({ picker: "#txtdatetimeshow", showtarget: $("#txtdatetimeshow"),
+            onReturn:function(r){                          
+                            var p = $("#gridcontainer").gotoDate(r).BcalGetOp();
+                            if (p && p.datestrshow) {
+                                $("#txtdatetimeshow").text(p.datestrshow);
+                            }
+                     } 
+            });
+            function cal_beforerequest(type)
+            {
+                $("#loadingpannel").show();    
+            }
+            function cal_afterrequest(type)
+            {
+                $("#loadingpannel").hide();
+            }
+            function cal_onerror(type,data)
+            {
+                $("#errorpannel").show();
+            }
+            function View(data)
+            {
+                /* var str = "";
+                $.each(data, function(i, item){
+                    str += "[" + i + "]: " + item + "\n";
+                });
+                alert(str);  */
+				window.location.href=data[10]
+            }    
+            function wtd(p)
+            {
+               if (p && p.datestrshow) {
+                    $("#txtdatetimeshow").text(p.datestrshow);
+                }
+                $("#caltoolbar div.fcurrent").each(function() {
+                    $(this).removeClass("fcurrent");
+                })
+                $("#showdaybtn").addClass("fcurrent");
+            }
+            //to show day view
+            $("#showdaybtn").click(function(e) {
+                //document.location.href="#day";
+                $("#caltoolbar div.fcurrent").each(function() {
+                    $(this).removeClass("fcurrent");
+                })
+                $(this).addClass("fcurrent");
+                var p = $("#gridcontainer").swtichView("day").BcalGetOp();
+                if (p && p.datestrshow) {
+                    $("#txtdatetimeshow").text(p.datestrshow);
+                }
+            });
+            //to show week view
+            $("#showweekbtn").click(function(e) {
+                //document.location.href="#week";
+                $("#caltoolbar div.fcurrent").each(function() {
+                    $(this).removeClass("fcurrent");
+                })
+                $(this).addClass("fcurrent");
+                var p = $("#gridcontainer").swtichView("week").BcalGetOp();
+                if (p && p.datestrshow) {
+                    $("#txtdatetimeshow").text(p.datestrshow);
+                }
+
+            });
+            //to show month view
+            $("#showmonthbtn").click(function(e) {
+                //document.location.href="#month";
+                $("#caltoolbar div.fcurrent").each(function() {
+                    $(this).removeClass("fcurrent");
+                })
+                $(this).addClass("fcurrent");
+                var p = $("#gridcontainer").swtichView("month").BcalGetOp();
+                if (p && p.datestrshow) {
+                    $("#txtdatetimeshow").text(p.datestrshow);
+                }
+            });
+            
+            $("#showreflashbtn").click(function(e){
+                $("#gridcontainer").reload();
+            });
+            
+            //go to today
+            $("#showtodaybtn").click(function(e) {
+                var p = $("#gridcontainer").gotoDate().BcalGetOp();
+                if (p && p.datestrshow) {
+                    $("#txtdatetimeshow").text(p.datestrshow);
+                }
+
+
+            });
+            //previous date range
+            $("#sfprevbtn").click(function(e) {
+                var p = $("#gridcontainer").previousRange().BcalGetOp();
+                if (p && p.datestrshow) {
+                    $("#txtdatetimeshow").text(p.datestrshow);
+                }
+
+            });
+            //next date range
+            $("#sfnextbtn").click(function(e) {
+                var p = $("#gridcontainer").nextRange().BcalGetOp();
+                if (p && p.datestrshow) {
+                    $("#txtdatetimeshow").text(p.datestrshow);
+                }
+            });
+            
+			
+			$("#gridcontainer").swtichView('month');
+			var p = $("#gridcontainer").gotoDate(dateObj).BcalGetOp();
+			if (p && p.datestrshow) {
+				$("#txtdatetimeshow").text(p.datestrshow);
+			}
+			$("#gridcontainer").reload();
+        });
+    </script>   
+	
+	[(#REM) DEBUT CALENDRIER]
+		<div id="wdcalendar">
+
+		  <div id="calhead" style="padding-left:1px;padding-right:1px;">          
+				<div class="cHead"><div class="ftitle">[(#TITRE)]</div>
+				<div id="loadingpannel" class="ptogtitle loadicon" style="display: none;"><:soyezcreateurs:wdcalendar_loading_data:></div>
+				 <div id="errorpannel" class="ptogtitle loaderror" style="display: none;"><:soyezcreateurs:wdcalendar_loading_fail:></div>
+				</div>          
+				
+				<div id="caltoolbar" class="ctoolbar">
+				 <div id="showtodaybtn" class="fbutton">
+					<div><span title='Click to back to today ' class="showtoday">
+					<:soyezcreateurs:wdcalendar_today:></span></div>
+				</div>
+				  <div class="btnseparator"></div>
+
+				<div id="showdaybtn" class="fbutton">
+					<div><span title='Day' class="showdayview"><:soyezcreateurs:wdcalendar_day:></span></div>
+				</div>
+				  <div  id="showweekbtn" class="fbutton">
+					<div><span title='Week' class="showweekview"><:soyezcreateurs:wdcalendar_week:></span></div>
+				</div>
+				  <div  id="showmonthbtn" class="fbutton fcurrent">
+					<div><span title='Month' class="showmonthview"><:soyezcreateurs:wdcalendar_month:></span></div>
+
+				</div>
+				<div class="btnseparator"></div>
+				  <div  id="showreflashbtn" class="fbutton">
+					<div><span title='Refresh view' class="showdayflash"><:soyezcreateurs:wdcalendar_refresh:></span></div>
+					</div>
+				 <div class="btnseparator"></div>
+				<div id="sfprevbtn" title="Prev"  class="fbutton">
+				  <span class="fprev"></span>
+
+				</div>
+				<div id="sfnextbtn" title="Next" class="fbutton">
+					<span class="fnext"></span>
+				</div>
+				<div class="fshowdatep fbutton">
+						<div>
+							<input type="hidden" name="txtshow" id="hdtxtshow" />
+							<span id="txtdatetimeshow"></span>
+
+						</div>
+				</div>
+				
+				<div class="clear"></div>
+				</div>
+		  </div>
+		  <div style="padding:1px;">
+
+			<div class="t1 chromeColor">
+				&nbsp;</div>
+			<div class="t2 chromeColor">
+				&nbsp;</div>
+			<div id="dvCalMain" class="calmain printborder">
+				<div id="gridcontainer" style="overflow-y: visible;">
+				</div>
+			</div>
+			<div class="t2 chromeColor">
+
+				&nbsp;</div>
+			<div class="t1 chromeColor">
+				&nbsp;
+			</div>   
+			</div>
+		 
+	  </div>
+	  
+	  
+	  [(#REM) FIN CALENDRIER]	
+	
+</main>
+</div><!-- Fin de .texte -->
+</BOUCLE_rubrique_principal>
+
+<INCLURE{fond=noisettes/footer/footer}
+	{rubriqueencours=#ID_RUBRIQUE}
+	{id_rubrique}
+	{secteurencours=#GET{secteurencours}}
+	{titretop=#GET{titretop}}
+>
+</B_rubrique_principal>
+#FILTRE{mini_html}

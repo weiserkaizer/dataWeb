@@ -1,0 +1,12 @@
+#CACHE{3600}
+<BOUCLE_Citations(RUBRIQUES){titre_mot=Citations}{0,1}>
+<BOUCLE_Citation(ARTICLES) {id_rubrique} {par hasard}{0,1} {lang}>
+<div id="citations">
+	<dl>
+		[<dt class="#EDIT{titre}">(#TITRE)</dt>][
+		<dd class="#EDIT{texte}"[ title="(#DESCRIPTIF|sinon{#SOUSTITRE}|attribut_html)"]>(#TEXTE)</dd>]
+	</dl>
+</div>
+</BOUCLE_Citation>
+</BOUCLE_Citations>
+#FILTRE{mini_html}

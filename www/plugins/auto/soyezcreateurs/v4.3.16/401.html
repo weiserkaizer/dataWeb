@@ -1,0 +1,41 @@
+#HTTP_HEADER{"HTTP/1.0 401 Unauthorized"} 
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"} 
+#HTTP_HEADER{Pragma: no-cache} 
+[(#SET{titretop,<:soyezcreateurs:connexiontitle|attribut_html|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{template=401}
+	{title=<:soyezcreateurs:connexiontitle|attribut_html|texte_script:>}
+	{titretop=#GET{titretop}}
+	{type=401}
+>
+
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+	<div class="cartouche">
+		<div class="titrepage"><h1><:soyezcreateurs:connexiontitle|typo:></h1></div>
+	</div>
+]
+	<div id="letexte">
+	[(#CONFIG{soyezcreateurs/explicationslogin}|propre)]
+[(#REM) Il ne faut pas chercher a afficher le panneau de login si on est deja identifie...]
+<?php if (!(isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur'])) { ?>
+	[<div id="connexion">(#FORMULAIRE_LOGIN_PLEXCEL{#ENV{url}}|sinon{#FORMULAIRE_LOGIN{#ENV{url}}})</div>]
+	[<p>&#91;<a href="#URL_PAGE{identifiants,focus=nom_inscription}&amp;mode=(#URL_SITE_SPIP|tester_config{6forum})"><:login_sinscrire:></a>&#93;</p>]
+<?php } else { ?>
+	<div class="loginlogout">
+		<p><:info_acces_refuse:>&nbsp;: <:login_autre_identifiant:>.</p>
+		<p><INCLURE{fond=noisettes/lien-login-logout,env}></p>
+	</div>
+<?php } ?>
+	</div><!-- Fin de #LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{template=Connexion}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}

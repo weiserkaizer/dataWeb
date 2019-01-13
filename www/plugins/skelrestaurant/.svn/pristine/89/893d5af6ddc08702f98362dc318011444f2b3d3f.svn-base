@@ -1,0 +1,4 @@
+# toutes les options possible dans le XML actuel sauf les blocs qui sont vus autrement
+nom: 'ZoomSur'
+description: 'La noizettes du ZoomSur'
+contexte: 'menu'

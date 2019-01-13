@@ -1,0 +1,38 @@
+<BOUCLE_(ARTICLES){id_article}>
+					<div class="bd variante1">
+					[<span class="variante1_droite"><h3><a href="#ARTICLE_URL">#TITRE</a></h3><a href="#ARTICLE_URL" title="[(#TITRE|supprimer_tags|attribut_html)]"><img class="logo_modenews" src="(#LOGO_ARTICLE_NORMAL|image_reduire{0,100}|extraire_attribut{src})" alt="[(#TITRE|supprimer_tags|attribut_html)]" /></a></span>]
+					<BOUCLE_CycloShow(RUBRIQUES){id_parent=#ID_RUBRIQUE}{0,1}>
+					<h3><a href="#URL_RUBRIQUE">#TITRE</a></h3>
+					<div id="arretSurImg2">
+						<ul class="mainCarousels2">
+							<BOUCLE_Numeros(ARTICLES){!archive}{id_rubrique}{!par date}{age>=0}{0,5}>
+							<BOUCLE_AvecImage(DOCUMENTS){id_article}{mode=document}{extension IN gif,jpg,png}{0,1}>
+							<li class="mainCarousel2" id="mc[(#_Numeros:COMPTEUR_BOUCLE)]">
+								<h2><a id="sc[(#_Numeros:COMPTEUR_BOUCLE)]2" href="#_Numeros:URL_ARTICLE" title="[(#_Numeros:TITRE|attribut_html)]">[(#_Numeros:COMPTEUR_BOUCLE)]</a></h2>
+							</li>
+							</BOUCLE_AvecImage>
+							</BOUCLE_Numeros>
+						</ul>
+
+						<B_Caroussels>
+						<ul class="smallCarousels2">
+							<BOUCLE_Caroussels(ARTICLES){!archive}{id_rubrique}{!par date}{age>=0}{0,5}>
+							<B_Images>
+							<li class="smallCarousel2" id="sc[(#_Caroussels:COMPTEUR_BOUCLE)]b2">
+								<ul>
+								<BOUCLE_Images(DOCUMENTS){id_article}{mode=document}{extension IN gif,jpg,png}{par rang_lien, num titre, titre}>
+								<li><a href="#_Caroussels:URL_ARTICLE" title="[(#TITRE|attribut_html)]">[<img src="(#FICHIER|image_passe_partout{120,100}|image_recadre{120,100}|image_aplatir{jpg,ffffff}|extraire_attribut{src})" alt="[(#TITRE|attribut_html)]"/>]</a></li>
+								</BOUCLE_Images>
+								<li>[<a href="#_Caroussels:URL_ARTICLE"><span>(#_Caroussels:TITRE)</span></a>]</li>
+								</ul>
+							</li>
+							</B_Images>
+							</BOUCLE_Caroussels>
+						</ul>
+						</B_Caroussels>
+					</div><!-- #arretSurImg -->
+					</BOUCLE_CycloShow>
+					
+					</div>
+</BOUCLE_>
+#FILTRE{mini_html}

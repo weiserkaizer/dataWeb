@@ -1,0 +1,50 @@
+a:2:{s:9:"nom_cache";s:38:"4eab10880920d33008f3436b45d50aad.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_38ccb0a22eab0641ed69a4a54a0193bc";s:6:"source";s:69:"../plugins/auto/saisies/v2.26.5/prive/style_prive_plugin_saisies.html";s:11:"process_ins";s:4:"html";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"4eab10880920d33008f3436b45d50aad.cache";}s:7:"entetes";a:5:{s:12:"X-Spip-Cache";s:6:"360000";s:13:"Cache-Control";s:14:"max-age=360000";s:15:"X-Spip-Statique";s:3:"oui";s:12:"Content-Type";s:29:"text/css; charset=iso-8859-15";s:4:"Vary";s:15:"Accept-Encoding";}s:5:"duree";i:360000;s:5:"texte";s:3100:"#wysiwyg .saisie_fieldset .champ {font-size: 1em;}
+
+body.saisies_doc {
+	background-color: #efefef;
+}
+
+
+.navigation_avec_icones .bando2_saisie_evenements { background-image: url(../local/cache-vignettes/L16xH16/saisies_date-e57e1.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_auteurs { background-image: url(../local/cache-vignettes/L16xH16/saisies_auteurs-c6efe.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_case { background-image: url(../local/cache-vignettes/L16xH16/saisies_case-5ec22.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_checkbox { background-image: url(../local/cache-vignettes/L16xH16/saisies_checkbox-bb31e.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_date { background-image: url(../local/cache-vignettes/L16xH16/saisies_date-e57e1.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_destinataires {  }
+
+.navigation_avec_icones .bando2_saisie_email { background-image: url(../local/cache-vignettes/L16xH16/saisies_email-f288d.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_explication { background-image: url(../local/cache-vignettes/L16xH16/saisies_explication-6d185.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_fieldset { background-image: url(../local/cache-vignettes/L16xH16/saisies_fieldset-c5830.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_hidden { background-image: url(../local/cache-vignettes/L16xH16/saisies_hidden-4fc11.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_input { background-image: url(../local/cache-vignettes/L16xH16/saisies_input-5126d.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_mot {  }
+
+.navigation_avec_icones .bando2_saisie_oui_non { background-image: url(../local/cache-vignettes/L16xH16/saisies_oui_non-ddb10.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_radio { background-image: url(../local/cache-vignettes/L16xH16/saisies_radio-e3c5b.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_selecteur_article { background-image: url(../local/cache-vignettes/L16xH16/saisies_selecteur_article-0bf51.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_selecteur_document { background-image: url(../local/cache-vignettes/L16xH16/saisies_selecteur_article-0bf51.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_selecteur_rubrique { background-image: url(../local/cache-vignettes/L16xH16/saisies_selecteur_rubrique-c6c39.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_selecteur_rubrique_article { background-image: url(../local/cache-vignettes/L16xH16/saisies_selecteur_rubrique_article-7cc83.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_selection { background-image: url(../local/cache-vignettes/L16xH16/saisies_selection-d2756.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_selection_multiple { background-image: url(../local/cache-vignettes/L16xH16/saisies_selection_multiple-9b9ef.png?1533040041); }
+
+.navigation_avec_icones .bando2_saisie_textarea { background-image: url(../local/cache-vignettes/L16xH16/saisies_textarea-fa18a.png?1533040041); }
+
+";s:5:"notes";s:0:"";s:8:"contexte";a:25:{s:1:"v";s:5:"22653";s:1:"p";s:4:"9d05";s:6:"themes";s:4:"spip";s:3:"ltr";s:4:"left";s:4:"md5b";s:32:"b915e9a0e29e693a3b4ccb2355bba8fc";s:14:"couleur_claire";s:6:"C4C4DD";s:14:"couleur_foncee";s:6:"8F8FBD";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2018-07-31 13:38:23";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2018-07-31 13:38:23";s:18:"date_redac_default";b:1;s:6:"claire";s:7:"#C4C4DD";s:6:"foncee";s:7:"#8F8FBD";s:4:"left";s:4:"left";s:5:"right";s:5:"right";s:3:"rtl";s:0:"";s:3:"dir";s:3:"ltr";s:9:"font-size";s:8:"0.8125em";s:11:"line-height";s:7:"1.385em";s:13:"margin-bottom";s:7:"1.385em";s:11:"text-indent";s:4:"50px";s:11:"font-family";s:28:"Helvetica, Arial, sans-serif";s:16:"background-color";s:7:"#F8F7F3";s:5:"color";s:7:"#000000";}s:12:"lastmodified";i:1533044302;s:2:"gz";b:0;s:3:"sig";i:3766971651;}}

@@ -1,0 +1,12 @@
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+[(#REM) Trouver, par rapport à la date du jour, la date de début de la période ]
+[(#SET{date_debut,[(#ENV{date_debut,#DATE}|programmation_debut{#ENV{jour_debut}}|affdate{'Y-m-d'})]})]
+[(#SET{periode,[(#GET{date_debut}|agenda_affdate_debut_fin{[(#GET{date_debut}|programmation_datedecalejours{[(#ENV{duree,7}|moins{1})]})],non, abbr}|typo)]})]
+	<div class="cartouche">
+		<div class="titrepage"><h1>
+			[(#SET{lelogo,[(#LOGO_RUBRIQUE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})" width="[(#GET{lelogo}|largeur)]" height="[(#GET{lelogo}|hauteur)]" alt="" />]
+			[(#TITRE)] - [(#GET{periode})]
+		</h1></div>
+	</div>
+</BOUCLE_rubrique_principal>
+#FILTRE{mini_html}

@@ -1,0 +1,14 @@
+#SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,180}|moins{20})}
+<BOUCLE_sites(SITES){id_rubrique}{par num nom_site}{par nom_site}>
+	<li>
+		[(#ENV{jp_site}|=={#ID_SYNDIC}?{<strong>})]<a href="#INCLURE{fond=noisettes/menus/site_lien_direct,id_syndic=#ID_SYNDIC}"[ title="(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|?{[(#NOM_SITE|texte_script|supprimer_tags|entites_html)][ - (#DESCRIPTIF|supprimer_tags|attribut_html)],[(#DESCRIPTIF|supprimer_tags|attribut_html)]})"]>[<img class="menu_right_logo" src="(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|image_reduire{#GET{LargeurMenuDroit},0}|extraire_attribut{src}|embarque_fichier)"[ width="(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|image_reduire{#GET{LargeurMenuDroit},0}|largeur)"][ height="(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|image_reduire{#GET{LargeurMenuDroit},0}|hauteur)"] alt="[(#NOM_SITE|texte_script|supprimer_tags|entites_html)]" /><br />][(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|non)[(#NOM_SITE|supprimer_tags)]]</a>[(#ENV{jp_site}|=={#ID_SYNDIC}|?{</strong>})]
+		<B_ArticlesSyndiques>
+		<ul>
+		<BOUCLE_ArticlesSyndiques(SYNDIC_ARTICLES){id_syndic}{!par date}{0,(#ENV{nbsyndic,#CONFIG{soyezcreateurs/nombres_rss,0}})}>
+		<li>[(#ENV{jp_syndication}|=={#ID_SYNDIC_ARTICLE}?{<strong>})]<a href="#INCLURE{fond=noisettes/menus/site_lien_direct,id_syndic=#ID_SYNDIC,id_syndic_article=#ID_SYNDIC_ARTICLE}" title="[(#DATE) - ][(#DESCRIPTIF|supprimer_tags|couper{120}|attribut_html)]">[(#TITRE|supprimer_tags)]</a>[(#ENV{jp_syndication}|=={#ID_SYNDIC_ARTICLE}?{</strong>})]</li>
+		</BOUCLE_ArticlesSyndiques>
+		</ul>
+		</B_ArticlesSyndiques>
+	</li>
+</BOUCLE_sites>
+#FILTRE{mini_html}

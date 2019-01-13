@@ -1,0 +1,18 @@
+<BOUCLE_Autres(RUBRIQUES){id_rubrique}{par num titre}>
+<BOUCLE_BrancheContientSite(SITES){branche}{0,1}>
+<BOUCLE_RacineBranche(RUBRIQUES){id_rubrique=#_Autres:ID_RUBRIQUE}>
+	[(#INCLURE{fond=noisettes/sites_branche_detail,id_rubrique})]
+	<B_Autres_Details>
+	<ul class="listesitesssrub">
+	<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}>
+		<li><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
+		<BOUCLE_Recurssion(BOUCLE_Autres_Details) />
+			[(#INCLURE{fond=noisettes/sites_branche_detail,id_rubrique})]
+		</li>
+	</BOUCLE_Autres_Details>
+	</ul>
+	</B_Autres_Details>
+</BOUCLE_RacineBranche>
+</BOUCLE_BrancheContientSite>
+</BOUCLE_Autres>
+#FILTRE{mini_html}

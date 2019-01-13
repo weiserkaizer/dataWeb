@@ -1,0 +1,73 @@
+a:2:{s:9:"nom_cache";s:38:"8cf3d90f75b85f33296f76b814bbee83.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_b15ca9ba90e2ba5162c8bfd9d75c01dc";s:6:"source";s:69:"plugins/auto/soyezcreateurs/v4.3.16/noisettes/footer/footer_pied.html";s:11:"process_ins";s:3:"php";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"8cf3d90f75b85f33296f76b814bbee83.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:3667:"	<footer><div id="footer" class="clearbottom clearfix">
+<div id="footer_inner">
+<h1 class="nocontent offscreen">Pied de page</h1>
+<nav><div id="menufooter"><h2 class="nocontent offscreen">Menu transversal secondaire</h2><ul><li class="menu_lien_plan"><a href="spip.php?page=plan" title="Tout le site sur une page">Plan du site Web</a></li>
+
+
+
+<li class="menu_lien_sigles"><a href="spip.php?page=sigles" title="Consulter le glossaire du site (sigles et définitions)">Définitions</a></li>
+</ul></div></nav>
+<div class="row text-center">
+<div class="flexbox-wrap-space-around">
+<div id="miniagenda" class="cadreinfo avec-padding">
+<?php echo recuperer_fond( 'noisettes/agenda/miniagenda', array_merge(array (
+  'template' => 'Sommaire',
+  'lang' => 'fr',
+  'date' => '2019-01-06 23:34:42',
+  'date_default' => true,
+  'date_redac' => '2019-01-06 23:34:42',
+  'date_redac_default' => true,
+  'id_rubrique' => '',
+  'id_article' => '',
+  'rubriqueencours' => '',
+  'secteurencours' => '',
+),array('lang' => 'fr')), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/footer/footer_pied.html','html_b15ca9ba90e2ba5162c8bfd9d75c01dc','',14,$GLOBALS['spip_lang']),'ajax' => ($v=( ''))?$v:true), _request("connect"));
+?>
+</div>
+</div>
+</div>
+<div id="bandeaucontact" class="crayon meta-valeur-soyezcreateurs__bandeau_contact "><div id="informations" class="row">
+<div id="coordonnees" class="avec-padding">
+<div class="adresse flexbox-flex">
+<span class="icon-location icon-lg icon-fw texte-blanc"></span>
+<p>
+Rue du bonheur<br />
+01777 - SoyezCréateurs</p>
+</div>
+<div class="telephone flexbox-flex">
+<span class="icon-phone icon-lg icon-fw texte-blanc"></span>
+<p>
+<a href="tel:+33.123456789">01 23 45 67 89</a></p>
+</div>
+<div class="telephone flexbox-flex">
+<span class="icon-fax icon-lg icon-fw texte-blanc"></span>
+<p>
+01 23 45 67 89 (fax)</p>
+</div>
+<div class="accueil flexbox-flex">
+<span class="icon-information icon-lg icon-fw texte-blanc"></span>
+<p>
+Information complémentaires.<br /></p>
+</div>
+<p><a class="button triadeC texte-blanc float-center avec-margin" href="/1"><span class="icon-envelope icon-lg avec-padding-right05"></span>Nous écrire</a></p>
+</div>
+<div id="carte" class="avec-padding">
+<!-- Begin Exclude NewsLetter --><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d365312.326488903!2d-1.5056982671874777!3d44.33045219999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5380bbec6fa8d3%3A0x2cd88d7991f88ca4!2sPerdu..!5e0!3m2!1sfr!2sfr!4v1508413717844" width="600" height="450" frameborder="0" style="border:0" allowfullscreen="true"></iframe>
+<p><!-- End Exclude NewsLetter --></p>
+</div>
+</div></div>
+<div id="footerbas">
+<?php echo recuperer_fond( 'noisettes/footer/footer_ours', array('lang' => 'fr'), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/footer/footer_pied.html','html_b15ca9ba90e2ba5162c8bfd9d75c01dc','',83,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+</div>
+<?php echo recuperer_fond( 'noisettes/datemajsite', array('class' => 'footer',
+	'lang' => 'fr'), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/footer/footer_pied.html','html_b15ca9ba90e2ba5162c8bfd9d75c01dc','',85,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+</div><!-- id="footer_inner" -->
+</div><!-- id="footer" -->
+</footer>
+</div><!-- id="shadow" -->
+<?php echo recuperer_fond( 'noisettes/footer/participer', array('lang' => 'fr'), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/footer/footer_pied.html','html_b15ca9ba90e2ba5162c8bfd9d75c01dc','',90,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+</div><!-- id="container" -->
+";s:5:"notes";s:0:"";s:8:"contexte";a:10:{s:8:"template";s:8:"Sommaire";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2019-01-06 23:34:42";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 23:34:42";s:18:"date_redac_default";b:1;s:11:"id_rubrique";s:0:"";s:10:"id_article";s:0:"";s:15:"rubriqueencours";s:0:"";s:14:"secteurencours";s:0:"";}s:12:"lastmodified";i:1546817633;s:2:"gz";b:0;s:3:"sig";i:3091201226;}}

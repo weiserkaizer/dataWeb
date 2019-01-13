@@ -1,0 +1,70 @@
+[(#REM) Edito : C'est le dernier article en date ayant pour mot-clef "EDITO" )]
+<BOUCLE_article_principal(ARTICLES){lang}{titre_mot=EDITO#ENV{typeedito}}{!par date}{0,1}>
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)[(#INCLURE{fond=noisettes/cartouches/sommaire_cartouche})]]
+
+<div class="texte">
+<main id="main" role="main">
+[(#PLUGIN{SOCIALTAGS}|oui)<div id="socialtags"></div>]
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche surlignable">
+[<div class="#EDIT{surtitre} surtitre"><span>(#SURTITRE)</span></div>]
+[(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})]
+<div class="titrepage"><h1 class="#EDIT{titre} entry-title">[<img src="(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|extraire_attribut{src}|embarque_fichier)" class="logo_article" alt="" width="[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|largeur)]" height="[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|hauteur)]" />][(#TITRE)]</h1></div>
+[<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>][(#INCLURE{fond=noisettes/liste_auteurs,id_article,lang})]
+</div>
+]
+	<div id="letexte" class="surlignable">
+[<div class="[(#CHAPO*|?{#EDIT{chapo},#EDIT{descriptif}}) ]chapo">(#CHAPO|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0}|sinon{#DESCRIPTIF})</div>]
+[<div class="#EDIT{texte} entry-content">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
+[<div class="#EDIT{ps} ps">(#PS|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
+[<div class="notes">(#NOTES)</div>]
+[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+[<div id="carto">
+(#PLUGIN{GIS}|oui)[(#INCLURE{fond=json/gis,id_article,limit=1}|oui)[(#INCLURE{fond=modeles/carte_gis,id_article,autocenterandzoom=oui,hauteur=#CONFIG{soyezcreateurs_layout/hauteurgisarticles,400px},cluster=[(#PLUGIN{GISGEOM}|?{'non','oui'})],maxClusterRadius=40,clusterShowCoverageOnHover=oui,clusterSpiderfyOnMaxZoom=oui,fullscreen=oui,zoom_wheel=non})]]
+</div>]
+
+[(#INCLURE{fond=noisettes/galerie,ajax,id_article,env})]
+[(#VAL{enbas}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
+[(#INCLURE{fond=modeles/documentsjoints,id_article})]
+]
+
+	</div><!-- Fin de #LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/sommaire_cartouche,classe=artrecent_bas})]]
+</BOUCLE_article_principal>
+<BOUCLE_article_principal_bis(ARTICLES){titre_mot=EDITO#ENV{typeedito}}{lang=#CONFIG{langue_site}}{!par date}{0,1}>
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)[(#INCLURE{fond=noisettes/cartouches/sommaire_cartouche})]]
+
+<div class="texte">
+<main id="main" role="main">
+[(#PLUGIN{SOCIALTAGS}|oui)<div id="socialtags"></div>]
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche surlignable">
+[<div class="#EDIT{surtitre} surtitre"><span>(#SURTITRE)</span></div>]
+[(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})]
+<div class="titrepage"><h1 class="#EDIT{titre} entry-title">[<img src="(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|extraire_attribut{src})" class="logo_article" alt="" width="[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|largeur)]" height="[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|hauteur)]" />][(#TITRE)]</h1></div>
+[<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>][(#INCLURE{fond=noisettes/liste_auteurs,id_article,lang})]
+</div>
+]
+	<div id="letexte" class="surlignable">
+[<div class="[(#CHAPO*|?{#EDIT{chapo},#EDIT{descriptif}}) ]chapo">(#CHAPO|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0}|sinon{#DESCRIPTIF})</div>]
+[<div class="#EDIT{texte} entry-content">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
+[<div class="#EDIT{ps} ps">(#PS|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
+[<div class="notes">(#NOTES)</div>]
+[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
+[(#INCLURE{fond=noisettes/galerie,ajax,id_article,env})]
+[(#VAL{enbas}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
+[(#INCLURE{fond=modeles/documentsjoints,id_article})]
+]
+
+	</div><!-- Fin de #LeTexte -->
+</main>
+</div><!-- Fin de .texte -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/sommaire_cartouche,classe=artrecent_bas})]]
+</BOUCLE_article_principal_bis>
+[(#ENV{typeedito}|=={''}|?{#INCLURE{fond=noisettes/mode_emploi},#INCLURE{fond=noisettes/sommaire/sommaire_modeedito_type}})]
+<//B_article_principal_bis>
+<//B_article_principal>
+#FILTRE{mini_html}

@@ -1,0 +1,80 @@
+			<BOUCLE_articles_recentsAlaUne(ARTICLES){lang}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{doublons}{titre_mot=AlaUne}>
+			[(#SET{logo,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,340})]})]})]
+			[(#SET{largeur,[(#GET{logo}|largeur|sinon{1})]})]
+			[(#SET{hauteur,[(#GET{logo}|hauteur|sinon{1})]})]
+			[(#SET{ratio,[(#GET{largeur}|div{#GET{hauteur}})]})]
+			#SET{facteur,''}#SET{largeur,308}
+			[(#GET{ratio}|>{1.8764}|?{#SET{facteur,2}#SET{largeur,638}})]
+			[(#GET{ratio}|>{2.8088}|?{#SET{facteur,3}#SET{largeur,969}})]
+			<div class="grid-item[ grid-item-x(#GET{facteur})]">
+				<div class="content-actus alaune #EDIT{titre}">
+					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
+						[<img src="(#GET{logo}|image_focus{#GET{largeur},340}|extraire_attribut{src})" alt="" width="#GET{largeur}" height="340" />]
+						<div class="h2"><span class="titre-actus">#TITRE</span>
+							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
+					</a>
+				</div>
+			</div>
+			</BOUCLE_articles_recentsAlaUne>
+			<B_AgendaDerniersAjouts>
+			<div class="grid-item[ (#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1demie}|?{grid-item-demie})]">
+			<BOUCLE_AgendaDerniersAjouts(EVENEMENTS)
+			{par date_debut}
+			{0,(#CONFIG{soyezcreateurs/nombres_agenda,5})}
+			{date_fin>=(#ENV{date}|affdate{'Y-m-d'})}
+			{statut=publie}
+			{doublons}
+			>
+			<BOUCLE_DernierEvenementArticle(ARTICLES){id_article}>
+				<div class="content-actus #EDIT{titre}">
+					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
+						[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{308,[(#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1}|?{340,108})]}|extraire_attribut{src})" alt="" width="308" height="[(#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1}|?{340,108})]" />]
+						<div class="agenda flexbox-flex">
+							<div class="date debutfin">
+								<time class="debut ladate" itemprop="startDate" title="#DATE_DEBUT" datetime="#DATE_DEBUT">
+									<span class="dateNombre"><strong>[(#DATE_DEBUT|affdate{d})]</strong>/[(#DATE_DEBUT|affdate{m})]</span>
+									<span class="annee display-block">[(#DATE_DEBUT|affdate{Y})]</span>
+								</time>[(#DATE_DEBUT|affdate{Ymd}|!={#DATE_FIN|affdate{Ymd}}|oui)
+								<time class="fin ladate" itemprop="endDate" title="#DATE_FIN" datetime="#DATE_FIN">
+									<span class="dateNombre"><strong>[(#DATE_FIN|affdate{d})]</strong>/[(#DATE_FIN|affdate{m})]</span>
+									<span class="annee display-block">[(#DATE_FIN|affdate{Y})]</span>
+								</time>][(#DATE_DEBUT|affdate{Ymd}|=={#DATE_FIN|affdate{Ymd}}|oui)
+								<time class="fin ladate">
+									<span class="dateNombre"><strong>[(#DATE_DEBUT|affdate{H:i})]</strong></span>[(#DATE_DEBUT|!={#DATE_FIN}|oui)
+									<span class="dateNombre display-block">[(#DATE_FIN|affdate{H:i})]</span>]
+								</time>]
+							</div>
+							<div class="h2"><span class="titre-actus">[ (#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{#TITRE[&nbsp;: (#_AgendaDerniersAjouts:TITRE)],#TITRE})]</span>
+							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
+						</div>
+					</a>
+				</div>
+			</BOUCLE_DernierEvenementArticle>
+			[(#COMPTEUR_BOUCLE|!={#TOTAL_BOUCLE}|oui)
+			[(#COMPTEUR_BOUCLE|alterner{[(#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|match{^1}|?{[(#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1demie}|?{'</div><div class="grid-item grid-item-demie">','</div><div class="grid-item">'})],''})],[(#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1demie}|?{'</div><div class="grid-item grid-item-demie">','</div><div class="grid-item">'})]})]
+			]
+			</BOUCLE_AgendaDerniersAjouts>
+			</div>
+			</B_AgendaDerniersAjouts>
+			<BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons} /></BOUCLE_Secteurs_Exclus>
+			<BOUCLE_Rubriques_Exclues(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}><BOUCLE_Articles_Exclus(ARTICLES){id_rubrique}{doublons}{lang} /></BOUCLE_Rubriques_Exclues>
+			<BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons} />
+			<BOUCLE_articles_QuoideNeuf(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})}{doublons}{lang}>
+			[(#SET{logo,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,340})]})]})]
+			[(#SET{largeur,[(#GET{logo}|largeur|sinon{1})]})]
+			[(#SET{hauteur,[(#GET{logo}|hauteur|sinon{1})]})]
+			[(#SET{ratio,[(#GET{largeur}|div{#GET{hauteur}})]})]
+			#SET{facteur,''}#SET{largeur,308}
+			[(#GET{ratio}|>{1.8764}|?{#SET{facteur,2}#SET{largeur,638}})]
+			[(#GET{ratio}|>{2.8088}|?{#SET{facteur,3}#SET{largeur,969}})]
+			<div class="grid-item[ grid-item-x(#GET{facteur})]">
+				<div class="content-actus quoideneuf #EDIT{titre}">
+					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
+						[<img src="(#GET{logo}|image_focus{#GET{largeur},340}|extraire_attribut{src})" alt="" width="#GET{largeur}" height="340" />]
+						<div class="h2"><span class="titre-actus">#TITRE</span>
+							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
+					</a>
+				</div>
+			</div>
+			</BOUCLE_articles_QuoideNeuf>
+#FILTRE{mini_html}

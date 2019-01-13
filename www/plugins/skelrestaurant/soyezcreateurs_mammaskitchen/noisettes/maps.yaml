@@ -1,0 +1,5 @@
+# toutes les options possible dans le XML actuel sauf les blocs qui sont vus autrement
+nom: 'maps'
+description: 'La noizettes des A la Une'
+contexte: 'menu'
+ajax: 'non'

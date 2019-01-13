@@ -1,0 +1,472 @@
+Index: contenu/corps_sommaire_modecognac.html
+===================================================================
+Index: contenu/corps_sommaire_modecognac.xml
+===================================================================
+--- contenu/corps_sommaire_modecognac.xml	(nonexistent)
++++ contenu/corps_sommaire_modecognac.xml	(working copy)
+@@ -0,0 +1,11 @@
++<page>
++	<nom>corps_sommaire_modecognac.html</nom>
++	<description>Le sommaire et unique page de ce site</description>
++	<!-- <icon>article.png</icon> -->
++	<!-- <bloc id="sommaire" nom="sommaire"  description="Le sommaire" /> -->
++	<!-- <bloc id="header" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
++	<!-- <bloc id="footer" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
++	<!-- <bloc id="nav" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
++	<!-- <bloc id="breadcrumb" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
++	<!-- <bloc id="extra1" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
++</page>
+\ No newline at end of file
+Index: contenu/corps_sommaire_modecognac.yaml
+===================================================================
+--- contenu/corps_sommaire_modecognac.yaml	(nonexistent)
++++ contenu/corps_sommaire_modecognac.yaml	(working copy)
+@@ -0,0 +1 @@
++nom: 'corps_sommaire_modecognac'
+\ No newline at end of file
+Index: contenu/corps_sommaire_modecognac.html
+===================================================================
+Index: contenu/corps_sommaire_modecognac.xml
+===================================================================
+--- contenu/corps_sommaire_modecognac.xml	(nonexistent)
++++ contenu/corps_sommaire_modecognac.xml	(working copy)
+@@ -0,0 +1,11 @@
++<page>
++	<nom>corps_sommaire_modecognac.html</nom>
++	<description>Le sommaire et unique page de ce site</description>
++	<!-- <icon>article.png</icon> -->
++	<!-- <bloc id="sommaire" nom="sommaire"  description="Le sommaire" /> -->
++	<!-- <bloc id="header" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
++	<!-- <bloc id="footer" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
++	<!-- <bloc id="nav" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
++	<!-- <bloc id="breadcrumb" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
++	<!-- <bloc id="extra1" nom="accueil"  description="accueil" icon="img/fichier.png" /> -->
++</page>
+\ No newline at end of file
+Index: contenu/corps_sommaire_modecognac.yaml
+===================================================================
+--- contenu/corps_sommaire_modecognac.yaml	(nonexistent)
++++ contenu/corps_sommaire_modecognac.yaml	(working copy)
+@@ -0,0 +1 @@
++nom: 'corps_sommaire_modecognac'
+\ No newline at end of file
+Index: noisettes/sommaire_modeportailcognac_cycloshow.html
+===================================================================
+--- noisettes/sommaire_modeportailcognac_cycloshow.html	(nonexistent)
++++ noisettes/sommaire_modeportailcognac_cycloshow.html	(working copy)
+@@ -0,0 +1,25 @@
++
++<B_CycloShow>
++<!-- SLIDER -->
++<div id="cycloshow" class="zone-slider">
++	<div class="slider-slick">
++		<BOUCLE_CycloShow(ARTICLES){titre_mot=CycloShow}{par num titre}{!par date}{lang}>
++		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
++			<div class="slider-diapo-imgfull">
++				<a href="#URL_ARTICLE" tabindex="-1">
++					<img src="[(#LOGO_ARTICLE_NORMAL|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{#GET{LargeurContaineur},#CONFIG{soyezcreateurs/hauteur_slider,580}}|extraire_attribut{src})]" alt="">
++					<div class="slider-content desc-gauche text-center">
++						<h3 class="#EDIT{titre}">#TITRE</h3>
++						[<p class="hide-for-small-only #EDIT{descriptif}">(#DESCRIPTIF|ptobr)</p>]
++						[<p class="hide-for-small-only">(#INCLURE{fond=noisettes/liste_auteurs,id_article,nodiv=1,nolink=1})</p>]
++						[<p class="hide-for-small-only">(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})</p>]
++					</div>
++				</a>
++			</div>
++		</div>
++		</BOUCLE_CycloShow>
++	</div>
++</div>
++</B_CycloShow>
++
++#FILTRE{mini_html}
+\ No newline at end of file
+
+Property changes on: noisettes/sommaire_modeportailcognac_cycloshow.html
+___________________________________________________________________
+Added: svn:mergeinfo
+## -0,0 +0,0 ##
+Index: noisettes/sommaire_modeportailcognac_cycloshow.yaml
+===================================================================
+--- noisettes/sommaire_modeportailcognac_cycloshow.yaml	(nonexistent)
++++ noisettes/sommaire_modeportailcognac_cycloshow.yaml	(working copy)
+@@ -0,0 +1,4 @@
++# toutes les options possible dans le XML actuel sauf les blocs qui sont vus autrement
++nom: 'Cycloshow mode cognac'
++description: 'La noizettes du Cycloshow pour le mode cognac'
++ajax: 'non'
+\ No newline at end of file
+Index: noisettes/sommaire_modeportailcognac_dessousBreves.html
+===================================================================
+--- noisettes/sommaire_modeportailcognac_dessousBreves.html	(nonexistent)
++++ noisettes/sommaire_modeportailcognac_dessousBreves.html	(working copy)
+@@ -0,0 +1,27 @@
++
++<B_DessousBreves>
++<!-- PROJETS -->
++<div id="lesprojets" class="zone-projets">
++	<header class="titre-sommaire">
++		<h1>Les projets</h1>
++	</header>
++	<div id="projets" class="avec-margin-top">
++		<BOUCLE_DessousBreves(RUBRIQUES){titre_mot IN DessousBreves,ZoomSur2}{par num titre}>
++		<div class="projet idprojet#COMPTEUR_BOUCLE #EDIT{titre}"<BOUCLE_RubriqueColoree(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubrique(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}>[ style="background-color: #(#TEXTE|textebrut);"]</BOUCLE_CouleurRubrique></BOUCLE_RubriqueColoree>>
++			<div class="content-projets">
++				<BOUCLE_articles_plusdun(ARTICLES) {id_rubrique} {1,1}{lang}><a href="#URL_RUBRIQUE"[ title="(#_DessousBreves:DESCRIPTIF|attribut_html)"]></BOUCLE_articles_plusdun><BOUCLE_articles_unseul(ARTICLES) {id_rubrique} {0,1}{lang}><a href="#ARTICLE_URL"[ title="(#_DessousBreves:DESCRIPTIF|attribut_html)"]></BOUCLE_articles_unseul><a href="#URL_RUBRIQUE"[ title="(#_DessousBreves:DESCRIPTIF|attribut_html)"]><//B_articles_unseul><//B_articles_plusdun>
++					<h2>#TITRE</h2>
++					<div class="suite">
++						<span class="icon icon-arrow-right2">&#10140;</span>
++					</div>
++				</a>
++			</div>
++		</div>
++		</BOUCLE_DessousBreves>
++	</div>
++	<div class="clearfix"></div>
++</div>
++<!-- fin PROJETS -->
++</B_DessousBreves>
++
++#FILTRE{mini_html}
+\ No newline at end of file
+
+Property changes on: noisettes/sommaire_modeportailcognac_dessousBreves.html
+___________________________________________________________________
+Added: svn:mergeinfo
+## -0,0 +0,0 ##
+Index: noisettes/sommaire_modeportailcognac_dessousBreves.yaml
+===================================================================
+--- noisettes/sommaire_modeportailcognac_dessousBreves.yaml	(nonexistent)
++++ noisettes/sommaire_modeportailcognac_dessousBreves.yaml	(working copy)
+@@ -0,0 +1,4 @@
++# toutes les options possible dans le XML actuel sauf les blocs qui sont vus autrement
++nom: 'dessousBreves mode cognac'
++description: 'La noizettes du dessousBreves pour le mode cognac'
++ajax: 'non'
+\ No newline at end of file
+Index: noisettes/sommaire_modeportailcognac_goodies.html
+===================================================================
+--- noisettes/sommaire_modeportailcognac_goodies.html	(nonexistent)
++++ noisettes/sommaire_modeportailcognac_goodies.html	(working copy)
+@@ -0,0 +1,29 @@
++
++<B_GroupeBlocsDefilants>
++<!-- PRATIQUE -->
++<div id="pratique" class="zone-pratique">
++	<BOUCLE_GroupeBlocsDefilants(RUBRIQUES){titre_mot=Goodies}{par num titre}>
++	<B_BlocsDefilants>
++	<header class="titre-sommaire">
++		<h1[ title="(#DESCRIPTIF|attribut_html)"] class="#EDIT{titre}">#TITRE</h1>
++	</header>
++	<div role="region" aria-label="[(#TITRE|attribut_html)]">
++		<div class="slider-pratique">
++			<BOUCLE_BlocsDefilants(ARTICLES){id_rubrique}{par num titre}{lang}>
++			<div class="content-pratique #EDIT{titre}">
++				<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>
++					<img src="[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{280,190}|extraire_attribut{src})]" alt="" />
++					<div class="h2"><span class="titre-pratique">#TITRE</span>
++						<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
++				</a>
++			</div>
++			</BOUCLE_BlocsDefilants>
++		</div>
++	</div>
++	</B_BlocsDefilants>
++	</BOUCLE_GroupeBlocsDefilants>
++</div>
++<!-- fin PRATIQUE -->
++</B_GroupeBlocsDefilants>
++
++#FILTRE{mini_html}
+\ No newline at end of file
+
+Property changes on: noisettes/sommaire_modeportailcognac_goodies.html
+___________________________________________________________________
+Added: svn:mergeinfo
+## -0,0 +0,0 ##
+Index: noisettes/sommaire_modeportailcognac_goodies.yaml
+===================================================================
+--- noisettes/sommaire_modeportailcognac_goodies.yaml	(nonexistent)
++++ noisettes/sommaire_modeportailcognac_goodies.yaml	(working copy)
+@@ -0,0 +1,4 @@
++# toutes les options possible dans le XML actuel sauf les blocs qui sont vus autrement
++nom: 'Goodies mode cognac'
++description: 'La noizettes du Goodies pour le mode cognac'
++ajax: 'non'
+\ No newline at end of file
+Index: noisettes/sommaire_modeportailcognac_quoideneuf.html
+===================================================================
+--- noisettes/sommaire_modeportailcognac_quoideneuf.html	(nonexistent)
++++ noisettes/sommaire_modeportailcognac_quoideneuf.html	(working copy)
+@@ -0,0 +1,21 @@
++
++[<!-- ACTUS -->
++<div id="actualites" class="zone-actus">
++	<header class="titre-sommaire">
++		<h1><:soyezcreateurs:quoideneuf:></h1>
++	</header>
++	<div class="row" id="masonry" role="region" aria-label="Actualités">
++		<div class="grid">
++			<div class="grid-sizer"></div>
++			<div class="gutter-sizer"></div>
++			(#INCLURE{fond=noisettes/sommaire/sommaire_modeportailcognac_quoideneuf})
++		</div>
++	</div>
++	<div class="text-center avec-margin-top avec-margin-bottom">
++		<a class="button texte-blanc triadeA" href="#URL_PAGE{antichrono}"><:soyezcreateurs:actualite_toutes:></a>
++	</div>
++</div>
++<!-- fin ACTUS -->
++]
++
++#FILTRE{mini_html}
+\ No newline at end of file
+
+Property changes on: noisettes/sommaire_modeportailcognac_quoideneuf.html
+___________________________________________________________________
+Added: svn:mergeinfo
+## -0,0 +0,0 ##
+Index: noisettes/sommaire_modeportailcognac_quoideneuf.yaml
+===================================================================
+--- noisettes/sommaire_modeportailcognac_quoideneuf.yaml	(nonexistent)
++++ noisettes/sommaire_modeportailcognac_quoideneuf.yaml	(working copy)
+@@ -0,0 +1,4 @@
++# toutes les options possible dans le XML actuel sauf les blocs qui sont vus autrement
++nom: 'QuoideNeuf mode cognac'
++description: 'La noizettes du QuoideNeuf pour le mode cognac'
++ajax: 'non'
+\ No newline at end of file
+Index: noisettes/sommaire_modeportailcognac_sc_edito.html
+===================================================================
+--- noisettes/sommaire_modeportailcognac_sc_edito.html	(nonexistent)
++++ noisettes/sommaire_modeportailcognac_sc_edito.html	(working copy)
+@@ -0,0 +1,25 @@
++
++<BOUCLE_EDITO(ARTICLES) {titre_mot=EDITO}{!par date}{0,1}{lang}>
++
++<!-- EDITO -->
++<div id="edito" class="zone-edito">
++	<header class="titre-sommaire">
++		<h1 class="#EDIT{titre}">[(#TITRE)]</h1>
++	</header>
++	[<img class="editologo" src="(#LOGO_ARTICLE|image_focus{#CONFIG{soyezcreateurs_layout/largeurconteneur,960},200}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_focus{#CONFIG{soyezcreateurs_layout/largeurconteneur,960},200}|largeur)]" height="[(#LOGO_ARTICLE|image_focus{#CONFIG{soyezcreateurs_layout/largeurconteneur,960},200}|hauteur)]" alt="" />]
++	<div id="editotexte">
++		<div class="infos">[(#INCLURE{fond=noisettes/liste_auteurs,id_article,virgule=1,nodiv=1})][(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})]</div>
++		<div>
++			[<div class="[(#CHAPO*|?{#EDIT{chapo},#EDIT{descriptif}}) ]chapo">(#CHAPO|image_reduire{#CONFIG{soyezcreateurs_layout/largeurconteneur,960},0}|sinon{#DESCRIPTIF})</div>]
++			[<div class="#EDIT{texte} entry-content">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurconteneur,960},0})</div>]
++			[<div class="#EDIT{ps} ps">(#PS|image_reduire{#CONFIG{soyezcreateurs_layout/largeurconteneur,960},0})</div>]
++			[<div class="notes">(#NOTES)</div>]
++			[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
++			[(#INCLURE{fond=noisettes/galerie,ajax,id_article,env})]
++		</div>
++	</div>
++</div>
++<!-- fin EDITO -->
++</BOUCLE_EDITO>
++
++#FILTRE{mini_html}
+\ No newline at end of file
+
+Property changes on: noisettes/sommaire_modeportailcognac_sc_edito.html
+___________________________________________________________________
+Added: svn:mergeinfo
+## -0,0 +0,0 ##
+Index: noisettes/sommaire_modeportailcognac_sc_edito.yaml
+===================================================================
+--- noisettes/sommaire_modeportailcognac_sc_edito.yaml	(nonexistent)
++++ noisettes/sommaire_modeportailcognac_sc_edito.yaml	(working copy)
+@@ -0,0 +1,4 @@
++# toutes les options possible dans le XML actuel sauf les blocs qui sont vus autrement
++nom: 'Edito mode cognac'
++description: 'La noizettes du Edito pour le mode cognac'
++ajax: 'non'
+\ No newline at end of file
+Index: noisettes/sommaire_modeportailcognac_zoomsur.html
+===================================================================
+--- noisettes/sommaire_modeportailcognac_zoomsur.html	(nonexistent)
++++ noisettes/sommaire_modeportailcognac_zoomsur.html	(working copy)
+@@ -0,0 +1,60 @@
++
++<BOUCLE_ZoomSur(ARTICLES) {titre_mot=ZoomSur}{!par date}{0,1}{lang}>
++#SET{article_url,#ARTICLE_URL}
++<!-- SLIDER -->
++<div id="diaporama" class="zone-slider">
++	<header>
++		<h1 class="hide">#TITRE</h1>
++	</header>
++	<div class="slider-slick">
++		<BOUCLE_Slider(DOCUMENTS){id_article}{mode=document}{par rang_lien, num titre, titre}{!par date}{media IN image,video}{vu=non}>
++		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
++			<div class="slider-diapo-imgfull">
++				[(#MEDIA|=={image}|oui)
++				<a href="#GET{article_url}"[ title="(#_ZoomSur:DESCRIPTIF|attribut_html)"]>
++					<img src="[(#FICHIER|copie_locale|image_focus{1920,#CONFIG{soyezcreateurs/hauteur_slider,580}}|extraire_attribut{src})]" alt="" />
++				</a>]
++				[(#MEDIA|=={video}|oui)
++				<a href="#GET{article_url}"[ title="(#_ZoomSur:DESCRIPTIF|attribut_html)"]>
++					[(#MIME_TYPE|=={text/oembed}|non)
++					<div style="width: 1920px; height: #CONFIG{soyezcreateurs/hauteur_slider,580}px;">
++						<video autoplay loop muted preload="true" class="autoplay" style="min-width: 100%; height: auto; top: -50%; position: absolute;">
++							<source src="#FICHIER" type="[(#EXTENSION|in_array{#LISTE{mp4,webm,ogv}}|?{[(#MIME_TYPE|replace{application/,video/})],#MIME_TYPE})]"/>
++						</video>
++					</div>]
++					[(#MIME_TYPE|=={text/oembed}|oui)
++					<div style="position: relative; padding-bottom: [(#CONFIG{soyezcreateurs/hauteur_slider,580}|div{1920}|mult{100})%]">
++						<div class="mbYTP_wrapper" id="wrapper_mbYTP_bgndVideo" style="position: absolute; z-index: -1; min-width: 100%; min-height: 100%; left: 0; top: 0; overflow: hidden; opacity: 1; -webkit-backface-visibility: hidden;">
++							<iframe id="mbYTP_bgndVideo#ID_DOCUMENT" class="playerBox" style="position: absolute; z-index: -1; width: 2380.8px; height: 1080px; top: 0px; left: 0px; overflow: hidden; opacity: 1; margin-top: -199.5px; margin-left: -230.4px;" frameborder="0" allowfullscreen="1" width="[(#INCLURE{#FICHIER}|extraire_attribut{width})]" height="[(#INCLURE{#FICHIER}|extraire_attribut{height})]" src="[(#INCLURE{#FICHIER}|extraire_attribut{src})]&amp;autoplay=1&amp;loop=1&amp;modestbranding=1&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1&amp;version=3&amp;playerapiid=mbYTP_bgndVideo&amp;allowfullscreen=true&amp;wmode=transparent&amp;iv_load_policy=3&amp;html5=1&amp;mute=1[&amp;playlist=(#INCLURE{#FICHIER}|extraire_attribut{src}|replace{'https:\/\/www\.youtube\.com\/embed\/\(\[^\?]*\).*','$1'}|replace{'\?feature=oembed',''})]"></iframe>
++						</div>
++					</div>]
++				</a>]
++			</div>
++		</div>
++		</BOUCLE_Slider>
++		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
++			<div class="slider-diapo-imgfull">
++				<a href="#GET{article_url}"[ title="(#_ZoomSur:DESCRIPTIF|attribut_html)"]>
++					<img src="[(#CHEMIN{images/placeholder.jpg}|image_focus{1920,#CONFIG{soyezcreateurs/hauteur_slider,580}}|extraire_attribut{src})]" alt="" />
++				</a>
++			</div>
++		</div>
++		<//B_Slider>
++	</div>
++	<div id="liens-diaporama">
++		<ul>
++			<li class="#EDIT{titre}">
++				<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>
++					<span>#TITRE</span>
++					<span class="icon icon-arrow-right2 icon-2x">&#10140;</span>
++				</a>
++			</li>
++			[<li class="hide-for-small-only">(#INCLURE{fond=noisettes/liste_auteurs,id_article,nolink=1})</li>]
++			[<li class="hide-for-small-only">(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})</li>]
++		</ul>
++	</div>
++</div>
++<!-- fin SLIDER -->
++</BOUCLE_ZoomSur>
++
++#FILTRE{mini_html}
+\ No newline at end of file
+
+Property changes on: noisettes/sommaire_modeportailcognac_zoomsur.html
+___________________________________________________________________
+Added: svn:mergeinfo
+## -0,0 +0,0 ##
+Index: noisettes/sommaire_modeportailcognac_zoomsur.yaml
+===================================================================
+--- noisettes/sommaire_modeportailcognac_zoomsur.yaml	(nonexistent)
++++ noisettes/sommaire_modeportailcognac_zoomsur.yaml	(working copy)
+@@ -0,0 +1,4 @@
++# toutes les options possible dans le XML actuel sauf les blocs qui sont vus autrement
++nom: 'ZoomSur mode cognac'
++description: 'La noizettes du ZoomSur pour le mode cognac'
++ajax: 'non'
+\ No newline at end of file
+Index: paquet.xml
+===================================================================
+--- paquet.xml	(revision 111204)
++++ paquet.xml	(working copy)
+@@ -5,7 +5,7 @@
+ 	etat="stable"
+ 	compatibilite="[3.1.8;3.2.*]"
+ 	logo="img_pack/soyezcreateurs_48.png"
+-	schema="3.1.52"
++	schema="3.1.53"
+ 	documentation="https://contrib.spip.net/SoyezCreateurs-1237?tri_articles=titre"
+ >
+ 
+@@ -67,6 +67,7 @@
+ 	<utilise nom="mesfavoris" compatibilite="[2.4.1;[" />
+ 	<utilise nom="modelexergue" compatibilite="[1.0.2;[" />
+ 	<utilise nom="mll" compatibilite="[1.2.4;[" />
++	<utilise nom="noizetier" compatibilite="[3.0.12;[" />
+ 	<utilise nom="notation" compatibilite="[2.0.8;[" />
+ 	<utilise nom="nuage" compatibilite="[4.0.5;[" />
+ 	<utilise nom="palette" compatibilite="[3.0.6;[" />
+@@ -89,6 +90,7 @@
+ 	<pipeline nom="ieconfig_metas" inclure="soyezcreateurs_ieconfig_metas.php" />
+ 	-->
+ 	<pipeline nom="ieconfig" inclure="soyezcreateurs_ieconfig.php" />
++	<pipeline nom="noizetier_blocs_defaut" inclure="soyezcreateurs_pipelines.php" />
+ 	
+ 	
+ 	<menu nom="soyezcreateur_config21" titre="soyezcreateurs:configurersc" parent="bando_configuration" icone="images/soyezcreateurs-16.png" action="configurer_soyezcreateurs" parametres="cfg=soyezcreateurs" />
+Index: soyezcreateurs_administrations.php
+===================================================================
+--- soyezcreateurs_administrations.php	(revision 111204)
++++ soyezcreateurs_administrations.php	(working copy)
+@@ -258,14 +258,20 @@
+ 			ecrire_meta($nom_meta_base_version,$current_version='3.1.51','non');
+ 		}
+ 		if (version_compare($current_version,'3.1.52','<')) {
+-			spip_log("SoyezCreateurs maj 3.1.51 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
++			spip_log("SoyezCreateurs maj 3.1.52 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
+ 			if (lire_config('soyezcreateurs/mode_affichage') == 'portailcognac') {
+ 				ecrire_config('soyezcreateurs/centrerlogo','oui');
+ 			}
++			ecrire_meta($nom_meta_base_version,$current_version='3.1.52','non');
++			
++		}
++		if (version_compare($current_version,'3.1.53','<')) {
++			spip_log("SoyezCreateurs maj 3.1.53 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
++			sc_noisettespardefaut();
+ 			// On termine en invalidant les caches
+ 			include_spip('inc/invalideur');
+ 			suivre_invalideur("soyezcreateurs");
+-			ecrire_meta($nom_meta_base_version,$current_version='3.1.52','non');
++			ecrire_meta($nom_meta_base_version,$current_version='3.1.53','non');
+ 			
+ 		}
+ 		
+@@ -318,3 +324,25 @@
+ 	effacer_meta('soyezcreateurs_layout');
+ 	effacer_meta($nom_meta_base_version);
+ }
++
++function sc_noisettespardefaut() {
++	include_spip('inc/noizetier_conteneur');
++	include_spip('inc/config');
++	include_spip('inc/ncore_type_noisette');
++	include_spip('inc/ncore_noisette');
++	include_spip('ncore/ncore');
++	include_spip('ncore/noizetier');
++	$conteneur = array();
++	//Liste tous les noisettes de tous les conteneurs existant
++	$liste_noisettes = noizetier_noisette_lister('noizetier', $conteneur, '', $cle = 'rang_noisette');
++	if (!isset($liste_noisettes['contenu/corps_sommaire_modecognac'])) {//S'il n'y a pas de noisettes dans contenu/corps
++		//Liste des noisettes à inserer
++		$noisettes = array('sommaire_modeportailcognac_zoomsur', 'sommaire_modeportailcognac_cycloshow', 'sommaire_modeportailcognac_sc_edito', 'sommaire_modeportailcognac_quoideneuf', 'sommaire_modeportailcognac_dessousBreves', 'sommaire_modeportailcognac_goodies');
++		$conteneur = noizetier_conteneur_decomposer('contenu/corps_sommaire_modecognac');
++
++		//Insersion des noisettes
++		foreach ($noisettes as $noisette) {
++			$id_noisette = noisette_ajouter('noizetier', $noisette, $conteneur);
++		}
++	}
++}
+Index: soyezcreateurs_options.php
+===================================================================
+--- soyezcreateurs_options.php	(revision 111204)
++++ soyezcreateurs_options.php	(working copy)
+@@ -176,3 +176,5 @@
+ 		return true;
+ 	}
+ }
++
++define('_NOIZETIER_REPERTOIRE_PAGES','contenu/');
+\ No newline at end of file
+Index: soyezcreateurs_pipelines.php
+===================================================================
+--- soyezcreateurs_pipelines.php	(revision 111204)
++++ soyezcreateurs_pipelines.php	(working copy)
+@@ -23,3 +23,8 @@
+ 	}
+ 	return $flux;
+ }
++
++function soyezcreateurs_noizetier_blocs_defaut($flux) {
++	$flux = array('contenu');
++	return $flux;
++}
+\ No newline at end of file

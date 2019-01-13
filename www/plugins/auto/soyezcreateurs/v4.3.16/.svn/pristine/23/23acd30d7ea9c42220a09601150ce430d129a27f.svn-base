@@ -1,0 +1,97 @@
+<paquet
+	prefix="soyezcreateurs"
+	categorie="squelette"
+	version="4.3.17"
+	etat="stable"
+	compatibilite="[3.1.8;3.2.*]"
+	logo="img_pack/soyezcreateurs_48.png"
+	schema="3.1.52"
+	documentation="https://contrib.spip.net/SoyezCreateurs-1237?tri_articles=titre"
+>
+
+	<nom>Squelette SoyezCréateurs Rebirth</nom>
+	<!-- Largement configurable et adaptable, générique, conforme aux normes d'accessibilité et RWD -->
+
+	<auteur lien="https://contrib.spip.net/RealET">RealET</auteur>
+
+	<copyright>2003-2017</copyright>
+
+	<licence lien="http://www.gnu.org/licenses/gpl-3.0.html">GPL 3</licence>
+
+	<traduire module="soyezcreateurs" reference="fr" gestionnaire="salvatore" />
+
+	<necessite nom="Accessibilite" compatibilite="[0.8.8;[" />
+	<necessite nom="Agenda" compatibilite="[3.14.10;[" />
+	<necessite nom="ancresdouces" compatibilite="[1.4.4;[" />
+	<necessite nom="boutonstexte" compatibilite="[2.0.3;[" />
+	<necessite nom="citations_bb" compatibilite="[0.1.2;[" />
+	<necessite nom="corbeille" compatibilite="[3.0.6;[" />
+	<necessite nom="crayons" compatibilite="[1.21.0;[" />
+	<necessite nom="dictionnaires" compatibilite="[1.0.4;[" />
+	<necessite nom="facteur" compatibilite="[3.5.2;[" />
+	<necessite nom="Fonctions_images" compatibilite="[0.6.10;[" />
+	<necessite nom="Fulltext" compatibilite="[1.1.4;[" />
+	<necessite nom="inserer_modeles" compatibilite="[1.1.11;[" />
+	<necessite nom="mailcrypt" compatibilite="[2.4.2;[" />
+	<necessite nom="nospam" compatibilite="[1.5.11;[" />
+	<necessite nom="notifications" compatibilite="[3.5.2;[" />
+	<necessite nom="minidoc" compatibilite="[1.0.3;[" />
+	<necessite nom="oembed" compatibilite="[1.4.9;[" />
+	<necessite nom="ordoc" compatibilite="[1.1.2;[" />
+	<necessite nom="orthotypo" compatibilite="[1.4.1;[" />
+	<necessite nom="ppp" compatibilite="[1.0.7;[" />
+	<necessite nom="pp_chgt_lg" compatibilite="[0.3.1;[" />
+	<necessite nom="saisies" compatibilite="[2.3.1;[" />	
+	<necessite nom="spip_bonux" compatibilite="[3.2.0;[" />
+	<necessite nom="typo_guillemets" compatibilite="[1.5.2;[" />
+	<necessite nom="typoenluminee" compatibilite="[3.5.12;[" />
+
+	<utilise nom="AccesRestreint" compatibilite="[3.13.1;[" />
+	<utilise nom="article_pdf" compatibilite="[0.4.6;[" />
+	<utilise nom="Autorite" compatibilite="[0.10.8;[" />
+	<utilise nom="campagnes" compatibilite="[1.3.1;[" />
+	<utilise nom="carto_itineraire" compatibilite="[1.0.0;[" />
+	<utilise nom="clevermail" compatibilite="[3.0.13;[" />
+	<!--<utilise nom="comments" compatibilite="[3.3.2;[" />-->
+	<utilise nom="centre_image" compatibilite="[0.8.2;[" />
+	<utilise nom="contact" compatibilite="[0.15.4;[" />
+	<utilise nom="critere_mots" compatibilite="[2.1.6;[" />
+	<utilise nom="entravaux" compatibilite="[3.1.20;[" />
+	<utilise nom="eva_freemind" compatibilite="[1.2.2;[" />
+	<utilise nom="emb_pdf" compatibilite="[1.0.0;[" />
+	<utilise nom="forms" compatibilite="[0.5.6;0.5.*]" />
+	<utilise nom="gis" compatibilite="[4.30.0;[" />
+	<utilise nom="gravatar" compatibilite="[1.6.3;[" />
+	<utilise nom="ieconfig" compatibilite="[1.3.2;[" />
+	<utilise nom="image_cliquable" compatibilite="[3.0.2;[" />
+	<utilise nom="mesfavoris" compatibilite="[2.4.1;[" />
+	<utilise nom="modelexergue" compatibilite="[1.0.2;[" />
+	<utilise nom="mll" compatibilite="[1.2.4;[" />
+	<utilise nom="notation" compatibilite="[2.0.8;[" />
+	<utilise nom="nuage" compatibilite="[4.0.5;[" />
+	<utilise nom="palette" compatibilite="[3.0.6;[" />
+	<utilise nom="photospip" compatibilite="[1.0.4;[" />
+	<utilise nom="qrcode" compatibilite="[1.1.0;[" />
+	<utilise nom="rainette" compatibilite="[2.4.7;[" />
+	<utilise nom="savecfg" compatibilite="[3.0.0;[" />
+	<utilise nom="sedna" compatibilite="[1.3.1;[" />
+	<utilise nom="sidr" compatibilite="[1.2.3;[" />
+	<utilise nom="skeleditor" compatibilite="[2.7.10;[" />
+	<utilise nom="slick" compatibilite="[1.1.3;[" />
+	<utilise nom="socialtags" compatibilite="[1.0.9;[" />
+	<utilise nom="splickr" compatibilite="[0.4.6;[" />
+	<utilise nom="va" compatibilite="[0.6.9;[" />
+
+	<pipeline nom="jqueryui_plugins" inclure="soyezcreateurs_pipelines.php" />
+	<pipeline nom="formulaire_traiter" inclure="soyezcreateurs_pipelines.php" />
+	<!-- ajout pipeline ieconfig -->
+	<!--
+	<pipeline nom="ieconfig_metas" inclure="soyezcreateurs_ieconfig_metas.php" />
+	-->
+	<pipeline nom="ieconfig" inclure="soyezcreateurs_ieconfig.php" />
+	
+	
+	<menu nom="soyezcreateur_config21" titre="soyezcreateurs:configurersc" parent="bando_configuration" icone="images/soyezcreateurs-16.png" action="configurer_soyezcreateurs" parametres="cfg=soyezcreateurs" />
+	<menu nom="sc_aide" titre="soyezcreateurs:aidesc" parent="bando_squelette" icone="images/soyezcreateurs_help-16.png" action="sc_aide" />
+	<menu nom="sc_import" titre="soyezcreateursprive:configurations_rapides_soyezcreateurs" parent="bando_squelette" icone="images/soyezcreateurs_help-16.png" action="sc_import" />
+</paquet>

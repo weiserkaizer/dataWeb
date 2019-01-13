@@ -1,0 +1,15 @@
+2018-07-26 09:13:16 ::1 (pid 20696) :Pri:!INFO: maj meta sc_mammaskitchen_base_version_maj_init etape 0: sc_noisettespardefaut 
+2018-07-26 09:13:17 ::1 (pid 20696) :Pri:!INFO: sc_mammaskitchen_base_version_maj_init: ok
+2018-07-26 09:13:17 ::1 (pid 20696) :Pri:!INFO: meta sc_mammaskitchen_base_version: init en 1 secondes
+2018-07-26 09:13:17 ::1 (pid 20696) :Pri:!INFO: maj meta sc_mammaskitchen_base_version_maj_1.0.0 etape 0: inc_config_dist 
+2018-07-26 09:13:17 ::1 (pid 20696) :Pri:!INFO: sc_mammaskitchen_base_version_maj_1.0.0: ok
+2018-07-26 09:13:17 ::1 (pid 20696) :Pri:!INFO: meta sc_mammaskitchen_base_version: 1.0.0 en 1 secondes
+2018-07-26 09:13:17 ::1 (pid 20696) :Pri:!INFO: MAJ terminee. sc_mammaskitchen_base_version: 1.0.0
+2018-07-27 14:41:24 127.0.0.1 (pid 12732) :Pri:!INFO: maj meta soyezcreateurs_base_version_maj_init etape 0: soyezcreateurs_install_default 
+2018-07-27 14:41:55 127.0.0.1 (pid 12732) :Pri:!INFO: maj meta soyezcreateurs_base_version_maj_init etape 0: soyezcreateurs_install_default 
+2018-07-27 14:41:58 127.0.0.1 (pid 12732) :Pri:!INFO: soyezcreateurs_base_version_maj_init: ok
+2018-07-27 14:41:58 127.0.0.1 (pid 12732) :Pri:!INFO: meta soyezcreateurs_base_version: init en 3 secondes
+2018-07-27 14:41:58 127.0.0.1 (pid 12732) :Pri:!INFO: maj meta soyezcreateurs_base_version_maj_3.1.53 etape 0: inc_config_dist 
+2018-07-27 14:41:58 127.0.0.1 (pid 12732) :Pri:!INFO: soyezcreateurs_base_version_maj_3.1.53: ok
+2018-07-27 14:41:58 127.0.0.1 (pid 12732) :Pri:!INFO: meta soyezcreateurs_base_version: 3.1.53 en 3 secondes
+2018-07-27 14:41:58 127.0.0.1 (pid 12732) :Pri:!INFO: MAJ terminee. soyezcreateurs_base_version: 3.1.53

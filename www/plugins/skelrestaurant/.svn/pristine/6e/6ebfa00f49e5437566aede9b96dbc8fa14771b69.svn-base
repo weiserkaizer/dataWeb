@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="#LANG">
+
+<head>
+    <meta charset="#CHARSET">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>#NOM_SITE_SPIP</title>
+    <link rel="icon" href="[(#LOGO_SITE_SPIP_NORMAL|image_reduire{32,32}|extraire_attribut{src})]" type="image/x-icon"> #INSERT_HEAD_CSS
+    <link rel="stylesheet" href="#CHEMIN{css/bootstrap.min.css}">
+    <link rel="stylesheet" href="#CHEMIN{css/font-awesome.min.css}">
+    <link rel="stylesheet" href="#CHEMIN{css/owl.carousel.css}">
+    <link rel="stylesheet" href="#CHEMIN{css/owl.theme.css}">
+    <link rel="stylesheet" href="#CHEMIN{css/animate.css}">
+    <link rel="stylesheet" href="#CHEMIN{css/flexslider.css}">
+    <link rel="stylesheet" href="#PRODUIRE{fond=css/pricing.css}">
+    <link rel="stylesheet" href="#PRODUIRE{fond=css/main.css}"> #INSERT_HEAD
+    <script type="text/javascript" src="#CHEMIN{js/jquery.flexslider.min.js}"></script>
+    <!--<script type="text/javascript">
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlsContainer: ".flexslider-container"
+            });
+        });
+    </script>-->
+    <BOUCLE_Maps(MOTS){titre=ICBM}>
+        <script>
+            function initMap() {
+				[(#SET{coordMap,#TEXTE|explode{','}})]
+				[(#REM)
+				[(#GET{coordMap}|print_r{1})]
+				]
+				[(#SET{cles,#DESCRIPTIF|ptobr|explode{','}})]
+                var tk = {
+                    lat: [(#GET{coordMap/0} | ptobr)],
+                    lng: [(#GET{coordMap/1} | ptobr)]
+                };
+                var map = new google.maps.Map(document.getElementById('map-canvas'), {
+                    zoom: [(#GET{cles/1} | ptobr)],
+                    center: tk
+                });
+                var marker = new google.maps.Marker({
+                    position: tk,
+                    map: map
+                });
+            }
+			[(#SET{cles,#DESCRIPTIF|ptobr|explode{','}})]
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=[(#GET{cles/0}|ptobr)]&callback=initMap">
+        </script>
+    </BOUCLE_Maps>
+        <style>
+            .slider {
+                width: 100%;
+            }
+
+            .slick-slide img {
+                width: 100%;
+                height: 55vw;
+                vertical-align: middle;
+                overflow: hidden;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            #fade {
+                height: 55vw;
+            }
+
+            .slick-slide {
+                transition: all ease-in-out .3s;
+                opacity: .2;
+            }
+
+            .slick-slide-content {
+                position: absolute;
+                width: 80vw;
+                margin-top: 15vw;
+                background-color: rgba(255, 255, 255, 0.5);
+                padding: 2vw;
+            }
+
+            .slick-texte-content {
+                width: 100%;
+            }
+
+            .slick-slide-texte {
+                font-family: 'Raleway', 'Open-Sans', sans-serif;
+                font-size: 5em;
+                text-align: center;
+                text-transform: uppercase;
+            }
+
+            #section-contact {
+                font-size: 20px;
+            }
+
+            @media (max-width: 740px) {
+                .slick-slide-texte {
+                    font-size: 4em;
+                }
+
+                .slick-slide-content {
+                    position: absolute;
+                    width: 100vw;
+                    height: 50%;
+                    vertical-align: middle;
+                    margin-top: 20vw;
+                    background-color: rgba(255, 255, 255, 0.5);
+                    padding: 2vw;
+                }
+                .img-responsive {
+                    width: 80%;
+                }
+                #buttonnav {
+                    margin-bottom: -10px;
+                }
+            }
+
+            @media (max-width: 520px) {
+                .slick-slide-texte {
+                    font-size: 2em;
+                }
+                .slick-slide-content {
+                    position: absolute;
+                    width: 100vw;
+                    height: 100%;
+                    vertical-align: middle;
+                    margin-top: 20vw;
+                    background-color: rgba(255, 255, 255, 0.5);
+                    padding: 2vw;
+                }
+                .img-responsive {
+                    width: 60%;
+                }
+                #sectionmenu {
+                    width: 100vw;
+                    overflow: hidden;
+                }
+            }
+
+            @media (max-width: 200px) {
+                #sectionmenu {
+                    width: 95vw;
+                    overflow: hidden;
+                }
+            }
+        </style>
+
+</head>
+
+<body data-spy="scroll">
+
+
+    <!--== 4. Navigation ==-->
+    <nav id="template-navbar" class="navbar navbar-default custom-navbar-default navbar-fixed-top sticky-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#URL_SITE_SPIP">
+                    <img id="logo" src="[(#LOGO_SITE_SPIP_NORMAL|extraire_attribut{src})]" class="logo img-responsive">
+                </a>
+                <button type="button" id="buttonnav" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#Food-fair-toggle" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="Food-fair-toggle">
+                
+                <ul class="nav navbar-nav navbar-right">
+                    <BOUCLE_Menuhaut(RUBRIQUES){titre_mot=MenuHaut}{par num titre}>
+                    <li class="#EDIT{titre}" data-toggle="collapse" data-target=".in"><a href="#[(#TITRE|sc_nettoyer_marqueur)]">#TITRE</a></li>
+                    </BOUCLE_Menuhaut>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Slider FadeOut -->
+    <section id="fade" class="slider-fadeOut slider">
+		<BOUCLE_preSlider(ARTICLES){titre_mot=ZoomSur}{0,1}>
+			<BOUCLE_Slider(DOCUMENTS){id_article=#ID_ARTICLE}>
+			<div class="slick-slide">
+				<div class="slick-slide-content">
+					<div class="slick-texte-content">
+						<h1 class="slick-slide-texte #EDIT{titre}">#TITRE</h1>
+					</div>
+				</div>
+				<img src="[(#FICHIER)]">
+			</div>
+			</BOUCLE_Slider>
+		</BOUCLE_preSlider>
+    </section>
+
+    <!--== 6. About us ==-->
+    <BOUCLE_about(ARTICLES){titre_mot=EDITO}{0,1}>
+        <section id="[(#INFO_TITRE{rubriques, #ID_RUBRIQUE}|sc_nettoyer_marqueur)]" class="about menu">
+				
+				
+				<img id="logo" src="[(#LOGO_SITE_SPIP_NORMAL|image_passe_partout{125,125}|extraire_attribut{src})]" class="logo img-responsive section-icon hidden-sm hidden-xs">
+				
+				<div class="wrapper">
+					<div class="container-fluid">
+						<div class="row dis-table">
+							<div class="hidden-xs col-sm-6 section-bg about-bg dis-table-cell">
+
+							</div>
+							<div class="col-xs-12 col-sm-6 dis-table-cell">
+								<div class="section-content">
+									<h2 class="section-content-title">[(#TITRE)]</h2>
+									<p class="section-content-para">
+										[(#TEXTE)]
+									</p>
+								</div> <!-- /.section-content -->
+							</div>
+						</div> <!-- /.row -->
+					</div> <!-- /.container-fluid -->
+				</div> <!-- /.wrapper -->
+			
+        </section> <!-- /#about -->
+	</BOUCLE_about>
+    <div>
+		<BOUCLE_triable(RUBRIQUES){titre_mot=CycloShow}>
+			<section id="[(#TITRE|sc_nettoyer_marqueur)]" class="pricing">
+				<div id="w">					
+						<div class="pricing-filter">
+							<div class="pricing-filter-wrapper">
+								<div class="container">
+									<div class="row">
+										<div class="col-md-10 col-md-offset-1">
+											<div class="section-header">
+												<h1 class="pricing-title">[(#TITRE)]</h1>
+												<ul id="filter-list" class="clearfix">
+													<li class="filter active" data-filter="all">[(#DESCRIPTIF|ptobr)]</li>
+													#SET{articles_menu, #ARRAY}
+													<BOUCLE_Menus(ARTICLES){id_rubrique=#ID_RUBRIQUE}{par num titre}>
+														<li class="filter" data-filter=".menu#ID_ARTICLE">#TITRE</li>
+														#SET{articles_menu, #GET{articles_menu}|push{#ID_ARTICLE}}
+													</BOUCLE_Menus>
+												</ul>
+												<!-- @end #filter-list -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>					
+						<div class="container">
+							<div class="row">
+								<div class="col-md-10 col-md-offset-1">
+									<ul id="menu-pricing" class="menu-price">
+										<BOUCLE_Plats(DOCUMENTS){id_article IN #GET{articles_menu}}{par hasard}>
+											<li class="item menu#ID_ARTICLE">
+												<a>
+												<img src="[(#FICHIER|image_focus{300,300}|extraire_attribut{src})]" class="img-responsive" alt="[(#TITRE|attribut_html)]" >
+												[<div class="menu-desc">
+
+														<span>
+															<h3 class="#EDIT{descriptif}">(#DESCRIPTIF)</h3>
+														
+														</span>
+										
+												</div>]
+											</a>
+												<h2 class="white #EDIT{titre}">#TITRE</h2>
+											</li>
+										</BOUCLE_Plats>
+									</ul>
+
+									<!-- <div class="text-center">
+											<a id="loadPricingContent" class="btn btn-middle hidden-sm hidden-xs">Load More <span class="caret"></span></a>
+									</div> -->
+
+								</div>
+							</div>
+						</div>
+				</div>
+			</section>
+		</BOUCLE_triable>
+    </div>
+	
+	
+	<B_alaune>	
+		<BOUCLE_TitreALaUne(ARTICLES){titre_mot=ALaUne}{0,1}>
+	<section id="[(#INFO_TITRE{rubriques, #ID_RUBRIQUE}|sc_nettoyer_marqueur)]">
+		<div class="pricing-filter">
+			<div class="pricing-filter-wrapper">
+				<div class="container">
+					<h1 class="alaune col-md-10 col-md-offset-1">#INFO_TITRE{rubriques, #ID_RUBRIQUE}</h1>
+				</div>
+			</div>
+		</div>
+		</BOUCLE_TitreALaUne>
+			
+		<BOUCLE_alaune(ARTICLES){titre_mot=ALaUne}{!par date}>
+		<!--
+			<img id="logo" src="[(#LOGO_SITE_SPIP_NORMAL|image_passe_partout{125,125}|extraire_attribut{src})]" class="logo img-responsive section-icon hidden-sm hidden-xs">
+		-->	
+			<section class="about">
+				<div class="wrapper">
+					<div class="container-fluid">
+						<div class="row dis-table">
+			[(#COMPTEUR_BOUCLE|alterner{
+				<div class="hidden-xs col-sm-6 section-bg about-bg dis-table-cell" style="background: url('[(#LOGO_ARTICLE|image_passe_partout{915,706}|extraire_attribut{src})]');">
+
+				</div>
+				,
+				<div class="col-xs-12 col-sm-6 dis-table-cell alaune-bg-2">
+					<div class="section-content">
+						<h2 class="section-content-title">[(#TITRE)]</h2>
+						<p class="section-content-para">
+											[(#TEXTE)]
+						</p>
+					</div> <!-- /.section-content -->
+				</div>
+			})]
+			[(#COMPTEUR_BOUCLE|alterner{			
+				<div class="col-xs-12 col-sm-6 dis-table-cell alaune-bg-1">
+					<div class="section-content">
+						<h2 class="section-content-title">[(#TITRE)]</h2>
+						<p class="section-content-para">
+											[(#TEXTE)]
+						</p>
+					</div> <!-- /.section-content -->
+				</div>
+				,
+				<div class="hidden-xs col-sm-6 section-bg about-bg dis-table-cell" style="background: url('[(#LOGO_ARTICLE|image_passe_partout{915,706}|extraire_attribut{src})]');">
+
+				</div>
+			})]
+						</div> <!-- /.row -->
+					</div> <!-- /.container-fluid -->
+				</div> <!-- /.wrapper -->	
+			</section> <!-- /#about -->
+		</BOUCLE_alaune>
+	</section> <!--fin section à la une -->	
+	</B_alaune>
+	
+	
+	<!--13. Menu List-->
+	<BOUCLE_goodies(RUBRIQUES){titre_mot=Goodies}>
+		<section class="menu-list">
+			<div id="[(#TITRE|sc_nettoyer_marqueur)]" class="pricing-filter">
+				<div class="pricing-filter-wrapper">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1">
+								<div class="section-header">
+									 <h2 class="pricing-title">[(#TITRE)]</h2>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row menu">
+					<div class="col-md-10 col-md-offset-1 col-sm-9 col-sm-offset-2 col-xs-12">
+						<div class="row">
+							<BOUCLE_jours(ARTICLES){id_rubrique=#ID_RUBRIQUE}{par num titre}>
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									<div class="row">
+										<div class="menu-catagory">
+											<h2 class="#EDIT{titre}">#TITRE</h2>
+										</div>
+									</div>
+									<div class="row">
+										<div class="menu-item">
+											<h3 class="menu-title #EDIT{descriptif}">[(#DESCRIPTIF|ptobr)]</h3>
+										</div>
+									</div>
+								</div>
+							</BOUCLE_jours>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</BOUCLE_goodies>
+
+    
+
+	<BOUCLE_info(RUBRIQUES){titre_mot=ZoomSur2}{0,1}>
+    <section id="[(#TITRE|sc_nettoyer_marqueur)]" class="contact">
+        <div class="container-fluid color-bg">
+            <BOUCLE_infos(ARTICLES){id_rubrique=#ID_RUBRIQUE}>
+                <div class="row dis-table">
+                    <div class="hidden-xs col-sm-6 dis-table-cell">
+                        <h2 class="section-title #EDIT{surtitre}">[(#SURTITRE | ptobr)]</h2>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 dis-table-cell">
+                        <div id="section-contact" class="section-content">
+                            [<p class="#EDIT{soustitre}">(#SOUSTITRE | ptobr)</p>]
+                            <p class="#EDIT{descriptif}">[(#DESCRIPTIF)]</p>
+                        </div>
+                    </div>
+                </div>
+
+            </BOUCLE_infos>
+        </div>
+    </section>
+	</BOUCLE_info>
+	
+	
+	<!-- Affichage de la map -->
+	
+    <div class="container-fluid">
+        <div class="row">
+                [(#INCLURE{fond=modeles/carte_gis,scale=oui,zoom_wheel=non,fullscreen=oui})]
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="copyright text-center">
+                        <p>
+                            &copy; Copyright- <a href="#URL_PAGE{mentionslegales}" class="mediabox">Mentions légales </a> - [(#NOM_SITE_SPIP)] - [(#DATE|affdate)] - <a href="https://www.pyrat.net/">Réalisation Pyrat.net</br></a> Theme by <a href="http://themewagon.com/" target="_blank">ThemeWagon</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="#CHEMIN{js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="#CHEMIN{js/owl.carousel.min.js}"></script>
+    <!-- Utile à la présentation du menu -->
+    <script type="text/javascript" src="#CHEMIN{js/jquery.mixitup.min.js}"></script>
+    <script type="text/javascript" src="#CHEMIN{js/wow.min.js}"></script>
+    <script type="text/javascript" src="#PRODUIRE{fond=js/script.js}"></script>
+    <!--<script src="#CHEMIN{js/jquery.validate.js}"></script>-->
+    <!--<script type="text/javascript" src="#CHEMIN{js/jquery.hoverdir.js}"></script>-->
+    <!--<script type="text/javascript" src="#CHEMIN{js/jQuery.scrollSpeed.js}"></script>-->
+
+    <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('#fade').slick({
+                dots: true,
+                infinite: true,
+                centerMode: true,
+                slidesToShow: 1,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear',
+                autoplay: true,
+                autoplaySpeed: 5000,
+            })
+        });
+    </script>
+
+
+</body>
+
+</html>

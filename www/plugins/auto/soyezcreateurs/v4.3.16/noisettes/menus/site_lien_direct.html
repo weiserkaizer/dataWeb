@@ -1,0 +1,8 @@
+[(#REM) Est-ce que c'est un site en lien direct (sans page sur le site hôte) ?
+]<BOUCLE_LienDirect(SITES){id_syndic}{titre_mot=LienDirect}>[(#REM)
+Est-ce que c'est un article syndiqué ?
+]<BOUCLE_Article_LienDirect(SYNDIC_ARTICLES){id_syndic_article}>[(#REM) Lien direct sur l'article ]#URL_ARTICLE</BOUCLE_Article_LienDirect>[(#REM) Lien direct sur le site ]#URL_SITE<//B_Article_LienDirect>
+</BOUCLE_LienDirect>[(#REM) Lien vers la page de détail du site ou de l'article ]
+[(#ID_SYNDIC|generer_url_entite{'site'}|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]
+<//B_LienDirect>
+#FILTRE{mini_html}

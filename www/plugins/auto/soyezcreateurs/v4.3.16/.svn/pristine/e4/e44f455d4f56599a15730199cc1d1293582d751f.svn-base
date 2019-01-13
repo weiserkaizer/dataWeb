@@ -1,0 +1,60 @@
+nom: 'soyezcreateurs_couleurs_cfg_rouge&jaune'
+soyezcreateurs:
+  soyezcreateurs_couleurs:
+    -
+      nom: soyezcreateurs_couleurs
+      valeur:
+        body_bk: '#efca6c'
+        header: '#ffffff'
+        header_bk: '#a71716'
+        datemajsite: '#ffffff'
+        datemajsite_bk: '#881114'
+        footer: '#ffffff'
+        footer_bk: '#881114'
+        navigation: '#e3d98c'
+        navigation_bk: '#853839'
+        menuhaut: '#ffffff'
+        menuhaut_bk: '#853839'
+        logo_bk: transparent
+        extra: '#ffffff'
+        extra_bk: '#853839'
+        menu_a: '#ffffff'
+        menu_a_bk: '#cd7113'
+        menu_a_hover: '#ffffff'
+        menu_a_hover_bk: '#c1103b'
+        menu_a_active: '#000000'
+        menu_a_active_bk: '#ffffff'
+        menu_a_strong: '#c32234'
+        menu_a_strong_bk: '#ffffff'
+        vignettes_bk: '#ffffff'
+        container: '#c32234'
+        container_bk: '#f7e8d9'
+        titraille: '#c32234'
+        titraille_bk: '#efca6c'
+        link: '#ec3927'
+        visited: '#ec3927'
+        hover: '#da552f'
+        active: '#a7432f'
+        fontsnavigation: 'Verdana, Arial, Geneva, sans-serif'
+        fontscontent: 'Verdana, Arial, Geneva, sans-serif'
+        fontsizeheader: '1.2'
+        fontsizefooter: '1.2'
+        fontsizenavigation: '1.2'
+        fontsizecontenu: '1.2'
+        fontsizeartrecents: '1'
+        autovignettes: auto
+        fontsizevignettes: '16'
+        body_degrade: null
+        footer_degrade: null
+        menuhaut_degrade: null
+        cadreinfo_degrade: null
+        citations_degrade: null
+        cartouche_degrade: null
+        titraille_degrade: null
+        titraille_ssniveaux: '#674b01'
+        titraille_ssniveaux_bk: '#ecaaa6'
+        cadrestexte: '#523100'
+        cadrestexte_bk: '#f9e4e4'
+        header_lettre: '#ffffff'
+        header_lettre_bk: '#a71716'
+        titraille_lettre: '#c32234'

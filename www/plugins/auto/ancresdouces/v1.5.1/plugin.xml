@@ -1,0 +1,26 @@
+<plugin>
+	<nom><multi>[fr]Ancres Douces[en]Sweet anchors</multi></nom>
+	<auteur>
+		<multi>
+			[fr]Eric Lupinacci, d'apr&#232;s une id&#233;e originale Fil
+			[en]Eric Lupinacci, based on an original idea of Fil
+		</multi>
+	</auteur>
+	<version>1.5.1</version>
+	<etat>stable</etat>
+	<description>
+		<multi>
+			[fr]Ce plugin permet un d&#233;filement continu de la page lorsque le visiteur clique sur un lien pointant vers une ancre de l'article en cours de lecture.
+			[en]This plugin allows a continuous scrolling of the page when the visitor clicks on a link to an anchor of the same page.
+		</multi>
+	</description>
+	<prefix>ancresdouces</prefix>
+	<icon>ancres_douces-64.png</icon>
+	<pipeline>
+		<nom>insert_head</nom>
+		<inclure>ancres_douces_pipelines.php</inclure>
+	</pipeline>
+	<categorie>navigation</categorie>
+	<lien>https://contrib.spip.net/Ancres-douces</lien>
+	<necessite id="SPIP" version="[1.9.0;3.2.99]" />
+</plugin>

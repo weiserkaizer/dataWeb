@@ -1,0 +1,13 @@
+<div itemscope itemtype="http://schema.org/WebSite">
+<meta itemprop="url" content="#URL_SITE_SPIP"/>
+<form action='[(#ENV{action})]' method='get' id='form_rech' class='searchfrm' itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction">
+<meta itemprop="target" content="[(#URL_PAGE{recherche}|parametre_url{recherche,\{recherche\}}|replace{%7B,\{}|replace{%7D,\}}|url_absolue)]"/>
+<div>
+	[(#ENV{action}|form_hidden)]
+	[<input type="hidden" name="lang" value="(#ENV{lang})" />]
+	<label for="formulaire_recherche" title="<:soyezcreateurs:recherche_title:>"><:soyezcreateurs:recherche_label:></label>
+	<input itemprop="query-input" name='recherche' type='search' id='formulaire_recherche' class="searchfield" title="<:soyezcreateurs:recherche_title:>"[ value="(#ENV{recherche})"] placeholder="<:soyezcreateurs:recherche_value:>" autocapitalize="off" autocorrect="off" />
+	<input type="submit" id="sendsearch" class="okfield form_submit" title="<:soyezcreateurs:recherche_title_ok:>" value="<:pass_ok:>" />
+</div>
+</form>
+</div>

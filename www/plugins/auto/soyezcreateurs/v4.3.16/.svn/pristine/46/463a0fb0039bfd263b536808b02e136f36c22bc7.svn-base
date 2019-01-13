@@ -1,0 +1,9 @@
+[(#SET{color,[(#ENV{color}|ajuster_couleur_input)]})]
+[(#SET{color_bk,[(#ENV{color_bk}|ajuster_couleur_input{background})]})]
+									[(#ENV{nocell}|non)<td>]
+										[(#ENV{color}|oui)<input type="text" name="#ENV{name}" id="sc_#ENV{name}" value="#ENV{color}" size="7" class="fondl[ (#ENV{color}|!={transparent}|?{palette})]" />]
+									[(#ENV{nocell}|non)</td>]
+									[(#ENV{nobk}|non)<td>
+										[(#ENV{color_bk}|oui)<input type="text" name="#ENV{name}_bk" id="sc_#ENV{name}_bk" value="#ENV{color_bk}" size="7" class="fondl[ (#ENV{color_bk}|!={transparent}|?{palette})]" />]
+									</td>]
+									[(#ENV{nosample}|non)<td style="[color:(#GET{color})];[background-color:(#GET{color_bk})]"><:soyezcreateursprive:cfg_exemple:></td>]

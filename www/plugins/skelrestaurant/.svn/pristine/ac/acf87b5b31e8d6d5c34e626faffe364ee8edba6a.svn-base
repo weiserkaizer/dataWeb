@@ -1,0 +1,65 @@
+[<!--Alaune <pre>(#ENV**|unserialize|print_r{1})</pre>-->]
+
+<BOUCLE_SiMenu(CONDITION){si #ENV{menu}|=={oui}}>
+		<BOUCLE_navALaUne(ARTICLES){titre_mot=ALaUne}{0,1}>
+			<li class="#EDIT{#INFO_TITRE{rubriques, #ID_RUBRIQUE}}" data-toggle="collapse" data-target=".in"><a href="[#(#INFO_TITRE{rubriques, #ID_RUBRIQUE}|sc_nettoyer_marqueur)]">#INFO_TITRE{rubriques, #ID_RUBRIQUE}</a></li>
+		</BOUCLE_navALaUne>
+</BOUCLE_SiMenu>
+	
+	<B_alaune>	
+		<BOUCLE_TitreALaUne(ARTICLES){titre_mot=ALaUne}{0,1}>
+	<section id="[(#INFO_TITRE{rubriques, #ID_RUBRIQUE}|sc_nettoyer_marqueur)]">
+		<div class="pricing-filter">
+			<div class="pricing-filter-wrapper">
+				<div class="container">
+					<h1 class="alaune col-md-10 col-md-offset-1">#INFO_TITRE{rubriques, #ID_RUBRIQUE}</h1>
+				</div>
+			</div>
+		</div>
+		</BOUCLE_TitreALaUne>
+			
+		<BOUCLE_alaune(ARTICLES){titre_mot=ALaUne}{!par date}>
+		<!--
+			<img id="logo" src="[(#LOGO_SITE_SPIP_NORMAL|image_passe_partout{125,125}|extraire_attribut{src})]" class="logo img-responsive section-icon hidden-sm hidden-xs" alt="" />
+		-->	
+			<section class="about">
+				<div class="wrapper">
+					<div class="container-fluid">
+						<div class="row dis-table">
+			[(#COMPTEUR_BOUCLE|alterner{
+				<div class="hidden-xs col-sm-6 section-bg about-bg dis-table-cell" style="background: url('[(#LOGO_ARTICLE|image_passe_partout{915,706}|extraire_attribut{src})]'); background-repeat: no-repeat; background-size: contain;">
+
+				</div>
+				,
+				<div class="col-xs-12 col-sm-6 dis-table-cell alaune-bg-2">
+					<div class="section-content">
+						<h2 class="section-content-title">[(#TITRE)]</h2>
+						<div class="section-content-para">
+											[(#TEXTE)]
+						</div>
+					</div> <!-- /.section-content -->
+				</div>
+			})]
+			[(#COMPTEUR_BOUCLE|alterner{			
+				<div class="col-xs-12 col-sm-6 dis-table-cell alaune-bg-1">
+					<div class="section-content">
+						<h2 class="section-content-title">[(#TITRE)]</h2>
+						<div class="section-content-para">
+											[(#TEXTE)]
+						</div>
+					</div> <!-- /.section-content -->
+				</div>
+				,
+				<div class="hidden-xs col-sm-6 section-bg about-bg dis-table-cell" style="background: url('[(#LOGO_ARTICLE|image_passe_partout{915,706}|extraire_attribut{src})]'); background-repeat: no-repeat; background-size: contain;">
+
+				</div>
+			})]
+						</div> <!-- /.row -->
+					</div> <!-- /.container-fluid -->
+				</div> <!-- /.wrapper -->	
+			</section> <!-- /#about -->
+		</BOUCLE_alaune>
+	</section> <!--fin section à la une -->	
+
+	</B_alaune>
+<//B_SiMenu>

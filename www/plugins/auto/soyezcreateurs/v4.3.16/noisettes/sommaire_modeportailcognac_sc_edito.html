@@ -1,0 +1,25 @@
+
+<BOUCLE_EDITO(ARTICLES) {titre_mot=EDITO}{!par date}{0,1}{lang}>
+
+<!-- EDITO -->
+<div id="edito" class="zone-edito">
+	<header class="titre-sommaire">
+		<h1 class="#EDIT{titre}">[(#TITRE)]</h1>
+	</header>
+	[<img class="editologo" src="(#LOGO_ARTICLE|image_focus{#CONFIG{soyezcreateurs_layout/largeurconteneur,960},200}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_focus{#CONFIG{soyezcreateurs_layout/largeurconteneur,960},200}|largeur)]" height="[(#LOGO_ARTICLE|image_focus{#CONFIG{soyezcreateurs_layout/largeurconteneur,960},200}|hauteur)]" alt="" />]
+	<div id="editotexte">
+		<div class="infos">[(#INCLURE{fond=noisettes/liste_auteurs,id_article,virgule=1,nodiv=1})][(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})]</div>
+		<div>
+			[<div class="[(#CHAPO*|?{#EDIT{chapo},#EDIT{descriptif}}) ]chapo">(#CHAPO|image_reduire{#CONFIG{soyezcreateurs_layout/largeurconteneur,960},0}|sinon{#DESCRIPTIF})</div>]
+			[<div class="#EDIT{texte} entry-content">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurconteneur,960},0})</div>]
+			[<div class="#EDIT{ps} ps">(#PS|image_reduire{#CONFIG{soyezcreateurs_layout/largeurconteneur,960},0})</div>]
+			[<div class="notes">(#NOTES)</div>]
+			[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			[(#INCLURE{fond=noisettes/galerie,ajax,id_article,env})]
+		</div>
+	</div>
+</div>
+<!-- fin EDITO -->
+</BOUCLE_EDITO>
+
+#FILTRE{mini_html}

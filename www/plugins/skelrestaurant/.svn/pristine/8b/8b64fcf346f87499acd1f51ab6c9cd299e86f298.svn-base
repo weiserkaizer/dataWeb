@@ -1,0 +1,39 @@
+<BOUCLE_goodies(RUBRIQUES){titre_mot=Goodies}>
+	<section class="menu-list">
+		<div id="[(#TITRE|sc_nettoyer_marqueur)]" class="pricing-filter">
+			<div class="pricing-filter-wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1">
+							<div class="section-header">
+								 <h2 class="pricing-title">[(#TITRE)]</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row menu">
+				<div class="col-md-10 col-md-offset-1 col-sm-9 col-sm-offset-2 col-xs-12">
+					<div class="row">
+						<BOUCLE_jours(ARTICLES){id_rubrique=#ID_RUBRIQUE}{par num titre}>
+							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+								<div class="row">
+									<div class="menu-catagory">
+										<h2 class="#EDIT{titre}">#TITRE</h2>
+									</div>
+								</div>
+								<div class="row">
+									<div class="menu-item">
+										<h3 class="menu-title #EDIT{descriptif}">[(#DESCRIPTIF|ptobr)]</h3>
+									</div>
+								</div>
+							</div>
+						</BOUCLE_jours>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</BOUCLE_goodies>

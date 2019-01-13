@@ -1,0 +1,21 @@
+
+[<!-- ACTUS -->
+<div id="actualites" class="zone-actus">
+	<header class="titre-sommaire">
+		<h1><:soyezcreateurs:quoideneuf:></h1>
+	</header>
+	<div class="row" id="masonry" role="region" aria-label="Actualités">
+		<div class="grid">
+			<div class="grid-sizer"></div>
+			<div class="gutter-sizer"></div>
+			(#INCLURE{fond=noisettes/sommaire/sommaire_modeportailcognac_quoideneuf})
+		</div>
+	</div>
+	<div class="text-center avec-margin-top avec-margin-bottom">
+		<a class="button texte-blanc triadeA" href="#URL_PAGE{antichrono}"><:soyezcreateurs:actualite_toutes:></a>
+	</div>
+</div>
+<!-- fin ACTUS -->
+]
+
+#FILTRE{mini_html}

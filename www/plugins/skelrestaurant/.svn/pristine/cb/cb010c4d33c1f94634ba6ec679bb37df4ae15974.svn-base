@@ -1,0 +1,50 @@
+/*====================================================================
+            Navbar shrink script
+======================================================================*/
+$(document).ready(function() {
+    $(window).scroll(function() {
+        if ($(document).scrollTop() > 50) {
+            $('nav').addClass('shrink');
+        } 
+        else {
+            $('nav').removeClass('shrink');
+        }
+    });
+});
+
+
+$(document).ready(function(){
+    $(window).scroll(function() {
+        if ($(document).scrollTop() > 50) {
+            $("#logo").attr("src", "[(#LOGO_SITE_SPIP_SURVOL|extraire_attribut{src})]")
+        }
+        else {
+             $("#logo").attr("src", "[(#LOGO_SITE_SPIP_NORMAL|extraire_attribut{src})]")
+        }
+    });
+});
+/*=================================================================
+            Load more button
+===================================================================*/
+
+$(document).ready(function () {
+    $("#loadMenuContent").click(function(event) {
+        
+        $.get("php/ajax_menu.html", function(data){
+            $('#moreMenuContent').append(data);
+        });
+        event.preventDefault(); 
+        $(this).hide();
+    }) ;
+});
+
+$(document).ready(function () {
+
+    var $menuPricing = $('#menu-pricing');
+    $menuPricing.mixItUp({
+        selectors: {
+            target: 'li'
+        }
+    });
+
+});

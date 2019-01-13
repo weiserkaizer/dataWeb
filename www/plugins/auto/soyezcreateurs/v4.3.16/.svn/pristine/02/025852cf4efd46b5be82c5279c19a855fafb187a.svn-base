@@ -1,0 +1,3 @@
+[(#PLUGIN{CLEVERMAIL}|oui|ou{[(#PLUGIN{MAILSUBSCRIBERS}|oui)]})
+<li class="menu_lien_newsletter">[(#ENV{template}|=={inscription_infolettre}|?{<strong>})]<a href="#URL_PAGE{inscription_infolettre}" title="<:soyezcreateurs:newsletter_recevoir:>"><:soyezcreateurs:newsletter:></a>[(#ENV{template}|=={inscription_infolettre}|?{</strong>})]</li>]
+#FILTRE{mini_html}

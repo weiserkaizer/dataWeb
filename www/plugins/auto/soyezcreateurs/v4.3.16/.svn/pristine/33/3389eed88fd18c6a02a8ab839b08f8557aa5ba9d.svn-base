@@ -1,0 +1,132 @@
+﻿- [X] intégrer Critère mots aux agenda.
+- [ ] utiliser l'API des action de SPIP pour la création de contenu à l'installattion/màj
+	  ou le plugin CRUD
+	  SPIP3 : CRUD est rendu obsolète par l'API objet_inserer : https://www.spip.net/fr_article5526.html
+- [X] permettre de faire des sites référencés avec lien direct sur le site sans passer par une page intermédiaire
+- [X] améliorer les logos des sites référencés dans le menu de droite (pleine largeur, centré, à la place du titre qui passerait en bulle d'aide)
+- [X] intégrer Gravatar
+- [X] améliorer l'intégration de Gravatar en ajoutant l'avatar dans la prévisualisation du message.
+- [X] intégrer Comments ?
+- [X] intégrer Notation
+- [X] intégrer Nuage ?
+- [X] Faire intéragir Nuage avec le plugin Critère mots
+- [X] intégrer flickr ?
+- [X] améliorer l'intégration de la météo
+- [X] Mettre à jour le squelette antichrono.html avec {fusion} : https://contrib.spip.net/Liste-d-Articles-par-annee-puis
+- [ ] documenter le code
+- [X] intégrer les réservations aux agendas
+- [X] intégrer la proposition d'événements
+- [X] Intégrer Social Tags
+- [ ] Passer SC en ZPIP (y'a pas le feu au lac...)
+	- [ ] Etudier Aveline
+	- [ ] Passer en NoiZettes les éléments facultatifs de SC (MiniAgenda...)
+	- [ ] Passer en plugins les éléments réutilisables propres à SC (Citations...)
+	- [ ] Faire un Thème SC
+- [X] Intégrer Twitter (poster automatiquement une publication d'article)
+- [X] Ajouter la possibilitée d'archiver des rubriques avec un mot clé
+- [ ] Faire son marcher chez http://spip.ac-rouen.fr/?Telecharger-les-plugins-utilises et les autres...
+- [X] Mini Agenda : faire un lien sur chaque jour pour les événements sur plusieurs jours
+- [X] Articles avec événément(s) : pouvoir télécharger chaque événement au format ical (prendre aussi le contenu de l'article ?)
+- [X] Installation du plugin : joindre des documents aux articles et insérer des logo
+- [ ] Installation : créer des Sigles
+- [X] Installation : activer FullText automatiquement
+- [X] Faire que le plugin Sigles se passe de F&T (avec un CVT adéquat, une création de la structure de table idoine et une migration des données)
+- [ ] Intégrer Formidable à la place de F&T avec migration des données et des formulaires
+- [X] Remplacer le calendrier mensuel actuel par http://www.web-delicious.com/jquery-plugins/#calendar
+- [ ] Passer à http://arshaw.com/fullcalendar/
+- [ ] Intégrer Gribouille 2 (le plugin)
+- [ ] Rajouter une configuration pour pouvoir ne pas afficher le cartouche Contenu ou Dans la même rubrique mais afficher la liste des articles *pour la rubrique en cours*
+- [X] Pouvoir utiliser les mots clefs de _HeaderBanner en les affectant à une rubrique pour que la branche entière ait spécifiquement la ou les bannières choisie(s) et pas toutes les bannières.
+- [ ] Intégrer le plugin Menus (<RastaPopoulos> Real3T: https://zone.spip.org/trac/spip-zone/browser/_plugins_/menus/action/editer_menu.php#L117
+<RastaPopoulos> action/editer_menu.php => importer_menu($un_tableau, $id_menu)
+<RastaPopoulos> donc déjà ya plus que deux choses : créer un menu avec un titre et juste ça 
+<RastaPopoulos> puis importer_menu() un tableau d'entrée dedans)
+- [X] Intégrer ODT2SPIP : http://www.pharouest.ac-rennes.fr/spip.php?article727
+- [ ] Mettre en valeur la destination des liens d'évitement comme sur http://eafra.eu/
+- [ ] Insérer un événement depuis le public : http://thread.gmane.org/gmane.comp.web.spip.user/174396
+- [ ] Améliorer les balloon de la carto avec plus de contenu
+- [ ] Afficher la carto des événements
+- [ ] Afficher les documents géolocalisés
+- [X] Intégrer http://aquelito.fr/truc/menu/ (comme option désactivée par défaut) ; documentation ici http://www.journaldunet.com/developpeur/client-web/un-menu-deroulant-adapte-aux-mobiles.shtml (mais le code est plus récent sur aquelito)
+- [ ] Intégrer les meta OpenGraph de FaceBook : http://www.journaldunet.com/solutions/seo-referencement/wordpress-seo/social-et-facebook.shtml
+- [ ] Intégrer http://ivaynberg.github.com/select2/index.html à Critère {mots}
+- [ ] Déplacer les bandeaux d'annonce et de contact dans l'Identité du site en s'inspirant des plugins Bandeau et Slogan
+- [ ] Corriger le bug sur le tri des articles commençant par un chiffre : https://zone.spip.org/trac/spip-zone/changeset/66700 pour la solution
+- [ ] Voir ce qu'il y a à prendre dans http://kanduvisla.github.com/httool/
+
+Passage à SPIP 3 :
+- [X] Passage à SPIP 3.1
+- [ ] Tenir compte de https://www.spip.net/fr_article2128.html#spip3 pour les chaines de langue
+- [ ] Rajouter define('_SURLIGNE_RECHERCHE_REFERERS',true); dans mes_options.php (cf http://permalink.gmane.org/gmane.comp.web.spip.zone/29009)
+- [ ] le champ "chapo" est devenu "virtuel" : cf http://forum.spip.net/fr_246367.html#forum246406 
+- [ ] Critère {archive} et {!archive} afin de les optimiser, il faudrait réussir à coder ces requêtes (c'est le SELECT en IN ou NOT IN qui serait la partie générée par le critère) :
+Première version en connaissant l'id du mot clef d'archivage
+SELECT 0+articles.titre AS num, articles.id_article, articles.descriptif, articles.titre, articles.lang
+FROM spip_articles AS `articles` 
+WHERE (articles.statut = 'publie')
+	AND (articles.id_rubrique = 14)
+	AND (articles.lang = 'fr')
+	AND NOT /* {!archive} | enlever le NOT pour {archive} */ (
+		(articles.id_article IN (
+			SELECT articlesin.id_article
+				FROM spip_articles AS `articlesin`
+					INNER JOIN spip_mots_liens AS mots_liens_articles 
+						ON (articlesin.id_article = mots_liens_articles.id_objet AND mots_liens_articles.objet='article')
+				WHERE (articlesin.id_article = articles.id_article)
+					AND (mots_liens_articles.id_mot=92)
+			)
+		)
+		OR 
+		(articles.id_article IN (
+			SELECT articlesin.id_article
+				FROM spip_articles AS `articlesin`
+					INNER JOIN spip_rubriques AS rubriques 
+						ON (articlesin.id_rubrique = rubriques.id_rubrique)
+					INNER JOIN spip_mots_liens AS mots_liens_rubriques 
+						ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet AND mots_liens_rubriques.objet='article') 
+				WHERE (articlesin.id_article = articles.id_article)
+					AND (mots_liens_rubriques.id_mot=92)	
+
+			)
+		)	
+	
+	)	
+ORDER BY num, articles.date_modif DESC
+
+
+Deuxième version en ne connaissant que le titre du mot d'archivage :
+
+SELECT 0+articles.titre AS num, articles.id_article, articles.descriptif, articles.titre, articles.lang
+FROM spip_articles AS `articles` 
+WHERE (articles.statut = 'publie')
+	AND (articles.id_rubrique = 14)
+	AND (articles.lang = 'fr')
+	AND NOT /* {!archive} | enlever le NOT pour {archive} */ (
+		(articles.id_article IN (
+			SELECT articlesin.id_article
+				FROM spip_articles AS `articlesin`
+					INNER JOIN spip_mots_liens AS mots_liens_articles 
+						ON (articlesin.id_article = mots_liens_articles.id_objet AND mots_liens_articles.objet='article')
+					INNER JOIN spip_mots AS mots_articles ON 
+							(mots_liens_articles.id_mot=mots_articles.id_mot)
+				WHERE (articlesin.id_article = articles.id_article)
+					AND (mots_articles.titre='Archives')
+			)
+		)
+		OR 
+		(articles.id_article IN (
+			SELECT articlesin.id_article
+				FROM spip_articles AS `articlesin`
+					INNER JOIN spip_rubriques AS rubriques 
+						ON (articlesin.id_rubrique = rubriques.id_rubrique)
+					INNER JOIN spip_mots_liens AS mots_liens_rubriques 
+						ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet AND mots_liens_rubriques.objet='article')
+					INNER JOIN spip_mots AS mots_articles ON 
+						(mots_liens_rubriques.id_mot=mots_articles.id_mot)
+				WHERE (articlesin.id_article = articles.id_article)
+					AND (mots_articles.titre='Archives')	
+			)
+		)	
+	
+	)	
+ORDER BY num, articles.date_modif DESC

@@ -1,0 +1,42 @@
+<BOUCLE_TheRub(RUBRIQUES){id_rubrique}><BOUCLE_TypeRubrique(HIERARCHIE){id_rubrique}{tout}{type_mot=_TypeRubrique}{inverse} {0,1}><BOUCLE_Mot_TypeRubrique(MOTS){type=_TypeRubrique}{id_rubrique}>[(#CHEMIN{noisettes/footer/footer_typerubrique_#TITRE.html}|oui)
+[(#ENV{template}|=={'Sommaire'}|non)<INCLURE{fond=noisettes/footer/footer_typerubrique_#TITRE,id_rubrique,id_article,rubriqueencours,template,secteurencours,racinetype=#_TypeRubrique:ID_RUBRIQUE,env}>]
+]</BOUCLE_Mot_TypeRubrique></BOUCLE_TypeRubrique>
+[(#ENV{template}|=={'Sommaire'}|non)<INCLURE{fond=noisettes/footer/footer_modeedito,id_rubrique,id_article,rubriqueencours,template,secteurencours,env}>]
+<//B_TypeRubrique>
+</BOUCLE_TheRub>
+#SET{noisettefooter,footer_modeedito}
+[(#ENV{template}|=={'Sommaire'}|oui)
+	[(#CHEMIN{noisettes/footer/footer_mode#CONFIG{soyezcreateurs/mode_affichage,communiquant}.html}|oui)
+			#SET{noisettefooter,footer_mode#CONFIG{soyezcreateurs/mode_affichage,communiquant}}
+	]
+]
+<INCLURE{fond=noisettes/footer/#GET{noisettefooter},id_rubrique,id_article,rubriqueencours,template,secteurencours,env}>
+<//B_TheRub>
+</div><!-- id="contenu" -->	
+<INCLURE{fond=noisettes/footer/footer_pied,id_rubrique,id_article,rubriqueencours,template,secteurencours,env}>
+[<script src="(#PRODUIRE{fond=javascripts.js})" type="text/javascript"></script>]
+<BOUCLE_HasMenuHaut(RUBRIQUES){titre_mot=MenuHaut}{par num titre}{!lang_select}{0,1}>[(#PLUGIN{SIDR}|oui)
+[<script src="(#CHEMIN{javascript/jquery.sidr.js}|timestamp)" type="text/javascript"></script>]
+<script type="text/javascript">/* <!\[CDATA\[ */
+jQuery(document).ready(function() {
+	jQuery("#responsive-menu-button").sidr({
+	name: "sidr-main",
+	source: "#menuhaut"
+	});
+});
+/* \]\]> */</script>]
+</BOUCLE_HasMenuHaut>
+
+[(#CONFIG{soyezcreateurs_google/googleplusun,non}|=={oui}|oui)
+<script type="text/javascript">
+window.___gcfg = {lang: '#LANG'};
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')\[0\]; s.parentNode.insertBefore(po, s);
+  })();
+</script>]
+[<h2 class="nocontent offscreen">Catholique.fr</h2>(#INSERT_NAV_CEF)]
+</body>
+</html>
+#FILTRE{mini_html}

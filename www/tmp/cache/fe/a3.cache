@@ -1,0 +1,34 @@
+a:2:{s:9:"nom_cache";s:38:"fea30483705be43cee950b057c4ef0cc.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_a7ec08cb1eeb50322075eb5d04c6b496";s:6:"source";s:64:"plugins/auto/soyezcreateurs/v4.3.16/noisettes/footer/footer.html";s:11:"process_ins";s:3:"php";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"fea30483705be43cee950b057c4ef0cc.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:1346:"
+<?php echo recuperer_fond( 'noisettes/footer/footer_modeportailcognac', array_merge(array (
+  'template' => 'Sommaire',
+  'lang' => 'fr',
+  'date' => '2019-01-06 23:34:42',
+  'date_default' => true,
+  'date_redac' => '2019-01-06 23:34:42',
+  'date_redac_default' => true,
+),array('id_rubrique' => '',
+	'id_article' => '',
+	'rubriqueencours' => '',
+	'template' => 'Sommaire',
+	'secteurencours' => '',
+	'lang' => 'fr')), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/footer/footer.html','html_a7ec08cb1eeb50322075eb5d04c6b496','',9,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+</div><!-- id="contenu" -->	
+<?php echo recuperer_fond( 'noisettes/footer/footer_pied', array_merge(array (
+  'template' => 'Sommaire',
+  'lang' => 'fr',
+  'date' => '2019-01-06 23:34:42',
+  'date_default' => true,
+  'date_redac' => '2019-01-06 23:34:42',
+  'date_redac_default' => true,
+),array('id_rubrique' => '',
+	'id_article' => '',
+	'rubriqueencours' => '',
+	'template' => 'Sommaire',
+	'secteurencours' => '',
+	'lang' => 'fr')), array("compil"=>array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/footer/footer.html','html_a7ec08cb1eeb50322075eb5d04c6b496','',16,$GLOBALS['spip_lang'])), _request("connect"));
+?>
+<script src="local/cache-js/jsdyn-javascripts_js-2c0a0305.js?1533998952" type="text/javascript"></script>
+</body>
+</html>
+";s:5:"notes";s:0:"";s:8:"contexte";a:6:{s:8:"template";s:8:"Sommaire";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2019-01-06 23:34:42";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 23:34:42";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1546817633;s:2:"gz";b:0;s:3:"sig";i:386080821;}}

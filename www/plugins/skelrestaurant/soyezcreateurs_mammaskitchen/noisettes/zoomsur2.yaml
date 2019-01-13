@@ -1,0 +1,5 @@
+# toutes les options possible dans le XML actuel sauf les blocs qui sont vus autrement
+nom: 'ZoomSur2'
+description: 'La noizettes du ZoomSur2'
+contexte: 'menu'
+ajax: 'non'

@@ -1,0 +1,8 @@
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="./"><:soyezcreateurs:accueil:></a></li>
+			<li><BOUCLE_article_principal(ARTICLES){lang}{titre_mot=EDITO#ENV{typeedito}}{!par date}{0,1}>[(#TITRE|replace{<br />,''})]</BOUCLE_article_principal>#NOM_SITE_SPIP<//B_article_principal></li>
+		</ul>
+	</nav>
+#FILTRE{mini_html}

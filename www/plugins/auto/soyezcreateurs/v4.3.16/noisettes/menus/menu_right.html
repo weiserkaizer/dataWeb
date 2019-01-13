@@ -1,0 +1,56 @@
+	<aside><div id="extra" class="navStuff equilibre stackable laststackable">
+	<h2 class="nocontent offscreen">Navigation secondaire</h2>
+[<div class="rightmenu">(#PLUGIN{mesfavoris}|oui)<INCLURE{fond=noisettes/extra/favoris}></div>]
+[(#CONFIG{soyezcreateurs/citationsheader,extra}|=={extra}|oui)<INCLURE{fond=noisettes/extra/citations}>]
+[(#PLUGIN{splickr}|oui)<INCLURE{fond=noisettes/extra/splickr}>]
+[(#CONFIG{soyezcreateurs/bandeau_contact_extra}|=={extra}|oui)
+	[<div id="bandeaucontact" class="#EDIT{meta-soyezcreateurs/bandeau_contact}">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
+]
+<div class="rightmenu">
+	[(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/miniagenda,on}|=={on}|oui)<INCLURE{fond=noisettes/agenda/miniagenda,env,ajax}>]]
+[(#ENV{template}|=={'Sommaire'}|?{[(#INCLURE{fond=noisettes/menus/menu_right_sommaire,env})]})]
+
+[(#REM) Si pas sommaire]
+	<B_Breves>
+	<h2><:breves:breves:></h2>
+	<ul>
+	  <BOUCLE_Breves(BREVES){id_rubrique}{!par date}{age<120}{lang}><li>[(#ENV{id_breve}|=={#ID_BREVE}|?{<strong>})]<a href="[(#URL_BREVE)]" title="[(#DATE|nom_jour)] [(#DATE|affdate)]">[<img class="menu_right_logo" src="(#LOGO_BREVE_NORMAL|image_reduire{120,50}|extraire_attribut{src}|embarque_fichier)"[ width="(#LOGO_BREVE_NORMAL|image_reduire{120,50}|largeur)"][ height="(#LOGO_BREVE_NORMAL|image_reduire{120,50}|hauteur)"] alt="" /><br />][(#TITRE)]</a>[(#ENV{id_breve}|=={#ID_BREVE}|?{</strong>})]</li></BOUCLE_Breves>
+	</ul>
+	</B_Breves>
+
+[(#ENV{template}|=={'Sommaire'}|?{'',[(#INCLURE{fond=noisettes/menus/menu_right_dessousbreves,id_rubrique,env})]})]
+
+<BOUCLE_RubriqueSites(RUBRIQUES){id_rubrique}>
+[<h2 title="<:soyezcreateurs:plus_loin_title:>"><:soyezcreateurs:plus_loin:></h2>
+<ul>
+(#INCLURE{fond=noisettes/menus/menu_right_sites,id_rubrique,env})
+</ul>]
+</BOUCLE_RubriqueSites>
+<B_RubriquesPasDansMenu>
+<h2 title="<:soyezcreateurs:plus_loin_title:>"><:soyezcreateurs:plus_loin:></h2>
+<ul>
+<BOUCLE_RubriquesPasDansMenu(RUBRIQUES){titre_mot=PasDansMenu}>[
+(#INCLURE{fond=noisettes/menus/menu_right_sites,id_rubrique,env})
+]</BOUCLE_RubriquesPasDansMenu>
+</ul>
+</B_RubriquesPasDansMenu>
+<//B_RubriqueSites>
+</div><!-- class="rightmenu"-->
+[(#PLUGIN{nuage}|oui)[(#CONFIG{soyezcreateurs_layout/positionnuage,footer}|=={extra}|oui)<div id="nuage" class="cadreinfo"><INCLURE{fond=noisettes/navigation/nuagedemotcle,env}></div>]]
+[(#INCLURE{fond=noisettes/extra/ads_column})]
+[(#CONFIG{soyezcreateurs/geolocalisation,non}|=={non}|oui)#INCLURE{fond=noisettes/extra/ousommesnous}]
+[(#CONFIG{soyezcreateurs/positionfluxrss,bottom}|=={bottom}|oui)<div class="centrer_div  rss_bottom">
+<INCLURE{fond=noisettes/liensnav/reseaux_sociaux}>
+</div>]
+[(#PLUGIN{ACCESRESTREINT}|oui)<INCLURE{fond=noisettes/accesrestreint/login-logout,env}>]
+
+[<div class="centrer_div"><!-- AddThis Bookmark Button BEGIN -->
+<script type="text/javascript">
+  addthis_url    = location.href;   
+  addthis_title  = document.title;  
+  addthis_pub    = '(#CONFIG{soyezcreateurs_google/addthis})';     
+</script><script type="text/javascript" src="http://s7.addthis.com/js/addthis_widget.php?v=12" ></script>
+<!-- AddThis Bookmark Button END --></div>]
+[(#CONFIG{soyezcreateurs_google/xiti_id}|!={''}|oui)[(#INCLURE{fond=noisettes/compteur})]]
+	</div><!-- id="extra" --></aside>
+#FILTRE{mini_html}

@@ -1,0 +1,37 @@
+[(#REM) Pictos de gauche]
+	<nav id="menusite"><div id="navigation" class="equilibre stackable"><h1 class="nocontent offscreen">Menu de navigation primaire</h1>
+<INCLURE{fond=noisettes/sommaire/sommaire_modeportail_pictos_#CONFIG{soyezcreateurs_couleurs/autovignettes,auto},pictoscherches=^[13579]\.}>
+<B_Racines>
+<div class="espaceavant">
+<ul>
+<BOUCLE_Racines(ARTICLES){titre_mot==^(MENURACINE|MENURACINE_Systematique)$}{par num titre} {lang}>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE|image_reduire{16,16}|extraire_attribut{src}|embarque_fichier)" alt="" width="[(#LOGO_ARTICLE|image_reduire{16,16}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{16,16}|hauteur)]" class="menu_gauche_logo" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+</BOUCLE_Racines>
+</ul>
+</div>
+</B_Racines>
+<B_RacinesBas>
+<div class="espaceavant">
+<ul>
+<BOUCLE_RacinesBas(ARTICLES){par num titre}{titre_mot==^MENURACINEBAS.*} {lang}>
+	<li><a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE|image_reduire{16,16}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{16,16}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{16,16}|hauteur)]" alt="" class="menu_gauche_logo" />][(#TITRE)]</a></li>
+</BOUCLE_RacinesBas>
+</ul>
+</div>
+</B_RacinesBas>
+[(#CONFIG{soyezcreateurs/positionrecherche,header}|=={navigation}|oui)
+[(#INCLURE{fond=noisettes/header/cadre_recherche,env})]
+]
+[(#CONFIG{soyezcreateurs/bandeau_contact_extra}|=={extra}|oui)
+	[<div id="bandeaucontact" class="#EDIT{meta-soyezcreateurs/bandeau_contact}">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
+]
+[(#CONFIG{soyezcreateurs_layout/positionliensnav,menu_footer}|=={nav}|oui)
+[<div class="espaceavant">
+<ul>(#INCLURE{fond=noisettes/liensnav/bloc_liensnav,template})</ul>
+</div>]
+]
+
+[(#CONFIG{soyezcreateurs/affichage_ephemeride,oui}|=={oui}|oui)<INCLURE{fond=noisettes/ephemeride/ephemeride_bloc,env}>]
+
+	</div><!-- id="navigation" --></nav>
+#FILTRE{mini_html}

@@ -1,0 +1,27 @@
+
+<B_DessousBreves>
+<!-- PROJETS -->
+<div id="lesprojets" class="zone-projets">
+	<header class="titre-sommaire">
+		<h1>Les projets</h1>
+	</header>
+	<div id="projets" class="avec-margin-top">
+		<BOUCLE_DessousBreves(RUBRIQUES){titre_mot IN DessousBreves,ZoomSur2}{par num titre}>
+		<div class="projet idprojet#COMPTEUR_BOUCLE #EDIT{titre}"<BOUCLE_RubriqueColoree(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubrique(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}>[ style="background-color: #(#TEXTE|textebrut);"]</BOUCLE_CouleurRubrique></BOUCLE_RubriqueColoree>>
+			<div class="content-projets">
+				<BOUCLE_articles_plusdun(ARTICLES) {id_rubrique} {1,1}{lang}><a href="#URL_RUBRIQUE"[ title="(#_DessousBreves:DESCRIPTIF|attribut_html)"]></BOUCLE_articles_plusdun><BOUCLE_articles_unseul(ARTICLES) {id_rubrique} {0,1}{lang}><a href="#ARTICLE_URL"[ title="(#_DessousBreves:DESCRIPTIF|attribut_html)"]></BOUCLE_articles_unseul><a href="#URL_RUBRIQUE"[ title="(#_DessousBreves:DESCRIPTIF|attribut_html)"]><//B_articles_unseul><//B_articles_plusdun>
+					<h2>#TITRE</h2>
+					<div class="suite">
+						<span class="icon icon-arrow-right2">&#10140;</span>
+					</div>
+				</a>
+			</div>
+		</div>
+		</BOUCLE_DessousBreves>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<!-- fin PROJETS -->
+</B_DessousBreves>
+
+#FILTRE{mini_html}

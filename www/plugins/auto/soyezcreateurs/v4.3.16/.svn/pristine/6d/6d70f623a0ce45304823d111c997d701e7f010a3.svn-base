@@ -1,0 +1,11 @@
+<BOUCLE_AfficherArticlesMenu(RUBRIQUES){id_rubrique}{titre_mot=#ENV{mot,AfficherArticlesMenu}}>
+<B_MenuArticles>
+[(#ENV{pas2ul}|?{'',<ul>})]
+<BOUCLE_MenuArticles(ARTICLES){id_rubrique}{par num titre}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}} {lang}>
+[(#ENV{logomenuderoulant,oui}|=={oui}|oui)[(#SET{lelogo,[(#LOGO_ARTICLE_NORMAL|image_reduire{#ENV{largeurlogomenuhaut,16},#ENV{hauteurlogomenuhaut,16}})]})]]
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{'<strong>',''})]<a href="[(#ARTICLE_URL)]" class="menuarticles" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#GET{lelogo}|extraire_attribut{src}|embarque_fichier)"[ width="(#GET{lelogo}|largeur)"][ height="(#GET{lelogo}|hauteur)"] alt="" class="menu_gauche_logo" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{'</strong>',''})]</li>
+</BOUCLE_MenuArticles>
+[(#ENV{pas2ul}|?{'',</ul>})]
+</B_MenuArticles>
+</BOUCLE_AfficherArticlesMenu>
+#FILTRE{mini_html}

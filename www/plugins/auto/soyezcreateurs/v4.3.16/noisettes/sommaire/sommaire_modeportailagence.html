@@ -1,0 +1,185 @@
+#SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
+#SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,180})}
+#SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,180})}
+#SET{Largeurcontent_central,(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|moins{#GET{LargeurMenuDroit}})}
+#SET{Largeurcontent_extra,(#GET{LargeurContaineur}|moins{#GET{Largeurcontent_central}})}
+<script type="text/javascript">
+	CanceladjustLayout = true;
+</script>
+<main id="main" role="main"><div id="agence_content">
+	<a id="letexte"></a>
+
+	<!-- SLOGAN -->
+	<div id="slogan" class="zone-slogan">
+		<header>
+			[<h1 class="titre-sommaire #EDIT{meta-descriptif_site}">(#DESCRIPTIF_SITE_SPIP|ptobr)</h1>]
+		</header>
+	</div>
+	<!-- fin SLOGAN -->
+	
+	<B_Defilant>
+	<!-- Defilant -->
+	<div id="diaporama" class="zone-slider">
+		<header>
+			<h1 class="titre-sommaire">Diaporama présentation #NOM_SITE_SPIP</h1>
+		</header>
+		<div class="content-diaporama slider-slick">
+			<BOUCLE_Defilant(ARTICLES){titre_mot=Defilant}{par num titre}{!par date}>
+			<article class="item slider-diapo-imgfull">
+				<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>
+				<figure>
+					[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{1920,780}|extraire_attribut{src})" alt="" />]
+					<figcaption>
+						<p class="#EDIT{titre}">#TITRE</p>
+					</figcaption>
+				</figure>
+				</a>
+			</article>
+			</BOUCLE_Defilant>
+		</div>
+	</div>
+	<!-- fin Defilant -->
+	</B_Defilant>
+
+	<BOUCLE_ZoomSur(RUBRIQUES){titre_mot=ZoomSur}{!par date}{0,1}>
+	<!-- L'ÉQUIPE -->
+	<div id="lequipe" class="zone-lequipe">
+		<header class="titre-sommaire">
+			<h1 class="#EDIT{titre}">#TITRE</h1>
+		</header>
+		<div role="region" aria-label="">
+			<div class="content-lequipe">
+				<BOUCLE_Membres(ARTICLES){id_rubrique}{par num titre}{!par date}>
+				<article class="item texte">
+					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>
+						<figure>
+							<img src="[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{560,560}|extraire_attribut{src})]" alt="" />
+						</figure>
+						<h2 class="h2 #EDIT{titre}">#TITRE</h2>
+						<div class="h3 #EDIT{sous_titre}">#SOUS_TITRE</div>
+						[<div class="pave-content">
+							(#CHAPO|sinon{#DESCRIPTIF})
+						</div>]
+						<div class="bouton">Lire la suite</div>
+					</a>
+				</article>
+				</BOUCLE_Membres>
+			</div>
+		</div>
+	</div>
+	<!-- fin L'ÉQUIPE -->
+	</BOUCLE_ZoomSur>
+
+	<!-- Citations -->
+	<INCLURE{fond=noisettes/extra/citations}>
+	<!-- fin Citations -->
+	<BOUCLE_NbCycloshow(MOTS){titre=Cycloshow}{texte!=''}>[(#SET{NbCycloshow,[(#TEXTE|ptobr|intval|sinon{7})]})]</BOUCLE_NbCycloshow>
+	<BOUCLE_Cycloshow(RUBRIQUES){titre_mot=Cycloshow}{!par date}{0,1}>
+	<!-- Cycloshow -->
+	<div id="realisations" class="zone-realisations">
+		<header class="titre-sommaire">
+			<h1 class="#EDIT{titre}">#TITRE</h1>
+		</header>
+		<div role="region" aria-label="">
+			<div class="content-realisations">
+				[<link rel="stylesheet" href="(#CHEMIN{javascript/flipster/dist/jquery.flipster.min.css})">]
+				[<link rel="stylesheet" href="(#CHEMIN{javascript/flipster/dist/flipster.portailagence.css})">]
+				<article id="coverflow">
+					<div class="flip-items">
+						<BOUCLE_CycloshowFigures(ARTICLES){id_rubrique}{par hasard}{logo}{0,#GET{NbCycloshow,7}}>
+						<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>
+						<figure>
+							<img src="[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|image_focus{700,600}|extraire_attribut{src})]" alt="" />
+							<figcaption>#TITRE</figcaption>
+						</figure>
+						</a>
+						</BOUCLE_CycloshowFigures>
+					</div>
+				</article>
+
+				[<script src="(#CHEMIN{javascript/flipster/dist/jquery.flipster.min.js})" type="text/javascript"></script>]
+				<script type="text/javascript">
+					var coverflow = $("#coverflow").flipster({
+						style: 'coverflow',
+						itemContainer: 'div',
+						itemSelector: 'figure',
+						start: 'center',
+						loop: false,
+						scrollwheel: true,
+						spacing: -0.45,
+						nav: false,
+						buttons: true,
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+	<!-- fin Cycloshow -->
+	</BOUCLE_Cycloshow>
+
+	<BOUCLE_Goodies(RUBRIQUES){titre_mot=Goodies}{!par date}{0,1}>
+	<!-- Goodies -->
+	<div id="prestations" class="zone-prestations">
+		<header class="titre-sommaire">
+			<h1 class="#EDIT{titre}">#TITRE</h1>
+		</header>
+		<div role="region" aria-label="">
+			<div class="content-prestations">
+				[(#REM) basé sur avignon pave-img-titre-desc-suite-doublure ]
+				<BOUCLE_presta(ARTICLES){id_rubrique}{par num titre}{!par date}{0,12}>
+				<article class="item texte">
+					[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{120,120}|extraire_attribut{src})" alt="">]
+					<div class="pave-content">
+						<h2 class="#EDIT{titre}">#TITRE</h2>
+						<a href="#URL_ARTICLE" title="Lire[ (#TITRE|attribut_html)]">
+							<span class="bouton plus">+</span>
+						</a>
+					</div>
+					<div class="pave-content-plus">
+						<h3 class="#EDIT{titre}">#TITRE</h3>
+						[<p class="#EDIT{descriptif}">(#DESCRIPTIF|ptobr|couper{50,'...'})</p>]
+						<a href="#URL_ARTICLE" title="Lire[ (#TITRE|attribut_html)]">
+							<span class="bouton plus">+</span>
+						</a>
+					</div>
+				</article>
+				</BOUCLE_presta>
+			</div>
+		</div>
+	</div>
+	<!-- fin Goodies -->
+	</BOUCLE_Goodies>
+
+	<BOUCLE_Goodies2(ARTICLES){titre_mot=Goodies2}{par hasard}{0,1}>
+	<!-- Tarifs -->
+	<div id="tarifs" class="zone-tarifs">
+		<header class="titre-sommaire">
+			<h1 class="#EDIT{titre}">Nos tarifs</h1>
+		</header>
+		<div class="content-tarifs #EDIT{texte}">#TEXTE</div>
+	</div>
+	<!-- fin Tarifs -->
+	</BOUCLE_Goodies2>
+
+	[(#PLUGIN{SOCIALTAGS}|oui)<div id="socialtags"></div>]
+
+</div><!-- agence_content -->
+</main>
+<script type="text/javascript">
+	// slider Slick
+	$(document).ready(function(){
+		$('#diaporama .slider-slick').slick({
+		  autoplay: true,
+		  pauseOnHover: true,
+		  autoplaySpeed: #CONFIG{soyezcreateurs/vitesse_slider,10000},
+		  fade: true,
+		  cssEase: 'linear',
+		  arrows: true,
+		  dots: true,
+		  centerMode: true,
+		  focusOnSelect: true
+		});
+	});
+</script>
+
+#FILTRE{mini_html}

@@ -1,0 +1,11 @@
+<B_agenda>
+<div id="homeagenda">
+<BOUCLE_agenda(RUBRIQUES){titre_mot=Agenda}{par num titre}{racine}>[
+[<h2 class="#EDIT{titre}"[ title="(#DESCRIPTIF|attribut_html)"]><a href="[(#URL_RUBRIQUE|parametre_url{calendrier,1})]">(#TITRE)</a></h2>]
+<div class="fond">
+(#INCLURE{fond=noisettes/agenda/miniagenda_liste_prochains,id_rubrique})
+</div><!-- fond -->
+]</BOUCLE_agenda>
+</div><!-- homeagenda -->
+</B_agenda>
+#FILTRE{mini_html}

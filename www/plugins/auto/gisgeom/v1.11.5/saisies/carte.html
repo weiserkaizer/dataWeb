@@ -1,0 +1,610 @@
+[(#REM)
+
+	Saisie carte
+
+	Parametres optionnels:
+
+	- lat = 48.3                    	latitude du centre de la carte
+	- lon = -4.7                    	longitude du centre de la carte
+	- zoom = 5                      	zoom de la carte
+	- sw_lat = lat - 10°            	latitude du sud-ouest de la bounding box
+	- sw_lon = lon - 10°            	longitude du sud-ouest de la bounding box
+	- ne_lat = lat + 10°            	latitude du nord-est de la bounding box
+	- ne_lon = lon + 10°            	longitude du nord-est de la bounding box
+	- largeur = 100%
+	- hauteur = 350px
+	- nodraw = oui						permet de désactiver la barre d'édition pour revenir au comportement par défaut
+	- noimport = oui					permet de masquer le champ d'import de fichier GPX/KML
+	- nomajinputs = oui					permet de ne pas mettre à jour les inputs de lat / lon / zoom et adresse
+	- boutons = #ARRAY{marker,non}		permet de spécifier les boutons à ne pas afficher dans la barre d'édition (clés possibles : marker, polyline, polygon, rectangle)
+	- path_styles=#ARRAY{color,#fff}	options de style des éléments de la couche GeoJSON (voir http://leafletjs.com/reference.html#path-options)
+
+]
+
+[(#SET{init_lat,#ENV{lat,#CONFIG{gis/lat,0}}})]
+[(#SET{init_lon,#ENV{lon,#CONFIG{gis/lon,0}}})]
+[(#SET{init_zoom,#ENV{zoom,#CONFIG{gis/zoom,0}}})]
+[(#REM) On utilise la bounding box seulement si le centre n'a pas été donné et si les quatre valeurs de la bounding box sont renseignées
+        Les valeurs par defaut sont "centre +/- 10°", ce qui est naze, mais c'est un cas normalement impossible
+]
+[(#ENV{lat}|ou{#ENV{lon}}|non|et{#ENV{sw_lat}}|et{#ENV{sw_lon}}|et{#ENV{ne_lat}}|et{#ENV{ne_lon}})
+	#SET{utiliser_bb, oui}
+	#SET{init_sw_lat,#ENV{sw_lat,#GET{lat}|moins{10}}}
+	#SET{init_sw_lon,#ENV{sw_lon,#GET{lon}|moins{10}}}
+	#SET{init_ne_lat,#ENV{ne_lat,#GET{lat}|plus{10}}}
+	#SET{init_ne_lon,#ENV{ne_lon,#GET{lon}|plus{10}}}
+]
+
+<[(#VAL{li}|saisie_balise_structure_formulaire)] class="pleine_largeur editer editer_[(#ENV{nom})][ (#ENV{li_class})][ saisie_(#ENV{type_saisie})]"[ data-id="(#ENV{id_saisie})"]>
+#ENV*{inserer_debut}
+<div id="map_[(#ENV{nom})]" name="formMap_[(#ENV{nom})]" class="formMap" style="width: #ENV{largeur,100%}; height: #ENV{hauteur,350px}"></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+var form_map_[(#ENV{nom})],
+	editableLayers_[(#ENV{nom})],
+	annuler_geocoder_[(#ENV{nom})] = 0;
+[(#ENV{recherche}|!={non}|oui|et{#CONFIG{gis/geocoder}|oui})
+[(#SET{geocoder,oui})]
+var geocoder;]
+
+(function ($) {
+	var marker,
+		maj_inputs = function (map, layer, data, action) {
+			[(#GET{geocoder}|oui)
+			if (action != 'geocoding') {
+				var f = geocoder.geocode(data);
+			}]
+			if (data.lng <= -180) {
+				data.lng = data.lng + 360;
+			} else if (data.lng > 180) {
+				data.lng = data.lng - 360;
+			}[(#ENV{nomajinputs,non}|=={oui}|non)
+			var zoom = map.getZoom();
+			$('#champ_#ENV{champ_zoom,zoom}').val(zoom);]
+			if (action === 'click') {[(#ENV{nomajinputs,non}|=={oui}|non)
+				$('#champ_#ENV{champ_lat,lat}').val(data.lat);
+				$('#champ_#ENV{champ_lon,lon}').val(data.lng);]
+				annuler_geocoder_[(#ENV{nom})] = 1;
+				marker.setLatLng(data);
+				map.panTo(data);
+			} else if (annuler_geocoder_[(#ENV{nom})] !== 1) {
+				if (data.point === 'undefined') {
+					data.point = data;
+				}
+				[(#ENV{nomajinputs,non}|=={oui}|non)
+				$('#champ_#ENV{champ_lat,lat}').val(data.point.lat);
+				$('#champ_#ENV{champ_lon,lon}').val(data.point.lng);]
+				map.panTo(data.point);
+				marker.setLatLng(data.point);
+				marker.options.editable = true;
+				marker.off('dragend').on('dragend', function (e) {
+					marker_dragend(e);
+				});
+				$('#champ_#ENV{champ_type,type}').val('Point');
+				$('#champ_#ENV{champ_geojson,geojson}').val(JSON.stringify(marker.toGeoJSON()));
+			}
+			if (!marker._map) {
+				layer.addLayer(marker);
+			}
+		},
+		marker_dragend = function (e) {
+			var layer = e;
+			if (e.target) {
+				layer = e.target;
+			}
+			$('#champ_#ENV{champ_geojson,geojson}').val(JSON.stringify(layer.toGeoJSON()));
+			maj_inputs(form_map_[(#ENV{nom})], editableLayers_[(#ENV{nom})], layer._latlng, 'click');
+		};
+
+	[(#GET{geocoder}|oui)
+	function geocode (query) {
+		if (!query.error) {
+			[(#ENV{nomajinputs,non}|=={oui}|non)
+			$('#champ_#ENV{champ_adresse,adresse}').val(query.street);
+			$('#champ_#ENV{champ_code_postal,code_postal}').val(query.postcode);
+			$('#champ_#ENV{champ_ville,ville}').val(query.locality);
+			$('#champ_#ENV{champ_departement,departement}').val(query.departement);
+			$('#champ_#ENV{champ_region,region}').val(query.region);
+			$('#champ_#ENV{champ_pays,pays}').val(query.country);
+			$('#champ_#ENV{champ_code_pays,code_pays}').val(query.country_code);]
+			maj_inputs(form_map_[(#ENV{nom})], editableLayers_[(#ENV{nom})], query, 'geocoding');
+			[(#REM)
+				Ajouter un évènement (via Leaflet) si le geocoder retourne quelque chose
+			]
+			form_map_[(#ENV{nom})].fire('geocoder_ok', {query : query});
+		} else {
+			if (query.search == 'undefined') {
+				alert('<:gis:erreur_geocoder:>\n'+query.search);
+			} else {
+				alert('<:gis:erreur_geocoder:>');
+			}
+			[(#REM)
+				Ajouter un évènement (via Leaflet) si le geocoder retourne une erreur
+			]
+			form_map_[(#ENV{nom})].fire('geocoder_fail', {query : query});
+		}
+		return query;
+	}]
+
+	var init_map = function (callback) {
+		[(#REM)
+
+			creer la carte
+
+		]var map_container = 'map_[(#ENV{nom})]';
+		form_map_[(#ENV{nom})] = new L.Map(map_container);
+		[(#REM)
+
+			affecter sur l'objet du DOM
+
+		]$("#" + map_container).get(0).map = form_map_[(#ENV{nom})];
+
+		var layer_edit = function (e) {
+			var layer = e;
+			if (e.target) {
+				layer = e.target;
+			}
+			$('#champ_#ENV{champ_geojson,geojson}').val(JSON.stringify(layer.toGeoJSON()));
+			[(#ENV{nomajinputs,non}|=={oui}|non)
+			var center = layer.getBounds().getCenter();
+			$('#champ_#ENV{champ_lat,lat}').val(center.lat);
+			$('#champ_#ENV{champ_lon,lon}').val(center.lng);]
+		}[,(#ENV{nodraw}|non)
+		gisdraw_change_controls = function (options) {
+			form_map_[(#ENV{nom})].removeControl(drawControl);
+			drawControl = new L.Control.Draw(options);
+			form_map_[(#ENV{nom})].addControl(drawControl);
+			form_map_[(#ENV{nom})].drawControl = drawControl;
+		}];
+		[(#REM)
+
+			appeler l'éventuelle fonction de callback
+
+		]if (callback && typeof (callback) === "function") {
+			form_map_[(#ENV{nom})].on('load', function (e) {
+				callback(e.target);
+			});
+		}
+
+		form_map_[(#ENV{nom})].attributionControl.setPrefix('');
+		marker = new L.Marker(new L.LatLng(#ENV{lat,0}, #ENV{lon,0}), {draggable: [(#ENV{nodraw}|?{true,false})]});
+		[(#REM)
+
+			default layer
+
+		]#SET{layer_defaut,#REM|gis_layer_defaut} #SET{layers,#EVAL{$GLOBALS['gis_layers']}}
+		var [(#GET{layer_defaut})] = [new (#GET{layers}|table_valeur{#GET{layer_defaut}/layer})];
+		form_map_[(#ENV{nom})].addLayer([(#GET{layer_defaut})]);
+		<B_layers>
+		var layers_control = new L.Control.Layers();
+		layers_control.addBaseLayer([(#GET{layer_defaut})],["(#GET{layers}|table_valeur{#GET{layer_defaut}/nom})"]);
+		<BOUCLE_layers(DATA){source table, #GET{layers}}{si #ENV{control_type,#ENV{controle_type}}|!={non}|et{#ENV{no_control,#ENV{aucun_controle}}|!={oui}}|et{#CONFIG{gis/layers,#ARRAY}|count|>{1}|oui}|oui}>[
+		(#CLE|!={#GET{layer_defaut}}|oui|et{#CLE|in_array{#CONFIG{gis/layers,#ARRAY}}|oui}|oui)
+		layers_control.addBaseLayer([new (#VALEUR|table_valeur{layer})],"[(#VALEUR|table_valeur{nom})]");]
+		</BOUCLE_layers>
+		form_map_[(#ENV{nom})].addControl(layers_control);
+		// ajouter l'objet du controle de layers à la carte pour permettre d'y accéder depuis le callback
+		form_map_[(#ENV{nom})].layersControl = layers_control;
+		// classe noajax sur le layer_control pour éviter l'ajout de hidden par SPIP
+		$(layers_control._form).addClass('noajax');
+		</B_layers>
+		[(#GET{utiliser_bb}|non)
+		form_map_[(#ENV{nom})].setView(new L.LatLng([(#GET{init_lat})], [(#GET{init_lon})]), [(#GET{init_zoom})]);]
+		[(#GET{utiliser_bb}|oui)
+		form_map_[(#ENV{nom})].fitBounds(
+			new L.LatLngBounds(
+				new L.LatLng([(#GET{init_sw_lat})], [(#GET{init_sw_lon})]),
+				new L.LatLng([(#GET{init_ne_lat})], [(#GET{init_ne_lon})])
+			)
+		);
+		[(#ENV{nomajinputs,non}|=={oui}|non)
+		[(#REM)
+			mettre à jour les champs de latitude et longitude quand la carte est chargée
+			a voir si on le fait dans tous les cas, pas seulement pour la boundingbox, comme pour le zoom
+		]
+		form_map_[(#ENV{nom})].on('load', function(e) {
+			$('#champ_#ENV{champ_lat,lat}').val(e.latlng.lat);
+			$('#champ_#ENV{champ_lon,lon}').val(e.latlng.lon);
+		});]]
+
+		[(#REM)
+
+			On ajoute notre point (ou tout autre élément) dans un FeatureGroup
+
+		]editableLayers_[(#ENV{nom})] = new L.FeatureGroup();
+		form_map_[(#ENV{nom})].addLayer(editableLayers_[(#ENV{nom})]);
+
+		[(#GET{geocoder}|oui)
+		geocoder = new L.Geocoder(geocode,{acceptLanguage:'#ENV{lang}'});]
+
+		<BOUCLE_gis(GIS){id_gis}>
+		var data = {
+			"type": "FeatureCollection",
+			"features": [
+				{"type": "Feature",
+					["geometry": (#GEOMETRY|wkt_to_json),]
+					"id":"#ENV{id_gis,oui}",
+					"properties": {
+						"title":[(#ENV{titre,''}|html2unicode|extraire_multi|json_encode)],
+						"description":[(#ENV{descriptif,''}|html2unicode|propre|json_encode)][
+						(#LOGO_GIS|gis_icon_properties)]
+					}
+				}]
+		}
+		var geojson = new L.geoJson('', {[
+			style: (#ENV*{path_styles}|?{[(#ENV*{path_styles}|json_encode)],[(#GEOMETRY_STYLES|appliquer_filtre{geometry_styles_to_json})]}),
+			]onEachFeature: function (feature, layer) {
+				editableLayers_[(#ENV{nom})].addLayer(layer);
+				if (feature.geometry.type == 'Polygon' || feature.geometry.type == 'LineString') {
+					[(#REM)
+
+						centrer la carte sur les bounds de l'objet
+
+					]form_map_[(#ENV{nom})].fitBounds(layer.getBounds());
+					[(#REM)
+
+						surveiller les changements sur les points de l'objet
+
+					]layer.on('edit', function (e) {
+						layer_edit(e);
+					});
+				} else if (feature.geometry.type == 'Point') {
+					marker = layer;
+					if (feature.properties) {
+						if(feature.properties.icon) {
+							layer.setIcon(new L.Icon({
+								iconUrl: feature.properties.icon,
+								iconSize: new L.Point(feature.properties.icon_size\[0\], feature.properties.icon_size\[1\]),
+								iconAnchor: new L.Point(feature.properties.icon_anchor\[0\], feature.properties.icon_anchor\[1\]),
+								popupAnchor: new L.Point(feature.properties.popup_anchor\[0\], feature.properties.popup_anchor\[1\])
+							}));
+						};
+						if (feature.properties.title) {
+							layer.bindPopup(feature.properties.title);
+						};
+					};
+					[(#REM)
+
+						rendre le marker draggable
+
+					]layer.options.draggable = true;
+					[(#REM)
+
+						surveiller les changements sur le point
+						
+					]layer.off('dragend').on('dragend', function (e) {
+						marker_dragend(e);
+					});
+				}
+			}
+		}).addTo(form_map_[(#ENV{nom})]);
+		geojson.addData(data);
+		</BOUCLE_gis>
+		</B_gis>
+		<BOUCLE_si_geojson(CONDITION){si #ENV{geojson}}>
+		var geojson = new L.geoJson('', {[
+			style: (#ENV*{path_styles}|json_encode),
+			]onEachFeature: function (feature, layer) {
+				editableLayers_[(#ENV{nom})].addLayer(layer);
+				form_map_[(#ENV{nom})].removeLayer(layer);
+				if (feature.type === 'Polygon' || feature.type === 'MultiPolygon' || feature.type === 'LineString') {
+					[(#REM)
+
+						centrer la carte sur les bounds de l'objet
+
+					]form_map_[(#ENV{nom})].fitBounds(layer.getBounds());
+					[(#REM)
+
+						surveiller les changements sur les points de l'objet
+
+					]layer.on('edit', function (e) {
+						layer_edit(e);
+					});
+				} else if (feature.geometry.type === 'Point') {
+					marker = layer;
+					if (feature.properties && feature.properties.icon) {
+						layer.setIcon(new L.Icon({
+							iconUrl: feature.properties.icon,
+							iconSize: new L.Point(feature.properties.icon_size\[0\], feature.properties.icon_size\[1\]),
+							iconAnchor: new L.Point(feature.properties.icon_anchor\[0\], feature.properties.icon_anchor\[1\]),
+							popupAnchor: new L.Point(feature.properties.popup_anchor\[0\], feature.properties.popup_anchor\[1\])
+						}));
+					}
+					if (feature.properties && feature.properties.title) {
+						layer.bindPopup(feature.properties.title);
+					}
+					[(#REM)
+
+						rendre le marker draggable
+
+					]layer.options.draggable = true;
+					[(#REM)
+
+						surveiller les changements sur le point
+
+					]layer.off('dragend').on('dragend', function (e) {
+						marker_dragend(e);
+					});
+				}
+			}
+		}).addTo(form_map_[(#ENV{nom})]);
+		geojson.addData([(#ENV**{geojson}|html_entity_decode)]);
+		</BOUCLE_si_geojson>
+		<//B_gis>
+		[(#REM) 
+		
+			afficher les outils de dessin uniquement lors de la création d'objet
+
+		][(#ENV{nodraw}|non)
+		[(#REM)
+
+			i18n des chaines de Leaflet.draw
+
+		]L.drawLocal.draw.toolbar.actions.title = '<:gis:toolbar_actions_title|texte_script:>';
+		L.drawLocal.draw.toolbar.actions.text = '<:bouton_annuler|texte_script:>';
+		L.drawLocal.draw.toolbar.buttons.polyline = '<:gis:toolbar_buttons_polyline|texte_script:>';
+		L.drawLocal.draw.toolbar.buttons.polygon = '<:gis:toolbar_buttons_polygon|texte_script:>';
+		L.drawLocal.draw.toolbar.buttons.rectangle = '<:gis:toolbar_buttons_rectangle|texte_script:>';
+		L.drawLocal.draw.toolbar.buttons.circle = '<:gis:toolbar_buttons_circle|texte_script:>';
+		L.drawLocal.draw.toolbar.buttons.marker = '<:gis:toolbar_buttons_marker|texte_script:>';
+		L.drawLocal.draw.toolbar.finish.text = '<:gis:toolbar_finish_text|texte_script:>';
+		L.drawLocal.draw.toolbar.finish.title = '<:gis:toolbar_finish_title|texte_script:>';
+		L.drawLocal.draw.toolbar.undo.title = '<:gis:toolbar_undo_title|texte_script:>';
+		L.drawLocal.draw.toolbar.undo.text = '<:gis:toolbar_undo_text|texte_script:>';
+		L.drawLocal.draw.handlers.marker.tooltip.start = '<:gis:toolbar_handlers_marker_tooltip_start|texte_script:>';
+		L.drawLocal.draw.handlers.polygon.tooltip.start = '<:gis:toolbar_handlers_polygon_tooltip_start|texte_script:>';
+		L.drawLocal.draw.handlers.polygon.tooltip.cont = '<:gis:toolbar_handlers_polygon_tooltip_cont|texte_script:>';
+		L.drawLocal.draw.handlers.polygon.tooltip.end = '<:gis:toolbar_handlers_polygon_tooltip_end|texte_script:>';
+		L.drawLocal.draw.handlers.polyline.tooltip.start = '<:gis:toolbar_handlers_polyline_tooltip_start|texte_script:>';
+		L.drawLocal.draw.handlers.polyline.tooltip.cont = '<:gis:toolbar_handlers_polyline_tooltip_cont|texte_script:>';
+		L.drawLocal.draw.handlers.polyline.tooltip.end = '<:gis:toolbar_handlers_polyline_tooltip_end|texte_script:>';
+		L.drawLocal.draw.handlers.rectangle.tooltip.start = '<:gis:toolbar_handlers_rectangle_tooltip_start|texte_script:>';
+		L.drawLocal.draw.handlers.simpleshape.tooltip.end = '<:gis:toolbar_handlers_simpleshape_tooltip_end|texte_script:>';
+		L.drawLocal.edit.toolbar.actions.save.text = '<:bouton_enregistrer|texte_script:>';
+		L.drawLocal.edit.toolbar.actions.save.title = '<:gis:bouton_enregistrer_title|texte_script:>';
+		L.drawLocal.edit.toolbar.actions.cancel.text = '<:bouton_annuler|texte_script:>';
+		L.drawLocal.edit.toolbar.actions.cancel.title = '<:gis:bouton_annuler_title|texte_script:>';
+		L.drawLocal.edit.toolbar.buttons.edit = '<:gis:toolbar_edit_buttons_edit|texte_script:>';
+		L.drawLocal.edit.toolbar.buttons.editDisabled = '<:gis:toolbar_edit_buttons_editdisabled|texte_script:>';
+		L.drawLocal.edit.toolbar.buttons.remove = '<:gis:toolbar_edit_buttons_remove|texte_script:>';
+		L.drawLocal.edit.toolbar.buttons.removeDisabled = '<:gis:toolbar_edit_buttons_removedisabled|texte_script:>';
+		L.drawLocal.edit.handlers.edit.tooltip.text = '<:gis:toolbar_edit_handlers_edit_tooltip_text|texte_script:>';
+		L.drawLocal.edit.handlers.edit.tooltip.subtext = '<:gis:toolbar_edit_handlers_edit_tooltip_subtext|texte_script:>';
+		L.drawLocal.edit.handlers.remove.tooltip.text = '<:gis:toolbar_edit_handlers_remove_tooltip_text|texte_script:>';
+
+		var drawOptions = {
+			position: 'topleft',
+			draw: {
+				polyline:[(#ENV{boutons}|table_valeur{polyline}|=={non}|oui)false][
+				(#ENV{boutons}|table_valeur{polyline}|=={non}|non){
+					shapeOptions: { color: '#0033ff' }
+				}],
+				polygon:[(#ENV{boutons}|table_valeur{polygon}|=={non}|oui)false][
+				(#ENV{boutons}|table_valeur{polygon}|=={non}|non){
+					shapeOptions: { color: '#0033ff' }
+				}],
+				marker: [(#ENV{boutons}|table_valeur{marker}|=={non}|?{false,true})],
+				circle: false,
+				circlemarker: false,
+				rectangle: [(#ENV{boutons}|table_valeur{rectangle}|=={non}|?{false,''})][
+				(#ENV{boutons}|table_valeur{rectangle}|=={non}|non){
+					shapeOptions: { color: '#0033ff' }
+				}]
+			},
+			edit: {
+				featureGroup: editableLayers_[(#ENV{nom})]
+			}
+		}, drawOptionsBlocked = {
+			position: 'topleft',
+			draw: false,
+			edit: {
+				featureGroup: editableLayers_[(#ENV{nom})]
+			}
+		}, edited = false;
+
+		[(#REM)
+
+			Si on a un objet, on limite l'usage de la toolbar,
+			sinon on a accès aux outils de dessin
+
+		]
+		var drawControl = new L.Control.Draw(drawOptions);
+		if (Object.keys(editableLayers_[(#ENV{nom})]._layers).length >= 1) {
+			drawControl = new L.Control.Draw(drawOptionsBlocked);
+		}
+		[(#REM)
+
+			Si on a un seul objet, on le rend éditable
+
+		]
+
+		form_map_[(#ENV{nom})].addControl(drawControl);
+		form_map_[(#ENV{nom})].drawControl = drawControl;
+		form_map_[(#ENV{nom})].on('draw:created', function (e) {
+			var type = e.layerType,
+				layer = e.layer;
+			if (type === 'marker') {
+				marker.setLatLng(layer._latlng);
+				form_map_[(#ENV{nom})].removeLayer(marker);
+				editableLayers_[(#ENV{nom})].addLayer(marker);
+				$('#champ_#ENV{champ_type,type}').val('Point');
+				marker_dragend(layer);
+				marker.off('dragend').on('dragend', function (e) {
+					marker_dragend(e);
+				});
+			} else {
+				editableLayers_[(#ENV{nom})].addLayer(layer);
+				if (type === 'polygon' || type === 'rectangle') {
+					$('#champ_#ENV{champ_type,type}').val('Polygon');
+				} else if (type === 'polyline') {
+					$('#champ_#ENV{champ_type,type}').val('LineString');
+				}
+				layer_edit(layer);
+				layer.on('edit', function (e) {
+					layer_edit(e);
+				});
+			}
+			gisdraw_change_controls(drawOptionsBlocked);
+		});
+		form_map_[(#ENV{nom})].on('draw:deleted', function (e) {
+			if (Object.keys(e.layers._layers).length >= 1) {
+				[(#REM)
+
+					La forme est supprimée, donc on vide l'ensemble des champs
+
+				]
+				[(#ENV{nomajinputs,non}|=={oui}|non)
+				$('#champ_[(#ENV{champ_lat,lat})],#champ_[(#ENV{champ_lon,lon})],#champ_[(#ENV{champ_type,type})],#champ_[(#ENV{champ_geojson,geojson})]').val('');
+				$('#champ_[(#ENV{champ_adresse,adresse})],#champ_[(#ENV{champ_code_postal,code_postal})],#champ_[(#ENV{champ_ville,ville})],#champ_[(#ENV{champ_departement,departement})],#champ_[(#ENV{champ_region,region})],#champ_[(#ENV{champ_pays,pays})],#champ_[(#ENV{champ_code_pays,code_pays})]').val('');]
+				[(#REM)
+
+					On passe par un settimeout ici pour laisser draw finir son action
+					https://github.com/Leaflet/Leaflet.draw/issues/369
+
+				]
+				setTimeout(function () { gisdraw_change_controls(drawOptions); }, 200);
+			}
+		});
+		/**
+		 * Au editstart, on met la variable edited à false
+		 */
+		form_map_[(#ENV{nom})].on('draw:editstart', function (e) {
+			edited = false;
+		});
+		/**
+		 * Au edited, on met la variable edited à true (il y a eu edition)
+		 */
+		form_map_[(#ENV{nom})].on('draw:edited', function (e) {
+			edited = true;
+		});
+		/**
+		 * Au editstop, on vérifie la variable edited, si true, il y a eu modif, donc on ne fait rien
+		 * si false, on remet les valeurs par défaut avant édition (bouton annuler)
+		 */
+		form_map_[(#ENV{nom})].on('draw:editstop', function (e) {
+			if (!edited) {
+				var type = $('#champ_#ENV{champ_type,type}').val();
+				editableLayers_[(#ENV{nom})].eachLayer(function (layer) {
+					if (type === 'Point') {
+						marker_dragend(layer);
+					} else {
+						layer_edit(layer);
+					}
+				});
+			} else {
+				edited = false;
+			}
+		});
+		if (Object.keys(editableLayers_[(#ENV{nom})]._layers).length == 1) {
+			editableLayers_[(#ENV{nom})].eachLayer(function (layer) {
+				drawControl._toolbars.edit._modes.edit.handler.enable();
+			});
+		}
+		[(#REM)
+			
+			Si le geocoder renvoit quelque chose, on bloque la création de nouveaux éléments
+			
+		]form_map_[(#ENV{nom})].on('geocoder_ok', function(){
+			if(drawControl._toolbars.draw) {
+				gisdraw_change_controls(drawOptionsBlocked);
+				marker.editing.enable();
+				drawControl._toolbars.edit._modes.edit.handler.enable();
+			}
+		});]
+		[(#ENV{nodraw}|oui)
+		[(#REM)
+
+			option nodraw, l'objet est un point
+
+		]$('#champ_#ENV{champ_type,type}').val('Point');
+		[(#REM)
+
+			mettre a jour les coordonnees quand on clique la carte
+
+		]form_map_[(#ENV{nom})].on('click', function (e) {
+			annuler_geocoder_[(#ENV{nom})] = 0;
+			maj_inputs(form_map_[(#ENV{nom})], editableLayers_[(#ENV{nom})], e.latlng, 'click');
+		});
+		[(#REM)
+
+			mettre à jour le champ geosjon et le marker quand on change les valeur de lat ou lon
+
+		][(#ENV{nomajinputs,non}|=={oui}|non)
+		$('#champ_#ENV{champ_lat,lat}, #champ_#ENV{champ_lon,lon}').on('change', function () {
+			var new_lat = $('#champ_#ENV{champ_lat,lat}').val(),
+				new_lon = $('#champ_#ENV{champ_lon,lon}').val(),
+				new_center = new L.LatLng(new_lat, new_lon);
+			marker.setLatLng(new_center);
+			form_map_[(#ENV{nom})].panTo(new_center);
+			$('#champ_#ENV{champ_geojson,geojson}').val('{"type":"Point","coordinates":\[' + new_lon + ',' + new_lat + '\]}');
+		});]]
+
+		[(#ENV{nodraw}|oui)
+		[(#REM)
+
+			mettre à jour les coordonnées quand on déplace le marker
+
+		]marker.off('dragend').on('dragend', function (e) {
+			marker_dragend(e);
+		});]
+
+		[(#REM)
+		
+			mettre à jour le zoom quand on le modifie
+
+		][(#ENV{nomajinputs,non}|=={oui}|non)
+		form_map_[(#ENV{nom})].on('zoomend', function (e) {
+			$('#champ_#ENV{champ_zoom,zoom}').val(e.target._zoom);
+		});]
+
+		[(#GET{geocoder}|oui)
+		[(#REM)
+
+			geocoder si clic...
+
+		]$('a##ENV{nom}_rechercher_geocodage').css("cursor","pointer").on('click',function(){
+			var address = $("#champ_#ENV{nom}_geocoder").val();
+			annuler_geocoder_[(#ENV{nom})] = 0;
+			geocoder.geocode(address);
+		});
+
+		[(#REM)
+
+			ne pas soumettre le formulaire si on presse Entree depuis le champ de recherche
+			
+		]$('#champ_#ENV{nom}_geocoder').on('keypress', function (e) {
+			if (e.which == 13) {
+				$('a##ENV{nom}_rechercher_geocodage').trigger("click");
+				return false;
+			}
+		});]
+
+		[(#ENV{id_gis}|non|ou{#ENV{id_gis}|=={oui}}|et{#CONFIG{gis/geolocaliser_user_html5}|=={on}}|oui)
+		form_map_[(#ENV{nom})].locate({setView: true, maxZoom: [(#GET{init_zoom})]});]
+	};
+
+	$(function () {
+		$.getScript('[(#PRODUIRE{fond=javascript/gis.js})]', function () {
+			if (typeof (callback_form_map_[(#ENV{nom})]) === "function") {
+				init_map(callback_form_map_[(#ENV{nom})]);
+			} else if (typeof (callback_form_map) === "function") {
+				init_map(callback_form_map);
+			} else {
+				init_map();
+			}
+		});
+	});
+
+})(jQuery);
+/*]]>*/
+</script>
+#ENV*{inserer_fin}
+</[(#VAL{li}|saisie_balise_structure_formulaire)]>
+[(#GET{geocoder}|oui)
+<[(#VAL{li}|saisie_balise_structure_formulaire)] class="rechercher_adresse editer editer_[(#ENV{nom})]">
+	<label for="champ_#ENV{nom}_geocoder"><:gis:label_rechercher_address:></label>
+	<input type="text" class="text" name="champ_#ENV{nom}_geocoder" id="champ_#ENV{nom}_geocoder" placeholder="<:gis:placeholder_geocoder|attribut_html:>" value="" />
+	<a id="#ENV{nom}_rechercher_geocodage"><:info_rechercher:></a>
+</[(#VAL{li}|saisie_balise_structure_formulaire)]>]
+#FILTRE{trim}
+<!--extragis-->

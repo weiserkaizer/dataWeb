@@ -1,0 +1,7 @@
+[(#REM) S'il n'y a qu'un document joint, faire une redirection temporaire sur ce dernier
+cf : http://www.webrankinfo.com/dossiers/strategies-de-liens/tutoriel-redirections
+]<BOUCLE_PlusieursDocuments(DOCUMENTS){mode=document}{id_article}{1,1}> </BOUCLE_PlusieursDocuments><BOUCLE_DocumentJointUnique(DOCUMENTS){mode=document}{id_article}{0,1}><?php
+	header("HTTP/1.1 302");
+	header("Location: [(#URL_DOCUMENT|url_absolue)]");
+	exit;
+?></BOUCLE_DocumentJointUnique><//B_PlusieursDocuments>

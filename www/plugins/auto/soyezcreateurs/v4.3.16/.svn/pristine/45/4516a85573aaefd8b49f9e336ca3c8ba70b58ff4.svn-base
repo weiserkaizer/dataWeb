@@ -1,0 +1,34 @@
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+[(#REM) 
+		On ne va afficher la liste des articles 
+		(dans le cartouche qui n'est visible que s'il y a un texte dans la rubrique) 
+		dans une rubrique que si les articles ne sont pas listés dans le menu principal (mot clef AfficherArticlesMenu).
+][(#SET{div_artrecents,0})]
+[(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives,id_article,id_rubrique,lang,classe})#SET{div_artrecents,1}]]
+<BOUCLE_AuMoinsUnArticle(ARTICLES) {id_rubrique} {lang} {0,1}{!archive}>
+<BOUCLE_AfficherArticlesMenu(RUBRIQUES) {id_rubrique} {titre_mot=AfficherArticlesMenu}> </BOUCLE_AfficherArticlesMenu>
+#SET{tri,#CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}#SET{senstri,-1}
+<BOUCLE_ClassementAlpha(RUBRIQUES){id_rubrique}{titre_mot=ClassementAlpha}>#SET{tri,titre}#SET{senstri,1}</BOUCLE_ClassementAlpha>
+<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+[.)]}{0,1}>#SET{tri,num titre}#SET{senstri,1}</BOUCLE_test_numero>
+<//B_ClassementAlpha>
+	<B_articles_recents>
+[(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>#SET{div_artrecents,1}]
+	<h2><:ecrire:onglet_contenu:></h2>
+	<ul>
+	<BOUCLE_articles_recents(ARTICLES) {id_rubrique} {tri #GET{tri},#GET{senstri}} {lang}{!archive}>
+		<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+	</BOUCLE_articles_recents>
+	</ul>
+[(#VAL{cartouche}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
+	[(#INCLURE{fond=modeles/documentsjoints,id_rubrique,cartouche=_cartouche})]
+]
+	[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche,id_rubrique})]]
+[(#GET{div_artrecents}|oui)</div>]
+	</B_articles_recents>
+<//B_AfficherArticlesMenu>
+</BOUCLE_AuMoinsUnArticle>
+[(#GET{div_artrecents}|oui)</div>]
+[(#GET{div_artrecents}|non)[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche_ssrubriques,id_rubrique,classe})]]
+	<//B_AuMoinsUnArticle>
+</BOUCLE_rubrique_principal>
+#FILTRE{mini_html}

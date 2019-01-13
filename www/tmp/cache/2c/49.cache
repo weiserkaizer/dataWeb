@@ -1,0 +1,86 @@
+a:2:{s:9:"nom_cache";s:38:"2c4957918d2c4d82508268c1a62a6afa.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_2cefc646d6d959ad8c5ab29641b7edab";s:6:"source";s:70:"plugins/auto/agenda/v3.19.6/squelettes/style_public_plugin_agenda.html";s:11:"process_ins";s:4:"html";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"2c4957918d2c4d82508268c1a62a6afa.cache";}s:7:"entetes";a:6:{s:12:"X-Spip-Cache";s:6:"360000";s:13:"Cache-Control";s:14:"max-age=360000";s:6:"Pragma";s:8:"no-cache";s:15:"X-Spip-Statique";s:3:"oui";s:12:"Content-Type";s:29:"text/css; charset=iso-8859-15";s:4:"Vary";s:15:"Accept-Encoding";}s:5:"duree";i:360000;s:5:"texte";s:4435:"
+/*.pagination a.creer {float:;}*/
+/* vevent */
+/*
+li.item div.vevent h3 {margin:0;font-size:1.1em;}
+li.item div.vevent p {margin:2px 0 0;}
+li.item div.vevent p.date {font-size: 0.98em; }
+ul.evenements li.item.court p,ul.evenements li.item.court .actions { display: none; }
+li.item div.vevent p.category {font-size:0.9em;color:#999;}
+*/
+/* liste des evenements */
+/*
+.plier_deplier { float: ; font-size: 0.9em; }
+.liste-items.evenements li.item { padding-left: 130px; }
+.liste-items.evenements li.court { border-width: 1px; }
+.liste-items.evenements li.item .jour { width: 120px; margin-left: -130px; float: ; display: inline; position: relative; overflow: hidden; white-space: nowrap; font-size: 98%; }
+
+li.item .repetitions {margin-top:0.5em;font-size:0.9em;}
+li.court .repetitions {display: none;}
+li.item .repetitions ul,
+li.item .repetitions li {display:inline;margin:0;padding:0;}
+*/
+
+.liste-items.evenements .actions {text-align:right;font-size:0.9em;margin:5px 0 0;}
+.liste-objets.evenements p.date {margin-bottom: 0;}
+.liste-objets.evenements .on td,.liste-objets.evenements .on th {background-color: #bfbfbf}
+.liste-objets.evenements tr.repetition {filter:alpha(opacity=70); -moz-opacity:0.7; opacity: 0.7;}
+.liste-objets.evenements .repetition .id a {display: block;}
+/* sur la fiche rubriques */
+.rubrique .agenda-statut img.statut {float:;margin-:5px;}
+
+/* sur la fiche article */
+.fiche_objet #agenda {position: relative;}
+.fiche_objet #agenda .creer_evenement {position: absolute;top:-1px;right: 5px;}
+
+/* sur la fiche evenement */
+.evenement .fiche_objet .formulaire_dater {display: none;}
+.evenement #wysiwyg .contenu_lieu .label {display: inline;font-weight: bold;}
+.evenement #wysiwyg .contenu_lieu .lieu {display: inline;}
+.evenement #wysiwyg .contenu_adresse .label {display: block;}
+.evenement .fiche_objet .contenu_dates {padding-:20px;background:url(plugins-dist/organiseur/prive/themes/spip/images/calendrier-16.png) no-repeat center ;}
+.evenement #wysiwyg .contenu_places {margin-top: 1em;}
+.evenement #wysiwyg .contenu_places .label {display: inline;font-weight: bold;}
+.evenement #wysiwyg .contenu_places .places {display: inline;}
+.evenement .fiche_objet .contenu_repetitions {padding-:20px;}
+.evenement #wysiwyg .contenu_repetitions .label {display: inline;color:inherit;}
+.evenement .fiche_objet .contenu_repetitions .repetitions {display: inline;color:#999;}
+
+/* edition d'un evenement */
+.formulaire_editer_evenement .editer_parent {}
+.formulaire_editer_evenement .editer_parent label {margin-:0;display:block;float:left;padding:2px 0;width:130px;}
+
+.formulaire_editer_evenement .editer_horaire {padding-top:0;margin-top:0;}
+.formulaire_editer_evenement .editer_horaire label {margin:0;display:inline;width:auto;float:none;}
+.formulaire_editer_evenement li.editer_date,
+.formulaire_editer_evenement li.editer_date li {clear:left;}
+.formulaire_editer_evenement li.editer_date_debut_fin label { /*vertical-align: top;*/ }
+
+.formulaire_editer_evenement input.date {width:5.5em !important;padding-right:20px;-moz-box-sizing: content-box;-webkit-box-sizing: content-box;-ms-box-sizing: content-box;box-sizing: content-box;}
+.formulaire_editer_evenement span.afficher_horaire label {float:none;display:inline;padding:0;margin:0;}
+.formulaire_editer_evenement input.heure {width:4.5em !important;}
+
+.formulaire_editer_evenement li.editer_date label.heure {display:none;}
+.formulaire_editer_evenement li.editer_date label {display:inline;float:none;margin:0;}
+
+.formulaire_editer_evenement .editer_inscription .choix {display:block;}
+.formulaire_editer_evenement .editer_inscription .choix input.text {width:50px;margin-left:1em;/*vertical-align:top;*/}
+
+/* le picker */
+
+/* begin: jQuery UI Datepicker moving pixels fix */
+	table.ui-datepicker-calendar {border-collapse: separate;}
+	.ui-datepicker-calendar td {border: 1px solid transparent;}
+/* end: jQuery UI Datepicker moving pixels fix */
+/* begin: jQuery UI Datepicker emphasis on selected dates */
+.ui-datepicker .ui-datepicker-calendar .ui-state-highlight a {
+	background: ; /* a color that fits the widget theme */
+	color: white; /* a color that is readeable with the color above */
+}
+/* end: jQuery UI Datepicker emphasis on selected dates */
+
+#repetitions_picker {}
+.editer_repetitions textarea {width:100%;height:4em;color:#999;border:1px solid #999;}
+
+/* Calendrier */
+ul.menu li .pagination a, ul.menu li .pagination strong.on { display:inline; }";s:5:"notes";s:0:"";s:8:"contexte";a:6:{s:14:"couleur_claire";s:6:"cd9a55";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2018-08-11 14:48:51";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2018-08-11 14:48:51";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1533998917;s:2:"gz";b:0;s:3:"sig";i:1039592907;}}

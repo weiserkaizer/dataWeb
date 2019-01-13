@@ -1,0 +1,3 @@
+<?php
+
+	define('SVP_PREFERER_TELECHARGEMENT_PAR_VCS',true);

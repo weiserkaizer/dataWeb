@@ -1,0 +1,136 @@
+/*a:after {
+	content: ' [' attr(href) '] ';
+}
+*/
+
+html, body, .texte, #letexte {
+	background-color: #fff;
+	background-image: none;
+	color: #000;
+	font-family: "Trebuchet MS", verdana, arial, helvetica, sans-serif;
+	font-size: 12pt;
+}
+
+nav, aside, .navstuff, .retourtop, #navigation, #extra, #header, #xiti, .spip-admin, #artrecents, #menuhaut, #menufooter, #miettesdepain, .spip-admin-bloc, .bouton_pdf, .retoursommaire, #participer , .socialtags, .notation, .spip-previsu, #bandeau_annonce, .forum-repondre, #nuage {
+	display: none !important;
+}
+
+#wrapper, #container, #content, #footer, #footer span, #bandeaucontact, .chapo, .ps, .cartouche {
+	background: transparent !important;
+	background-image: none !important;
+	color: #000 !important;
+	border: 0 none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 100% !important;
+	height: auto !important;
+	min-width: none !important;
+}
+
+#footer {
+	margin-top: .5em !important; 
+	border-top: solid 1px #999 !important;
+	color: #000;
+}
+
+#wrapper h1, #wrapper h2 {
+	margin-right: 0px;
+	margin-left: 0px;
+	page-break-after: avoid;
+	color: #000 !important;
+}
+
+.spip_out {
+	padding-right: 0px;
+	background-image:    none;
+}
+.surtitre {
+	top:0em;	
+	color: #000;
+}
+.soustitre {
+	top:-1em;
+	color: #000;
+}
+
+.surtitre span, .soustitre span {
+	border: 0 none;
+	color: #000;
+}
+
+.datepublication {
+	border: 0 none;
+	top:0;
+	color: #000;
+}
+
+#qrcode img { height: 100%; width: 100%; padding: 0; }
+
+abbr[title]:after, acronym[title]:after {
+    content: "\0000a0(" attr(title) ")";
+}
+
+abbr, acronym {
+	border-bottom: 0;
+}
+
+table, tr, td, ul, ol {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	color: #000;
+	list-style-image: none; 
+}
+table.spip tr { display: table-row; }
+table.spip td, table.spip th { display: table-cell; }
+
+ol {
+	list-style-type: decimal;
+}
+
+ul {
+	list-style-type: disc;
+}
+
+table {
+	margin-top: 1em;
+}
+
+th {
+	margin: .5em 0;
+	text-align: center;
+}
+
+table, td, tr, th {
+	border-color: #000 !important;
+}
+
+thead {
+	background-color: #fff !important;
+	color: #000 !important;
+}
+
+li {
+	color: #000;
+	list-style-image: none;	
+}
+
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6,
+#content .contenu_chapitres h2, #content .contenu_chapitres h3, #content .contenu_chapitres h4, #content .contenu_chapitres h5, #content .contenu_chapitres h6 {
+	color: #000;
+	background: transparent;
+}
+
+.rubriques_chapitres {
+	border-left: none;
+}
+
+.contenu_chapitres {
+	border-left: none;
+}
+
+*, h1, h2, h3, h4, h5, h6 {
+	color: #000 !important;
+	font-family: "Trebuchet MS", verdana, arial, helvetica, sans-serif !important;
+}

@@ -1,0 +1,32 @@
+<BOUCLE_Contact(CONTACTS){id_contact}>
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<li><a href="#URL_PAGE{annuaire}"><:soyezcreateurs:annuaire:></a></li>
+			<BOUCLE_OrganisationContact(ORGANISATIONS organisations_contacts){id_contact}><BOUCLE_ArboOrganisations(ORGANISATIONS){id_organisation=#ID_PARENT}{tous}><BOUCLE_HierarchieArboOrganisations(BOUCLE_ArboOrganisations) />[(#REM) #ID_PARENT doit être present sinon la recursivite se fait mal... etonnant ]<li><a href="#URL_PAGE{annuaire,id_organisation=#ID_ORGANISATION}">#NOM</a></li></BOUCLE_ArboOrganisations><li><a href="#URL_PAGE{annuaire,id_organisation=#ID_ORGANISATION}">#NOM</a></li></BOUCLE_OrganisationContact>
+			<li>[(#CIVILITE) ][(#PRENOM) ]#NOM</li>
+		</ul>
+	</nav>
+</BOUCLE_Contact>
+<BOUCLE_Organisation(ORGANISATIONS){id_organisation}>
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<li><a href="#URL_PAGE{annuaire}"><:soyezcreateurs:annuaire:></a></li>
+			<BOUCLE_ArboContacts(ORGANISATIONS){id_organisation=#ID_PARENT}{tous}><BOUCLE_HierarchieArboContacts(BOUCLE_ArboContacts) />[(#REM) #ID_PARENT doit être present sinon la recursivite se fait mal... etonnant ] <li><a href="#URL_PAGE{annuaire,id_organisation=#ID_ORGANISATION}">#NOM</a></li></BOUCLE_ArboContacts>
+			<li>#NOM</li>
+		</ul>
+	</nav>
+</BOUCLE_Organisation>
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<li><:soyezcreateurs:annuaire:></li>
+		</ul>
+	</nav>
+<//B_Organisation>
+<//B_Contact>
+#FILTRE{mini_html}

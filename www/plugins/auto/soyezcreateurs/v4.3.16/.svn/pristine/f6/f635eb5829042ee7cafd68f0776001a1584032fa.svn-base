@@ -1,0 +1,8 @@
+<BOUCLE_Evenement(EVENEMENTS){id_evenement}>
+
+<B_ArticleConcerne><BOUCLE_ArticleConcerneLogo(ARTICLES){id_article}><li[ style="list-style-image: url(/(#LOGO_RUBRIQUE_NORMAL{id_rubrique}|image_reduire{9,9}|extraire_attribut{src}));"]></BOUCLE_ArticleConcerneLogo>[<strong>(#DATE_DEBUT|sc_decoder_date{#DATE_FIN,#HORAIRE,'skel','oui'})</strong>] <B_Statut><span class="agendastatut"><BOUCLE_Statut(MOTS) {id_evenement}{type=_AgendaStatut}{doublons statut}>[ <strong class="agendastatut agendastatut#ID_MOT"[(#INCLURE{fond=noisettes/agenda/agenda_statut,couleur=#TEXTE*})][ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>(#TITRE)</strong> ]</BOUCLE_Statut></span></B_Statut><br />
+<BOUCLE_ArticleConcerne(ARTICLES){id_article}><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE)&nbsp;: ]</BOUCLE_TitreRub><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a>[&nbsp;: (#_Evenement:TITRE|=={[(#TITRE)]}|?{'',[(#_Evenement:TITRE)]})]</BOUCLE_ArticleConcerne>
+[(#PLUGIN{critere_mots}|oui)[(#INCLURE{fond=noisettes/agenda/etiquette_evenement,id_evenement})]]
+</li></B_ArticleConcerne>
+</BOUCLE_Evenement>
+#FILTRE{mini_html}

@@ -1,0 +1,53 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+[(#SET{div_artrecents,0})]
+[(#REM) 
+		On ne va afficher la liste des articles que :
+		- s'il y a plusieurs
+		- et que les articles ne sont pas listés dans le menu principal (mot clef AfficherArticlesMenu)
+]
+[(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives,id_article,id_rubrique,lang,classe})#SET{div_artrecents,1}]]
+<BOUCLE_PlusieursArticles(ARTICLES) {id_rubrique} {lang} {1,1}{!archive}>
+<BOUCLE_AfficherArticlesMenu(RUBRIQUES) {id_rubrique} {titre_mot=AfficherArticlesMenu}> </BOUCLE_AfficherArticlesMenu>
+[(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>#SET{div_artrecents,1}]
+#SET{tri,#CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}#SET{senstri,-1}
+<BOUCLE_ClassementAlpha(RUBRIQUES){id_rubrique}{titre_mot=ClassementAlpha}>#SET{tri,titre}#SET{senstri,1}</BOUCLE_ClassementAlpha>
+<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+[.)]}{0,1}>#SET{tri,num titre}#SET{senstri,1}</BOUCLE_test_numero>
+<//B_ClassementAlpha>
+		<B_articles_rubrique>
+		<h2 title="<:soyezcreateurs:memerubrique|replace{\.\.\.,''}:>: [(#INFO_TITRE{rubrique,#ID_RUBRIQUE}|supprimer_tags|attribut_html)]"><:soyezcreateurs:memerubrique:></h2>
+		<ul>
+		<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {tri #GET{tri},#GET{senstri}} {lang} {!archive}>
+			<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]">[(#ID_ARTICLE|!={#ENV{id_article}}|oui)<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>][(#TITRE)][(#ID_ARTICLE|!={#ENV{id_article}}|?{'</a>'})]</li>
+		</BOUCLE_articles_rubrique>
+		</ul>
+		</B_articles_rubrique>
+<//B_AfficherArticlesMenu>
+</BOUCLE_PlusieursArticles>
+
+[(#VAL{cartouche}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
+[[(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>[(#SET{div_artrecents,1})]](#INCLURE{fond=modeles/documentsjoints,id_article,cartouche=_cartouche})]
+]
+
+<BOUCLE_MotsExclus1(MOTS){type==^_}{doublons 1}> </BOUCLE_MotsExclus1>
+<B_MotsClefsArticle>
+[(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>[(#SET{div_artrecents,1})]]
+<h2><:mots_clefs:></h2>
+<ul>
+<BOUCLE_MotsClefsArticle(MOTS){id_article}{doublons 1}>
+<li><a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|sc_replace{'_',' '})]</a></li>
+</BOUCLE_MotsClefsArticle>
+</ul>
+<BOUCLE_EstDansUnMenuHaut(RUBRIQUES){id_secteur}{titre_mot=MenuHaut}>
+[(#CONFIG{soyezcreateurs/navigationtransversalelocale,locale}|=={locale}|oui)[(#INCLURE{fond=noisettes/articles_connexes_locaux,id_secteur,id_article})]]
+[(#CONFIG{soyezcreateurs/navigationtransversalelocale,locale}|=={globale}|oui)[(#INCLURE{fond=noisettes/articles_connexes,id_secteur,id_article})]]
+</BOUCLE_EstDansUnMenuHaut>
+[(#INCLURE{fond=noisettes/articles_connexes,id_secteur,id_article})]
+<//B_EstDansUnMenuHaut>
+</B_MotsClefsArticle>
+
+[(#GET{div_artrecents}|oui)</div>]
+[<div id="signature">
+(#FORMULAIRE_SIGNATURE)
+</div>]
+</BOUCLE_article_principal>
+#FILTRE{mini_html}

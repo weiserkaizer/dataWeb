@@ -1,0 +1,4 @@
+<BOUCLE_GeoURL(MOTS){titre=ICBM}>[<div class="centrer_div #EDIT{texte}">
+<a href="https://www.google.com.mx/maps/dir//[(#TEXTE*|replace{' ',''})]" title="<:soyezcreateurs:ou_sommes_nous:> ((#TEXTE|attribut_html))"><img src="[(#CHEMIN{images/ou_sommes_nous_dans_le_monde.png}|image_sepia{[(#CONFIG{soyezcreateurs_couleurs/extra,#017ca5})]}|extraire_attribut{src}|embarque_fichier)]" alt="<:soyezcreateurs:carte_monde:>" width="[(#CHEMIN{images/ou_sommes_nous_dans_le_monde.png}|largeur)]" height="[(#CHEMIN{images/ou_sommes_nous_dans_le_monde.png}|hauteur)]" /></a>
+</div>]</BOUCLE_GeoURL>
+#FILTRE{mini_html}

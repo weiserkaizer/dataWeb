@@ -1,0 +1,29 @@
+[(#SET{titretop,page_<:definition:titre_definitions|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{template=Sigles}
+	{title=<:definition:titre_definitions|texte_script:>}
+	{titretop=#GET{titretop}}
+	{type=sigles}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:definition:titre_definitions:></h1></div>
+</div>
+]
+<div id="letexte">
+	<div id="sigles">
+		[(#INCLURE{fond=modeles/dictionnaires,env})]
+	</div>
+</div>
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{template=Sigles}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}

@@ -1,0 +1,12 @@
+<BOUCLE_ListMotsClefs(EVENEMENTS){branche}>
+	<BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons listemots} />
+</BOUCLE_ListMotsClefs>
+<B_ListeMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilise' dans le secteur]
+<select name="id_mot" id="var_nav_cle">
+	<option value=""[(#ENV{id_mot,''}|=={''}|oui) selected="selected"]><:soyezcreateurs:tout:></option>
+	<BOUCLE_ListeMotsClefs(MOTS){!doublons listemots}{par titre}>
+		<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|oui) selected="selected"]>[(#TITRE|supprimer_tags)]</option>
+	</BOUCLE_ListeMotsClefs>
+	</select>
+</B_ListeMotsClefs>
+#FILTRE{mini_html}

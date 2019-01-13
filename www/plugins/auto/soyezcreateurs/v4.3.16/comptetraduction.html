@@ -1,0 +1,118 @@
+<style>
+	.champs { color: #888; }
+</style>
+
+[(#ENV{textes}|non)<ol>
+<li><a href="[(#SELF|parametre_url{id_mot,113})]">Seulement les textes marqués à traduire</a> / <a href="[(#SELF|parametre_url{id_mot,''})]">Tous</a></li>
+<li><a href="[(#SELF|parametre_url{textes,oui})]">Récupérer les textes</a></li>
+<li><a href="[(#SELF|parametre_url{textes,spip})]">Récupérer les textes au format SPIP</a></li>
+</ol>]
+<h1>[(#ENV{textes}|=={spip}|oui)<br /><i class="champs">\[Nom Site SPIP\]</i> ]#NOM_SITE_SPIP</h1>
+[(#ENV{textes}|=={oui}|oui)
+<p>#DESCRIPTIF_SITE_SPIP</p>
+[<p>(#CONFIG{soyezcreateurs/bandeau_annonce})</p>]
+[<p>(#CONFIG{soyezcreateurs/bandeau_contact})</p>]
+]
+[(#ENV{textes}|=={spip}|oui)
+[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF_SITE_SPIP*|echapper_tags)</pre>]
+[<br /><i class="champs">\[Bandeau Annonce\]</i> <pre>(#CONFIG*{soyezcreateurs/bandeau_annonce}|echapper_tags)</pre>]
+[<br /><i class="champs">\[Bandeau Contact\]</i> <pre>(#CONFIG*{soyezcreateurs/bandeau_contact}|echapper_tags)</pre>]
+]
+[(#SET{comptemot,
+	[(#NOM_SITE_SPIP|textebrut|str_word_count_utf8
+	|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+	|plus{[(#CONFIG{soyezcreateurs/bandeau_annonce}|textebrut|str_word_count_utf8)]}
+	|plus{[(#CONFIG{soyezcreateurs/bandeau_contact}|textebrut|str_word_count_utf8)]}
+)]})]
+[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
+[(#ENV{textes}|non)<p>==> Hors rubriques :  #GET{comptemot}</p>]
+<BOUCLE_ListeSecteurs(RUBRIQUES){id_parent}{par num titre}>
+<h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE">[(#ENV{textes}|=={spip}|oui)<i class="champs">\[Rubrique \(#ID_RUBRIQUE\) Titre\]</i> ]#TITRE</a> [(#SET{comptemot,
+	[(#TITRE|textebrut|str_word_count_utf8
+		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+		|plus{[(#TEXTE|textebrut|str_word_count_utf8)]}
+		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
+	)]})] 
+[(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
+[(#ENV{textes}|=={oui}|oui)
+[<p>(#DESCRIPTIF)</p>]
+[<p>(#TEXTE)</p>]
+[<p>(#NOTES)</p>]
+]
+[(#ENV{textes}|=={spip}|oui)
+[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|echapper_tags)</pre>]
+[<br /><i class="champs">\[Texte\]</i> <pre>(#TEXTE*|echapper_tags)</pre>]
+[<br /><i class="champs">\[Notes\]</i> <pre>(#NOTES*|echapper_tags)</pre>]
+]
+<B_ArticlesRacine>
+<ul>
+<BOUCLE_ArticlesRacine(ARTICLES){id_rubrique}{!par date}{lang?}{id_mot?}>
+<li><a href="#URL_ARTICLE">[(#ENV{textes}|=={spip}|oui)<i class="champs">\[Article \(#ID_ARTICLE\) Titre\]</i> ]#TITRE</a> [(#SET{comptemot,
+	[(#TITRE|textebrut|str_word_count_utf8
+		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+		|plus{[(#CHAPO|textebrut|str_word_count_utf8)]}
+		|plus{[(#TEXTE|textebrut|str_word_count_utf8)]}
+		|plus{[(#PS|textebrut|str_word_count_utf8)]}
+		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
+	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
+[(#ENV{textes}|=={oui}|oui)
+[<p>(#DESCRIPTIF)</p>]
+[<p>(#CHAPO)</p>]
+[<p>(#TEXTE)</p>]
+[<p>(#PS)</p>]
+[<p>(#NOTES)</p>]	
+]
+[(#ENV{textes}|=={spip}|oui)
+[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|echapper_tags)</pre>]
+[<br /><i class="champs">\[chapo\]</i> <pre>(#CHAPO*|echapper_tags)</pre>]
+[<br /><i class="champs">\[Texte\]</i> <pre>(#TEXTE*|echapper_tags)</pre>]
+[<br /><i class="champs">\[PS\]</i> <pre>(#PS*|echapper_tags)</pre>]
+[<br /><i class="champs">\[Notes\]</i> <pre>(#NOTES*|echapper_tags)</pre>]	
+]
+<B_Documents>
+<ul>
+<BOUCLE_Documents(DOCUMENTS){id_article}{par rang_lien, num titre, titre}>
+<li><a href="#URL_DOCUMENT">[(#ENV{textes}|=={spip}|oui)<i class="champs">\[Document \(#ID_DOCUMENT\) Titre\]</i> ]#TITRE</a> [(#SET{comptemot,
+	[(#TITRE|textebrut|str_word_count_utf8
+		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
+	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
+[(#ENV{textes}|=={oui}|oui)
+[<p>(#DESCRIPTIF)</p>]
+[<p>(#NOTES)</p>]	
+]
+[(#ENV{textes}|=={spip}|oui)
+[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|echapper_tags)</pre>]
+[<br /><i class="champs">\[Notes\]</i> <pre>(#NOTES*|echapper_tags)</pre>]	
+]
+</BOUCLE_Documents>
+</ul>
+</B_Documents>
+</li>
+</BOUCLE_ArticlesRacine>
+</ul>
+</B_ArticlesRacine>
+<B_SitesRacine>
+<ul>
+<BOUCLE_SitesRacine(SITES){id_rubrique}{!par date}{id_mot?}>
+<li><a href="#URL_SITE">[(#ENV{textes}|=={spip}|oui)<i class="champs">\[Site \(#ID_SITE\) Nom Site\]</i> ]#NOM_SITE</a> [(#SET{comptemot,
+	[(#NOM_SITE|textebrut|str_word_count_utf8
+		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
+	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
+[(#ENV{textes}|=={oui}|oui)
+[<p>(#DESCRIPTIF)</p>]
+[<p>(#NOTES)</p>]	
+]
+[(#ENV{textes}|=={spip}|oui)
+[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|echapper_tags)</pre>]
+[<br /><i class="champs">\[Notes\]</i> <pre>(#NOTES*|echapper_tags)</pre>]	
+]
+</li>
+</BOUCLE_SitesRacine>
+</ul>
+</B_SitesRacine>
+<BOUCLE_RubriquesRecursion(BOUCLE_ListeSecteurs) />
+</BOUCLE_ListeSecteurs>
+
+[(#ENV{textes}|non)<p>==> Total tout compris : #GET{totalmots}</p>]

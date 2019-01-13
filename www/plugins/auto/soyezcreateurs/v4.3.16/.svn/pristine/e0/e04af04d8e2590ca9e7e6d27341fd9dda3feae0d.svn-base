@@ -1,0 +1,48 @@
+	<div id="letexte">
+		<div class="onglets" id="listedocuments">
+			<ul>
+				[<li>(#URL_PAGE{telecharger}|parametre_url{media,''}|ancre_url{'#listedocuments'}|lien_ou_expose{<:medias:tous_les_medias:>,#ENV{media,''}|=={''},ajax})</li>]
+				<BOUCLE_Medias(DOCUMENTS){vu ?}{compteur types_documents, media}{media IN image,audio,video,file}>
+				<li>[(#ENV{media}|=={#MEDIA}|?{<strong>,<a class="ajax" href="[(#URL_PAGE{telecharger}|parametre_url{media,#MEDIA}|ancre_url{'#listedocuments'})]">})][(#VAL{medias:media_}|concat{#MEDIA}|_T|concat{' (',#COMPTEUR{types_documents},')'})][(#ENV{media}|=={#MEDIA}|?{</strong>,</a>})]</li>
+				</BOUCLE_Medias>
+			</ul>
+		</div>
+		
+		<B_AfficheDocuments>
+		<div class="smallchild">
+			#ANCRE_PAGINATION
+			<table class="spip tableaudocs" cellspacing="0">
+				<thead>
+					<tr class="row_first">
+						<th scope="col"><strong>Type</strong></th>
+						<th scope="col"><strong>Titre</strong></th>
+						<th scope="col"><strong>Description</strong></th>
+						<th scope="col"><strong>Poids</strong></th>
+						<th scope="col"><strong>Rattaché à</strong></th>
+					</tr>
+				</thead>
+				<tbody>#SET{compteur_ligne,0}
+					<BOUCLE_AfficheDocuments(DOCUMENTS){media ?}{vu ?}{par titre}{pagination 10}>
+					#SET{compteur_ligne,#GET{compteur_ligne}|plus{1}}[(#SET{lelogo,[(#LOGO_DOCUMENT|image_reduire{24,24})]})]
+					<tr class="[(#GET{compteur_ligne}|alterner{'row_odd','row_even'})]">
+						<td><a href="#URL_DOCUMENT" type="#MIME_TYPE" title="<:ecrire:ical_methode_http:>[: (#TITRE|textebrut|attribut_html|sinon{<:info_document:>})][ ((#TYPE_DOCUMENT)][, (#TAILLE|taille_en_octets))]"><img src="[(#GET{lelogo}|extraire_attribut{src}|embarque_fichier)]" height="[(#GET{lelogo}|hauteur)]" width="[(#GET{lelogo}|largeur)]" alt="Format: #TYPE_DOCUMENT" title="Format: #TYPE_DOCUMENT" /></a></td>
+						<td class="#EDIT{titre}"><a href="#URL_DOCUMENT" type="#MIME_TYPE" title="<:ecrire:ical_methode_http:>[: (#TITRE|textebrut|attribut_html|sinon{<:info_document:>})][ ((#TYPE_DOCUMENT)][, (#TAILLE|taille_en_octets))]">[(#TITRE|sinon{<:ecrire:info_sans_titre:>})]</a></td>
+						<td class="#EDIT{descriptif}">[(#DESCRIPTIF|couper{80})]</td>
+						<td>[(#TAILLE|taille_en_octets)]</td>
+						<td><BOUCLE_liens(documents_liens){id_document}{'<br />'}>
+						[(#ID_OBJET|lien_objet{#OBJET})]
+						</BOUCLE_liens></td>
+					</tr>
+					</BOUCLE_AfficheDocuments>
+				</tbody>
+			</table>
+			<p class="pagination">#PAGINATION{page}</p>
+		</div>
+		</B_AfficheDocuments>
+		<p><:soyezcreateurs:recherche_infructueuse:></p>
+		<//B_AfficheDocuments>
+		[<div id="carto">
+		(#PLUGIN{GIS}|oui)[(#INCLURE{fond=json/gis_documents,media=#ENV{media},limit=1}|oui)[(#INCLURE{fond=modeles/carte_gis,objets=documents,media=#ENV{media},autocenterandzoom=oui,hauteur=#CONFIG{soyezcreateurs_layout/hauteurgisarticles,400px},cluster=[(#PLUGIN{GISGEOM}|?{'non','oui'})],maxClusterRadius=40,clusterShowCoverageOnHover=oui,clusterSpiderfyOnMaxZoom=oui,fullscreen=oui,zoom_wheel=non})]]
+		</div>]
+	</div><!-- Fin de #letexte -->
+#FILTRE{mini_html}

@@ -1,0 +1,21 @@
+#gauchedroite, #menuhaut { zoom: 100%; }
+#menuhaut { padding-bottom: 0; }
+#menu li, #miettesdepain, .rightmenu h2 { height: 1%; position: relative; }
+#menu li a, .rightmenu li a { height: 1%; }
+#content h1, #miettesdepain, #letexte { position: relative; }
+html #letexte {
+	float: left; /* Corrige un bug de IE6 des documents ou images flotes invisibles*/
+	/* change un peu la mise en page, mais tant pis ! */
+}
+#letexte, #content {
+	height: 1%;
+}
+#artrecents {
+     height: 350px;
+}
+
+#mairie_content { zoom:1; }
+#communiquant_content { zoom:1; }
+#menuhaut ul li { display: inline;}
+
+#sommaire_mode_mairie #homequoideneuf li{height:56px;}

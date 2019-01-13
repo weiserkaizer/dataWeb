@@ -1,0 +1,7 @@
+#CACHE{0}[(#HTTP_HEADER{Content-Type: text/plain; charset=#CHARSET})]
+<BOUCLE_groupes(GROUPES_MOTS){par titre}>
+	create_groupe("[(#TITRE*|sc_NewLine2str)]", "[(#DESCRIPTIF*|sc_NewLine2str)]", "[(#TEXTE*|sc_NewLine2str)]", '[(#UNSEUL|=={oui}|?{'oui','non'})]', '[(#OBLIGATOIRE|=={oui}|?{'oui','non'})]', '[(#TABLES_LIEES)]', '[(#MINIREZO|=={oui}|?{'oui','non'})]', '[(#COMITE|=={oui}|?{'oui','non'})]', '[(#FORUM|=={oui}|?{'oui','non'})]');
+<BOUCLE_mots(MOTS){id_groupe}{par titre}>		$id_mot = create_mot("[(#_groupes:TITRE*|sc_NewLine2str)]", "[(#TITRE*|sc_NewLine2str)]", "[(#DESCRIPTIF*|sc_NewLine2str)]", "[(#TEXTE*|sc_NewLine2str)]");[
+			create_logo('documents/(#LOGO_MOT_NORMAL|fichier)', $type='mot', $id_mot, '[(#LOGO_MOT_NORMAL|fichier|sc_extension)]');][
+			create_logo('documents/(#LOGO_MOT_SURVOL|fichier)', $type='mot', $id_mot, '[(#LOGO_MOT_SURVOL|fichier|sc_extension)]','off');]
+</BOUCLE_mots></BOUCLE_groupes>

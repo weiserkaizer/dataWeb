@@ -1,0 +1,19 @@
+	<B_themes>
+	<div id="artrecents"[ class="(#ENV{classe})"]>
+		<h2><:soyezcreateurs:themes:></h2>
+		<BOUCLE_themes(RUBRIQUES){racine}{id_rubrique=#ENV{id_rubrique}}><B_sous_rubriques1>
+		<!-- Les themes avec recursivite -->
+		<ul>
+		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
+		<li[ style="list-style-image: url(/(#LOGO_RUBRIQUE_NORMAL|image_reduire{9,9}|extraire_attribut{src}));"]>
+		<a href="[(#URL_PAGE{#ENV{page,agenda_calendrier}}|parametre_url{'id_rubrique',#ID_RUBRIQUE}|parametre_url{'date_ev', #ENV{date_th}}|parametre_url{'mots', #ENV{mots}}|parametre_url{'id_mot', [(#ENV{id_mot,''}|urlencode)]})]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">
+			[(#TITRE)]
+		</a>
+		<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1) />
+		</li>
+		</BOUCLE_sous_rubriques1>
+		</ul>
+		</B_sous_rubriques1></BOUCLE_themes>
+	</div>
+	</B_themes>
+#FILTRE{mini_html}

@@ -1,0 +1,6 @@
+a:2:{s:9:"nom_cache";s:38:"fa089c55d32a442347270c00c58b0f14.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_760561e6a8c6770c9b32237a1aaa292a";s:6:"source";s:59:"plugins/auto/soyezcreateurs/v4.3.16/noisettes/logosite.html";s:11:"process_ins";s:4:"html";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"fa089c55d32a442347270c00c58b0f14.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:185:"<div id="logo">
+<a href="./" title="Revenir à l’Accueil du site Votre site SPIP">
+<img src="IMG/siteon0.jpg?1531296516" width="160" height="160" alt="Votre site SPIP" />
+</a>
+</div>
+";s:5:"notes";s:0:"";s:8:"contexte";a:5:{s:4:"lang";s:2:"fr";s:4:"date";s:19:"2019-01-06 23:34:31";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 23:34:31";s:18:"date_redac_default";b:1;}s:12:"lastmodified";i:1546817633;s:2:"gz";b:0;s:3:"sig";i:1494729057;}}

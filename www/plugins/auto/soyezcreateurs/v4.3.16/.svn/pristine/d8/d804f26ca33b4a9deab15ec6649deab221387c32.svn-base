@@ -1,0 +1,19 @@
+#CACHE{600}
+#SET{articles_exclus, #ARRAY}
+<BOUCLE_Exclure(ARTICLES){titre_mot=GraverSonNom}>#SET{articles_exclus, #GET{articles_exclus}|push{#ID_ARTICLE}}</BOUCLE_Exclure>
+		<B_Forums>
+		<div class="forum_sommaire">
+		<h2><:soyezcreateurs:discus_en_cours:></h2>
+		<ul>
+			<BOUCLE_Forums(FORUMS){plat}{id_article !IN #GET{articles_exclus}}{articles.statut=publie} {par date}{inverse} {0,10}>
+			<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]">
+				<span class="#EDIT{auteur} auteur">#NOM</span><span class="datepublication"> [(#DATE|affdate_heure)]</span>
+				<a href="[(#URL_ARTICLE|ancre_url{forum#ID_FORUM})]"[ title="(#TEXTE|couper{80}|attribut_html)"] class="#EDIT{titre}"><BOUCLE_PasdeSiteDansSsForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[(#_Forums:TITRE|sc_anti_glouton)]</BOUCLE_PasdeSiteDansSsForums>
+					[(#_Forums:TITRE)]
+				<//B_PasdeSiteDansSsForums></a>
+			</li>
+			</BOUCLE_Forums>
+		</ul>
+		</div>
+		</B_Forums>
+#FILTRE{mini_html}

@@ -1,0 +1,4 @@
+<BOUCLE_AuMoinsUneOrganisation(ORGANISATIONS){0,1}>
+<li class="menu_lien_annuaire">[(#ENV{template}|=={annuaire}|?{<strong>})]<a href="#URL_PAGE{annuaire}" title="<:soyezcreateurs:annuaire_consulter:>"><:soyezcreateurs:annuaire:></a>[(#ENV{template}|=={annuaire}|?{</strong>})]</li>
+</BOUCLE_AuMoinsUneOrganisation>
+#FILTRE{mini_html}

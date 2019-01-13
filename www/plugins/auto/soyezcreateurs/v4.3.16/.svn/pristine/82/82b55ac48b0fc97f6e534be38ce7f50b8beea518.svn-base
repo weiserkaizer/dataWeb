@@ -1,0 +1,10 @@
+<BOUCLE_Edito(ARTICLES) {titre_mot=EDITO}{!par date}{0,1}{lang}>
+<div class="Edito clearfix">
+<h2 class="#EDIT{titre}"><span>[(#TITRE)]</span></h2>
+[(#SET{divopen,''})]
+[<div class="infos">[(#SET{divopen,1})](#INCLURE{fond=noisettes/liste_auteurs,id_article,virgule=1,nodiv=1})][[(#GET{divopen}|?{'',<div class="infos">[(#SET{divopen,1})]})](#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})][(#GET{divopen}|?{'</div>'})]
+[<div[(#TEXTE**|oui) onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuiteeditorial:>" class="cursor-pointer clear"]>[<img class="logo_modenews" src="(#LOGO_ARTICLE|image_reduire{48,48}|extraire_attribut{src}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{48,48}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{48,48}|hauteur)]" alt="" />](#INFO_CHAPO{article,#ID_ARTICLE}|sinon{#INFO_DESCRIPTIF{article,#ID_ARTICLE}}|sinon{[<p>(#TEXTE|couper{300})</p>]}|ptobr|image_reduire{#ENV{Largeurcontent_central}|div{3},0})</div>]
+[(#TEXTE**|oui)<div class="infos suite"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]"><:soyezcreateurs:liresuiteeditorial:></a></div>]
+</div>
+</BOUCLE_Edito>
+#FILTRE{mini_html}

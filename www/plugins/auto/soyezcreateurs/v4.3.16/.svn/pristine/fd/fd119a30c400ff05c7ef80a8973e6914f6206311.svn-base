@@ -1,0 +1,69 @@
+<BOUCLE_article_titre(ARTICLES) {id_article}>
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+[(#SET{letitre,[(#TITRE|attribut_html|texte_script)]: <:poster_message|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{noindex=1}
+	{title=#GET{letitre}}
+	{titretop=#GET{titretop}}
+	{id_rubrique}
+	{id_secteur}
+	{id_article}
+	{type=forum}
+>
+</BOUCLE_article_titre>
+
+<!-- Contenu : poster un message dans le forum -->
+
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1 class="structure"><:poster_message:></h1></div>
+</div>
+]
+	<div id="letexte">
+<BOUCLE_forum_parent(FORUMS) {id_forum}>
+	<h2><:soyezcreateurs:forum_enreponse_message:></h2>
+<div class="chapo">
+	<h3><a href="[(#ARTICLE_URL|ancre_url{'#forum'#ID_FORUM})]"[ title="(#DESCRIPTIF|attribut_html)"]>#TITRE</a></h3>
+	<div class="detail">
+	[Le (#DATE|nom_jour)] [(#DATE|affdate)]
+	</div>
+	[<div class="extrait">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
+	[<div class="notes">(#NOTES|safehtml)</div>]
+</div>
+</BOUCLE_forum_parent>
+<BOUCLE_article(ARTICLES) {id_article}{!titre_mot=GraverSonNom}>
+	<h2><:soyezcreateurs:forum_enreponse:></h2>
+	<h3 class="titre-texte"><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></h3>
+[<div class="chapo">(#CHAPO|sinon{#DESCRIPTIF}|sinon{[<p>(#TEXTE|couper{300})</p>]}|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
+[<div class="notes">(#NOTES)</div>]
+</BOUCLE_article>
+
+<BOUCLE_breve(BREVES) {id_breve}>
+	<h2><:soyezcreateurs:forum_enreponse_breve:></h2>
+	<h3><a href="#URL_BREVE">[(#TITRE)]</a></h3>
+	<div class="detail">
+	[Le (#DATE|nom_jour)] [(#DATE|affdate)]
+	</div>
+	[<div class="chapo">(#INTRODUCTION)</div>]
+</BOUCLE_breve>
+<//B_article>
+<//B_forum_parent>
+
+<BOUCLE_GraverSonNom(ARTICLES){id_article}{titre_mot=GraverSonNom}><h2><:soyezcreateurs:deposer_intention:></h2></BOUCLE_GraverSonNom>
+<h2>[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</h2><//B_GraverSonNom>
+<div>
+#FORMULAIRE_FORUM
+</div>
+</div>
+</main>
+</div><!-- Fin de .texte -->
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{id_rubrique}
+	{id_article}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}

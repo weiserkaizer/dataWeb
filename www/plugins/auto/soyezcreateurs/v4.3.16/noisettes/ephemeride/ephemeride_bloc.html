@@ -1,0 +1,10 @@
+#CACHE{900}
+<div id="ephemeride" class="cadreinfo">
+	[(#REM) Date du jour ]
+	<p>[(#EVAL{date("Y-m-d")}|affdate{nom_jour}|ucfirst) ][(#EVAL{date("Y-m-d")}|affdate)]</p>
+	[(#REM) Saint du jour ]
+	<BOUCLE_SiteSaintDuJour(SITES){titre_mot=SaintDuJour}><BOUCLE_SaintDuJour(SYNDIC_ARTICLES){id_syndic}{!par date}{0,1}><p[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>#TITRE</p></BOUCLE_SaintDuJour></BOUCLE_SiteSaintDuJour>
+	[(#REM) Météo ]
+	[(#PLUGIN{RAINETTE}|oui)#SET{service,weather}[(#CONFIG{rainette/wunderground/inscription}|oui)#SET{service,wunderground}][(#MODELE{rainette_conditions, lieu=[(#CONFIG{soyezcreateurs/rainette_ville, FRXX0099})], sous_modele=mod_lien_detail, service=#GET{service}})]]
+</div>
+#FILTRE{mini_html}

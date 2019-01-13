@@ -1,0 +1,1 @@
+<B_auteurs>[(#ENV{nodiv}|=={1}|?{'','<div class="liste_auteurs">'})]<:par_auteur:> <BOUCLE_auteurs(AUTEURS){id_article}{", "}>[(#ENV{nolink}|=={1}|?{'',<a rel="author" href="#URL_AUTEUR">})]#NOM[(#ENV{nolink}|=={1}|?{'','</a>'})]</BOUCLE_auteurs>[(#ENV{virgule}|=={1}|?{', ',''})][(#ENV{nodiv}|=={1}|?{'','</div>'})]</B_auteurs>#FILTRE{mini_html}

@@ -1,0 +1,8 @@
+<BOUCLE_PlanLocal(MOTS){id_rubrique}{titre = PlanLocal}>
+[(#INCLURE{fond=noisettes/plan/plan_branche,id_rubrique=#ENV{id_rubrique}})]
+</BOUCLE_PlanLocal>
+</B_PlanLocal>
+[(#ENV{archive}|non)[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique_articles,id_rubrique,env,ajax})]]
+[(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique_articles_archives,id_rubrique,ajax})]]
+<//B_PlanLocal>
+#FILTRE{mini_html}

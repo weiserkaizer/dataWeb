@@ -1,0 +1,5 @@
+<BOUCLE_test(CONDITION){si #ENV{menu}|=={oui}}>
+	
+</BOUCLE_test>
+	
+<//B_test>

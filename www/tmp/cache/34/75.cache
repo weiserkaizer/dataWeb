@@ -1,0 +1,10 @@
+a:2:{s:9:"nom_cache";s:38:"347591f85d82ef4ee3fe824d52a7ee0a.cache";s:6:"valeur";a:12:{s:9:"squelette";s:37:"html_8471a3c1c886142bccdd3b4e2fef4d51";s:6:"source";s:73:"plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/cadre_recherche.html";s:11:"process_ins";s:3:"php";s:11:"invalideurs";a:1:{s:5:"cache";s:38:"347591f85d82ef4ee3fe824d52a7ee0a.cache";}s:7:"entetes";a:1:{s:12:"X-Spip-Cache";i:43200;}s:5:"duree";i:0;s:5:"texte";s:453:"<div id="cadre_recherche" class="cadre_recherche">
+
+<?php 
+include_once("./" . _DIR_RACINE . "ecrire/balise/formulaire_.php");
+if ($lang_select = "fr") $lang_select = lang_select($lang_select);
+inserer_balise_dynamique(balise_FORMULAIRE__dyn('FORMULAIRE_RECHERCHE'), array('plugins/auto/soyezcreateurs/v4.3.16/noisettes/header/cadre_recherche.html', 'html_8471a3c1c886142bccdd3b4e2fef4d51', '', 2, 'fr'));
+if ($lang_select) lang_select();
+?>
+
+</div>";s:5:"notes";s:0:"";s:8:"contexte";a:10:{s:8:"template";s:8:"Sommaire";s:6:"idbody";s:27:"sommaire_mode_portailcognac";s:4:"type";s:8:"sommaire";s:4:"lang";s:2:"fr";s:4:"date";s:19:"2019-01-06 23:34:09";s:12:"date_default";b:1;s:10:"date_redac";s:19:"2019-01-06 23:34:09";s:18:"date_redac_default";b:1;s:14:"secteurencours";s:0:"";s:12:"id_recherche";s:15:"cadre_recherche";}s:12:"lastmodified";i:1546817633;s:2:"gz";b:0;s:3:"sig";i:2558466818;}}

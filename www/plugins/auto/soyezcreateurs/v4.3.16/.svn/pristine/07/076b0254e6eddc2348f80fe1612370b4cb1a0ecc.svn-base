@@ -1,0 +1,84 @@
+<B_messages>
+		<BOUCLE_messages(CM_POSTS){pst_id}{pst_date_sent!=0}{!par pst_date_sent}>
+			[(#REM) Affichage du détail du message du courrier ]
+				[(#PST_HTML)]
+		</BOUCLE_messages>
+</B_messages>
+
+<BOUCLE_list(CM_LISTS){lst_id}>
+[(#SET{titretop,<:soyezcreateurs:newsletter|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{title=<:soyezcreateurs:newsletter|texte_script:>}
+	{titretop=#GET{titretop}}
+	{template=Liste_mail}
+	{lst_id}
+	{type=liste_mail}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1 class="titre">#LST_NAME</h1></div>
+<div class="datepublication"><span><:soyezcreateurs:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
+</div>
+]
+	<div id="letexte">
+	[<div class="chapo">(#DESCRIPTIF)</div>]
+[(#REM) Affichage du détail de la liste ]
+	<B_archives>
+	<ul>
+		<BOUCLE_archives(CM_POSTS) {lst_id}{pst_date_sent!=0}{pagination}{!par pst_date_sent}>
+		<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'pst_id',#PST_ID})]" title="[(#PST_SUBJECT|attribut_html)]">[(#PST_SUBJECT)]</a>
+		<small>[(#PST_DATE_SENT|cm_date)]</small></li>
+		</BOUCLE_archives>
+	</ul>
+		[<p class="pagination">(#PAGINATION)</p>]
+	</B_archives>
+
+
+
+	</div><!-- Fin de .letexte -->
+</main>
+</div><!-- Fin de .texte -->
+
+</BOUCLE_list>
+
+[(#SET{titretop,<:soyezcreateurs:newsletter|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{title=<:soyezcreateurs:newsletter|texte_script:>}
+	{titretop=#GET{titretop}}
+	{template=Liste_mail}
+	{type=liste_mail}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:newsletter:></h1></div>
+</div>
+]
+	<div id="letexte">
+
+<BOUCLE_listes(CM_LISTS){lst_moderation!=closed}{par lst_name}>
+	
+	<B_lettres>
+	<h2><a href="[(#URL_PAGE{liste_mail}|parametre_url{'lst_id',#LST_ID})]" title="[(#LST_NAME|attribut_html)]">#LST_NAME</a></h2>
+	<ul>
+	<BOUCLE_lettres(CM_POSTS){lst_id}{pst_date_sent!=0}{!par pst_date_sent}>
+		<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'pst_id',#PST_ID})]" title="<:soyezcreateurs:publiele|attribut_html:> [(#PST_DATE_SENT|cm_date|attribut_html)]">#PST_SUBJECT</a></li>
+	</BOUCLE_lettres>
+	</ul>
+	</B_lettres>
+</BOUCLE_listes>
+
+	</div><!-- Fin de .letexte -->
+</main>
+</div><!-- Fin de .texte -->
+<//B_list>
+<INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titretop}}
+	{template=Liste_mail}
+>
+
+<//B_messages>
+#FILTRE{mini_html}

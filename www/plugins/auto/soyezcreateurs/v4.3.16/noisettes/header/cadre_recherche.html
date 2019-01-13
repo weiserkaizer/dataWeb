@@ -1,0 +1,5 @@
+<div id="cadre_recherche" class="#ENV{id_recherche,cadreinfo}">
+[(#CHEMIN{noisettes/pre_recherche.html}|oui)[(#INCLURE{fond=noisettes/pre_recherche})]]
+[(#FORMULAIRE_RECHERCHE)][(#PLUGIN{critere_mots}|oui)[(#ENV{template}|=={mots_filtres}|non)<INCLURE{fond=noisettes/navigation/frmrechercheparmots,env}>]]
+[(#CONFIG{soyezcreateurs/geolocalisation,non}|=={oui}|oui)#INCLURE{fond=noisettes/extra/ousommesnous}]
+</div>#FILTRE{mini_html}

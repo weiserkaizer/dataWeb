@@ -1,0 +1,7 @@
+[(#CONFIG{soyezcreateurs_layout/plansitefooter,generique}|=={generique}|oui)<li class="menu_lien_plan">[(#ENV{template}|=={Plan}|?{<strong>})]<a href="#URL_PAGE{plan}" title="<:soyezcreateurs:toutleplan:>"><:soyezcreateurs:plan_menu:></a>[(#ENV{template}|=={Plan}|?{</strong>})]</li>]
+[(#INCLURE{fond=noisettes/liensnav/sites,template})]
+[(#INCLURE{fond=noisettes/liensnav/documents,template})]
+[(#INCLURE{fond=noisettes/liensnav/newsletters,template})]
+[(#INCLURE{fond=noisettes/liensnav/sigles,template})]
+[(#INCLURE{fond=noisettes/liensnav/annuaire,template})]
+#FILTRE{mini_html}

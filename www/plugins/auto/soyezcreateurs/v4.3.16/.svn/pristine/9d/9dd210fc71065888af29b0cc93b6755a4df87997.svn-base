@@ -1,0 +1,1 @@
+<?php if (isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur']) { ?>[(#INCLURE{fond=noisettes/sommaire/sommaire_modeedito_type,typeedito=_Restreint})]<?php } else { ?>[(#INCLURE{fond=noisettes/sommaire/sommaire_modeedito_type})]<?php } ?>

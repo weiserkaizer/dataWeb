@@ -1,0 +1,41 @@
+.flipster--coverflow .flipster__item--past .flipster__item__content {
+    transform: scale(.50) rotateY(-30deg);
+}
+.flipster--coverflow .flipster__item--future .flipster__item__content {
+    transform: scale(0.50) rotateY(30deg);
+}
+
+.content-realisations article {
+    display: block;
+    max-width: 1200px;
+    margin: 2em auto;
+    min-height: 500px;
+}
+.content-realisations img {
+    padding: 0!important;
+}
+.content-realisations figcaption {
+    position: absolute;
+    display: block;
+    background: rgba(0,0,0,.5);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1em;
+    margin: 0;
+	font-size: 1.3em;
+    color: white;
+    text-align: center;
+}
+.content-realisations .flipster__item__content {
+    box-shadow: 0 10px 20px rgba(0,0,0,.5);
+}
+
+/* bug sur webkit */
+.content-realisations .flipster--coverflow .flipster__item__content {
+  box-reflect: inherit;
+  -webkit-box-reflect: inherit;
+}
+.content-realisations .flipster__item {
+    max-width: 100%;
+}

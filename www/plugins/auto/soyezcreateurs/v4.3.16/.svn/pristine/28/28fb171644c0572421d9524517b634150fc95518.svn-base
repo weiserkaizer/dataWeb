@@ -1,0 +1,5 @@
+<BOUCLE_TitreReseauxSociaux(MOTS){titre=ReseauxSociaux}><B_ReseauxSociaux>
+[<span class="#EDIT{texte}">(#TEXTE|ptobr)</span>]
+<BOUCLE_ReseauxSociaux(SITES){id_mot}{par num nom_site}>[(#SET{lelogo,[(#LOGO_SITE_NORMAL|image_reduire{0,#CONFIG{soyezcreateurs_layout/hauteurlogomenufooter,16}})]})]
+	[<a href="[(#URL_SITE|url_absolue)]" title="[(#DESCRIPTIF*|_T|typo|textebrut|attribut_html)]"><img class="spip_logos" src="(#GET{lelogo}|extraire_attribut{src}|embarque_fichier)"[ width="(#GET{lelogo}|largeur)"][ height="(#GET{lelogo}|hauteur)"] alt="[(#NOM_SITE|textebrut|attribut_html)]" /></a>]
+</BOUCLE_ReseauxSociaux></BOUCLE_TitreReseauxSociaux>#FILTRE{mini_html}

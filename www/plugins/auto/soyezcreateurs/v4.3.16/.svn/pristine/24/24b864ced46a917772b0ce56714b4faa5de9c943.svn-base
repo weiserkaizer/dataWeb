@@ -1,0 +1,31 @@
+#SET{groupes,#ARRAY}
+[(#ENV{id_groupe}|oui)[(#SET{groupes, #GET{groupes}|push{#ENV{id_groupe}}})]]
+<BOUCLE_Groupe(MOTS) {id_mot}>
+[(#SET{groupes, #GET{groupes}|push{#ID_GROUPE}})]
+</BOUCLE_Groupe>
+<BOUCLE_Groupes(MOTS) {id_mot IN #ENV{mots}}>
+[(#SET{groupes, #GET{groupes}|push{#ID_GROUPE}})]
+</BOUCLE_Groupes>
+<B_MenuHaut>
+[(#PLUGIN{SIDR}|oui)<div id="mobile-header">
+<a id="responsive-menu-button" href="#sidr-main"><span><:soyezcreateurs:menunavrwd:></span></a>
+</div>]
+<nav id="menuhaut">
+	<h2 class="nocontent offscreen">Menu principal</h2>
+	<ul id="menuh">
+		[<li class="cadre_recherche">(#CONFIG{soyezcreateurs/positionrecherche,header}|=={menuhaut}|oui)[(#INCLURE{fond=noisettes/header/cadre_recherche,env,id_recherche=cadre_recherche})]</li>]
+		<BOUCLE_MenuHaut(GROUPES_MOTS){par num titre, titre}{titre==^[^_]}{tables_liees LIKE '%articles%'}><li class="menuh#ID_GROUPE #_MenuHaut:EDIT{titre}"><BOUCLE_mots_unouplusieurs(MOTS) {id_groupe} {0,2}{pagination 1}>[(#ID_GROUPE|in_any{#GET{groupes}}|?{'<strong>',''})]<INCLURE{fond=noisettes/menus/ligne_li,id_rubrique,letitre=#_MenuHaut:TITRE,ledescriptif=#_MenuHaut:DESCRIPTIF,url=(#GRAND_TOTAL|=={1}|?{(#PLUGIN{critere_mots}|?{(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}}),#URL_MOT}),(#URL_PAGE{mot}|parametre_url{id_groupe,#ID_GROUPE})}),classimg=menu_haut_logo,langue=#LANG,largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuhaut,16},hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuhaut,16},menuhautlogo=#CONFIG{soyezcreateurs_layout/menuhautlogo,logoplustexte},logomenuderoulant}>[(#ID_GROUPE|in_any{#GET{groupes}}|?{'</strong>',''})]
+				<B_SousMenuHaut><ul>
+				<BOUCLE_SousMenuHaut(MOTS){par num titre,titre}{si #CONFIG{soyezcreateurs/deepmenu,deroulant}|match{deroulant|arborescent}} {si #_mots_unouplusieurs:GRAND_TOTAL|>{1}} {id_groupe} {par num titre, titre}>
+				<li>[(#ID_MOT|=={#ENV{id_mot}}|ou{#ID_MOT|in_any{#ENV{mots}}}|?{'<strong>',''})]<INCLURE{fond=noisettes/menus/ligne_li,id_rubrique,letitre=#TITRE,ledescriptif=#DESCRIPTIF,url=(#PLUGIN{critere_mots}|?{(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}}),#URL_MOT}),classimg=menu_haut_logo,langue=#LANG,largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuhaut,16},hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuhaut,16},menuhautlogo=#CONFIG{soyezcreateurs_layout/menuhautlogo,logoplustexte},logomenuderoulant}>[(#ID_MOT|=={#ENV{id_mot}}|ou{#ID_MOT|in_any{#ENV{mots}}}|?{'</strong>',''})]</li>
+				</BOUCLE_SousMenuHaut>
+				</ul>
+				</B_SousMenuHaut>
+
+		
+		</BOUCLE_mots_unouplusieurs>
+		</li></BOUCLE_MenuHaut>
+	</ul>
+</nav>
+</B_MenuHaut>
+#FILTRE{mini_html}
